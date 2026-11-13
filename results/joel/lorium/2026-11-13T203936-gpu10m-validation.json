@@ -1,0 +1,463 @@
+{
+  "kind": "browser-full-output-validation",
+  "audit_schema": 1,
+  "at": "2026-11-13T20:39:36.112Z",
+  "who": "Joel",
+  "machine_name": "Lorium M4 Max",
+  "provenance": {
+    "built_at": "2026-11-13T20:38:49.806421+00:00",
+    "git_head": "3c77eefa795b803dc1be7c0c0d4187633929d4db",
+    "git_origin": "https://github.com/mlu-IIIapart/3apart-bench.git",
+    "stock_source_path": "web/index.html",
+    "stock_page_sha256": "1aa969374ffc0edf1c3aef34e8032cae22079b32877b3e1ee75738ac8d988385",
+    "derived_page_sha256": "46c083d80d6acdcd9f1ea8c8c1134d7794746b02099db535cba5231bd40cf325",
+    "patch_sha256": "50481a67c55ee980a4696262bd1ce73ee97169ef5bd4da439a70ff940ef598db",
+    "extension_sha256": "126188c4aad52589c06e6a7a90780cbf6f8df74660920d88f83ce0667ed6c5e6",
+    "checker_sha256": "5ea7be57b460eeaeb238e51a2cb894373ab91765b4288469df79125095bd7c3a",
+    "builder_sha256": "f1c82c4204bb160f43308588b07f35cbf257b1c5a685eb9e3caf37397653a401",
+    "changes": [
+      "Add local-only CSP to block external fonts, requests and upload destinations.",
+      "Append checker and opt-in validation UI; stock source reproduced exactly after removing these two additions."
+    ],
+    "stock_draw_body_identical_after_receiver_rename": true,
+    "tracked_source_modified": false,
+    "validation_note": "One deterministic full-output audit, separate from unchanged stock benchmark and its run counts. No result upload. Full result is downloaded explicitly by the user.",
+    "runtime_source_hashes": {
+      "geometry_fragment_shader": "2182c2bb57c9b89f338c776b2227a81f18237c9bf8523eb85c752e450417add6",
+      "vertex_shader": "a16f4852318f5320882441e2902b1cd5c026b8611c820c4462bfd3809ecb9d46",
+      "fp64_place_function": "89e9e95b088cba0bdb7dc45d03f7ab152899fff70c76b726f0db0ee966211bfc",
+      "input_generator": "192e2bd66efe96a29186e1e2b9be9ee1897c1b33a9b03789f07bd8785e3a9cb4",
+      "prng": "8c33e5c09bcc1f95b3f7f1b114dd7c2677f307a45ef39a2cdbbe79be30e45250",
+      "gpu_geo_method": "bfaabdc7e05ec339b40540c34e0eaae6b9ab081884d04a8549e5b5a3bc72c6a5"
+    }
+  },
+  "env": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "gpu": "Apple M4 Max",
+    "browser": "Chrome 157",
+    "os": "macOS",
+    "cores": 16,
+    "timer": true,
+    "maxTex": 16384,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+  },
+  "hardware_identified": true,
+  "scope": {
+    "markers": 10000000,
+    "seed": 20261112,
+    "bands": 24,
+    "cap": 0.9,
+    "margin": 0.12,
+    "precision": "WebGL2 RGBA32F vs stock FP64",
+    "tolerance": 0.0005,
+    "warmup_draws": 3,
+    "measured_draws": 1,
+    "validated_outputs": 1,
+    "source_stock_benchmark_runs_at_10m": 30,
+    "note": "Separate deterministic validation of one full output, not validation of each stock timing repetition. Full CPU reference uses original FP64 inputs, including input quantization error. No time-order sort at 10M; all XYZ reference agreement and band checks are performed."
+  },
+  "timings_ms": {
+    "input_generation_and_fp32_packing": 213.59999999403954,
+    "input_upload_and_output_allocation": 28.19999998807907,
+    "three_warmup_draws_and_sync": 98.59999999403954,
+    "gpu_draw_and_one_pixel_sync": 1,
+    "full_output_readback": 27.899999856948853,
+    "fp64_reference": 313.9000000357628,
+    "reference_comparison_and_quality_checks": 214.70000010728836,
+    "full_readback_and_cpu_validation": 556.5,
+    "total_audit_wall_including_setup_yields_and_cleanup": 959.0999999940395
+  },
+  "chunks": [
+    {
+      "offset": 0,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 1,
+      "fp64_reference_ms": 8.599999994039536,
+      "comparison_ms": 8.600000023841858
+    },
+    {
+      "offset": 262144,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.800000011920929,
+      "fp64_reference_ms": 8.400000005960464,
+      "comparison_ms": 5.4000000059604645
+    },
+    {
+      "offset": 524288,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.6000000238418579,
+      "fp64_reference_ms": 8.399999976158142,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 786432,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7999999821186066,
+      "fp64_reference_ms": 8.400000005960464,
+      "comparison_ms": 5.700000017881393
+    },
+    {
+      "offset": 1048576,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.5,
+      "comparison_ms": 5.4000000059604645
+    },
+    {
+      "offset": 1310720,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7000000178813934,
+      "fp64_reference_ms": 8.200000017881393,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 1572864,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.800000011920929,
+      "fp64_reference_ms": 7.899999976158142,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 1835008,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8,
+      "comparison_ms": 5.5999999940395355
+    },
+    {
+      "offset": 2097152,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.5999999940395355,
+      "fp64_reference_ms": 8,
+      "comparison_ms": 5.300000011920929
+    },
+    {
+      "offset": 2359296,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7000000178813934,
+      "fp64_reference_ms": 7.899999976158142,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 2621440,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.800000011920929,
+      "fp64_reference_ms": 8.799999982118607,
+      "comparison_ms": 5.600000023841858
+    },
+    {
+      "offset": 2883584,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.800000011920929,
+      "fp64_reference_ms": 8.599999994039536,
+      "comparison_ms": 5.700000017881393
+    },
+    {
+      "offset": 3145728,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8,
+      "comparison_ms": 5.5999999940395355
+    },
+    {
+      "offset": 3407872,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.9000000059604645,
+      "fp64_reference_ms": 8.400000005960464,
+      "comparison_ms": 5.5999999940395355
+    },
+    {
+      "offset": 3670016,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.5,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 3932160,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.800000011920929,
+      "fp64_reference_ms": 8.099999994039536,
+      "comparison_ms": 5.5999999940395355
+    },
+    {
+      "offset": 4194304,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7999999821186066,
+      "fp64_reference_ms": 8.100000023841858,
+      "comparison_ms": 5.899999976158142
+    },
+    {
+      "offset": 4456448,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7999999821186066,
+      "fp64_reference_ms": 8.299999982118607,
+      "comparison_ms": 5.800000011920929
+    },
+    {
+      "offset": 4718592,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.900000005960464,
+      "comparison_ms": 5.9000000059604645
+    },
+    {
+      "offset": 4980736,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7999999821186066,
+      "fp64_reference_ms": 8.700000017881393,
+      "comparison_ms": 5.5999999940395355
+    },
+    {
+      "offset": 5242880,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.800000011920929,
+      "fp64_reference_ms": 8.599999994039536,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 5505024,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.100000023841858,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 5767168,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.400000005960464,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 6029312,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 7.9000000059604645,
+      "comparison_ms": 5.5999999940395355
+    },
+    {
+      "offset": 6291456,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.5,
+      "comparison_ms": 5.700000017881393
+    },
+    {
+      "offset": 6553600,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.5999999940395355,
+      "fp64_reference_ms": 8.200000017881393,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 6815744,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8.5,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 7077888,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.5999999940395355,
+      "fp64_reference_ms": 8.200000017881393,
+      "comparison_ms": 5.299999982118607
+    },
+    {
+      "offset": 7340032,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7000000178813934,
+      "fp64_reference_ms": 7.9000000059604645,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 7602176,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 7.800000011920929,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 7864320,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 7.800000011920929,
+      "comparison_ms": 5.4000000059604645
+    },
+    {
+      "offset": 8126464,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 8388608,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 7.9000000059604645,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 8650752,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.5999999940395355,
+      "fp64_reference_ms": 8.200000017881393,
+      "comparison_ms": 5.399999976158142
+    },
+    {
+      "offset": 8912896,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 8,
+      "comparison_ms": 5.4000000059604645
+    },
+    {
+      "offset": 9175040,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7000000178813934,
+      "fp64_reference_ms": 8,
+      "comparison_ms": 5.700000017881393
+    },
+    {
+      "offset": 9437184,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.699999988079071,
+      "fp64_reference_ms": 7.899999976158142,
+      "comparison_ms": 5.5
+    },
+    {
+      "offset": 9699328,
+      "markers": 262144,
+      "rows": 64,
+      "readback_ms": 0.7999999821186066,
+      "fp64_reference_ms": 7.899999976158142,
+      "comparison_ms": 5.600000023841858
+    },
+    {
+      "offset": 9961472,
+      "markers": 38528,
+      "rows": 10,
+      "readback_ms": 0.19999998807907104,
+      "fp64_reference_ms": 1.4000000059604645,
+      "comparison_ms": 0.800000011920929
+    }
+  ],
+  "texture": {
+    "width": 4096,
+    "height": 2442,
+    "allocated_texels": 10002432,
+    "padded_texels_excluded_from_checks": 2432,
+    "chunk_rows": 64,
+    "readback_bytes": 160038912
+  },
+  "raw_draw_sync_ms": [
+    1
+  ],
+  "validation": {
+    "expected_markers": 10000000,
+    "expected_xyz_coordinates": 30000000,
+    "checked_markers": 10000000,
+    "checked_xyz_coordinates": 30000000,
+    "finite_xyz_coordinates": 30000000,
+    "nonfinite_xyz_coordinates": 0,
+    "nonfinite_reference_coordinates": 0,
+    "alpha_not_one": 0,
+    "outside_band": 0,
+    "max_abs_error": 4.062080731781492e-7,
+    "max_abs_error_by_axis": [
+      4.062080731781492e-7,
+      3.839569460151182e-7,
+      5.679973402727967e-8
+    ],
+    "sum_squared_error": 1.1578952681789349e-7,
+    "max_unit_norm_error": 2.3680764904554508e-7,
+    "worst_coordinate": {
+      "marker": 6256683,
+      "axis": "x",
+      "gpu": 0.517828106880188,
+      "reference": 0.5178285130882612
+    },
+    "first_failures": [],
+    "band_counts": [
+      417287,
+      416510,
+      416959,
+      416897,
+      416215,
+      417646,
+      415907,
+      416858,
+      416931,
+      417825,
+      416660,
+      416759,
+      416468,
+      416462,
+      416160,
+      416287,
+      416911,
+      415463,
+      416361,
+      416105,
+      416244,
+      417036,
+      417941,
+      416108
+    ],
+    "coverage_errors": [],
+    "tolerance": 0.0005,
+    "rms_error": 6.212608867400058e-8,
+    "outside_share": 0,
+    "checks": {
+      "full_coverage": true,
+      "all_xyz_finite": true,
+      "every_output_written": true,
+      "fp32_reference_tolerance": true,
+      "zero_outside_assigned_band": true
+    },
+    "passed": true
+  },
+  "passed": true,
+  "status": "passed",
+  "completed_at": "2026-11-13T20:39:37.048Z"
+}
