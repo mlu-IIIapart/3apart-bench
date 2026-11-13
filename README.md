@@ -27,6 +27,11 @@ npm run compare                     # rebuilds results/SUMMARY.md
 
 Then the GPU: open `web/index.html` in Chrome or Safari, enter your name and machine name, press **Run on this machine** (about a minute), then **Download result** and put the file where the page says (`results/<you>/<machine>/`).
 
+**Extra-large runs** (optional, for machines with plenty of memory):
+
+- In the browser runner, tick **Include the extra-large GPU runs** before pressing Run (3 to 5 minutes more). It measures physics at 10 million markers (one full layout, about 2 minutes on an M4 Max) and geometry at 100 million markers. All 100 million GPU positions are read back and checked against the formula. Physics at 100 million isn't run in a browser (it would need about 8 GB of GPU textures and a 100-million-marker sort in JavaScript); the result file carries an estimate from the measured 10M tick, labeled as an estimate, with its method.
+- `python3 bench/disclosure_check.py --xl` adds 100 million markers to the NumPy sweep (10 runs, about 12 GB of free memory).
+
 Commit your new files under `results/` plus the updated `results/SUMMARY.md`, and open a pull request.
 
 For a fair run: plug the laptop in, close other apps, and don't use the machine while it runs.

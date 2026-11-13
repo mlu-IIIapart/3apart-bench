@@ -16,12 +16,10 @@ MARGIN = 0.12
 SEED = 20261112
 EDGES = CAP * (1 - 2 * np.arange(NL + 1) / NL)
 
-_GOLD = np.uint32(0x6D2B79F5)
 
-
-def _mulberry32_stream(seed, count):
-    """The k-th draw of mulberry32, for k = 1..count, computed in parallel."""
-    k = np.arange(1, count + 1, dtype=np.uint64)
+def _mulberry32_range(seed, start, count):
+    """Draws start+1 .. start+count of mulberry32 (draw k depends only on k, so ranges can be made separately)."""
+    k = np.arange(start + 1, start + count + 1, dtype=np.uint64)
     s = ((np.uint64(seed & 0xFFFFFFFF) + k * np.uint64(0x6D2B79F5)) & np.uint64(0xFFFFFFFF)).astype(np.uint32)
     with np.errstate(over="ignore"):
         t = s
@@ -31,11 +29,19 @@ def _mulberry32_stream(seed, count):
     return t.astype(np.float64) / 4294967296.0
 
 
-def inputs(n, seed=SEED):
-    """Band, time and value per marker, drawn in that order (same stream as the JS engine)."""
-    r = _mulberry32_stream(seed, 3 * n).reshape(n, 3)
-    layer = np.floor(r[:, 0] * NL).astype(np.int32)
-    return layer, r[:, 1].copy(), r[:, 2].copy()
+def inputs(n, seed=SEED, chunk=5_000_000):
+    """Band, time and value per marker, drawn in that order (same stream as the JS engine).
+    Made in chunks so very large n (100M) doesn't need several copies of the whole stream in memory."""
+    layer = np.empty(n, dtype=np.int32)
+    t = np.empty(n, dtype=np.float64)
+    v = np.empty(n, dtype=np.float64)
+    for i0 in range(0, n, chunk):
+        m = min(chunk, n - i0)
+        r = _mulberry32_range(seed, 3 * i0, 3 * m).reshape(m, 3)
+        layer[i0:i0 + m] = np.floor(r[:, 0] * NL)
+        t[i0:i0 + m] = r[:, 1]
+        v[i0:i0 + m] = r[:, 2]
+    return layer, t, v
 
 
 def place(layer, t, value):

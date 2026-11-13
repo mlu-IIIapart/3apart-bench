@@ -330,6 +330,7 @@ footer { padding-block: 48px 64px; color: var(--ink-3); font-size: 13px; border-
         <button class="btn" id="stop" type="button" hidden>Stop</button>
         <button class="btn" id="dl" type="button" hidden>Download result</button>
         <label class="check"><input type="checkbox" id="long"> Include the long CPU runs (up to a minute more)</label>
+        <label class="check"><input type="checkbox" id="xl"> Include the extra-large GPU runs: physics at 10 million, geometry at 100 million (3 to 5 minutes more)</label>
       </div>
       <div class="progress" aria-hidden="true"><i id="bar"></i></div>
       <div class="status" id="status" role="status" aria-live="polite">Not run yet on this machine.</div>
@@ -407,6 +408,12 @@ const ALPHA_DECAY = 1 - Math.pow(0.001, 1 / 300), ALPHA_MIN = 0.001;
 function rng(seed) {
   let s = seed >>> 0;
   return () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+// k-th draw (k = 1, 2, ...) of rng(seed), computed directly: the state after k draws is seed + k * 0x6D2B79F5
+function drawAt(k, seed = SEED) {
+  let t = (seed + Math.imul(k >>> 0, 0x6D2B79F5)) >>> 0;
+  t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 }
 function inputs(n, seed = SEED) {
   const r = rng(seed), layer = new Int32Array(n), t = new Float64Array(n), v = new Float64Array(n);
@@ -666,6 +673,64 @@ class GpuBench {
     } finally { gl.deleteTexture(tin); gl.deleteTexture(tout); gl.deleteFramebuffer(fb); }
   }
 
+  // ---------------------------------------------------------------- geometry at very large sizes
+  // Inputs are written to the GPU in slices (never all in browser memory at once); after timing, every
+  // position is read back slice by slice and checked against the float64 formula.
+  async geoXL(n, runs, signal, onRun, onStage) {
+    const gl = this.gl, W = Math.min(16384, this.maxTex), H = Math.ceil(n / W), RS = 128;
+    if (H > this.maxTex) return { skipped: `more markers than this GPU can hold in one texture (${this.maxTex} × ${this.maxTex} limit)` };
+    let tin = null, tout = null, fb = null;
+    try {
+      tin = this.tex(W, H, null); this.check();
+      const buf = new Float32Array(W * RS * 4);
+      for (let y0 = 0; y0 < H; y0 += RS) {
+        if (signal && signal.aborted) throw new Stopped();
+        const rows = Math.min(RS, H - y0), first = y0 * W, count = Math.min(rows * W, n - first);
+        buf.fill(0);
+        for (let j = 0; j < count; j++) { const k = 3 * (first + j); buf[4 * j] = Math.floor(drawAt(k + 1) * NL); buf[4 * j + 1] = drawAt(k + 2); buf[4 * j + 2] = drawAt(k + 3); }
+        this.upload(tin, W, rows, buf.subarray(0, W * rows * 4), 0, y0);
+        if (onStage) onStage(`preparing ${fmtN(n)} markers on the GPU · ${Math.round(100 * (y0 + rows) / H)}%`);
+        await yieldNow();
+      }
+      tout = this.tex(W, H, null); fb = this.fbo(tout); this.check();
+      const { p, u } = this.pGeo;
+      const draw = () => {
+        gl.useProgram(p); gl.bindVertexArray(this.vao);
+        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tin); gl.uniform1i(u.uIn, 0); gl.uniform1fv(u.uE, EDGES32);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.viewport(0, 0, W, H); gl.drawArrays(gl.TRIANGLES, 0, 3);
+      };
+      for (let w = 0; w < 3; w++) draw();
+      this.sync(fb); this.check();
+      const res = await this.timed(runs, draw, fb, signal, onRun);
+      delete res.raw;
+      // check all n positions: read back a slice, compute the float64 reference for the same markers, compare
+      const rb = new Float32Array(W * RS * 4), L = new Int32Array(W * RS), T = new Float64Array(W * RS), V = new Float64Array(W * RS), ref = new Float64Array(3 * W * RS);
+      let err = 0, outside = 0; const t0 = performance.now();
+      for (let y0 = 0; y0 < H; y0 += RS) {
+        if (signal && signal.aborted) throw new Stopped();
+        const rows = Math.min(RS, H - y0), first = y0 * W, count = Math.min(rows * W, n - first);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.readBuffer(gl.COLOR_ATTACHMENT0);
+        gl.readPixels(0, y0, W, rows, gl.RGBA, gl.FLOAT, rb.subarray(0, W * rows * 4));
+        for (let j = 0; j < count; j++) { const k = 3 * (first + j); L[j] = Math.floor(drawAt(k + 1) * NL); T[j] = drawAt(k + 2); V[j] = drawAt(k + 3); }
+        place(count, L, T, V, ref);
+        for (let j = 0; j < count; j++) {
+          for (let c = 0; c < 3; c++) { const e = Math.abs(rb[4 * j + c] - ref[3 * j + c]); if (!(e <= err)) err = e; }
+          const x = rb[4 * j], y = rb[4 * j + 1], z = rb[4 * j + 2], h = z / (Math.hypot(x, y, z) || 1);
+          if (!(h <= EDGES[L[j]] && h >= EDGES[L[j] + 1])) outside++;
+        }
+        if (onStage) onStage(`checking all ${fmtN(n)} GPU positions against the formula · ${Math.round(100 * (y0 + rows) / H)}%`);
+        await yieldNow();
+      }
+      this.check();
+      Object.assign(res, { maxErr: err, outside: outside / n, checked: n, texture: `${W} × ${H}`, check_ms: performance.now() - t0 });
+      return res;
+    } catch (e) {
+      if (e instanceof Stopped) throw e;
+      if (e.oom || /float framebuffer|GPU context|memory/i.test(e.message)) return { skipped: `this GPU or browser could not hold ${fmtN(n)} markers (${e.message})` };
+      throw e;
+    } finally { if (tin) gl.deleteTexture(tin); if (tout) gl.deleteTexture(tout); if (fb) gl.deleteFramebuffer(fb); }
+  }
+
   // ---------------------------------------------------------------- physics: one pass per tick
   physSetup(n, seed) {
     const m = n + 1, { W, H } = this.dims(m), d = inputs(n), r = rng(seed), R = 30 * Math.sqrt(n / (4 * Math.PI));
@@ -859,7 +924,8 @@ function chartLog(box, cfg) {
     const m = { l: narrow ? 52 : 62, r: narrow ? 14 : 132, t: 14, b: 34 };
     const all = cfg.series.flatMap(s => s.pts.map(p => p.v)).filter(v => v > 0);
     const yLo = Math.pow(10, Math.floor(Math.log10(Math.min(...all, cfg.frame ? 16.7 : Infinity)))), yHi = Math.pow(10, Math.ceil(Math.log10(Math.max(...all))));
-    const x = n => m.l + (Math.log10(n) - 3) / 4 * (W - m.l - m.r);
+    const xs = cfg.sizes || SIZES, xTop = Math.log10(xs[xs.length - 1]);
+    const x = n => m.l + (Math.log10(n) - 3) / (xTop - 3) * (W - m.l - m.r);
     const y = v => H - m.b - (Math.log10(v) - Math.log10(yLo)) / (Math.log10(yHi) - Math.log10(yLo)) * (H - m.t - m.b);
     const svg = sv('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': cfg.label });
     const ticks = TICKS_Y.filter(([v]) => v >= yLo && v <= yHi);
@@ -869,9 +935,9 @@ function chartLog(box, cfg) {
       if (k % every === 0) svg.append(svText(m.l - 8, y(v) + 4, s, { 'text-anchor': 'end' }));
     });
     svg.append(sv('line', { x1: m.l, x2: W - m.r, y1: H - m.b + 0.5, y2: H - m.b + 0.5, class: 'base' }));
-    for (const n of SIZES) svg.append(svText(x(n), H - m.b + 20, fmtShort(n), { 'text-anchor': 'middle' }));
+    for (const n of xs) svg.append(svText(x(n), H - m.b + 20, fmtShort(n), { 'text-anchor': 'middle' }));
+    const fy = cfg.frame ? Math.round(y(1000 / 60)) + 0.5 : null;
     if (cfg.frame) {
-      const fy = Math.round(y(1000 / 60)) + 0.5;
       svg.append(sv('line', { x1: m.l, x2: W - m.r, y1: fy, y2: fy, class: 'frame-line' }));
       svg.append(svText(narrow ? m.l + 4 : W - m.r + 8, narrow ? fy - 6 : fy + 4, narrow ? 'One frame at 60 fps' : 'One frame, 60 fps', { class: 'lab' }));
     }
@@ -879,9 +945,10 @@ function chartLog(box, cfg) {
     cfg.series.forEach((s, si) => {
       const pts = s.pts.filter(p => p.v > 0).sort((a, b) => a.n - b.n);
       if (!pts.length) return;
-      svg.append(sv('polyline', { points: pts.map(p => `${x(p.n)},${y(p.v)}`).join(' '), fill: 'none', stroke: `var(${s.color})`, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+      svg.append(sv('polyline', Object.assign({ points: pts.map(p => `${x(p.n)},${y(p.v)}`).join(' '), fill: 'none', stroke: `var(${s.color})`, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, s.dash ? { 'stroke-dasharray': '6 5' } : {})));
       for (const p of pts) {
-        svg.append(sv('circle', { cx: x(p.n), cy: y(p.v), r: 4, fill: `var(${s.color})`, stroke: 'var(--card)', 'stroke-width': 2 }));
+        if (s.dash && !p.est) continue;
+        svg.append(sv('circle', { cx: x(p.n), cy: y(p.v), r: 4, fill: p.est ? 'var(--card)' : `var(${s.color})`, stroke: p.est ? `var(${s.color})` : 'var(--card)', 'stroke-width': 2 }));
         const c = sv('circle', { cx: x(p.n), cy: y(p.v), r: 12, fill: 'transparent', tabindex: 0, 'aria-label': `${s.name}, ${fmtN(p.n)} markers: ${fmtMs(p.v)}` });
         c.dataset.s = si; c.dataset.n = p.n; hits.append(c);
       }
@@ -894,6 +961,7 @@ function chartLog(box, cfg) {
       let lx = L.x + 10, ly = L.y + 4, anchor = 'start';
       if (narrow) { lx = L.x - 8; ly = L.y - 12; anchor = 'end'; }
       if (k > 0 && Math.abs(ly - labs[k - 1].ly) < 16) ly = labs[k - 1].ly + 16;
+      if (fy != null && !narrow && Math.abs(ly - (fy + 4)) < 16) ly = ly < fy + 4 ? fy - 12 : fy + 20;   // keep clear of the 60 fps label
       L.ly = ly;
       svg.append(svText(lx, ly, L.s.name, { 'text-anchor': anchor, class: 'lab' }));
     });
@@ -1088,6 +1156,8 @@ const PLANS = {
   full: {
     gpuGeo: [[1e3, 100], [1e4, 100], [1e5, 100], [1e6, 100], [1e7, 30]],
     gpuTick: [[1e3, 100], [1e4, 40], [1e5, 20], [1e6, 5]],
+    // extra-large, opt-in: physics at 10M measured (one layout, limit raised to 6 min), geometry at 100M measured
+    xl: { gpuTick: [[1e7, 3]], gpuLayout: [[1e7, 1, 0, 360000]], gpuGeo: [[1e8, 10]] },
     gpuLayout: [[1e3, 20, 5], [1e4, 5, 2], [1e5, 2, 1], [1e6, 1, 0]],
     cpuGeo: [[1e3, 100], [1e4, 100], [1e5, 100], [1e6, 20]],
     cpuTick: [[1e3, 50], [1e4, 10]],
@@ -1114,7 +1184,7 @@ function gpuName(r) {
 }
 const deviceKey = d => [d.gpu, d.os, d.browser.split(' ')[0]].join(' · ');
 
-async function runAll(planName, long, signal, report) {
+async function runAll(planName, long, signal, report, xl = false) {
   const plan = PLANS[planName];
   let g = null, gpuError = null;
   try { g = new GpuBench(); } catch (e) { gpuError = e.message; }
@@ -1166,6 +1236,31 @@ async function runAll(planName, long, signal, report) {
     }
     res.cpu.layout[n] = { ...stats(ms), outside: stats(out), order, arrival: arr.length ? stats(arr) : null };
   } }));
+  if (g && xl && plan.xl) {
+    res.xl = true;
+    plan.xl.gpuTick.forEach(([n, r]) => steps.push({ label: `GPU · physics tick · ${fmtN(n)} markers`, runs: r, go: async on => {
+      try { res.gpu.tick[n] = await g.physTicks(n, r, signal, on); }
+      catch (e) { if (e instanceof Stopped) throw e; res.gpu.tick[n] = { skipped: 'could not run: ' + e.message }; }
+    } }));
+    plan.xl.gpuLayout.forEach(([n, r, a, limit]) => steps.push({ label: `GPU · physics layout · ${fmtN(n)} markers (one layout, a few minutes)`, runs: r, go: async on => {
+      const t = res.gpu.tick[n], est = t && t.wall ? 300 * t.wall.median : null;
+      if (est == null) { res.gpu.layout[n] = { skipped: 'skipped: the tick at this size did not run' }; return; }
+      if (est > limit) { res.gpu.layout[n] = { skipped: `skipped: one layout would take about ${fmtMs(est)}` }; return; }
+      try { res.gpu.layout[n] = await g.physLayouts(n, r, a, signal, on); }
+      catch (e) { if (e instanceof Stopped) throw e; res.gpu.layout[n] = { skipped: 'could not run: ' + e.message }; }
+    } }));
+    plan.xl.gpuGeo.forEach(([n, r]) => steps.push({ label: `GPU · geometry · ${fmtN(n)} markers`, runs: r, go: async on => {
+      res.gpu.geo[n] = await g.geoXL(n, r, signal, on, msg => report(`GPU · geometry · ${msg}`, null));
+      // Physics at 100M is not run in a browser (about 8 GB of GPU textures and a 100M-marker sort in JavaScript).
+      // Estimate: the measured time per tick at the largest size run, scaled with the marker count, times 300 ticks.
+      const base = [1e7, 1e6].find(m => res.gpu.tick[m] && res.gpu.tick[m].wall);
+      if (base) {
+        const tick = res.gpu.tick[base].wall.median, ms = 300 * tick * (n / base);
+        (res.gpu.estimates ||= {})[n] = { physics_layout_ms: ms, from_tick_at: base, tick_ms: tick,
+          method: `300 ticks × measured tick at ${fmtN(base)} markers (${fmtMs(tick)}) × ${fmtN(n / base)}, as tick time grows in step with the marker count when sampling` };
+      }
+    } }));
+  }
   const total = steps.reduce((s, x) => s + x.runs, 0); let doneRuns = 0;
   for (const st of steps) {
     if (signal.aborted) throw new Stopped();
@@ -1176,7 +1271,7 @@ async function runAll(planName, long, signal, report) {
   }
   return res;
 }
-window.__bench = { run: async (plan, long) => { hero.pause(true); try { return await runAll(plan, !!long, new AbortController().signal, () => {}); } finally { hero.pause(false); } } };
+window.__bench = { run: async (plan, long, xl) => { hero.pause(true); try { return await runAll(plan, !!long, new AbortController().signal, () => {}, !!xl); } finally { hero.pause(false); } } };
 
 // ---------------------------------------------------------------------------- GPU card
 const gpuState = { mine: null, emu: DATA.gpuEmu || null, view: 'emu' };
@@ -1194,16 +1289,18 @@ function showGpu(view) {
   }
   if (!r) { box.replaceChildren(el('div', { cls: 'empty', text: 'No GPU results yet. Run the benchmark on this machine to fill this in.' })); $('#gpu-chips').replaceChildren(); $('#gpu-device').textContent = ''; $('#tbl-gpu').replaceChildren(); return; }
   const gpuRan = Object.keys(r.gpu.geo).length || Object.keys(r.gpu.layout).length;
-  const geo = SIZES.filter(n => r.gpu.geo[n] && r.gpu.geo[n].wall).map(n => ({ n, s: r.gpu.geo[n].wall, g: r.gpu.geo[n] }));
-  const lay = SIZES.filter(n => r.gpu.layout[n] && r.gpu.layout[n].wall).map(n => ({ n, s: r.gpu.layout[n].wall, g: r.gpu.layout[n] }));
+  const GS = SIZES.concat(r.gpu.geo[1e8] ? [1e8] : []), EST = r.gpu.estimates || {};
+  const geo = GS.filter(n => r.gpu.geo[n] && r.gpu.geo[n].wall).map(n => ({ n, s: r.gpu.geo[n].wall, g: r.gpu.geo[n] }));
+  const lay = GS.filter(n => r.gpu.layout[n] && r.gpu.layout[n].wall).map(n => ({ n, s: r.gpu.layout[n].wall, g: r.gpu.layout[n] }));
+  const estPts = lay.length ? GS.filter(n => EST[n]).map(n => ({ n, v: EST[n].physics_layout_ms, est: true, note: 'Estimated, not run: ' + EST[n].method })) : [];
   if (gpuRan) $('#gpu-sub').textContent = r.emulated ? 'Emulated on this server with SwiftShader: the shaders run on 2 CPU cores, so times are not GPU speeds' : `Measured on ${r.env.gpu}, ${r.env.browser}${r.env.os ? ', ' + r.env.os : ''}, ${new Date(r.at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
   if (gpuRan) chartLog(box, {
     label: 'GPU time to a finished layout against markers, log scales.',
-    frame: true,
+    frame: true, sizes: GS,
     series: [
       { name: 'Geometry, 1 pass', color: '--geo', pts: geo.map(p => ({ n: p.n, v: p.s.median, p95: p.s.p95, max: p.s.max, runs: p.s.runs, note: p.g.gpu ? 'GPU timer: ' + fmtMs(p.g.gpu.median) : null })) },
       { name: 'Physics, 300 passes', color: '--phys', pts: lay.map(p => ({ n: p.n, v: p.s.median, p95: p.s.p95, max: p.s.max, runs: p.s.runs, note: p.g.mode === 'sampled' ? 'Many-body from 1,024 random markers per marker' : 'Many-body over all pairs' })) },
-    ]
+    ].concat(estPts.length ? [{ name: 'Physics, estimated', color: '--phys', dash: true, pts: [Object.assign({}, { n: lay[lay.length - 1].n, v: lay[lay.length - 1].s.median })].concat(estPts) }] : [])
   });
   const chips = [];
   const outs = geo.filter(p => p.g.outside != null); if (outs.length) chips.push(chip(outs.every(p => p.g.outside === 0), outs.every(p => p.g.outside === 0) ? 'Geometry: every marker inside its band' : 'Geometry: some markers outside their band'));
@@ -1216,13 +1313,16 @@ function showGpu(view) {
   if (gpuRan) chips.push(chip(true, r.env.timer ? 'GPU timer queries recorded' : 'Wall-clock times (no GPU timer in this browser)'));
   $('#gpu-chips').replaceChildren(...chips);
   $('#gpu-device').textContent = r.env.renderer ? 'Renderer: ' + r.env.renderer : '';
-  const rows = SIZES.map(n => {
-    const ge = r.gpu.geo[n], tk = r.gpu.tick[n], ly = r.gpu.layout[n];
+  const rows = GS.map(n => {
+    const ge = r.gpu.geo[n], tk = r.gpu.tick[n], ly = r.gpu.layout[n], es = EST[n];
     return [fmtN(n), ge && ge.wall ? { em: fmtMs(ge.wall.median) } : ge && ge.skipped ? 'skipped' : 'not run', tk && tk.wall ? fmtMs(tk.wall.median) + (tk.mode === 'sampled' ? ' (sampled)' : '') : 'not run',
-      ly && ly.wall ? { em: fmtMs(ly.wall.median) } : ly && ly.skipped ? ly.skipped : 'not run', ly && ly.wall && ge && ge.wall ? fmtX(ly.wall.median / ge.wall.median) : '',
+      ly && ly.wall ? { em: fmtMs(ly.wall.median) } : es ? `≈ ${fmtMs(es.physics_layout_ms)}, estimated` : ly && ly.skipped ? ly.skipped : 'not run',
+      ly && ly.wall && ge && ge.wall ? fmtX(ly.wall.median / ge.wall.median) : es && ge && ge.wall ? '≈ ' + fmtX(es.physics_layout_ms / ge.wall.median) : '',
       ge && ge.outside != null ? pct(1 - ge.outside) : '', ly && ly.outside ? pct(1 - ly.outside.median) : ''];
   });
   const parts = [table(['Markers', 'Geometry, 1 pass', 'Physics, 1 tick', 'Physics, 300 ticks', 'Gap', 'In band (geometry)', 'In band (physics)'], rows)];
+  const big = r.gpu.geo[1e8];
+  if (big && big.checked) parts.push(el('p', { cls: 'note', text: `100,000,000 markers: all ${fmtN(big.checked)} GPU positions read back and checked against the float64 formula; largest difference ${big.maxErr.toExponential(1)}, ${fmtN(Math.round(big.outside * big.checked))} outside their band. Physics at this size is not run in a browser; ${EST[1e8] ? 'its time is an estimate: ' + EST[1e8].method + '.' : 'no estimate, because no physics tick was measured.'}` }));
   const arrRows = SIZES.filter(n => r.gpu.layout[n] && r.gpu.layout[n].arrival).map(n => [fmtN(n), fmtMs(r.gpu.layout[n].arrival.wall.median), String(r.gpu.layout[n].arrival.ticks)]);
   if (arrRows.length) parts.push(el('p', { cls: 'note', text: 'One new marker on the GPU: physics re-settles (alpha 0.3 to 0.001).' }), table(['Markers', 'Re-settle', 'Ticks'], arrRows));
   const cg = r.cpu && r.cpu.geo || {};
@@ -1311,7 +1411,7 @@ $('#run').addEventListener('click', async () => {
   const run = $('#run'), stop = $('#stop'), status = $('#status'), bar = $('#bar');
   run.disabled = true; stop.hidden = false; status.className = 'status'; hero.pause(true);
   try {
-    const res = await runAll('full', $('#long').checked, ctl.signal, (label, f) => { status.textContent = label; bar.style.width = (f * 100).toFixed(1) + '%'; });
+    const res = await runAll('full', $('#long').checked, ctl.signal, (label, f) => { status.textContent = label; if (f != null) bar.style.width = (f * 100).toFixed(1) + '%'; }, $('#xl').checked);
     const whoV = ($('#who').value || '').trim(), mV = ($('#mname').value || '').trim();
     if (whoV) res.who = whoV.toLowerCase().replace(/[^a-z0-9-]+/g, '-');
     if (mV) res.label = [mV, res.env.gpu, res.env.browser].filter(Boolean).join(' · ');

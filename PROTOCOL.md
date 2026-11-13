@@ -54,3 +54,4 @@ A force-directed layout encodes graph relations; 3apart geometry encodes fixed b
 ## Changes
 
 - schema 1 (2026-11-13): first version, matching the published page.
+- schema 1, addition (2026-11-13): optional extra-large runs. Browser: GPU physics tick (3 runs) and one full layout at 10M markers, with the one-layout limit raised from 90 s to 6 min for that size only; GPU geometry at 100M markers (10 runs), inputs written to the GPU in slices and every position checked against the float64 formula. GPU physics at 100M is an **estimate** (300 × measured 10M tick × 10), stored under `gpu.estimates` and never as a measurement. NumPy: `--xl` adds 100M markers to the sweep (10 runs). Existing measurements are unchanged, so the schema stays 1.

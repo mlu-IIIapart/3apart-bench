@@ -2,8 +2,9 @@
 
 Protocol (fixed, see PROTOCOL.md): 100 runs; each run is the mean of 20 placements of 100,000 markers.
 Then a size sweep from 1,000 to 10,000,000 markers, 100 runs per size (fewer with --quick).
+With --xl the sweep adds 100,000,000 markers (10 runs; needs about 12 GB of free memory).
 
-Usage: python bench/disclosure_check.py --who <name> [--machine <name>] [--quick]
+Usage: python bench/disclosure_check.py --who <name> [--machine <name>] [--quick] [--xl]
 """
 import os
 
@@ -57,6 +58,7 @@ def main():
     ap.add_argument("--who", default=os.environ.get("BENCH_WHO"), help="your name; labels your results")
     ap.add_argument("--machine", default=None)
     ap.add_argument("--quick", action="store_true", help="fewer runs, no 10M size (CI / first look)")
+    ap.add_argument("--xl", action="store_true", help="also place 100,000,000 markers, 10 runs (needs about 12 GB of free memory)")
     a = ap.parse_args()
     if not a.who:
         ap.error("say who is running this: --who <your-name> (or set BENCH_WHO)")
@@ -87,13 +89,13 @@ def main():
         f"{outside} outside band  ->  claim {verdict} on this machine")
 
     sweep = {}
-    sizes = [1_000, 10_000, 100_000, 1_000_000] + ([] if a.quick else [10_000_000])
+    sizes = [1_000, 10_000, 100_000, 1_000_000] + ([] if a.quick else [10_000_000]) + ([100_000_000] if a.xl else [])
     for size in sizes:
         layer, t, v = E.inputs(size)
-        for _ in range(3 if size >= 1_000_000 else 20):
+        for _ in range(1 if size >= 100_000_000 else 3 if size >= 1_000_000 else 20):
             E.place(layer, t, v)
         ms = []
-        for _ in range(20 if a.quick else 100):
+        for _ in range(10 if size >= 100_000_000 else 20 if a.quick else 100):
             t0 = time.perf_counter()
             xyz = E.place(layer, t, v)
             ms.append((time.perf_counter() - t0) * 1000)
@@ -105,7 +107,7 @@ def main():
 
     out = {"schema": 1, "kind": "numpy", "who": who, "machine": mach,
            "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-           "commit": sh(f'git -C "{ROOT}" rev-parse --short HEAD'), "plan": "quick" if a.quick else "standard",
+           "commit": sh(f'git -C "{ROOT}" rev-parse --short HEAD'), "plan": ("quick" if a.quick else "standard") + ("+xl" if a.xl else ""),
            "versions": {"python": platform.python_version(), "numpy": np.__version__},
            "protocol": {"seed": E.SEED, "bands": E.NL, "cap": E.CAP, "margin": E.MARGIN},
            "claim_check": record, "sweep": sweep}
