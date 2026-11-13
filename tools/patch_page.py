@@ -38,7 +38,7 @@ s = s.replace(
     "    if (mV) res.label = [mV, res.env.gpu, res.env.browser].filter(Boolean).join(' · ');\n"
     "    res.kind = 'browser'; res.schema = 1; res.machine = { name: mV || null, gpu: res.env.gpu, os: res.env.os, cores: res.env.cores };\n"
     "    try { localStorage.setItem('bench-who', whoV); localStorage.setItem('bench-machine', mV); } catch (e) { /* storage blocked */ }\n"
-    "    LAST = res; $('#dl').hidden = false;\n"
+    "    LAST = res; if (!DB) $('#dl').hidden = false;  // on claude.ai runs save to the shared history instead\n"
     "    gpuState.mine = res; showGpu('mine');", 1)
 
 TAIL = """

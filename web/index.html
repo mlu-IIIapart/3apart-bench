@@ -1317,7 +1317,7 @@ $('#run').addEventListener('click', async () => {
     if (mV) res.label = [mV, res.env.gpu, res.env.browser].filter(Boolean).join(' · ');
     res.kind = 'browser'; res.schema = 1; res.machine = { name: mV || null, gpu: res.env.gpu, os: res.env.os, cores: res.env.cores };
     try { localStorage.setItem('bench-who', whoV); localStorage.setItem('bench-machine', mV); } catch (e) { /* storage blocked */ }
-    LAST = res; $('#dl').hidden = false;
+    LAST = res; if (!DB) $('#dl').hidden = false;  // on claude.ai runs save to the shared history instead
     gpuState.mine = res; showGpu('mine');
     bar.style.width = '100%';
     const note = res.gpuError ? ' The GPU part was skipped: ' + res.gpuError : '';
