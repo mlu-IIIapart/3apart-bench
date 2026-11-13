@@ -1,0 +1,17 @@
+name: check
+on: [pull_request, push]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: npm ci
+      - run: python -m pip install -r requirements.txt
+      # Both reference engines must match each other and the reference placement.
+      - run: npm run check
+      # Every result file must parse and the summary must be up to date.
+      - run: node tools/compare.mjs > /dev/null && git diff --exit-code results/SUMMARY.md

@@ -1,0 +1,1364 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>3apart Layout Benchmark</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one idea per band. Bands alternate two near-blacks; a 1080px column; a live two-globe stage opens the page.
+   Gold is 3apart (Kosmos "ours"), blue is the physics layout. Everything else is ink on dark. */
+:root {
+  color-scheme: dark;
+  --bg: #08080a;
+  --band: #0f0f12;
+  --card: #16161a;
+  --card-2: #1d1d22;
+  --ink: #f5f5f7;
+  --ink-2: #a9a9b4;
+  --ink-3: #74747f;
+  --line: #26262d;
+  --axis: #3b3b44;
+  --geo: #bb8840;
+  --phys: #4a8ad8;
+  --eyebrow: #d8ae72;
+  --claim: rgba(74, 138, 216, 0.16);
+  --wash: rgba(255, 255, 255, 0.04);
+  --good: #0ca30c;
+  --good-ink: #3ccf5a;
+  --warn: #fab219;
+  --geo-dot: #e2b87a;
+  --phys-dot: #8ec5ff;
+  --btn-bg: #f5f5f7;
+  --btn-ink: #0b0b0d;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #f5f5f7; --band: #ffffff; --card: #ffffff; --card-2: #f0f0f3;
+    --ink: #1d1d1f; --ink-2: #55555e; --ink-3: #85858f; --line: #e4e4e9; --axis: #c8c8d0;
+    --geo: #a8762c; --phys: #3a74c0; --eyebrow: #9a6a26; --claim: rgba(58, 116, 192, 0.12); --wash: rgba(0, 0, 0, 0.035);
+    --good: #0ca30c; --good-ink: #006300; --warn: #b77800; --geo-dot: #9c6a22; --phys-dot: #2f6fc4; --btn-bg: #1d1d1f; --btn-ink: #ffffff;
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f5f5f7; --band: #ffffff; --card: #ffffff; --card-2: #f0f0f3;
+  --ink: #1d1d1f; --ink-2: #55555e; --ink-3: #85858f; --line: #e4e4e9; --axis: #c8c8d0;
+  --geo: #a8762c; --phys: #3a74c0; --eyebrow: #9a6a26; --claim: rgba(58, 116, 192, 0.12); --wash: rgba(0, 0, 0, 0.035);
+  --good: #0ca30c; --good-ink: #006300; --warn: #b77800; --geo-dot: #9c6a22; --phys-dot: #2f6fc4; --btn-bg: #1d1d1f; --btn-ink: #ffffff;
+}
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+* { box-sizing: border-box; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--eyebrow); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { padding-block: 112px; }
+section.alt { background: var(--band); }
+.eyebrow { font: 600 12px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--eyebrow); margin: 0 0 18px; }
+h1, h2 { margin: 0; font-weight: 700; text-wrap: balance; }
+h1 { font-size: clamp(46px, 8.6vw, 104px); line-height: .98; letter-spacing: -.045em; }
+h2 { font-size: clamp(36px, 5.8vw, 68px); line-height: 1.02; letter-spacing: -.04em; }
+h1 .turn, h2 .turn { color: var(--ink-3); display: block; }
+.lede { font-size: clamp(17px, 2vw, 20px); color: var(--ink-2); max-width: 40em; margin: 26px 0 0; }
+.lede strong, .note strong { color: var(--ink); font-weight: 600; }
+.note { font-size: 14px; color: var(--ink-3); max-width: 46em; margin: 18px 0 0; }
+.mono { font-family: var(--mono); font-size: .92em; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: saturate(1.6) blur(18px); backdrop-filter: saturate(1.6) blur(18px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: 20px; height: 48px; overflow-x: auto; scrollbar-width: none; }
+.nav .wrap::-webkit-scrollbar { display: none; }
+.nav b { font-weight: 600; font-size: 14px; letter-spacing: -.01em; white-space: nowrap; margin-right: auto; }
+.nav a { font-size: 13px; color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+.nav a:hover, .nav a.on { color: var(--ink); }
+
+/* hero */
+.hero { padding-block: 88px 96px; }
+.stage { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+.stage canvas { grid-column: 1 / -1; width: 100%; aspect-ratio: 2 / 1; max-width: 100%; display: block; }
+.cap { min-width: 0; padding-top: 14px; border-top: 1px solid var(--line); margin-top: 8px; }
+.cap .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
+.key { width: 14px; height: 2px; border-radius: 2px; flex: none; }
+.key.geo { background: var(--geo); } .key.phys { background: var(--phys); }
+.cap .live { color: var(--ink-2); font-size: 14px; margin-top: 4px; min-height: 2.9em; font-variant-numeric: tabular-nums; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; align-items: center; }
+.btn { appearance: none; border: 1px solid var(--axis); background: transparent; color: var(--ink); font: 500 14px/1 var(--font); padding: 11px 18px; border-radius: 999px; cursor: pointer; }
+.btn:hover { background: var(--wash); }
+.btn.primary { background: var(--btn-bg); color: var(--btn-ink); border-color: var(--btn-bg); font-weight: 600; }
+.btn.primary:hover { opacity: .9; }
+.btn[disabled] { opacity: .45; cursor: default; }
+.controls .hint { font-size: 13px; color: var(--ink-3); }
+.figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 64px; }
+.fig { min-width: 0; }
+.fig .v { font-size: clamp(34px, 4.6vw, 52px); font-weight: 650; letter-spacing: -.035em; line-height: 1.05; }
+.fig .v small { font-size: .46em; font-weight: 600; letter-spacing: -.01em; color: var(--ink-2); margin-left: 4px; }
+.fig .l { color: var(--ink-2); font-size: 15px; margin-top: 8px; }
+.fig .s { color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+.fig.geo .v { color: var(--ink); }
+
+/* cards and charts */
+.card { background: var(--card); border-radius: 24px; padding: 28px; margin-top: 48px; min-width: 0; }
+.card + .card { margin-top: 20px; }
+.chart-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; }
+.chart-title { font-weight: 600; font-size: 15px; }
+.chart-sub { color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.chart { position: relative; margin-top: 18px; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { fill: var(--ink-3); font: 500 11px var(--font); font-variant-numeric: tabular-nums; }
+.chart text.lab { fill: var(--ink-2); font-size: 12px; font-weight: 600; }
+.chart text.lab-strong { fill: var(--ink); font-size: 12px; font-weight: 600; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .base { stroke: var(--axis); stroke-width: 1; }
+.chart .frame-line { stroke: var(--ink-3); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--card-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; font-size: 12px; color: var(--ink-2); white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,.28); z-index: 3; transform: translate(-50%, calc(-100% - 12px)); }
+.tip b { color: var(--ink); font-size: 14px; font-weight: 650; display: block; font-variant-numeric: tabular-nums; }
+.tip .k { display: inline-block; width: 12px; height: 2px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+details.table { margin-top: 18px; }
+details.table summary { cursor: pointer; font-size: 13px; color: var(--ink-2); list-style: none; display: inline-flex; gap: 6px; align-items: center; }
+details.table summary::-webkit-details-marker { display: none; }
+details.table summary::before { content: "+"; font-weight: 600; width: 12px; }
+details.table[open] summary::before { content: "−"; }
+.tbl { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-weight: 600; color: var(--ink-2); font-size: 12px; }
+td { color: var(--ink-2); }
+td.em { color: var(--ink); font-weight: 600; }
+td .dim { color: var(--ink-3); }
+
+/* stat pairs */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+.tile { background: var(--card); border-radius: 24px; padding: 28px; min-width: 0; }
+.tile .who { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.tile .v { font-size: clamp(36px, 5vw, 56px); font-weight: 650; letter-spacing: -.035em; line-height: 1.05; margin-top: 14px; }
+.tile .v small { font-size: .42em; font-weight: 600; color: var(--ink-2); letter-spacing: -.01em; margin-left: 4px; }
+.tile .l { color: var(--ink-2); font-size: 15px; margin-top: 8px; }
+.tile ul { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; font-size: 14px; color: var(--ink-2); }
+.tile li { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 8px; font-variant-numeric: tabular-nums; }
+.tile li b { color: var(--ink); font-weight: 600; }
+
+/* GPU runner */
+.runner { display: grid; gap: 14px; margin-top: 40px; }
+.runbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.check { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+.check input { width: 16px; height: 16px; accent-color: var(--eyebrow); }
+.progress { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: var(--ink); border-radius: 4px; transition: width .2s; }
+.status { font-size: 14px; color: var(--ink-2); min-height: 1.5em; font-variant-numeric: tabular-nums; }
+.status.err { color: var(--warn); }
+.seg { display: inline-flex; background: var(--card-2); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button { appearance: none; border: 0; background: transparent; color: var(--ink-2); font: 500 13px/1 var(--font); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.seg button[disabled] { opacity: .4; cursor: default; }
+.device { font-size: 13px; color: var(--ink-3); margin-top: 6px; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 6px 10px; border-radius: 999px; background: var(--card-2); color: var(--ink-2); }
+.chip svg { width: 12px; height: 12px; flex: none; }
+.chip.ok svg { color: var(--good-ink); } .chip.no svg { color: var(--warn); }
+.empty { color: var(--ink-3); font-size: 14px; padding: 18px 0 4px; }
+
+
+.who-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.who-row input { appearance: none; border: 1px solid var(--axis); background: transparent; color: var(--ink); font: 400 14px/1 var(--font); padding: 10px 14px; border-radius: 999px; min-width: 0; flex: 1 1 180px; max-width: 260px; }
+.who-row input::placeholder { color: var(--ink-3); }
+
+/* runs */
+.runs { display: grid; gap: 12px; margin-top: 40px; }
+.run { background: var(--card); border-radius: 20px; padding: 20px 24px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr); gap: 8px 24px; }
+.run .when { font-weight: 600; font-size: 15px; }
+.run .what { font-size: 13px; color: var(--ink-3); margin-top: 2px; overflow-wrap: anywhere; }
+.run .nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.run .nums div { min-width: 0; }
+.run .nums b { display: block; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.run .nums span { font-size: 12px; color: var(--ink-3); }
+.run .chips { grid-column: 1 / -1; margin-top: 4px; }
+
+/* method */
+.method { margin-top: 40px; display: grid; gap: 10px; }
+.method details { background: var(--card); border-radius: 18px; padding: 18px 22px; }
+.method summary { cursor: pointer; font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.method summary::-webkit-details-marker { display: none; }
+.method summary::after { content: "+"; color: var(--ink-3); font-weight: 500; }
+.method details[open] summary::after { content: "−"; }
+.method .body { color: var(--ink-2); font-size: 15px; max-width: 46em; padding-top: 10px; }
+.method .body p { margin: 0 0 10px; }
+.method .body code { font-family: var(--mono); font-size: .88em; color: var(--ink); }
+footer { padding-block: 48px 64px; color: var(--ink-3); font-size: 13px; border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  section { padding-block: 72px; }
+  .hero { padding-block: 56px 64px; }
+  .figs { grid-template-columns: 1fr; gap: 28px; margin-top: 44px; }
+  .pair { grid-template-columns: 1fr; }
+  .card, .tile { padding: 20px; border-radius: 20px; }
+  .run { grid-template-columns: 1fr; }
+  .stage { gap: 0 14px; }
+  .cap .live { font-size: 13px; }
+}
+@media (max-width: 420px) {
+  .run .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress i { transition: none; }
+}
+</style>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <b>3apart Layout Benchmark</b>
+    <a href="#record">Record</a>
+    <a href="#scale">Scale</a>
+    <a href="#arrivals">Live data</a>
+    <a href="#quality">Quality</a>
+    <a href="#gpu">GPU</a>
+    <a href="#runs">Runs</a>
+    <a href="#method">Method</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">3apart · Kosmos · Layout benchmark</p>
+    <h1>Placed in one pass.<span class="turn">Physics needs 300.</span></h1>
+    <p class="lede">The same 2,000 markers, laid out two ways. <strong>3apart geometry</strong> computes each marker's place from its band, time and value, so position means something: time runs around the globe. A <strong>force-directed layout</strong>, the usual way to build a 3D graph, pushes the markers for 300 ticks. It gathers most of them near their band, but where a marker sits says nothing about when it happened.</p>
+    <div class="stage" id="stage">
+      <canvas id="globes" width="1040" height="520" aria-label="Two globes of 2,000 markers shaded by time. Left: 3apart geometry, placed at once, with time sweeping around the globe. Right: a physics layout settling over 300 ticks, with time scattered."></canvas>
+      <div class="cap"><div class="who"><span class="key geo"></span>3apart geometry</div><div class="live" id="cap-geo">Placed in one pass.</div></div>
+      <div class="cap"><div class="who"><span class="key phys"></span>Physics layout</div><div class="live" id="cap-phys">300 ticks of d3-force-3d.</div></div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="replay" type="button">Replay</button>
+      <button class="btn" id="arrive" type="button">Add a marker</button>
+      <span class="hint">Brightness shows time, newest brightest. On the left it sweeps around the globe; on the right it scatters.</span>
+    </div>
+    <div class="figs">
+      <div class="fig geo"><div class="v">7.84<small>ms</small></div><div class="l">3apart geometry places 100,000 markers</div><div class="s">Median of 100 runs, JavaScript, one CPU core</div></div>
+      <div class="fig"><div class="v">33.0<small>s</small></div><div class="l">Physics lays out 10,000 markers</div><div class="s">Median of 10 runs, same engine and core</div></div>
+      <div class="fig"><div class="v">44,000<small>×</small></div><div class="l">The gap at 10,000 markers</div><div class="s">Physics layout time ÷ geometry time</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="record">
+  <div class="wrap">
+    <p class="eyebrow">Re-check</p>
+    <h2>The record holds.<span class="turn">100 runs, all under the claim.</span></h2>
+    <p class="lede">The disclosure says <strong>100,000 markers are placed in 9 to 12 ms</strong> (NumPy, one core). We reran its own reference code and protocol, each run the mean of 20 calls, 100 times.</p>
+    <div class="card">
+      <div class="chart-top">
+        <div><div class="chart-title">100,000 markers, 100 runs</div><div class="chart-sub">Milliseconds per placement, NumPy on one core of this server</div></div>
+        <div class="legend"><span><svg width="10" height="10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="var(--geo)"></circle></svg>One run</span><span><svg width="14" height="10" aria-hidden="true"><rect width="14" height="10" rx="2" fill="var(--claim)"></rect></svg>Claimed 9–12 ms</span></div>
+      </div>
+      <div class="chart" id="chart-record"></div>
+      <details class="table"><summary>Show the numbers</summary><div class="tbl" id="tbl-record"></div></details>
+    </div>
+    <p class="note">Median <strong>6.91 ms</strong>, worst <strong>8.86 ms</strong>, 100 of 100 runs under 9 ms, 0 of 100,000 markers outside their band. The earlier figure in the disclosure, 11.70 ms, came from a different run; on this server every run came in faster than the claim.</p>
+  </div>
+</section>
+
+<section id="scale">
+  <div class="wrap">
+    <p class="eyebrow">Scale</p>
+    <h2>100× the load.<span class="turn">The same cost per marker.</span></h2>
+    <p class="lede">From 1,000 to 10,000,000 markers, 100 runs at each size. Geometry time grows in step with the count, <strong>48 to 80 ns per marker</strong> at every size. The physics layout grows faster; one layout of 100,000 markers took <strong>13.6 min</strong>, so we stopped there.</p>
+    <div class="card">
+      <div class="chart-top">
+        <div><div class="chart-title">Time to a finished layout</div><div class="chart-sub">Median per size, log scales, JavaScript on one CPU core</div></div>
+        <div class="legend"><span><span class="key geo"></span>3apart geometry</span><span><span class="key phys"></span>Physics layout (d3-force-3d)</span></div>
+      </div>
+      <div class="chart" id="chart-scale"></div>
+      <details class="table"><summary>Show the numbers</summary><div class="tbl" id="tbl-scale"></div></details>
+    </div>
+    <p class="note">Below the line, a layout fits inside one frame at 60 frames per second. Geometry re-places up to about 200,000 markers per frame on one core. Physics spends one frame per tick: 6.0 ms per tick at 1,000 markers and 119 ms at 10,000, and it needs 300 ticks to settle.</p>
+  </div>
+</section>
+
+<section class="alt" id="arrivals">
+  <div class="wrap">
+    <p class="eyebrow">Live data</p>
+    <h2>One new marker.<span class="turn">Nothing else moves.</span></h2>
+    <p class="lede">A new marker gets its place from the same formula, so every other marker stays where it is. A physics layout has to be reheated (d3's standard restart, alpha 0.3) and run until it settles again, and every marker shifts on the way.</p>
+    <div class="pair">
+      <div class="tile">
+        <div class="who"><span class="key geo"></span>3apart geometry</div>
+        <div class="v">87<small>ns</small></div>
+        <div class="l">to place one new marker among 100,000</div>
+        <ul><li><span>Markers recomputed</span><b>1</b></li><li><span>Other markers moved</span><b>0</b></li><li><span>Runs</span><b>100, each the mean of 1,000,000 arrivals</b></li></ul>
+      </div>
+      <div class="tile">
+        <div class="who"><span class="key phys"></span>Physics layout</div>
+        <div class="v">1.57<small>s</small></div>
+        <div class="l">to settle again after one new marker among 1,000</div>
+        <ul><li><span>At 10,000 markers</span><b>24.8 s</b></li><li><span>At 100,000 markers</span><b>9.47 min</b></li><li><span>Ticks to settle again</span><b>248</b></li><li><span>Markers recomputed each tick</span><b>all of them</b></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quality">
+  <div class="wrap">
+    <p class="eyebrow">Quality</p>
+    <h2>Position keeps its meaning.<span class="turn">Physics scatters time.</span></h2>
+    <p class="lede">Speed matters only if the picture is right. For every finished layout we checked two things: <strong>is each marker inside its own band</strong>, and <strong>do markers that follow each other in time run the same way around the globe</strong>. 3apart gets both right by construction. Physics keeps most markers near their band, but its time order is a coin flip.</p>
+    <div class="card">
+      <div class="tbl" id="tbl-quality"></div>
+    </div>
+    <p class="note">The physics forces were tuned for this task: a pull onto the sphere and a pull toward the middle of each marker's band. With d3's default strengths, 74% of markers ended up outside their band in a trial at 1,000 markers. The band pull also gathers markers on the band's middle line, so the value that 3apart shows as height inside the band is lost.</p>
+  </div>
+</section>
+
+<section class="alt" id="gpu">
+  <div class="wrap">
+    <p class="eyebrow">GPU</p>
+    <h2>One pass against 300.<span class="turn">Run it on your Mac's GPU.</span></h2>
+    <p class="lede">On a GPU, geometry is <strong>one shader pass</strong> over every marker. Physics is <strong>300 passes</strong>, each comparing every marker with every other (above 16,384 markers, with a random sample of 1,024). Run it here to measure this machine's GPU and CPU. It takes about a minute, and the result is saved under Runs.</p>
+    <div class="runner">
+      <div class="who-row">
+        <input id="who" type="text" autocomplete="name" placeholder="Your name" aria-label="Your name" maxlength="40">
+        <input id="mname" type="text" placeholder="Machine name, e.g. Lorium" aria-label="Machine name" maxlength="40">
+      </div>
+      <div class="runbar">
+        <button class="btn primary" id="run" type="button">Run on this machine</button>
+        <button class="btn" id="stop" type="button" hidden>Stop</button>
+        <button class="btn" id="dl" type="button" hidden>Download result</button>
+        <label class="check"><input type="checkbox" id="long"> Include the long CPU runs (up to a minute more)</label>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+      <div class="status" id="status" role="status" aria-live="polite">Not run yet on this machine.</div>
+    </div>
+    <div class="card" id="gpu-card">
+      <div class="chart-top">
+        <div><div class="chart-title" id="gpu-title">Time to a finished layout on a GPU</div><div class="chart-sub" id="gpu-sub"></div></div>
+        <div class="seg" role="group" aria-label="Whose results"><button type="button" id="seg-mine" aria-pressed="false" disabled>This machine</button><button type="button" id="seg-emu" aria-pressed="true">Emulated here</button></div>
+      </div>
+      <div class="legend" style="margin-top:14px"><span><span class="key geo"></span>3apart geometry, one pass</span><span><span class="key phys"></span>Physics, 300 passes</span></div>
+      <div class="chart" id="chart-gpu"></div>
+      <div class="chips" id="gpu-chips"></div>
+      <div class="device" id="gpu-device"></div>
+      <details class="table"><summary>Show the numbers</summary><div class="tbl" id="tbl-gpu"></div></details>
+    </div>
+  </div>
+</section>
+
+<section id="runs">
+  <div class="wrap">
+    <p class="eyebrow">History</p>
+    <h2>Every run is kept.<span class="turn">Check it holds next time.</span></h2>
+    <p class="lede">Each run on this page is saved with its device. A new run is checked against the claim, against the bands, and against the last run on the same device.</p>
+    <div class="runs" id="run-list"><div class="empty">Runs appear here once this page is open on claude.ai and a run has finished.</div></div>
+  </div>
+</section>
+
+<section class="alt" id="method">
+  <div class="wrap">
+    <p class="eyebrow">Method</p>
+    <h2>How we measured.</h2>
+    <div class="method">
+      <details><summary>What was measured</summary><div class="body">
+        <p>Each marker has a band (one of 24), a time and a value, drawn from a fixed random seed. Synthetic data only.</p>
+        <p><strong>3apart geometry</strong> is the disclosure's <code>place</code> and <code>sphere_xyz</code>: band edges with a 0.9 cap, a 12% margin inside each band, longitude from time. The NumPy re-check runs the reference code unchanged. The JavaScript and GPU versions are line-for-line ports.</p>
+        <p>"Time to a finished layout" is one placement for geometry, and building the simulation plus d3's standard 300 ticks for physics. Each size ran 100 times except the physics layouts: 100 at 1,000 markers, 10 at 10,000 markers, 1 at 100,000 markers.</p>
+      </div></details>
+      <details><summary>The physics layout</summary><div class="body">
+        <p>d3-force-3d 3.0.6, the library behind most 3D force graphs. Many-body repulsion with the Barnes–Hut approximation (theta 0.9), links between markers that follow each other in time within a band, a radial force that holds markers on the sphere, and a pull toward each marker's band. It starts from random points on the sphere and runs alpha from 1 to 0.001 over 300 ticks.</p>
+        <p>The forces were tuned for band membership (charge −10, radial and band pulls at full strength), so the comparison is against the physics layout at its best for this task. A new marker is added with one link to its band and the layout is reheated to alpha 0.3 and run until it settles, about 248 ticks.</p>
+      </div></details>
+      <details><summary>The GPU code</summary><div class="body">
+        <p>WebGL2 with float textures. Geometry is one fragment-shader pass that writes every marker's position. Physics is one pass per tick that updates position and velocity together: all pairs up to 16,384 markers; above that, each marker feels a random sample of 1,024 others, scaled up to the full count. Links, the radial pull and the band pull are the same as on the CPU; all markers update at once from the previous tick.</p>
+        <p>Times are wall-clock from the draw call to a one-pixel read-back, so they include the round trip to the GPU. Where the browser offers GPU timer queries, those are recorded too. The emulated numbers come from SwiftShader, which runs the GPU's work on this server's 2 CPU cores: they show the shaders run and agree with the CPU formula, not how fast a GPU is.</p>
+      </div></details>
+      <details><summary>What this does not show</summary><div class="body">
+        <p>A force-directed layout encodes graph relations, and 3apart geometry encodes fixed bands. The disclosure calls this a design choice rather than an equal-task speed claim, and that still holds: these numbers compare two ways to lay out a banded globe, not two solvers for the same problem.</p>
+        <p>On the GPU, physics compares all pairs up to 16,384 markers, which is more work per tick than Barnes–Hut. A tuned GPU force layout with a tree or a grid could run each tick several times faster, but it would still need about 300 ticks to settle.</p>
+        <p>CPU numbers come from one core of one server; a laptop will differ, which is why the page can run on your machine. The 100,000-marker physics layout ran once, because one layout takes 13.6 min. Sizes above 100,000 were not run for physics on the CPU.</p>
+      </div></details>
+      <details><summary>Machines and versions</summary><div class="body">
+        <p>Server: Intel Xeon @ 2.10 GHz, 2 cores, one used. Node 22.23.4, Python 3.13.18, NumPy 2.5.3, d3-force-3d 3.0.6 (MIT, Vasco Asturiano). Measured November 13, 2026.</p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">3apart · Kosmos. Confidential. Synthetic data only; no patient or market data. Benchmarks are measurements of this code on the machines named, not a guarantee of performance elsewhere.</div>
+</footer>
+
+<script>/*! d3-force-3d 3.0.6 · MIT License · Copyright (c) 2017 Vasco Asturiano */
+var d3f=(()=>{var J=Object.defineProperty;var an=Object.getOwnPropertyDescriptor;var sn=Object.getOwnPropertyNames;var un=Object.prototype.hasOwnProperty;var hn=(t,n)=>{for(var e in n)J(t,e,{get:n[e],enumerable:!0})},ln=(t,n,e,i)=>{if(n&&typeof n=="object"||typeof n=="function")for(let r of sn(n))!un.call(t,r)&&r!==e&&J(t,r,{get:()=>n[r],enumerable:!(i=an(n,r))||i.enumerable});return t};var cn=t=>ln(J({},"__esModule",{value:!0}),t);var Bn={};hn(Bn,{forceLink:()=>nt,forceManyBody:()=>st,forceRadial:()=>ut,forceSimulation:()=>at,forceZ:()=>ht});function ct(t){let n=+this._x.call(null,t);return pt(this.cover(n),n,t)}function pt(t,n,e){if(isNaN(n))return t;var i,r=t._root,o={data:e},f=t._x0,a=t._x1,s,l,c,h,_;if(!r)return t._root=o,t;for(;r.length;)if((c=n>=(s=(f+a)/2))?f=s:a=s,i=r,!(r=r[h=+c]))return i[h]=o,t;if(l=+t._x.call(null,r.data),n===l)return o.next=r,i?i[h]=o:t._root=o,t;do i=i?i[h]=new Array(2):t._root=new Array(2),(c=n>=(s=(f+a)/2))?f=s:a=s;while((h=+c)==(_=+(l>=s)));return i[_]=r,i[h]=o,t}function _t(t){Array.isArray(t)||(t=Array.from(t));let n=t.length,e=new Float64Array(n),i=1/0,r=-1/0;for(let o=0,f;o<n;++o)isNaN(f=+this._x.call(null,t[o]))||(e[o]=f,f<i&&(i=f),f>r&&(r=f));if(i>r)return this;this.cover(i).cover(r);for(let o=0;o<n;++o)pt(this,e[o],t[o]);return this}function xt(t){if(isNaN(t=+t))return this;var n=this._x0,e=this._x1;if(isNaN(n))e=(n=Math.floor(t))+1;else{for(var i=e-n||1,r=this._root,o,f;n>t||t>=e;)switch(f=+(t<n),o=new Array(2),o[f]=r,r=o,i*=2,f){case 0:e=n+i;break;case 1:n=e-i;break}this._root&&this._root.length&&(this._root=r)}return this._x0=n,this._x1=e,this}function vt(){var t=[];return this.visit(function(n){if(!n.length)do t.push(n.data);while(n=n.next)}),t}function gt(t){return arguments.length?this.cover(+t[0][0]).cover(+t[1][0]):isNaN(this._x0)?void 0:[[this._x0],[this._x1]]}function O(t,n,e){this.node=t,this.x0=n,this.x1=e}function wt(t,n){var e,i=this._x0,r,o,f=this._x1,a=[],s=this._root,l,c;for(s&&a.push(new O(s,i,f)),n==null?n=1/0:(i=t-n,f=t+n);l=a.pop();)if(!(!(s=l.node)||(r=l.x0)>f||(o=l.x1)<i))if(s.length){var h=(r+o)/2;a.push(new O(s[1],h,o),new O(s[0],r,h)),(c=+(t>=h))&&(l=a[a.length-1],a[a.length-1]=a[a.length-1-c],a[a.length-1-c]=l)}else{var _=Math.abs(t-+this._x.call(null,s.data));_<n&&(n=_,i=t-_,f=t+_,e=s.data)}return e}function yt(t){if(isNaN(s=+this._x.call(null,t)))return this;var n,e=this._root,i,r,o,f=this._x0,a=this._x1,s,l,c,h,_;if(!e)return this;if(e.length)for(;;){if((c=s>=(l=(f+a)/2))?f=l:a=l,n=e,!(e=e[h=+c]))return this;if(!e.length)break;n[h+1&1]&&(i=n,_=h)}for(;e.data!==t;)if(r=e,!(e=e.next))return this;return(o=e.next)&&delete e.next,r?(o?r.next=o:delete r.next,this):n?(o?n[h]=o:delete n[h],(e=n[0]||n[1])&&e===(n[1]||n[0])&&!e.length&&(i?i[_]=e:this._root=e),this):(this._root=o,this)}function mt(t){for(var n=0,e=t.length;n<e;++n)this.remove(t[n]);return this}function dt(){return this._root}function Nt(){var t=0;return this.visit(function(n){if(!n.length)do++t;while(n=n.next)}),t}function At(t){var n=[],e,i=this._root,r,o,f;for(i&&n.push(new O(i,this._x0,this._x1));e=n.pop();)if(!t(i=e.node,o=e.x0,f=e.x1)&&i.length){var a=(o+f)/2;(r=i[1])&&n.push(new O(r,a,f)),(r=i[0])&&n.push(new O(r,o,a))}return this}function zt(t){var n=[],e=[],i;for(this._root&&n.push(new O(this._root,this._x0,this._x1));i=n.pop();){var r=i.node;if(r.length){var o,f=i.x0,a=i.x1,s=(f+a)/2;(o=r[0])&&n.push(new O(o,f,s)),(o=r[1])&&n.push(new O(o,s,a))}e.push(i)}for(;i=e.pop();)t(i.node,i.x0,i.x1);return this}function Mt(t){return t[0]}function qt(t){return arguments.length?(this._x=t,this):this._x}function X(t,n){var e=new K(n??Mt,NaN,NaN);return t==null?e:e.addAll(t)}function K(t,n,e){this._x=t,this._x0=n,this._x1=e,this._root=void 0}function bt(t){for(var n={data:t.data},e=n;t=t.next;)e=e.next={data:t.data};return n}var E=X.prototype=K.prototype;E.copy=function(){var t=new K(this._x,this._x0,this._x1),n=this._root,e,i;if(!n)return t;if(!n.length)return t._root=bt(n),t;for(e=[{source:n,target:t._root=new Array(2)}];n=e.pop();)for(var r=0;r<2;++r)(i=n.source[r])&&(i.length?e.push({source:i,target:n.target[r]=new Array(2)}):n.target[r]=bt(i));return t};E.add=ct;E.addAll=_t;E.cover=xt;E.data=vt;E.extent=gt;E.find=wt;E.remove=yt;E.removeAll=mt;E.root=dt;E.size=Nt;E.visit=At;E.visitAfter=zt;E.x=qt;function pn(t){let n=+this._x.call(null,t),e=+this._y.call(null,t);return kt(this.cover(n,e),n,e,t)}function kt(t,n,e,i){if(isNaN(n)||isNaN(e))return t;var r,o=t._root,f={data:i},a=t._x0,s=t._y0,l=t._x1,c=t._y1,h,_,x,p,d,g,u,y;if(!o)return t._root=f,t;for(;o.length;)if((d=n>=(h=(a+l)/2))?a=h:l=h,(g=e>=(_=(s+c)/2))?s=_:c=_,r=o,!(o=o[u=g<<1|d]))return r[u]=f,t;if(x=+t._x.call(null,o.data),p=+t._y.call(null,o.data),n===x&&e===p)return f.next=o,r?r[u]=f:t._root=f,t;do r=r?r[u]=new Array(4):t._root=new Array(4),(d=n>=(h=(a+l)/2))?a=h:l=h,(g=e>=(_=(s+c)/2))?s=_:c=_;while((u=g<<1|d)===(y=(p>=_)<<1|x>=h));return r[y]=o,r[u]=f,t}function _n(t){Array.isArray(t)||(t=Array.from(t));let n=t.length,e=new Float64Array(n),i=new Float64Array(n),r=1/0,o=r,f=-r,a=f;for(let s=0,l,c,h;s<n;++s){if(isNaN(c=+this._x.call(null,l=t[s]))||isNaN(h=+this._y.call(null,l))){e[s]=NaN;continue}e[s]=c,i[s]=h,c<r&&(r=c),c>f&&(f=c),h<o&&(o=h),h>a&&(a=h)}if(r>f||o>a)return this;this.cover(r,o).cover(f,a);for(let s=0;s<n;++s)kt(this,e[s],i[s],t[s]);return this}function xn(t,n){if(isNaN(t=+t)||isNaN(n=+n))return this;var e=this._x0,i=this._y0,r=this._x1,o=this._y1;if(isNaN(e))r=(e=Math.floor(t))+1,o=(i=Math.floor(n))+1;else{for(var f=r-e||1,a=this._root,s,l;e>t||t>=r||i>n||n>=o;)switch(l=(n<i)<<1|t<e,s=new Array(4),s[l]=a,a=s,f*=2,l){case 0:r=e+f,o=i+f;break;case 1:e=r-f,o=i+f;break;case 2:r=e+f,i=o-f;break;case 3:e=r-f,i=o-f;break}this._root&&this._root.length&&(this._root=a)}return this._x0=e,this._y0=i,this._x1=r,this._y1=o,this}function vn(){var t=[];return this.visit(function(n){if(!n.length)do t.push(n.data);while(n=n.next)}),t}function gn(t){return arguments.length?this.cover(+t[0][0],+t[0][1]).cover(+t[1][0],+t[1][1]):isNaN(this._x0)?void 0:[[this._x0,this._y0],[this._x1,this._y1]]}function k(t,n,e,i,r){this.node=t,this.x0=n,this.y0=e,this.x1=i,this.y1=r}function wn(t,n,e){var i,r=this._x0,o=this._y0,f,a,s,l,c=this._x1,h=this._y1,_=[],x=this._root,p,d;for(x&&_.push(new k(x,r,o,c,h)),e==null?e=1/0:(r=t-e,o=n-e,c=t+e,h=n+e,e*=e);p=_.pop();)if(!(!(x=p.node)||(f=p.x0)>c||(a=p.y0)>h||(s=p.x1)<r||(l=p.y1)<o))if(x.length){var g=(f+s)/2,u=(a+l)/2;_.push(new k(x[3],g,u,s,l),new k(x[2],f,u,g,l),new k(x[1],g,a,s,u),new k(x[0],f,a,g,u)),(d=(n>=u)<<1|t>=g)&&(p=_[_.length-1],_[_.length-1]=_[_.length-1-d],_[_.length-1-d]=p)}else{var y=t-+this._x.call(null,x.data),w=n-+this._y.call(null,x.data),m=y*y+w*w;if(m<e){var v=Math.sqrt(e=m);r=t-v,o=n-v,c=t+v,h=n+v,i=x.data}}return i}function yn(t){if(isNaN(c=+this._x.call(null,t))||isNaN(h=+this._y.call(null,t)))return this;var n,e=this._root,i,r,o,f=this._x0,a=this._y0,s=this._x1,l=this._y1,c,h,_,x,p,d,g,u;if(!e)return this;if(e.length)for(;;){if((p=c>=(_=(f+s)/2))?f=_:s=_,(d=h>=(x=(a+l)/2))?a=x:l=x,n=e,!(e=e[g=d<<1|p]))return this;if(!e.length)break;(n[g+1&3]||n[g+2&3]||n[g+3&3])&&(i=n,u=g)}for(;e.data!==t;)if(r=e,!(e=e.next))return this;return(o=e.next)&&delete e.next,r?(o?r.next=o:delete r.next,this):n?(o?n[g]=o:delete n[g],(e=n[0]||n[1]||n[2]||n[3])&&e===(n[3]||n[2]||n[1]||n[0])&&!e.length&&(i?i[u]=e:this._root=e),this):(this._root=o,this)}function mn(t){for(var n=0,e=t.length;n<e;++n)this.remove(t[n]);return this}function dn(){return this._root}function Nn(){var t=0;return this.visit(function(n){if(!n.length)do++t;while(n=n.next)}),t}function An(t){var n=[],e,i=this._root,r,o,f,a,s;for(i&&n.push(new k(i,this._x0,this._y0,this._x1,this._y1));e=n.pop();)if(!t(i=e.node,o=e.x0,f=e.y0,a=e.x1,s=e.y1)&&i.length){var l=(o+a)/2,c=(f+s)/2;(r=i[3])&&n.push(new k(r,l,c,a,s)),(r=i[2])&&n.push(new k(r,o,c,l,s)),(r=i[1])&&n.push(new k(r,l,f,a,c)),(r=i[0])&&n.push(new k(r,o,f,l,c))}return this}function zn(t){var n=[],e=[],i;for(this._root&&n.push(new k(this._root,this._x0,this._y0,this._x1,this._y1));i=n.pop();){var r=i.node;if(r.length){var o,f=i.x0,a=i.y0,s=i.x1,l=i.y1,c=(f+s)/2,h=(a+l)/2;(o=r[0])&&n.push(new k(o,f,a,c,h)),(o=r[1])&&n.push(new k(o,c,a,s,h)),(o=r[2])&&n.push(new k(o,f,h,c,l)),(o=r[3])&&n.push(new k(o,c,h,s,l))}e.push(i)}for(;i=e.pop();)t(i.node,i.x0,i.y0,i.x1,i.y1);return this}function Mn(t){return t[0]}function qn(t){return arguments.length?(this._x=t,this):this._x}function bn(t){return t[1]}function In(t){return arguments.length?(this._y=t,this):this._y}function U(t,n,e){var i=new V(n??Mn,e??bn,NaN,NaN,NaN,NaN);return t==null?i:i.addAll(t)}function V(t,n,e,i,r,o){this._x=t,this._y=n,this._x0=e,this._y0=i,this._x1=r,this._y1=o,this._root=void 0}function It(t){for(var n={data:t.data},e=n;t=t.next;)e=e.next={data:t.data};return n}var j=U.prototype=V.prototype;j.copy=function(){var t=new V(this._x,this._y,this._x0,this._y0,this._x1,this._y1),n=this._root,e,i;if(!n)return t;if(!n.length)return t._root=It(n),t;for(e=[{source:n,target:t._root=new Array(4)}];n=e.pop();)for(var r=0;r<4;++r)(i=n.source[r])&&(i.length?e.push({source:i,target:n.target[r]=new Array(4)}):n.target[r]=It(i));return t};j.add=pn;j.addAll=_n;j.cover=xn;j.data=vn;j.extent=gn;j.find=wn;j.remove=yn;j.removeAll=mn;j.root=dn;j.size=Nn;j.visit=An;j.visitAfter=zn;j.x=qn;j.y=In;function jt(t){let n=+this._x.call(null,t),e=+this._y.call(null,t),i=+this._z.call(null,t);return Dt(this.cover(n,e,i),n,e,i,t)}function Dt(t,n,e,i,r){if(isNaN(n)||isNaN(e)||isNaN(i))return t;var o,f=t._root,a={data:r},s=t._x0,l=t._y0,c=t._z0,h=t._x1,_=t._y1,x=t._z1,p,d,g,u,y,w,m,v,N,A,z;if(!f)return t._root=a,t;for(;f.length;)if((m=n>=(p=(s+h)/2))?s=p:h=p,(v=e>=(d=(l+_)/2))?l=d:_=d,(N=i>=(g=(c+x)/2))?c=g:x=g,o=f,!(f=f[A=N<<2|v<<1|m]))return o[A]=a,t;if(u=+t._x.call(null,f.data),y=+t._y.call(null,f.data),w=+t._z.call(null,f.data),n===u&&e===y&&i===w)return a.next=f,o?o[A]=a:t._root=a,t;do o=o?o[A]=new Array(8):t._root=new Array(8),(m=n>=(p=(s+h)/2))?s=p:h=p,(v=e>=(d=(l+_)/2))?l=d:_=d,(N=i>=(g=(c+x)/2))?c=g:x=g;while((A=N<<2|v<<1|m)===(z=(w>=g)<<2|(y>=d)<<1|u>=p));return o[z]=f,o[A]=a,t}function Et(t){Array.isArray(t)||(t=Array.from(t));let n=t.length,e=new Float64Array(n),i=new Float64Array(n),r=new Float64Array(n),o=1/0,f=1/0,a=1/0,s=-1/0,l=-1/0,c=-1/0;for(let h=0,_,x,p,d;h<n;++h)isNaN(x=+this._x.call(null,_=t[h]))||isNaN(p=+this._y.call(null,_))||isNaN(d=+this._z.call(null,_))||(e[h]=x,i[h]=p,r[h]=d,x<o&&(o=x),x>s&&(s=x),p<f&&(f=p),p>l&&(l=p),d<a&&(a=d),d>c&&(c=d));if(o>s||f>l||a>c)return this;this.cover(o,f,a).cover(s,l,c);for(let h=0;h<n;++h)Dt(this,e[h],i[h],r[h],t[h]);return this}function Ft(t,n,e){if(isNaN(t=+t)||isNaN(n=+n)||isNaN(e=+e))return this;var i=this._x0,r=this._y0,o=this._z0,f=this._x1,a=this._y1,s=this._z1;if(isNaN(i))f=(i=Math.floor(t))+1,a=(r=Math.floor(n))+1,s=(o=Math.floor(e))+1;else{for(var l=f-i||1,c=this._root,h,_;i>t||t>=f||r>n||n>=a||o>e||e>=s;)switch(_=(e<o)<<2|(n<r)<<1|t<i,h=new Array(8),h[_]=c,c=h,l*=2,_){case 0:f=i+l,a=r+l,s=o+l;break;case 1:i=f-l,a=r+l,s=o+l;break;case 2:f=i+l,r=a-l,s=o+l;break;case 3:i=f-l,r=a-l,s=o+l;break;case 4:f=i+l,a=r+l,o=s-l;break;case 5:i=f-l,a=r+l,o=s-l;break;case 6:f=i+l,r=a-l,o=s-l;break;case 7:i=f-l,r=a-l,o=s-l;break}this._root&&this._root.length&&(this._root=c)}return this._x0=i,this._y0=r,this._z0=o,this._x1=f,this._y1=a,this._z1=s,this}function Tt(){var t=[];return this.visit(function(n){if(!n.length)do t.push(n.data);while(n=n.next)}),t}function Ot(t){return arguments.length?this.cover(+t[0][0],+t[0][1],+t[0][2]).cover(+t[1][0],+t[1][1],+t[1][2]):isNaN(this._x0)?void 0:[[this._x0,this._y0,this._z0],[this._x1,this._y1,this._z1]]}function M(t,n,e,i,r,o,f){this.node=t,this.x0=n,this.y0=e,this.z0=i,this.x1=r,this.y1=o,this.z1=f}function Pt(t,n,e,i){var r,o=this._x0,f=this._y0,a=this._z0,s,l,c,h,_,x,p=this._x1,d=this._y1,g=this._z1,u=[],y=this._root,w,m;for(y&&u.push(new M(y,o,f,a,p,d,g)),i==null?i=1/0:(o=t-i,f=n-i,a=e-i,p=t+i,d=n+i,g=e+i,i*=i);w=u.pop();)if(!(!(y=w.node)||(s=w.x0)>p||(l=w.y0)>d||(c=w.z0)>g||(h=w.x1)<o||(_=w.y1)<f||(x=w.z1)<a))if(y.length){var v=(s+h)/2,N=(l+_)/2,A=(c+x)/2;u.push(new M(y[7],v,N,A,h,_,x),new M(y[6],s,N,A,v,_,x),new M(y[5],v,l,A,h,N,x),new M(y[4],s,l,A,v,N,x),new M(y[3],v,N,c,h,_,A),new M(y[2],s,N,c,v,_,A),new M(y[1],v,l,c,h,N,A),new M(y[0],s,l,c,v,N,A)),(m=(e>=A)<<2|(n>=N)<<1|t>=v)&&(w=u[u.length-1],u[u.length-1]=u[u.length-1-m],u[u.length-1-m]=w)}else{var z=t-+this._x.call(null,y.data),F=n-+this._y.call(null,y.data),T=e-+this._z.call(null,y.data),D=z*z+F*F+T*T;if(D<i){var q=Math.sqrt(i=D);o=t-q,f=n-q,a=e-q,p=t+q,d=n+q,g=e+q,r=y.data}}return r}var kn=(t,n,e,i,r,o)=>Math.sqrt((t-i)**2+(n-r)**2+(e-o)**2);function Rt(t,n,e,i){let r=[],o=t-i,f=n-i,a=e-i,s=t+i,l=n+i,c=e+i;return this.visit((h,_,x,p,d,g,u)=>{if(!h.length)do{let y=h.data;kn(t,n,e,this._x(y),this._y(y),this._z(y))<=i&&r.push(y)}while(h=h.next);return _>s||x>l||p>c||d<o||g<f||u<a}),r}function St(t){if(isNaN(_=+this._x.call(null,t))||isNaN(x=+this._y.call(null,t))||isNaN(p=+this._z.call(null,t)))return this;var n,e=this._root,i,r,o,f=this._x0,a=this._y0,s=this._z0,l=this._x1,c=this._y1,h=this._z1,_,x,p,d,g,u,y,w,m,v,N;if(!e)return this;if(e.length)for(;;){if((y=_>=(d=(f+l)/2))?f=d:l=d,(w=x>=(g=(a+c)/2))?a=g:c=g,(m=p>=(u=(s+h)/2))?s=u:h=u,n=e,!(e=e[v=m<<2|w<<1|y]))return this;if(!e.length)break;(n[v+1&7]||n[v+2&7]||n[v+3&7]||n[v+4&7]||n[v+5&7]||n[v+6&7]||n[v+7&7])&&(i=n,N=v)}for(;e.data!==t;)if(r=e,!(e=e.next))return this;return(o=e.next)&&delete e.next,r?(o?r.next=o:delete r.next,this):n?(o?n[v]=o:delete n[v],(e=n[0]||n[1]||n[2]||n[3]||n[4]||n[5]||n[6]||n[7])&&e===(n[7]||n[6]||n[5]||n[4]||n[3]||n[2]||n[1]||n[0])&&!e.length&&(i?i[N]=e:this._root=e),this):(this._root=o,this)}function Xt(t){for(var n=0,e=t.length;n<e;++n)this.remove(t[n]);return this}function Yt(){return this._root}function Bt(){var t=0;return this.visit(function(n){if(!n.length)do++t;while(n=n.next)}),t}function Ht(t){var n=[],e,i=this._root,r,o,f,a,s,l,c;for(i&&n.push(new M(i,this._x0,this._y0,this._z0,this._x1,this._y1,this._z1));e=n.pop();)if(!t(i=e.node,o=e.x0,f=e.y0,a=e.z0,s=e.x1,l=e.y1,c=e.z1)&&i.length){var h=(o+s)/2,_=(f+l)/2,x=(a+c)/2;(r=i[7])&&n.push(new M(r,h,_,x,s,l,c)),(r=i[6])&&n.push(new M(r,o,_,x,h,l,c)),(r=i[5])&&n.push(new M(r,h,f,x,s,_,c)),(r=i[4])&&n.push(new M(r,o,f,x,h,_,c)),(r=i[3])&&n.push(new M(r,h,_,a,s,l,x)),(r=i[2])&&n.push(new M(r,o,_,a,h,l,x)),(r=i[1])&&n.push(new M(r,h,f,a,s,_,x)),(r=i[0])&&n.push(new M(r,o,f,a,h,_,x))}return this}function Wt(t){var n=[],e=[],i;for(this._root&&n.push(new M(this._root,this._x0,this._y0,this._z0,this._x1,this._y1,this._z1));i=n.pop();){var r=i.node;if(r.length){var o,f=i.x0,a=i.y0,s=i.z0,l=i.x1,c=i.y1,h=i.z1,_=(f+l)/2,x=(a+c)/2,p=(s+h)/2;(o=r[0])&&n.push(new M(o,f,a,s,_,x,p)),(o=r[1])&&n.push(new M(o,_,a,s,l,x,p)),(o=r[2])&&n.push(new M(o,f,x,s,_,c,p)),(o=r[3])&&n.push(new M(o,_,x,s,l,c,p)),(o=r[4])&&n.push(new M(o,f,a,p,_,x,h)),(o=r[5])&&n.push(new M(o,_,a,p,l,x,h)),(o=r[6])&&n.push(new M(o,f,x,p,_,c,h)),(o=r[7])&&n.push(new M(o,_,x,p,l,c,h))}e.push(i)}for(;i=e.pop();)t(i.node,i.x0,i.y0,i.z0,i.x1,i.y1,i.z1);return this}function Zt(t){return t[0]}function Ct(t){return arguments.length?(this._x=t,this):this._x}function Lt(t){return t[1]}function Qt(t){return arguments.length?(this._y=t,this):this._y}function $t(t){return t[2]}function Gt(t){return arguments.length?(this._z=t,this):this._z}function Y(t,n,e,i){var r=new tt(n??Zt,e??Lt,i??$t,NaN,NaN,NaN,NaN,NaN,NaN);return t==null?r:r.addAll(t)}function tt(t,n,e,i,r,o,f,a,s){this._x=t,this._y=n,this._z=e,this._x0=i,this._y0=r,this._z0=o,this._x1=f,this._y1=a,this._z1=s,this._root=void 0}function Jt(t){for(var n={data:t.data},e=n;t=t.next;)e=e.next={data:t.data};return n}var b=Y.prototype=tt.prototype;b.copy=function(){var t=new tt(this._x,this._y,this._z,this._x0,this._y0,this._z0,this._x1,this._y1,this._z1),n=this._root,e,i;if(!n)return t;if(!n.length)return t._root=Jt(n),t;for(e=[{source:n,target:t._root=new Array(8)}];n=e.pop();)for(var r=0;r<8;++r)(i=n.source[r])&&(i.length?e.push({source:i,target:n.target[r]=new Array(8)}):n.target[r]=Jt(i));return t};b.add=jt;b.addAll=Et;b.cover=Ft;b.data=Tt;b.extent=Ot;b.find=Pt;b.findAllWithinRadius=Rt;b.remove=St;b.removeAll=Xt;b.root=Yt;b.size=Bt;b.visit=Ht;b.visitAfter=Wt;b.x=Ct;b.y=Qt;b.z=Gt;function I(t){return function(){return t}}function P(t){return(t()-.5)*1e-6}function jn(t){return t.index}function Kt(t,n){var e=t.get(n);if(!e)throw new Error("node not found: "+n);return e}function nt(t){var n=jn,e=_,i,r=I(30),o,f,a,s,l,c,h=1;t==null&&(t=[]);function _(u){return 1/Math.min(s[u.source.index],s[u.target.index])}function x(u){for(var y=0,w=t.length;y<h;++y)for(var m=0,v,N,A,z=0,F=0,T=0,D,q;m<w;++m)v=t[m],N=v.source,A=v.target,z=A.x+A.vx-N.x-N.vx||P(c),a>1&&(F=A.y+A.vy-N.y-N.vy||P(c)),a>2&&(T=A.z+A.vz-N.z-N.vz||P(c)),D=Math.sqrt(z*z+F*F+T*T),D=(D-o[m])/D*u*i[m],z*=D,F*=D,T*=D,A.vx-=z*(q=l[m]),a>1&&(A.vy-=F*q),a>2&&(A.vz-=T*q),N.vx+=z*(q=1-q),a>1&&(N.vy+=F*q),a>2&&(N.vz+=T*q)}function p(){if(f){var u,y=f.length,w=t.length,m=new Map(f.map((N,A)=>[n(N,A,f),N])),v;for(u=0,s=new Array(y);u<w;++u)v=t[u],v.index=u,typeof v.source!="object"&&(v.source=Kt(m,v.source)),typeof v.target!="object"&&(v.target=Kt(m,v.target)),s[v.source.index]=(s[v.source.index]||0)+1,s[v.target.index]=(s[v.target.index]||0)+1;for(u=0,l=new Array(w);u<w;++u)v=t[u],l[u]=s[v.source.index]/(s[v.source.index]+s[v.target.index]);i=new Array(w),d(),o=new Array(w),g()}}function d(){if(f)for(var u=0,y=t.length;u<y;++u)i[u]=+e(t[u],u,t)}function g(){if(f)for(var u=0,y=t.length;u<y;++u)o[u]=+r(t[u],u,t)}return x.initialize=function(u,...y){f=u,c=y.find(w=>typeof w=="function")||Math.random,a=y.find(w=>[1,2,3].includes(w))||2,p()},x.links=function(u){return arguments.length?(t=u,p(),x):t},x.id=function(u){return arguments.length?(n=u,x):n},x.iterations=function(u){return arguments.length?(h=+u,x):h},x.strength=function(u){return arguments.length?(e=typeof u=="function"?u:I(+u),d(),x):e},x.distance=function(u){return arguments.length?(r=typeof u=="function"?u:I(+u),g(),x):r},x}var Dn={value:()=>{}};function et(){for(var t=0,n=arguments.length,e={},i;t<n;++t){if(!(i=arguments[t]+"")||i in e||/[\s.]/.test(i))throw new Error("illegal type: "+i);e[i]=[]}return new C(e)}function C(t){this._=t}function En(t,n){return t.trim().split(/^|\s+/).map(function(e){var i="",r=e.indexOf(".");if(r>=0&&(i=e.slice(r+1),e=e.slice(0,r)),e&&!n.hasOwnProperty(e))throw new Error("unknown type: "+e);return{type:e,name:i}})}C.prototype=et.prototype={constructor:C,on:function(t,n){var e=this._,i=En(t+"",e),r,o=-1,f=i.length;if(arguments.length<2){for(;++o<f;)if((r=(t=i[o]).type)&&(r=Fn(e[r],t.name)))return r;return}if(n!=null&&typeof n!="function")throw new Error("invalid callback: "+n);for(;++o<f;)if(r=(t=i[o]).type)e[r]=Ut(e[r],t.name,n);else if(n==null)for(r in e)e[r]=Ut(e[r],t.name,null);return this},copy:function(){var t={},n=this._;for(var e in n)t[e]=n[e].slice();return new C(t)},call:function(t,n){if((r=arguments.length-2)>0)for(var e=new Array(r),i=0,r,o;i<r;++i)e[i]=arguments[i+2];if(!this._.hasOwnProperty(t))throw new Error("unknown type: "+t);for(o=this._[t],i=0,r=o.length;i<r;++i)o[i].value.apply(n,e)},apply:function(t,n,e){if(!this._.hasOwnProperty(t))throw new Error("unknown type: "+t);for(var i=this._[t],r=0,o=i.length;r<o;++r)i[r].value.apply(n,e)}};function Fn(t,n){for(var e=0,i=t.length,r;e<i;++e)if((r=t[e]).name===n)return r.value}function Ut(t,n,e){for(var i=0,r=t.length;i<r;++i)if(t[i].name===n){t[i]=Dn,t=t.slice(0,i).concat(t.slice(i+1));break}return e!=null&&t.push({name:n,value:e}),t}var S=0,H=0,B=0,tn=1e3,L,W,Q=0,R=0,$=0,Z=typeof performance=="object"&&performance.now?performance:Date,nn=typeof window=="object"&&window.requestAnimationFrame?window.requestAnimationFrame.bind(window):function(t){setTimeout(t,17)};function en(){return R||(nn(Tn),R=Z.now()+$)}function Tn(){R=0}function it(){this._call=this._time=this._next=null}it.prototype=ot.prototype={constructor:it,restart:function(t,n,e){if(typeof t!="function")throw new TypeError("callback is not a function");e=(e==null?en():+e)+(n==null?0:+n),!this._next&&W!==this&&(W?W._next=this:L=this,W=this),this._call=t,this._time=e,rt()},stop:function(){this._call&&(this._call=null,this._time=1/0,rt())}};function ot(t,n,e){var i=new it;return i.restart(t,n,e),i}function On(){en(),++S;for(var t=L,n;t;)(n=R-t._time)>=0&&t._call.call(void 0,n),t=t._next;--S}function Vt(){R=(Q=Z.now())+$,S=H=0;try{On()}finally{S=0,Rn(),R=0}}function Pn(){var t=Z.now(),n=t-Q;n>tn&&($-=n,Q=t)}function Rn(){for(var t,n=L,e,i=1/0;n;)n._call?(i>n._time&&(i=n._time),t=n,n=n._next):(e=n._next,n._next=null,n=t?t._next=e:L=e);W=t,rt(i)}function rt(t){if(!S){H&&(H=clearTimeout(H));var n=t-R;n>24?(t<1/0&&(H=setTimeout(Vt,Math.ceil(t-Z.now()-$)+1)),B&&(B=clearInterval(B))):(B||(Q=Z.now(),B=setInterval(Pn,tn)),S=1,nn(Vt))}}function rn(){let t=1;return()=>(t=(1664525*t+1013904223)%4294967296)/4294967296}var on=3;function G(t){return t.x}function ft(t){return t.y}function fn(t){return t.z}var Sn=10,Xn=Math.PI*(3-Math.sqrt(5)),Yn=Math.PI*20/(9+Math.sqrt(221));function at(t,n){n=n||2;var e=Math.min(on,Math.max(1,Math.round(n))),i,r=1,o=.001,f=1-Math.pow(o,1/300),a=0,s=.6,l=new Map,c=ot(x),h=et("tick","end"),_=rn();t==null&&(t=[]);function x(){p(),h.call("tick",i),r<o&&(c.stop(),h.call("end",i))}function p(u){var y,w=t.length,m;u===void 0&&(u=1);for(var v=0;v<u;++v)for(r+=(a-r)*f,l.forEach(function(N){N(r)}),y=0;y<w;++y)m=t[y],m.fx==null?m.x+=m.vx*=s:(m.x=m.fx,m.vx=0),e>1&&(m.fy==null?m.y+=m.vy*=s:(m.y=m.fy,m.vy=0)),e>2&&(m.fz==null?m.z+=m.vz*=s:(m.z=m.fz,m.vz=0));return i}function d(){for(var u=0,y=t.length,w;u<y;++u){if(w=t[u],w.index=u,w.fx!=null&&(w.x=w.fx),w.fy!=null&&(w.y=w.fy),w.fz!=null&&(w.z=w.fz),isNaN(w.x)||e>1&&isNaN(w.y)||e>2&&isNaN(w.z)){var m=Sn*(e>2?Math.cbrt(.5+u):e>1?Math.sqrt(.5+u):u),v=u*Xn,N=u*Yn;e===1?w.x=m:e===2?(w.x=m*Math.cos(v),w.y=m*Math.sin(v)):(w.x=m*Math.sin(v)*Math.cos(N),w.y=m*Math.cos(v),w.z=m*Math.sin(v)*Math.sin(N))}(isNaN(w.vx)||e>1&&isNaN(w.vy)||e>2&&isNaN(w.vz))&&(w.vx=0,e>1&&(w.vy=0),e>2&&(w.vz=0))}}function g(u){return u.initialize&&u.initialize(t,_,e),u}return d(),i={tick:p,restart:function(){return c.restart(x),i},stop:function(){return c.stop(),i},numDimensions:function(u){return arguments.length?(e=Math.min(on,Math.max(1,Math.round(u))),l.forEach(g),i):e},nodes:function(u){return arguments.length?(t=u,d(),l.forEach(g),i):t},alpha:function(u){return arguments.length?(r=+u,i):r},alphaMin:function(u){return arguments.length?(o=+u,i):o},alphaDecay:function(u){return arguments.length?(f=+u,i):+f},alphaTarget:function(u){return arguments.length?(a=+u,i):a},velocityDecay:function(u){return arguments.length?(s=1-u,i):1-s},randomSource:function(u){return arguments.length?(_=u,l.forEach(g),i):_},force:function(u,y){return arguments.length>1?(y==null?l.delete(u):l.set(u,g(y)),i):l.get(u)},find:function(){var u=Array.prototype.slice.call(arguments),y=u.shift()||0,w=(e>1?u.shift():null)||0,m=(e>2?u.shift():null)||0,v=u.shift()||1/0,N=0,A=t.length,z,F,T,D,q,lt;for(v*=v,N=0;N<A;++N)q=t[N],z=y-q.x,F=w-(q.y||0),T=m-(q.z||0),D=z*z+F*F+T*T,D<v&&(lt=q,v=D);return lt},on:function(u,y){return arguments.length>1?(h.on(u,y),i):h.on(u)}}}function st(){var t,n,e,i,r,o=I(-30),f,a=1,s=1/0,l=.81;function c(p){var d,g=t.length,u=(n===1?X(t,G):n===2?U(t,G,ft):n===3?Y(t,G,ft,fn):null).visitAfter(_);for(r=p,d=0;d<g;++d)e=t[d],u.visit(x)}function h(){if(t){var p,d=t.length,g;for(f=new Array(d),p=0;p<d;++p)g=t[p],f[g.index]=+o(g,p,t)}}function _(p){var d=0,g,u,y=0,w,m,v,N,A=p.length;if(A){for(w=m=v=N=0;N<A;++N)(g=p[N])&&(u=Math.abs(g.value))&&(d+=g.value,y+=u,w+=u*(g.x||0),m+=u*(g.y||0),v+=u*(g.z||0));d*=Math.sqrt(4/A),p.x=w/y,n>1&&(p.y=m/y),n>2&&(p.z=v/y)}else{g=p,g.x=g.data.x,n>1&&(g.y=g.data.y),n>2&&(g.z=g.data.z);do d+=f[g.data.index];while(g=g.next)}p.value=d}function x(p,d,g,u,y){if(!p.value)return!0;var w=[g,u,y][n-1],m=p.x-e.x,v=n>1?p.y-e.y:0,N=n>2?p.z-e.z:0,A=w-d,z=m*m+v*v+N*N;if(A*A/l<z)return z<s&&(m===0&&(m=P(i),z+=m*m),n>1&&v===0&&(v=P(i),z+=v*v),n>2&&N===0&&(N=P(i),z+=N*N),z<a&&(z=Math.sqrt(a*z)),e.vx+=m*p.value*r/z,n>1&&(e.vy+=v*p.value*r/z),n>2&&(e.vz+=N*p.value*r/z)),!0;if(p.length||z>=s)return;(p.data!==e||p.next)&&(m===0&&(m=P(i),z+=m*m),n>1&&v===0&&(v=P(i),z+=v*v),n>2&&N===0&&(N=P(i),z+=N*N),z<a&&(z=Math.sqrt(a*z)));do p.data!==e&&(A=f[p.data.index]*r/z,e.vx+=m*A,n>1&&(e.vy+=v*A),n>2&&(e.vz+=N*A));while(p=p.next)}return c.initialize=function(p,...d){t=p,i=d.find(g=>typeof g=="function")||Math.random,n=d.find(g=>[1,2,3].includes(g))||2,h()},c.strength=function(p){return arguments.length?(o=typeof p=="function"?p:I(+p),h(),c):o},c.distanceMin=function(p){return arguments.length?(a=p*p,c):Math.sqrt(a)},c.distanceMax=function(p){return arguments.length?(s=p*p,c):Math.sqrt(s)},c.theta=function(p){return arguments.length?(l=p*p,c):Math.sqrt(l)},c}function ut(t,n,e,i){var r,o,f=I(.1),a,s;typeof t!="function"&&(t=I(+t)),n==null&&(n=0),e==null&&(e=0),i==null&&(i=0);function l(h){for(var _=0,x=r.length;_<x;++_){var p=r[_],d=p.x-n||1e-6,g=(p.y||0)-e||1e-6,u=(p.z||0)-i||1e-6,y=Math.sqrt(d*d+g*g+u*u),w=(s[_]-y)*a[_]*h/y;p.vx+=d*w,o>1&&(p.vy+=g*w),o>2&&(p.vz+=u*w)}}function c(){if(r){var h,_=r.length;for(a=new Array(_),s=new Array(_),h=0;h<_;++h)s[h]=+t(r[h],h,r),a[h]=isNaN(s[h])?0:+f(r[h],h,r)}}return l.initialize=function(h,..._){r=h,o=_.find(x=>[1,2,3].includes(x))||2,c()},l.strength=function(h){return arguments.length?(f=typeof h=="function"?h:I(+h),c(),l):f},l.radius=function(h){return arguments.length?(t=typeof h=="function"?h:I(+h),c(),l):t},l.x=function(h){return arguments.length?(n=+h,l):n},l.y=function(h){return arguments.length?(e=+h,l):e},l.z=function(h){return arguments.length?(i=+h,l):i},l}function ht(t){var n=I(.1),e,i,r;typeof t!="function"&&(t=I(t==null?0:+t));function o(a){for(var s=0,l=e.length,c;s<l;++s)c=e[s],c.vz+=(r[s]-c.z)*i[s]*a}function f(){if(e){var a,s=e.length;for(i=new Array(s),r=new Array(s),a=0;a<s;++a)i[a]=isNaN(r[a]=+t(e[a],a,e))?0:+n(e[a],a,e)}}return o.initialize=function(a){e=a,f()},o.strength=function(a){return arguments.length?(n=typeof a=="function"?a:I(+a),f(),o):n},o.z=function(a){return arguments.length?(t=typeof a=="function"?a:I(+a),f(),o):t},o}return cn(Bn);})();
+</script>
+<script>
+"use strict";
+// ============================================================================ shared engine
+// Same inputs and formulas as the server runs (cpu_bench.mjs): 24 bands, cap 0.9, a 12% margin inside each band,
+// longitude from time. Synthetic data only.
+const NL = 24, CAP = 0.9, MARGIN = 0.12, SEED = 20261112;
+const EDGES = Float64Array.from({ length: NL + 1 }, (_, k) => CAP * (1 - 2 * k / NL));
+const EDGES32 = Float32Array.from(EDGES);
+const ALPHA_DECAY = 1 - Math.pow(0.001, 1 / 300), ALPHA_MIN = 0.001;
+
+function rng(seed) {
+  let s = seed >>> 0;
+  return () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+function inputs(n, seed = SEED) {
+  const r = rng(seed), layer = new Int32Array(n), t = new Float64Array(n), v = new Float64Array(n);
+  for (let i = 0; i < n; i++) { layer[i] = Math.floor(r() * NL); t[i] = r(); v[i] = r(); }
+  return { n, layer, t, v };
+}
+// the disclosure's place() + sphere_xyz(), line for line
+function place(n, layer, t, value, out, off = 0) {
+  for (let i = off; i < off + n; i++) {
+    const phi = Math.PI * (2 * t[i] - 1), l = layer[i], zt = EDGES[l], zb = EDGES[l + 1];
+    const z = zb + (zt - zb) * (MARGIN + (1 - 2 * MARGIN) * value[i]);
+    const th = Math.acos(z < -1 ? -1 : z > 1 ? 1 : z), st = Math.sin(th);
+    out[3 * i] = st * Math.sin(phi); out[3 * i + 1] = -st * Math.cos(phi); out[3 * i + 2] = Math.cos(th);
+  }
+}
+function stats(ms) {
+  const a = Float64Array.from(ms).sort(), n = a.length, q = p => a[Math.min(n - 1, Math.ceil(p * n) - 1)];
+  let s = 0; for (const x of a) s += x;
+  return { runs: n, min: a[0], median: n % 2 ? a[n >> 1] : (a[n / 2 - 1] + a[n / 2]) / 2, mean: s / n, p95: q(0.95), max: a[n - 1] };
+}
+// share of markers whose height on the sphere is outside their own band
+function outsideShare(n, layerAt, xyzAt) {
+  let k = 0;
+  for (let i = 0; i < n; i++) {
+    const [x, y, z] = xyzAt(i), r = Math.hypot(x, y, z) || 1, h = z / r, l = layerAt(i);
+    if (!(h <= EDGES[l] && h >= EDGES[l + 1])) k++;
+  }
+  return k / n;
+}
+function timeOrderIdx(d) { const ord = new Int32Array(d.n); for (let i = 0; i < d.n; i++) ord[i] = i; return ord.sort((p, q) => d.layer[p] - d.layer[q] || d.t[p] - d.t[q]); }
+// share of time-consecutive pairs in a band that run the same way (counter-clockwise) around the globe
+function timeOrder(ord, layer, xyAt) {
+  let ok = 0, tot = 0;
+  for (let k = 1; k < ord.length; k++) {
+    const p = ord[k - 1], q = ord[k];
+    if (layer[p] !== layer[q]) continue;
+    tot++;
+    const a = xyAt(p), b = xyAt(q), d = Math.atan2(b[1], b[0]) - Math.atan2(a[1], a[0]);
+    if (Math.sin(d) > 0 || Math.abs(d) < 1e-12) ok++;
+  }
+  return tot ? ok / tot : 1;
+}
+const yieldNow = (() => {
+  const ch = new MessageChannel(), q = [];
+  ch.port1.onmessage = () => { const f = q.shift(); if (f) f(); };
+  return () => new Promise(r => { q.push(r); ch.port2.postMessage(0); });
+})();
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+class Stopped extends Error { constructor() { super('Stopped.'); } }
+
+// ---------------------------------------------------------------------------- physics on the CPU (d3-force-3d)
+function buildPhys(d, seed) {
+  const n = d.n, R = 30 * Math.sqrt(n / (4 * Math.PI)), r = rng(seed), nodes = new Array(n);
+  for (let i = 0; i < n; i++) { const u = 2 * r() - 1, a = 2 * Math.PI * r(), s = Math.sqrt(1 - u * u); nodes[i] = { x: R * s * Math.cos(a), y: R * s * Math.sin(a), z: R * u, layer: d.layer[i] }; }
+  const ord = timeOrderIdx(d), links = [];
+  for (let k = 1; k < n; k++) if (d.layer[ord[k]] === d.layer[ord[k - 1]]) links.push({ source: ord[k - 1], target: ord[k] });
+  const zc = l => R * (EDGES[l] + EDGES[l + 1]) / 2;
+  const sim = d3f.forceSimulation(nodes, 3).stop()
+    .force('charge', d3f.forceManyBody().strength(-10))
+    .force('link', d3f.forceLink(links).distance(30))
+    .force('radial', d3f.forceRadial(R).strength(1))
+    .force('band', d3f.forceZ(nd => zc(nd.layer)).strength(1));
+  return { sim, nodes, links, R, ord };
+}
+
+// ============================================================================ GPU (WebGL2)
+const VS = `#version 300 es
+void main() { vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2)); gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+
+// one pass: every marker's position from its band, time and value
+const FS_GEO = `#version 300 es
+precision highp float; precision highp int;
+uniform highp sampler2D uIn;
+uniform float uE[25];
+out vec4 o;
+void main() {
+  vec4 d = texelFetch(uIn, ivec2(gl_FragCoord.xy), 0);
+  int l = int(d.x);
+  float phi = 3.141592653589793 * (2.0 * d.y - 1.0);
+  float zt = uE[l], zb = uE[l + 1];
+  float z = zb + (zt - zb) * (0.12 + 0.76 * d.z);
+  float th = acos(clamp(z, -1.0, 1.0)), st = sin(th);
+  o = vec4(st * sin(phi), -st * cos(phi), cos(th), 1.0);
+}`;
+
+// one physics tick: many-body (all pairs, or a scaled random sample), time links, radial pull, band pull, velocity decay
+const FS_TICK = `#version 300 es
+precision highp float; precision highp int;
+uniform highp sampler2D uPos, uVel, uLink;
+uniform int uN, uW, uK;
+uniform float uAlpha, uR, uScale;
+uniform uint uSeed;
+uniform float uE[25];
+layout(location = 0) out vec4 oPos;
+layout(location = 1) out vec4 oVel;
+uint hash(uint x) { x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy);
+  int i = c.y * uW + c.x;
+  vec4 P = texelFetch(uPos, c, 0), V = texelFetch(uVel, c, 0);
+  if (i >= uN) { oPos = P; oVel = V; return; }
+  vec3 p = P.xyz, v = V.xyz, f = vec3(0.0);
+  if (uK == 0) {
+    int H = (uN + uW - 1) / uW;
+    for (int y = 0; y < H; y++) {
+      int w = min(uW, uN - y * uW);
+      for (int x = 0; x < w; x++) {
+        vec3 d = texelFetch(uPos, ivec2(x, y), 0).xyz - p;
+        float l = dot(d, d);
+        if (l > 0.0) { if (l < 1.0) l = sqrt(l); f += d / l; }
+      }
+    }
+    v += f * (-10.0 * uAlpha);
+  } else {
+    uint s = hash(uint(i) * 2654435761u ^ uSeed);
+    for (int k = 0; k < uK; k++) {
+      s = hash(s + uint(k));
+      int j = int(s % uint(uN));
+      vec3 d = texelFetch(uPos, ivec2(j % uW, j / uW), 0).xyz - p;
+      float l = dot(d, d);
+      if (l > 0.0) { if (l < 1.0) l = sqrt(l); f += d / l; }
+    }
+    v += f * (-10.0 * uAlpha * uScale);
+  }
+  vec4 L = texelFetch(uLink, c, 0);
+  float ci = L.z;
+  for (int e = 0; e < 2; e++) {
+    int j = int(e == 0 ? L.x : L.y);
+    if (j < 0 || j >= uN) continue;
+    ivec2 cj = ivec2(j % uW, j / uW);
+    vec3 x = texelFetch(uPos, cj, 0).xyz + texelFetch(uVel, cj, 0).xyz - p - v;
+    float cn = texelFetch(uLink, cj, 0).z;
+    float l = length(x);
+    if (l > 0.0) v += x * ((l - 30.0) / l * uAlpha / min(ci, cn) * cn / (ci + cn));
+  }
+  float r = length(p);
+  if (r > 0.0) v += p * ((uR - r) * uAlpha / r);
+  int b = int(P.w);
+  v.z += (uR * 0.5 * (uE[b] + uE[b + 1]) - p.z) * uAlpha;
+  v *= 0.6;
+  oPos = vec4(p + v, P.w);
+  oVel = vec4(v, 0.0);
+}`;
+
+class GpuBench {
+  constructor() {
+    const c = document.createElement('canvas'); c.width = c.height = 1;
+    const gl = c.getContext('webgl2', { antialias: false, depth: false, stencil: false, alpha: false, powerPreference: 'high-performance' });
+    if (!gl) throw new Error('This browser has no WebGL2, so the GPU part cannot run here.');
+    if (!gl.getExtension('EXT_color_buffer_float')) throw new Error('This GPU cannot write float textures (EXT_color_buffer_float), so the GPU part cannot run here.');
+    this.gl = gl;
+    this.lost = false;
+    c.addEventListener('webglcontextlost', e => { e.preventDefault(); this.lost = true; });
+    this.tq = gl.getExtension('EXT_disjoint_timer_query_webgl2');
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+    this.renderer = String(dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+    this.vendor = String(dbg ? gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR));
+    this.maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+    this.WMAX = Math.min(4096, this.maxTex);
+    this.px = new Float32Array(4);
+    this.vao = gl.createVertexArray();
+    this.pGeo = this.program(FS_GEO, ['uIn', 'uE']);
+    this.pTick = this.program(FS_TICK, ['uPos', 'uVel', 'uLink', 'uN', 'uW', 'uK', 'uAlpha', 'uR', 'uScale', 'uSeed', 'uE']);
+  }
+  program(fs, names) {
+    const gl = this.gl, sh = (type, src) => {
+      const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error('Shader did not compile: ' + gl.getShaderInfoLog(s));
+      return s;
+    };
+    const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p);
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('Shader did not link: ' + gl.getProgramInfoLog(p));
+    const u = {}; for (const k of names) u[k] = gl.getUniformLocation(p, k);
+    return { p, u };
+  }
+  tex(W, H, data) {
+    const gl = this.gl, t = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.texStorage2D(gl.TEXTURE_2D, 1, gl.RGBA32F, W, H);
+    for (const k of [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER]) gl.texParameteri(gl.TEXTURE_2D, k, gl.NEAREST);
+    for (const k of [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T]) gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE);
+    if (data) gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, W, H, gl.RGBA, gl.FLOAT, data);
+    return t;
+  }
+  upload(t, W, H, data, x = 0, y = 0) { const gl = this.gl; gl.bindTexture(gl.TEXTURE_2D, t); gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, W, H, gl.RGBA, gl.FLOAT, data); }
+  fbo(...texs) {
+    const gl = this.gl, f = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+    texs.forEach((t, k) => gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + k, gl.TEXTURE_2D, t, 0));
+    gl.drawBuffers(texs.map((_, k) => gl.COLOR_ATTACHMENT0 + k));
+    const st = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+    if (st !== gl.FRAMEBUFFER_COMPLETE) throw new Error('This GPU cannot render to a float framebuffer of this size.');
+    return f;
+  }
+  sync(fb) { const gl = this.gl; gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.readBuffer(gl.COLOR_ATTACHMENT0); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.FLOAT, this.px); }
+  readAll(fb, W, H) { const gl = this.gl, out = new Float32Array(W * H * 4); gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.readBuffer(gl.COLOR_ATTACHMENT0); gl.readPixels(0, 0, W, H, gl.RGBA, gl.FLOAT, out); return out; }
+  check() { const e = this.gl.getError(); if (this.lost || this.gl.isContextLost()) throw new Error('The browser reset the GPU context; try again with fewer tabs open.'); if (e === this.gl.OUT_OF_MEMORY) throw Object.assign(new Error('out of GPU memory'), { oom: true }); }
+  // time `runs` repetitions of issue(); each ends with a one-pixel read-back so the time covers the GPU work
+  async timed(runs, issue, syncFb, signal, onRun) {
+    const gl = this.gl, wall = [], qs = [];
+    for (let r = 0; r < runs; r++) {
+      if (signal && signal.aborted) throw new Stopped();
+      let q = null;
+      if (this.tq) { q = gl.createQuery(); gl.beginQuery(this.tq.TIME_ELAPSED_EXT, q); }
+      const t0 = performance.now();
+      const fb = issue(r) || syncFb;
+      if (q) gl.endQuery(this.tq.TIME_ELAPSED_EXT);
+      this.sync(fb);
+      wall.push(performance.now() - t0);
+      if (q) qs.push(q);
+      if (onRun) onRun(r);
+      if ((r & 3) === 3 || wall[r] > 30) await yieldNow();
+    }
+    this.check();
+    return { wall: stats(wall), gpu: qs.length ? await this.collect(qs) : null, raw: wall };
+  }
+  async collect(qs) {
+    const gl = this.gl, ext = this.tq, out = [];
+    for (let k = 0; k < 120 && !gl.getQueryParameter(qs[qs.length - 1], gl.QUERY_RESULT_AVAILABLE); k++) await sleep(16);
+    const disjoint = gl.getParameter(ext.GPU_DISJOINT_EXT);
+    for (const q of qs) { if (gl.getQueryParameter(q, gl.QUERY_RESULT_AVAILABLE)) out.push(gl.getQueryParameter(q, gl.QUERY_RESULT) / 1e6); gl.deleteQuery(q); }
+    return disjoint || out.length < qs.length ? null : stats(out);
+  }
+  dims(m) { const W = Math.min(m, this.WMAX), H = Math.ceil(m / W); return { W, H }; }
+
+  // ---------------------------------------------------------------- geometry: one pass
+  async geo(n, runs, signal, onRun) {
+    const gl = this.gl, { W, H } = this.dims(n);
+    if (H > this.maxTex) return { skipped: 'more markers than this GPU can hold in one texture' };
+    const d = inputs(n), inp = new Float32Array(W * H * 4);
+    for (let i = 0; i < n; i++) { inp[4 * i] = d.layer[i]; inp[4 * i + 1] = d.t[i]; inp[4 * i + 2] = d.v[i]; }
+    let tin = null, tout = null, fb = null;
+    try {
+      tin = this.tex(W, H, inp); tout = this.tex(W, H, null); fb = this.fbo(tout); this.check();
+      const { p, u } = this.pGeo;
+      const draw = () => {
+        gl.useProgram(p); gl.bindVertexArray(this.vao);
+        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tin); gl.uniform1i(u.uIn, 0); gl.uniform1fv(u.uE, EDGES32);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.viewport(0, 0, W, H); gl.drawArrays(gl.TRIANGLES, 0, 3);
+      };
+      for (let w = 0; w < 3; w++) draw();
+      this.sync(fb); this.check();
+      const res = await this.timed(runs, draw, fb, signal, onRun);
+      // check the GPU positions against the float64 formula, marker by marker
+      if (n <= 1_000_000) {
+        const g = this.readAll(fb, W, H), ref = new Float64Array(3 * n); place(n, d.layer, d.t, d.v, ref);
+        let err = 0; for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) err = Math.max(err, Math.abs(g[4 * i + k] - ref[3 * i + k]));
+        res.maxErr = err;
+        res.outside = outsideShare(n, i => d.layer[i], i => [g[4 * i], g[4 * i + 1], g[4 * i + 2]]);
+        if (n <= 100_000) res.order = timeOrder(timeOrderIdx(d), d.layer, i => [g[4 * i], g[4 * i + 1]]);
+      }
+      delete res.raw;
+      return res;
+    } catch (e) {
+      if (e.oom || /float framebuffer/.test(e.message)) return { skipped: 'not enough GPU memory for this many markers' };
+      throw e;
+    } finally { gl.deleteTexture(tin); gl.deleteTexture(tout); gl.deleteFramebuffer(fb); }
+  }
+
+  // ---------------------------------------------------------------- physics: one pass per tick
+  physSetup(n, seed) {
+    const m = n + 1, { W, H } = this.dims(m), d = inputs(n), r = rng(seed), R = 30 * Math.sqrt(n / (4 * Math.PI));
+    const pos0 = new Float32Array(W * H * 4), link0 = new Float32Array(W * H * 4), zero = new Float32Array(W * H * 4);
+    const Lnew = Math.floor(r() * NL);
+    for (let i = 0; i < m; i++) {
+      const u = 2 * r() - 1, a = 2 * Math.PI * r(), s = Math.sqrt(1 - u * u);
+      pos0[4 * i] = R * s * Math.cos(a); pos0[4 * i + 1] = R * s * Math.sin(a); pos0[4 * i + 2] = R * u; pos0[4 * i + 3] = i < n ? d.layer[i] : Lnew;
+      link0[4 * i] = -1; link0[4 * i + 1] = -1;
+    }
+    const ord = timeOrderIdx(d);
+    let partner = -1;
+    for (let k = 1; k < n; k++) if (d.layer[ord[k]] === d.layer[ord[k - 1]]) {
+      const a = ord[k - 1], b = ord[k]; link0[4 * a + 1] = b; link0[4 * b] = a; link0[4 * a + 2]++; link0[4 * b + 2]++;
+    }
+    for (let k = 0; k < n; k++) if (d.layer[ord[k]] === Lnew) partner = ord[k];   // the newest marker in the new marker's band
+    const S = { n, m, W, H, R, d, ord, pos0, link0, zero, partner,
+      posA: this.tex(W, H, pos0), velA: this.tex(W, H, zero), posB: this.tex(W, H, null), velB: this.tex(W, H, null), link: this.tex(W, H, link0) };
+    S.fbA = this.fbo(S.posA, S.velA); S.fbB = this.fbo(S.posB, S.velB);
+    S.cur = 'A'; S.nActive = n; S.tick = 0;
+    this.check();
+    return S;
+  }
+  physFree(S) { const gl = this.gl; for (const k of ['posA', 'velA', 'posB', 'velB', 'link']) gl.deleteTexture(S[k]); gl.deleteFramebuffer(S.fbA); gl.deleteFramebuffer(S.fbB); }
+  physReset(S) { this.upload(S.posA, S.W, S.H, S.pos0); this.upload(S.velA, S.W, S.H, S.zero); this.upload(S.link, S.W, S.H, S.link0); S.cur = 'A'; S.nActive = S.n; S.tick = 0; }
+  physTick(S, alpha) {
+    const gl = this.gl, { p, u } = this.pTick, src = S.cur === 'A' ? [S.posA, S.velA] : [S.posB, S.velB], dst = S.cur === 'A' ? S.fbB : S.fbA;
+    const K = S.nActive > 16384 ? 1024 : 0;
+    gl.useProgram(p); gl.bindVertexArray(this.vao);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src[0]);
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, src[1]);
+    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, S.link);
+    gl.uniform1i(u.uPos, 0); gl.uniform1i(u.uVel, 1); gl.uniform1i(u.uLink, 2);
+    gl.uniform1i(u.uN, S.nActive); gl.uniform1i(u.uW, S.W); gl.uniform1i(u.uK, K);
+    gl.uniform1f(u.uAlpha, alpha); gl.uniform1f(u.uR, S.R); gl.uniform1f(u.uScale, K ? (S.nActive - 1) / K : 1);
+    gl.uniform1ui(u.uSeed, (S.tick * 2654435761) >>> 0); gl.uniform1fv(u.uE, EDGES32);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst); gl.viewport(0, 0, S.W, S.H); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    S.cur = S.cur === 'A' ? 'B' : 'A'; S.tick++;
+    return dst;
+  }
+  curFb(S) { return S.cur === 'A' ? S.fbA : S.fbB; }
+  // per-tick cost on a layout that is already moving
+  async physTicks(n, runs, signal, onRun) {
+    const S = this.physSetup(n, 7);
+    try {
+      let alpha = 1; for (let k = 0, warm = n > 5000 ? 2 : 10; k < warm; k++) { alpha += -alpha * ALPHA_DECAY; this.physTick(S, alpha); }
+      this.sync(this.curFb(S)); this.check();
+      const res = await this.timed(runs, () => this.physTick(S, 0.5), null, signal, onRun);
+      res.mode = n > 16384 ? 'sampled' : 'all pairs'; delete res.raw;
+      return res;
+    } finally { this.physFree(S); }
+  }
+  // full layouts: reset to random points, then 300 ticks (alpha 1 to 0.001); optionally one arrival after each
+  async physLayouts(n, runs, arrivals, signal, onRun) {
+    const S = this.physSetup(n, 11), wall = [], gpuT = [], arrW = [], arrG = [], arrTicks = [], outside = [];
+    let order = null;
+    const chunked = async (ticks, alpha0) => {   // issue ticks in chunks so the page stays responsive
+      let alpha = alpha0, done = 0, w = 0, g = 0, gOk = !!this.tq;
+      while (done < ticks) {
+        if (signal && signal.aborted) throw new Stopped();
+        const k = Math.min(ticks - done, 30);
+        const r = await this.timed(1, () => { let fb; for (let j = 0; j < k; j++) { alpha += -alpha * ALPHA_DECAY; fb = this.physTick(S, alpha); } return fb; }, null, signal);
+        w += r.wall.median; if (r.gpu) g += r.gpu.median; else gOk = false;
+        done += k;
+      }
+      return { w, g: gOk ? g : null };
+    };
+    try {
+      for (let r = 0; r < runs; r++) {
+        const t0 = performance.now(); this.physReset(S); const up = performance.now() - t0;
+        const res = await chunked(300, 1);
+        wall.push(res.w + up); if (res.g != null) gpuT.push(res.g);
+        const g = this.readAll(this.curFb(S), S.W, S.H);
+        outside.push(outsideShare(n, i => S.d.layer[i], i => [g[4 * i], g[4 * i + 1], g[4 * i + 2]]));
+        if (r === 0 && n <= 1_000_000) order = timeOrder(S.ord, S.d.layer, i => [g[4 * i], g[4 * i + 1]]);
+        if (r < arrivals && S.partner >= 0) {   // one new marker joins the settled layout, linked to the newest marker in its band
+          const t1 = performance.now();
+          const pi = S.partner, pl = S.link0.slice(4 * pi, 4 * pi + 4); pl[1] = n; pl[2] += 1;
+          this.upload(S.link, 1, 1, pl, pi % S.W, Math.floor(pi / S.W));
+          this.upload(S.link, 1, 1, new Float32Array([pi, -1, 1, 0]), n % S.W, Math.floor(n / S.W));
+          S.nActive = n + 1;
+          const up2 = performance.now() - t1;
+          // d3's restart: alpha 0.3, then tick while alpha >= alphaMin (each tick decays alpha first)
+          let alpha = 0.3, ticks = 0; while (alpha >= ALPHA_MIN) { alpha += -alpha * ALPHA_DECAY; ticks++; }
+          const a = await chunked(ticks, 0.3);
+          arrW.push(a.w + up2); if (a.g != null) arrG.push(a.g); arrTicks.push(ticks);
+        }
+        if (onRun) onRun(r);
+        this.check();
+      }
+      const out = { wall: stats(wall), gpu: gpuT.length === runs ? stats(gpuT) : null, outside: stats(outside), order, mode: n > 16384 ? 'sampled' : 'all pairs' };
+      if (arrW.length) out.arrival = { wall: stats(arrW), gpu: arrG.length === arrW.length ? stats(arrG) : null, ticks: arrTicks[0] };
+      return out;
+    } finally { this.physFree(S); }
+  }
+}
+
+// ============================================================================ page
+const DATA = {"protocol":{"means_ms":[7.130415899973741,8.862618300008762,7.382780400030242,7.591180899999017,6.92677070001082,6.768308150003577,6.838638999988689,6.903583550001713,6.895275550004953,7.4240818500129535,7.44012495001698,7.776240100020004,6.909769599997162,6.960393349982041,6.85051709997424,6.885493050003788,6.9505016499988415,6.917886399969575,6.8826996499865345,7.065695450000931,6.97806700000001,7.615800649955418,7.4227823999990505,6.739179850001165,6.962468550000267,6.922126849985943,6.750671300005706,6.7523599000196555,6.760875399959332,6.794915699992998,6.833609649993377,6.8527966500369075,6.821737249993021,6.837312499965265,6.683855300025243,6.796217400005844,6.861387400022068,6.962108400011857,6.793655599994963,6.97417044998474,7.019863850018737,6.938062349991014,6.961516499995923,6.966907600008199,6.91201849999743,7.671933500023442,6.802668849968541,6.813885799965647,6.663413100022808,6.6121428499627655,6.85665109999718,6.890498050006499,6.974332150002738,6.9580938999934006,6.822430700003679,6.7972996499975125,6.708911800023998,6.821901900002558,6.858728599991082,6.916656300018076,6.827687850000075,7.434424000030049,6.872006300000066,7.296403700001974,6.910772950004684,6.888944799993624,7.058805799988477,6.776310499981264,6.866152500015232,6.809195999994699,6.743434400004844,6.773529700012659,6.716551850013275,7.230773899982523,7.384230950037818,7.127572499985035,7.07823304996964,7.105766850008877,7.070991499995216,6.9166150000000926,7.173577200001091,7.202209400020365,7.250708699984898,7.189058900030432,6.904613949973282,6.838242699996044,7.9186474999914935,7.223162450009113,6.8252420499902655,7.241760799979602,6.914098950028347,6.71606839996457,6.7227330499918025,7.013792949965136,7.0193715000186785,6.8081509999956324,6.7561832499904995,6.831544250007937,6.8614191000051505,6.853386900002079],"median":6.907191774985222,"min":6.6121428499627655,"max":8.862618300008762,"mean":6.995993679498952,"p95":7.591180899999017,"below_9":100,"within_9_12":0,"above_12":0,"nodes_outside_own_band":0,"reported_ms":11.7,"env":{"python":"3.13.18","numpy":"2.5.3"},"claim":[9,12]},"numpy":{"1000":{"runs":100,"min":0.05620000001727021,"median":0.059716500118156546,"mean":0.06215983000402048,"p95":0.07659500010959164,"max":0.11358699998709199,"ns_per_marker":59.716500118156546,"nodes_outside_own_band":0},"10000":{"runs":100,"min":0.6262130000322941,"median":0.6847845000947927,"mean":0.6825528400008807,"p95":0.7202750000487868,"max":0.7434629999352182,"ns_per_marker":68.47845000947927,"nodes_outside_own_band":0},"100000":{"runs":100,"min":6.649781000078292,"median":6.848214999990887,"mean":6.852248110017172,"p95":6.923011000026236,"max":7.993124999984502,"ns_per_marker":68.48214999990887,"nodes_outside_own_band":0},"1000000":{"runs":100,"min":76.73282199993992,"median":80.39015500003188,"mean":81.65783928001474,"p95":90.27289699997709,"max":123.81861900007607,"ns_per_marker":80.39015500003188,"nodes_outside_own_band":0},"10000000":{"runs":100,"min":987.706677999995,"median":1102.6460624998435,"mean":1110.3153864800197,"p95":1209.6580329998687,"max":1296.8598150000616,"ns_per_marker":110.26460624998435,"nodes_outside_own_band":0}},"geo":{"1000":{"runs":100,"min":0.04608599999999541,"median":0.04808399999999935,"mean":0.05872388999999991,"p95":0.07886200000000088,"max":0.7954790000000003,"ns":48.08399999999935,"outside":0,"order":1},"10000":{"runs":100,"min":0.7237289999999916,"median":0.7574919999999992,"mean":0.7682793500000004,"p95":0.8614990000000091,"max":0.9255830000000174,"ns":75.74919999999992,"outside":0,"order":1},"100000":{"runs":100,"min":7.418490999999904,"median":7.841362499999946,"mean":7.871124160000003,"p95":8.315409999999929,"max":9.516264999999976,"ns":78.41362499999946,"outside":0,"order":1},"1000000":{"runs":100,"min":75.63186700000006,"median":80.25057350000134,"mean":80.91888148000005,"p95":88.84875599999941,"max":91.48795599999903,"ns":80.25057350000134,"outside":0,"order":1},"10000000":{"runs":100,"min":781.7186450000008,"median":796.0935275000083,"mean":804.5309252500001,"p95":849.9825389999969,"max":880.0067659999986,"ns":79.60935275000084,"outside":0,"order":null}},"arrivalUs":{"runs":100,"min":0.08239599400000043,"median":0.08652929050000058,"mean":0.08798416586999996,"p95":0.09703287699999964,"max":0.1023500200000003},"phys":{"1000":{"tick":{"runs":100,"min":5.392282000000023,"median":6.013549999999952,"mean":6.484287390000002,"p95":9.234786000000042,"max":12.529326000000083},"layout":{"runs":100,"min":1687.0220850000042,"median":1866.1497090000012,"mean":1872.7099762700004,"p95":2035.6844500000007,"max":2124.494676000002},"outside":{"runs":100,"min":0.01,"median":0.031,"mean":0.031729999999999994,"p95":0.049,"max":0.056},"order":0.5040983606557377,"arrival":{"runs":100,"min":1368.0061860000133,"median":1571.6771549999976,"mean":1584.4467808100026,"p95":1767.3919509999687,"max":1815.8673779999954},"arrivalTicks":248},"10000":{"tick":{"runs":100,"min":103.47617700000046,"median":118.98304599999983,"mean":120.34012696000005,"p95":137.09083800000008,"max":170.12162799999987},"layout":{"runs":10,"min":31002.10009099997,"median":32957.25039700001,"mean":32717.744608799996,"p95":33903.42645900001,"max":33903.42645900001},"outside":{"runs":10,"min":0.0308,"median":0.0339,"mean":0.034210000000000004,"p95":0.0407,"max":0.0407},"order":0.5138331996792301,"arrival":{"runs":10,"min":23728.998922000057,"median":24758.10048200001,"mean":24939.120209000004,"p95":26827.54618799995,"max":26827.54618799995},"arrivalTicks":248},"100000":{"tick":{"runs":100,"min":2096.5106220000016,"median":2602.4602820000146,"mean":3049.6270204300013,"p95":2924.0966300000146,"max":26998.330236999987},"layout":{"runs":1,"min":814693.95405,"median":814693.95405,"mean":814693.95405,"p95":814693.95405,"max":814693.95405},"outside":{"runs":1,"min":0.03998,"median":0.03998,"mean":0.03998,"p95":0.03998,"max":0.03998},"order":0.5019804753140754,"arrival":{"runs":1,"min":568498.907991,"median":568498.907991,"mean":568498.907991,"p95":568498.907991,"max":568498.907991},"arrivalTicks":248}},"gpuEmu":{"v":1,"at":"2026-11-13T05:05:07.717Z","plan":"server","emulated":true,"env":{"renderer":"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)","vendor":"Google Inc. (Google)","gpu":"SwiftShader (GPU emulated on the CPU)","browser":"Chrome 153","os":"Linux","cores":2,"timer":true,"maxTex":8192},"gpu":{"geo":{"1000":{"wall":{"runs":100,"min":0.19999999925494194,"median":0.2999999998137355,"mean":0.34200000000186265,"p95":0.599999999627471,"max":1.2000000001862645},"gpu":{"runs":100,"min":0.072449,"median":0.080352,"mean":0.09169527000000001,"p95":0.111827,"max":0.575265},"maxErr":0.0003635882355071951,"outside":0,"order":1},"10000":{"wall":{"runs":100,"min":0.2999999998137355,"median":0.40000000037252903,"mean":0.4380000000074506,"p95":0.6000000005587935,"max":1.2000000001862645},"gpu":{"runs":100,"min":0.243726,"median":0.264482,"mean":0.29376923999999993,"p95":0.445086,"max":1.072023},"maxErr":0.00036392713701394186,"outside":0,"order":0.9998997594226142},"100000":{"wall":{"runs":30,"min":1.7000000001862645,"median":1.9500000001862645,"mean":2.1666666666356225,"p95":3.2999999998137355,"max":3.3999999994412065},"gpu":{"runs":30,"min":1.56413,"median":1.6889745,"mean":1.8803062333333336,"p95":3.0834,"max":3.092086},"maxErr":0.00036398125425296524,"outside":0,"order":0.9999199807953909},"1000000":{"wall":{"runs":10,"min":14.399999999441206,"median":15.000000000465661,"mean":15.080000000074506,"p95":15.700000000186265,"max":15.700000000186265},"gpu":{"runs":10,"min":14.086651,"median":14.7051445,"mean":14.752410999999999,"p95":15.384656,"max":15.384656},"maxErr":0.00036401085451864823,"outside":0},"10000000":{"wall":{"runs":3,"min":145,"median":148,"mean":155,"p95":172,"max":172},"gpu":{"runs":3,"min":144.516454,"median":147.418974,"mean":151.215884,"p95":161.712224,"max":161.712224}}},"tick":{"1000":{"wall":{"runs":20,"min":19.899999999441206,"median":21.100000000558794,"mean":20.949999999953434,"p95":21.799999999813735,"max":22.200000000186265},"gpu":{"runs":20,"min":19.597018,"median":20.674487,"mean":20.571033,"p95":21.422429,"max":21.662093},"mode":"all pairs"},"10000":{"wall":{"runs":3,"min":853.5,"median":860,"mean":866.4333333332712,"p95":885.7999999998137,"max":885.7999999998137},"gpu":{"runs":3,"min":852.775821,"median":859.377185,"mean":865.7981946666667,"p95":885.241578,"max":885.241578},"mode":"all pairs"},"100000":{"wall":{"runs":3,"min":1655.5,"median":1707.0999999996275,"mean":1699.1666666666667,"p95":1734.9000000003725,"max":1734.9000000003725},"gpu":{"runs":3,"min":1654.929507,"median":1706.548468,"mean":1698.5723216666665,"p95":1734.23899,"max":1734.23899},"mode":"sampled"}},"layout":{"1000":{"wall":{"runs":3,"min":6494.200000000186,"median":6539.600000000559,"mean":6542.9000000003725,"p95":6594.9000000003725,"max":6594.9000000003725},"gpu":{"runs":3,"min":6482.17098,"median":6526.974332,"mean":6529.897744000001,"p95":6580.54792,"max":6580.54792},"outside":{"runs":3,"min":0.079,"median":0.079,"mean":0.079,"p95":0.079,"max":0.079},"order":0.5286885245901639,"mode":"all pairs","arrival":{"wall":{"runs":1,"min":5248.099999998696,"median":5248.099999998696,"mean":5248.099999998696,"p95":5248.099999998696,"max":5248.099999998696},"gpu":{"runs":1,"min":5237.904249,"median":5237.904249,"mean":5237.904249,"p95":5237.904249,"max":5237.904249},"ticks":248}}}},"cpu":{"geo":{"1000":{"runs":100,"min":0.04608599999999541,"median":0.04808399999999935,"mean":0.05872388999999991,"p95":0.07886200000000088,"max":0.7954790000000003,"outside":0.0},"10000":{"runs":100,"min":0.7237289999999916,"median":0.7574919999999992,"mean":0.7682793500000004,"p95":0.8614990000000091,"max":0.9255830000000174,"outside":0.0},"100000":{"runs":100,"min":7.418490999999904,"median":7.841362499999946,"mean":7.871124160000003,"p95":8.315409999999929,"max":9.516264999999976,"outside":0.0},"1000000":{"runs":100,"min":75.63186700000006,"median":80.25057350000134,"mean":80.91888148000005,"p95":88.84875599999941,"max":91.48795599999903,"outside":0.0},"10000000":{"runs":100,"min":781.7186450000008,"median":796.0935275000083,"mean":804.5309252500001,"p95":849.9825389999969,"max":880.0067659999986,"outside":0.0}},"tick":{"1000":{"runs":100,"min":5.392282000000023,"median":6.013549999999952,"mean":6.484287390000002,"p95":9.234786000000042,"max":12.529326000000083},"10000":{"runs":100,"min":103.47617700000046,"median":118.98304599999983,"mean":120.34012696000005,"p95":137.09083800000008,"max":170.12162799999987},"100000":{"runs":100,"min":2096.5106220000016,"median":2602.4602820000146,"mean":3049.6270204300013,"p95":2924.0966300000146,"max":26998.330236999987}},"layout":{"1000":{"runs":100,"min":1687.0220850000042,"median":1866.1497090000012,"mean":1872.7099762700004,"p95":2035.6844500000007,"max":2124.494676000002,"outside":{"runs":100,"min":0.01,"median":0.031,"mean":0.031729999999999994,"p95":0.049,"max":0.056},"order":0.5040983606557377,"arrival":{"runs":100,"min":1368.0061860000133,"median":1571.6771549999976,"mean":1584.4467808100026,"p95":1767.3919509999687,"max":1815.8673779999954}},"10000":{"runs":10,"min":31002.10009099997,"median":32957.25039700001,"mean":32717.744608799996,"p95":33903.42645900001,"max":33903.42645900001,"outside":{"runs":10,"min":0.0308,"median":0.0339,"mean":0.034210000000000004,"p95":0.0407,"max":0.0407},"order":0.5138331996792301,"arrival":{"runs":10,"min":23728.998922000057,"median":24758.10048200001,"mean":24939.120209000004,"p95":26827.54618799995,"max":26827.54618799995}},"100000":{"runs":1,"min":814693.95405,"median":814693.95405,"mean":814693.95405,"p95":814693.95405,"max":814693.95405,"outside":{"runs":1,"min":0.03998,"median":0.03998,"mean":0.03998,"p95":0.03998,"max":0.03998},"order":0.5019804753140754,"arrival":{"runs":1,"min":568498.907991,"median":568498.907991,"mean":568498.907991,"p95":568498.907991,"max":568498.907991}}}},"label":"This server \u00b7 GPU emulated with SwiftShader on 2 CPU cores \u00b7 CPU measured with Node on one core"},"server":{"cpu":"Intel(R) Xeon(R) Processor @ 2.10GHz","cores":2,"node":"v22.23.4","d3":"3.0.6","python":"3.13.18","numpy":"2.5.3"}};
+const $ = (s, el = document) => el.querySelector(s);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const SVGNS = 'http://www.w3.org/2000/svg';
+const SIZES = [1e3, 1e4, 1e5, 1e6, 1e7];
+
+// ---------------------------------------------------------------------------- formatting
+const sig = (x, p) => { const dec = v => Math.max(0, p - 1 - Math.floor(Math.log10(Math.abs(v) || 1))); const r = Number(x.toFixed(dec(x))); return r.toFixed(dec(r)); };
+function fmtMs(ms) {
+  if (ms == null || !isFinite(ms)) return '—';
+  if (ms < 0.001) return sig(ms * 1e6, 2) + ' ns';
+  if (ms < 0.1) return sig(ms * 1000, 2) + ' µs';
+  if (ms < 1) return sig(ms, 2) + ' ms';
+  if (ms < 999.5) return sig(ms, 3) + ' ms';
+  if (ms < 59950) return sig(ms / 1000, 3) + ' s';
+  return sig(ms / 60000, 3) + ' min';
+}
+const fmtN = n => Math.round(n).toLocaleString('en-US');
+const fmtShort = n => n >= 1e6 ? (n / 1e6) + 'M' : n >= 1e3 ? (n / 1e3) + 'k' : String(n);
+function fmtX(r) { if (!isFinite(r)) return '—'; const p = Math.pow(10, Math.max(0, Math.floor(Math.log10(r)) - 1)); return fmtN(Math.round(r / p) * p) + '×'; }
+const pct = (x, d = 1) => x == null ? '—' : (x * 100).toFixed(d).replace(/\.0$/, '') + '%';
+const el = (tag, attrs = {}, kids = []) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) { if (k === 'text') e.textContent = v; else if (k === 'cls') e.className = v; else e.setAttribute(k, v); }
+  for (const k of [].concat(kids)) if (k != null) e.append(k);
+  return e;
+};
+const sv = (tag, attrs = {}) => { const e = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+const svText = (x, y, s, attrs = {}) => { const t = sv('text', Object.assign({ x, y }, attrs)); t.textContent = s; return t; };
+const ICON_OK = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.3l2.3 2.2 4.7-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_NO = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2.2v4.6M6 9.3v.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+function chip(ok, text) { const c = el('span', { cls: 'chip ' + (ok ? 'ok' : 'no') }); c.innerHTML = ok ? ICON_OK : ICON_NO; c.append(document.createTextNode(text)); return c; }
+
+// ---------------------------------------------------------------------------- tooltip helper
+function tipFor(box) {
+  let tip = box.querySelector('.tip');
+  if (!tip) { tip = el('div', { cls: 'tip', role: 'tooltip' }); tip.hidden = true; box.append(tip); }
+  return {
+    show(x, y, value, rows, color) {
+      tip.replaceChildren(el('b', { text: value }), ...rows.map((r, i) => {
+        const d = el('div'); if (i === 0 && color) { const k = el('span', { cls: 'k' }); k.style.background = color; d.append(k); } d.append(document.createTextNode(r)); return d;
+      }));
+      tip.hidden = false;
+      const w = box.clientWidth, tw = tip.offsetWidth;
+      tip.style.left = Math.max(tw / 2 + 2, Math.min(w - tw / 2 - 2, x)) + 'px'; tip.style.top = y + 'px';
+    },
+    hide() { tip.hidden = true; }
+  };
+}
+
+// ---------------------------------------------------------------------------- chart: 100 protocol runs against the claim
+function chartRecord(box, P) {
+  const draw = () => {
+    const W = box.clientWidth, H = W < 520 ? 168 : 188, m = { l: 10, r: 10, t: 30, b: 30 };
+    const lo = Math.floor(Math.min(...P.means_ms)) - 0.5, hi = Math.max(P.claim[1] + 1, Math.ceil(Math.max(...P.means_ms)) + 0.5);
+    const x = v => m.l + (v - lo) / (hi - lo) * (W - m.l - m.r), cy = m.t + (H - m.t - m.b) / 2;
+    const svg = sv('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `100 runs between ${P.min.toFixed(2)} and ${P.max.toFixed(2)} ms, all below the claimed 9 to 12 ms` });
+    svg.append(sv('rect', { x: x(P.claim[0]), y: m.t - 6, width: x(P.claim[1]) - x(P.claim[0]), height: H - m.t - m.b + 12, rx: 6, fill: 'var(--claim)' }));
+    svg.append(svText((x(P.claim[0]) + x(P.claim[1])) / 2, m.t - 12, 'Claimed 9–12 ms', { 'text-anchor': 'middle', class: 'lab' }));
+    svg.append(sv('line', { x1: m.l, x2: W - m.r, y1: H - m.b + 0.5, y2: H - m.b + 0.5, class: 'base' }));
+    for (let v = Math.ceil(lo); v <= Math.floor(hi); v++) {
+      svg.append(sv('line', { x1: x(v), x2: x(v), y1: H - m.b, y2: H - m.b + 4, class: 'base' }));
+      svg.append(svText(x(v), H - m.b + 18, v + (v === Math.floor(hi) ? ' ms' : ''), { 'text-anchor': 'middle' }));
+    }
+    // dodge dots into rows so all 100 stay visible
+    const vals = P.means_ms.map((v, i) => ({ v, i })).sort((a, b) => a.v - b.v), placed = [], step = 9, maxL = Math.floor((H - m.t - m.b) / 2 / step);
+    for (const d of vals) {
+      const px = x(d.v); let lv = 0;
+      for (let k = 0; k <= 2 * maxL; k++) { const cand = k === 0 ? 0 : (k % 2 ? 1 : -1) * Math.ceil(k / 2); if (!placed.some(p => p.lv === cand && Math.abs(p.px - px) < step)) { lv = cand; break; } }
+      placed.push({ px, lv, d });
+    }
+    svg.append(sv('line', { x1: x(P.median), x2: x(P.median), y1: m.t - 6, y2: H - m.b, stroke: 'var(--ink-3)', 'stroke-width': 1 }));
+    const medLab = svText(x(P.median), m.t - 12, 'Median ' + P.median.toFixed(2), { class: 'lab-strong', 'text-anchor': 'middle' });
+    for (const p of placed) svg.append(sv('circle', { cx: p.px, cy: cy + p.lv * step, r: 4, fill: 'var(--geo)', stroke: 'var(--card)', 'stroke-width': 1.5 }));
+    svg.append(medLab);
+    const hits = sv('g');
+    for (const p of placed) { const c = sv('circle', { cx: p.px, cy: cy + p.lv * step, r: 10, fill: 'transparent' }); c.dataset.i = p.d.i; hits.append(c); }
+    svg.append(hits);
+    box.replaceChildren(svg);
+    const tip = tipFor(box);
+    const on = e => { const c = e.target.closest('circle[data-i]'); if (!c) return tip.hide(); const i = +c.dataset.i; tip.show(+c.getAttribute('cx'), +c.getAttribute('cy') - 4, P.means_ms[i].toFixed(2) + ' ms', [`Run ${i + 1} of 100`, 'Mean of 20 calls'], 'var(--geo)'); };
+    hits.addEventListener('pointermove', on); hits.addEventListener('focusin', on);
+    svg.addEventListener('pointerleave', () => tip.hide()); hits.addEventListener('focusout', () => tip.hide());
+  };
+  draw(); new ResizeObserver(() => draw()).observe(box);
+}
+
+// ---------------------------------------------------------------------------- chart: time to a finished layout, log-log
+const TICKS_Y = [[1e-3, '1 µs'], [1e-2, '10 µs'], [1e-1, '100 µs'], [1, '1 ms'], [10, '10 ms'], [100, '100 ms'], [1e3, '1 s'], [1e4, '10 s'], [1e5, '100 s'], [1e6, '1,000 s']];
+function chartLog(box, cfg) {
+  const draw = () => {
+    const W = box.clientWidth, narrow = W < 560, H = Math.round(Math.max(250, Math.min(400, W * 0.5)));
+    const m = { l: narrow ? 52 : 62, r: narrow ? 14 : 132, t: 14, b: 34 };
+    const all = cfg.series.flatMap(s => s.pts.map(p => p.v)).filter(v => v > 0);
+    const yLo = Math.pow(10, Math.floor(Math.log10(Math.min(...all, cfg.frame ? 16.7 : Infinity)))), yHi = Math.pow(10, Math.ceil(Math.log10(Math.max(...all))));
+    const x = n => m.l + (Math.log10(n) - 3) / 4 * (W - m.l - m.r);
+    const y = v => H - m.b - (Math.log10(v) - Math.log10(yLo)) / (Math.log10(yHi) - Math.log10(yLo)) * (H - m.t - m.b);
+    const svg = sv('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': cfg.label });
+    const ticks = TICKS_Y.filter(([v]) => v >= yLo && v <= yHi);
+    const every = narrow && ticks.length > 6 ? 2 : 1;
+    ticks.forEach(([v, s], k) => {
+      svg.append(sv('line', { x1: m.l, x2: W - m.r, y1: Math.round(y(v)) + 0.5, y2: Math.round(y(v)) + 0.5, class: 'grid' }));
+      if (k % every === 0) svg.append(svText(m.l - 8, y(v) + 4, s, { 'text-anchor': 'end' }));
+    });
+    svg.append(sv('line', { x1: m.l, x2: W - m.r, y1: H - m.b + 0.5, y2: H - m.b + 0.5, class: 'base' }));
+    for (const n of SIZES) svg.append(svText(x(n), H - m.b + 20, fmtShort(n), { 'text-anchor': 'middle' }));
+    if (cfg.frame) {
+      const fy = Math.round(y(1000 / 60)) + 0.5;
+      svg.append(sv('line', { x1: m.l, x2: W - m.r, y1: fy, y2: fy, class: 'frame-line' }));
+      svg.append(svText(narrow ? m.l + 4 : W - m.r + 8, narrow ? fy - 6 : fy + 4, narrow ? 'One frame at 60 fps' : 'One frame, 60 fps', { class: 'lab' }));
+    }
+    const hits = sv('g'), labs = [];
+    cfg.series.forEach((s, si) => {
+      const pts = s.pts.filter(p => p.v > 0).sort((a, b) => a.n - b.n);
+      if (!pts.length) return;
+      svg.append(sv('polyline', { points: pts.map(p => `${x(p.n)},${y(p.v)}`).join(' '), fill: 'none', stroke: `var(${s.color})`, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+      for (const p of pts) {
+        svg.append(sv('circle', { cx: x(p.n), cy: y(p.v), r: 4, fill: `var(${s.color})`, stroke: 'var(--card)', 'stroke-width': 2 }));
+        const c = sv('circle', { cx: x(p.n), cy: y(p.v), r: 12, fill: 'transparent', tabindex: 0, 'aria-label': `${s.name}, ${fmtN(p.n)} markers: ${fmtMs(p.v)}` });
+        c.dataset.s = si; c.dataset.n = p.n; hits.append(c);
+      }
+      const last = pts[pts.length - 1];
+      labs.push({ s, x: x(last.n), y: y(last.v) });
+    });
+    // direct labels at the line ends; on narrow screens above the end point
+    labs.sort((a, b) => a.y - b.y);
+    labs.forEach((L, k) => {
+      let lx = L.x + 10, ly = L.y + 4, anchor = 'start';
+      if (narrow) { lx = L.x - 8; ly = L.y - 12; anchor = 'end'; }
+      if (k > 0 && Math.abs(ly - labs[k - 1].ly) < 16) ly = labs[k - 1].ly + 16;
+      L.ly = ly;
+      svg.append(svText(lx, ly, L.s.name, { 'text-anchor': anchor, class: 'lab' }));
+    });
+    svg.append(hits);
+    box.replaceChildren(svg);
+    const tip = tipFor(box);
+    const on = e => {
+      const c = e.target.closest('circle[data-s]'); if (!c) return tip.hide();
+      const s = cfg.series[+c.dataset.s], p = s.pts.find(q => q.n === +c.dataset.n);
+      const rows = [s.name, fmtN(p.n) + ' markers'];
+      if (p.p95 != null) rows.push(`p95 ${fmtMs(p.p95)} · worst ${fmtMs(p.max)} · ${p.runs} run${p.runs === 1 ? '' : 's'}`);
+      if (p.note) rows.push(p.note);
+      tip.show(+c.getAttribute('cx'), +c.getAttribute('cy') - 6, fmtMs(p.v), rows, `var(${s.color})`);
+    };
+    hits.addEventListener('pointermove', on); hits.addEventListener('focusin', on);
+    svg.addEventListener('pointerleave', () => tip.hide()); hits.addEventListener('focusout', () => tip.hide());
+  };
+  draw();
+  if (!box._ro) { box._ro = new ResizeObserver(() => box._draw && box._draw()); box._ro.observe(box); }
+  box._draw = draw;
+}
+
+// ---------------------------------------------------------------------------- tables
+function table(head, rows) {
+  const t = el('table'), th = el('tr');
+  head.forEach(h => th.append(el('th', { text: h })));
+  t.append(el('thead', {}, th));
+  const tb = el('tbody');
+  for (const r of rows) { const tr = el('tr'); r.forEach((c, i) => { const td = el('td'); if (c && typeof c === 'object' && 'em' in c) { td.className = 'em'; td.textContent = c.em; } else td.textContent = c == null ? '—' : c; tr.append(td); }); tb.append(tr); }
+  t.append(tb);
+  return t;
+}
+
+// ---------------------------------------------------------------------------- static sections from the server runs
+function renderServer() {
+  const P = DATA.protocol;
+  chartRecord($('#chart-record'), P);
+  $('#tbl-record').replaceChildren(table(['Runs of 100,000 markers', 'Value'], [
+    ['Median', P.median.toFixed(2) + ' ms'], ['Mean', P.mean.toFixed(2) + ' ms'], ['Fastest', P.min.toFixed(2) + ' ms'], ['p95', P.p95.toFixed(2) + ' ms'], ['Worst', P.max.toFixed(2) + ' ms'],
+    ['Runs under 9 ms', String(P.below_9)], ['Runs within 9–12 ms', String(P.within_9_12)], ['Runs over 12 ms', String(P.above_12)], ['Markers outside their band', '0 of 100,000'],
+    ['All 100 runs (ms)', P.means_ms.map(v => v.toFixed(2)).join(', ')]
+  ]));
+  const rows = $('#tbl-record').querySelectorAll('td'); const lastTd = rows[rows.length - 1]; lastTd.style.whiteSpace = 'normal'; lastTd.style.textAlign = 'left'; lastTd.style.minWidth = '16em';
+
+  const geo = SIZES.map(n => ({ n, ...DATA.geo[n] })), phys = SIZES.filter(n => DATA.phys[n]).map(n => ({ n, ...DATA.phys[n] }));
+  chartLog($('#chart-scale'), {
+    label: 'Time to a finished layout against markers, log scales. 3apart geometry rises from under a tenth of a millisecond to under a second at 10 million; the physics layout rises from about 2 seconds at 1,000 to minutes at 100,000.',
+    frame: true,
+    series: [
+      { name: '3apart geometry', color: '--geo', pts: geo.map(g => ({ n: g.n, v: g.median, p95: g.p95, max: g.max, runs: g.runs })) },
+      { name: 'Physics layout', color: '--phys', pts: phys.map(p => ({ n: p.n, v: p.layout.median, p95: p.layout.p95, max: p.layout.max, runs: p.layout.runs })) },
+    ]
+  });
+  $('#tbl-scale').replaceChildren(table(['Markers', 'Geometry median', 'p95', 'Worst', 'Physics median', 'p95', 'Worst', 'Physics runs', 'Gap'], SIZES.map(n => {
+    const g = DATA.geo[n], p = DATA.phys[n];
+    return [fmtN(n), { em: fmtMs(g.median) }, fmtMs(g.p95), fmtMs(g.max), p ? { em: fmtMs(p.layout.median) } : 'not run', p ? fmtMs(p.layout.p95) : '', p ? fmtMs(p.layout.max) : '', p ? String(p.layout.runs) : '', p ? fmtX(p.layout.median / g.median) : ''];
+  })));
+  const qn = SIZES.filter(n => DATA.phys[n]);
+  $('#tbl-quality').replaceChildren(table(['Layout', 'Inside their own band', 'Time runs one way'], [
+    ...qn.map(n => ['3apart geometry · ' + fmtN(n), { em: pct(1 - DATA.geo[n].outside / n) }, { em: pct(DATA.geo[n].order) }]),
+    ...qn.map(n => ['Physics layout · ' + fmtN(n), pct(1 - DATA.phys[n].outside.median, 1), pct(DATA.phys[n].order, 0)]),
+  ]));
+}
+
+// ---------------------------------------------------------------------------- hero: the same 1,000 markers, two layouts
+const hero = (() => {
+  const cv = $('#globes'), ctx = cv.getContext('2d'), CAPN = 2100;
+  const N0 = 2000, base = inputs(N0, 4242);
+  const layer = new Int32Array(CAPN), tt = new Float64Array(CAPN), vv = new Float64Array(CAPN);
+  layer.set(base.layer); tt.set(base.t); vv.set(base.v);
+  const geoXYZ = new Float64Array(3 * CAPN);
+  let n = N0, P = null, tick = 0, compute = 0, mode = 'idle', reTicks = 0, reTotal = 0, snap = null, moved = 0, fresh = -1, geoMs = 0, oneMs = 0;
+  let angle = 0.6, last = 0, visible = true, paused = false, colors = {}, raf = 0, stats = { out: 0, ord: 0 }, gOrd = 1;
+  const geoOrder = () => { const d = { n, layer, t: tt }; gOrd = timeOrder(timeOrderIdx(d), layer, i => [geoXYZ[3 * i], geoXYZ[3 * i + 1]]); };
+  function readColors() { const s = getComputedStyle(document.documentElement); for (const k of ['--geo-dot', '--phys-dot', '--ink', '--line']) colors[k] = s.getPropertyValue(k).trim(); shades(); }
+  function measureGeo() {
+    const t0 = performance.now(); for (let k = 0; k < 200; k++) place(n, layer, tt, vv, geoXYZ); geoMs = (performance.now() - t0) / 200;
+  }
+  function physStats() {
+    const R = P.R; stats.out = outsideShare(n, i => P.nodes[i].layer, i => [P.nodes[i].x / R, P.nodes[i].y / R, P.nodes[i].z / R]);
+    stats.ord = timeOrder(P.ord, layer, i => [P.nodes[i].x, P.nodes[i].y]);
+  }
+  function start() {
+    n = N0; fresh = -1; measureGeo(); geoOrder();
+    P = buildPhys({ n, layer: layer.subarray(0, n), t: tt.subarray(0, n), v: vv.subarray(0, n) }, 99);
+    tick = 0; compute = 0; mode = 'layout'; physStats(); caption(); kick();
+  }
+  function caption() {
+    $('#cap-geo').textContent = fresh >= 0
+      ? `New marker placed in ${fmtMs(oneMs)}. 0 of the other ${fmtN(n - 1)} moved.`
+      : `Placed in ${fmtMs(geoMs)}, one pass. ${fmtN(n)} of ${fmtN(n)} inside their band; time order ${pct(gOrd, 0)}.`;
+    let s;
+    if (mode === 'layout') s = `Tick ${tick} of 300 · ${fmtMs(compute)} of compute. ${pct(stats.out)} outside their band.`;
+    else if (mode === 'resettle') s = `Re-settling after one new marker: tick ${reTicks} of ${reTotal}. ${fmtN(moved)} of the other ${fmtN(n - 1)} have moved.`;
+    else if (fresh >= 0) s = `Settled again after ${reTotal} ticks, ${fmtMs(compute)} of compute. ${fmtN(moved)} of the other ${fmtN(n - 1)} moved.`;
+    else s = `Settled after 300 ticks, ${fmtMs(compute)} of compute. ${pct(stats.out)} outside their band; time order ${pct(stats.ord, 0)}.`;
+    $('#cap-phys').textContent = s;
+  }
+  function step() {
+    if (!P) return;
+    const budget = reduced.matches ? 30 : 1;
+    for (let k = 0; k < budget; k++) {
+      if (mode === 'layout') {
+        const t0 = performance.now(); P.sim.tick(); compute += performance.now() - t0; tick++;
+        if (tick >= 300) { mode = 'done'; break; }
+      } else if (mode === 'resettle') {
+        const t0 = performance.now(); P.sim.tick(); compute += performance.now() - t0; reTicks++;
+        if (P.sim.alpha() < P.sim.alphaMin()) { mode = 'done'; break; }
+      } else break;
+    }
+    if (mode === 'resettle' || (mode === 'done' && fresh >= 0)) {
+      const R = P.R; moved = 0;
+      for (let i = 0; i < n - 1; i++) { const a = P.nodes[i], b = snap[i]; if (Math.hypot(a.x - b[0], a.y - b[1], a.z - b[2]) > 0.02 * R) moved++; }
+    }
+    if (tick % 10 === 0 || mode === 'done') physStats();
+  }
+  function project(x, y, z, cx, cy, rad, out) {
+    const ca = Math.cos(angle), sa = Math.sin(angle), x1 = x * ca - y * sa, y1 = x * sa + y * ca;
+    const e = 0.2, ce = Math.cos(e), se = Math.sin(e), z2 = z * ce + y1 * se, d2 = -z * se + y1 * ce;
+    out[0] = cx + x1 * rad; out[1] = cy - z2 * rad; out[2] = d2;
+  }
+  const pt = [0, 0, 0];
+  // shade = time: oldest markers faintest, newest full strength, in LEVELS steps
+  const LEVELS = 16;
+  function shades() { colors.levels = Array.from({ length: LEVELS }, (_, k) => 0.2 + 0.8 * Math.pow(k / (LEVELS - 1), 1.3)); }
+  function drawGlobe(cx, cy, rad, get, accent, dot) {
+    ctx.strokeStyle = colors['--line']; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.stroke();
+    const dpr = cv.width / cv.clientWidth || 1;
+    for (const front of [false, true]) {
+      ctx.fillStyle = dot;
+      for (let lv = 0; lv < LEVELS; lv++) {
+        ctx.globalAlpha = colors.levels[lv] * (front ? 1 : 0.1);
+        ctx.beginPath();
+        for (let i = 0; i < n; i++) {
+          if (Math.min(LEVELS - 1, Math.floor(tt[i] * LEVELS)) !== lv) continue;
+          const [x, y, z] = get(i); project(x, y, z, cx, cy, rad, pt);
+          if ((pt[2] < 0) !== front) continue;
+          const r = (front ? 1.7 : 1.3) * dpr; ctx.moveTo(pt[0] + r, pt[1]); ctx.arc(pt[0], pt[1], r, 0, Math.PI * 2);
+        }
+        ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+    if (fresh >= 0) { const [x, y, z] = get(fresh); project(x, y, z, cx, cy, rad, pt); ctx.strokeStyle = accent; ctx.lineWidth = 2 * dpr; ctx.beginPath(); ctx.arc(pt[0], pt[1], 7 * dpr, 0, Math.PI * 2); ctx.stroke(); }
+  }
+  function render() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight;
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    const W = cv.width, H = cv.height, rad = Math.min(W / 4, H / 2) * 0.86;
+    drawGlobe(W * 0.25, H / 2, rad, i => [geoXYZ[3 * i], geoXYZ[3 * i + 1], geoXYZ[3 * i + 2]], colors['--ink'], colors['--geo-dot']);
+    if (P) { const R = P.R; drawGlobe(W * 0.75, H / 2, rad, i => { const q = P.nodes[i]; return [q.x / R, q.y / R, q.z / R]; }, colors['--ink'], colors['--phys-dot']); }
+  }
+  function frame(ts) {
+    raf = 0;
+    if (paused || !visible) return;
+    const dt = last ? Math.min(0.05, (ts - last) / 1000) : 0; last = ts;
+    if (!reduced.matches) angle += dt * 0.16;
+    step(); render(); caption();
+    if (mode !== 'done' || !reduced.matches) kick();
+  }
+  function kick() { if (!raf && !paused && visible) raf = requestAnimationFrame(frame); }
+  function arrive() {
+    if (!P || mode !== 'done' || n >= CAPN) return;
+    const r = rng(9000 + n), i = n;
+    layer[i] = Math.floor(r() * NL); tt[i] = 1; vv[i] = r();
+    // geometry: the new marker alone is placed, timed over many repeats
+    const t0 = performance.now(); for (let k = 0; k < 20000; k++) place(1, layer, tt, vv, geoXYZ, i); oneMs = (performance.now() - t0) / 20000;
+    n++; fresh = i; geoOrder();
+    // physics: add it, link it to the newest marker in its band, restart at alpha 0.3
+    let prev = -1, best = -1; for (let k = 0; k < i; k++) if (layer[k] === layer[i] && tt[k] > best) { best = tt[k]; prev = k; }
+    const R = P.R, u = 2 * r() - 1, a = 2 * Math.PI * r(), s = Math.sqrt(1 - u * u);
+    snap = P.nodes.map(q => [q.x, q.y, q.z]);
+    P.nodes.push({ x: R * s * Math.cos(a), y: R * s * Math.sin(a), z: R * u, layer: layer[i] });
+    if (prev >= 0) P.links.push({ source: prev, target: i });
+    P.sim.nodes(P.nodes); P.sim.force('link').links(P.links); P.sim.alpha(0.3);
+    P.ord = timeOrderIdx({ n, layer, t: tt });
+    let al = 0.3; reTotal = 0; while (al >= ALPHA_MIN) { al += -al * ALPHA_DECAY; reTotal++; }
+    mode = 'resettle'; reTicks = 0; compute = 0; moved = 0; caption(); kick();
+  }
+  readColors();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); render(); });
+  new MutationObserver(() => { readColors(); render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; last = 0; kick(); }).observe(cv);
+  $('#replay').addEventListener('click', () => { start(); });
+  $('#arrive').addEventListener('click', arrive);
+  return { start, pause(p) { paused = p; last = 0; if (!p) kick(); }, render };
+})();
+
+// ---------------------------------------------------------------------------- the benchmark run
+const PLANS = {
+  full: {
+    gpuGeo: [[1e3, 100], [1e4, 100], [1e5, 100], [1e6, 100], [1e7, 30]],
+    gpuTick: [[1e3, 100], [1e4, 40], [1e5, 20], [1e6, 5]],
+    gpuLayout: [[1e3, 20, 5], [1e4, 5, 2], [1e5, 2, 1], [1e6, 1, 0]],
+    cpuGeo: [[1e3, 100], [1e4, 100], [1e5, 100], [1e6, 20]],
+    cpuTick: [[1e3, 50], [1e4, 10]],
+    cpuLayout: [[1e3, 3, 1]],
+    cpuLong: { geo: [[1e7, 3]], layout: [[1e4, 1, 0]] },
+  },
+  emulated: {
+    gpuGeo: [[1e3, 100], [1e4, 100], [1e5, 30], [1e6, 10], [1e7, 3]],
+    gpuTick: [[1e3, 20], [1e4, 3], [1e5, 3]],
+    gpuLayout: [[1e3, 3, 1]],
+    cpuGeo: [], cpuTick: [], cpuLayout: [], cpuLong: { geo: [], layout: [] },
+  },
+};
+function deviceInfo(g) {
+  const ua = navigator.userAgent, b = /Edg\/(\d+)/.exec(ua) ? 'Edge ' + /Edg\/(\d+)/.exec(ua)[1] : /Firefox\/(\d+)/.exec(ua) ? 'Firefox ' + /Firefox\/(\d+)/.exec(ua)[1] : /Chrome\/(\d+)/.exec(ua) ? 'Chrome ' + /Chrome\/(\d+)/.exec(ua)[1] : /Version\/(\d+).*Safari/.exec(ua) ? 'Safari ' + /Version\/(\d+).*Safari/.exec(ua)[1] : 'Browser';
+  const os = /Mac OS X/.test(ua) ? 'macOS' : /Windows/.test(ua) ? 'Windows' : /Android/.test(ua) ? 'Android' : /iPhone|iPad/.test(ua) ? 'iOS' : /Linux/.test(ua) ? 'Linux' : '';
+  return { renderer: g ? g.renderer : '', vendor: g ? g.vendor : '', gpu: gpuName(g ? g.renderer : ''), browser: b, os, cores: navigator.hardwareConcurrency || null, timer: !!(g && g.tq), maxTex: g ? g.maxTex : null };
+}
+function gpuName(r) {
+  if (!r) return 'Unknown GPU';
+  if (/SwiftShader/i.test(r)) return 'SwiftShader (GPU emulated on the CPU)';
+  const m = /ANGLE \([^,]+,\s*(?:ANGLE Metal Renderer:\s*)?([^,()]+(?:\([^)]*\))?[^,()]*)/.exec(r);
+  return (m ? m[1] : r).replace(/\s+(Direct3D|vs_|OpenGL|Vulkan).*$/, '').trim();
+}
+const deviceKey = d => [d.gpu, d.os, d.browser.split(' ')[0]].join(' · ');
+
+async function runAll(planName, long, signal, report) {
+  const plan = PLANS[planName];
+  let g = null, gpuError = null;
+  try { g = new GpuBench(); } catch (e) { gpuError = e.message; }
+  const env = deviceInfo(g);
+  const res = { v: 1, at: new Date().toISOString(), plan: planName, emulated: planName === 'emulated', env, gpu: { geo: {}, tick: {}, layout: {} }, cpu: { geo: {}, tick: {}, layout: {} } };
+  if (gpuError) res.gpuError = gpuError;
+  const steps = [];
+  if (g) plan.gpuGeo.forEach(([n, r]) => steps.push({ label: `GPU · geometry · ${fmtN(n)} markers`, runs: r, go: async on => { res.gpu.geo[n] = await g.geo(n, r, signal, on); } }));
+  if (g) plan.gpuTick.forEach(([n, r]) => steps.push({ label: `GPU · physics tick · ${fmtN(n)} markers`, runs: r, go: async on => { res.gpu.tick[n] = await g.physTicks(n, r, signal, on); } }));
+  if (g) plan.gpuLayout.forEach(([n, r, a]) => steps.push({ label: `GPU · physics layout · ${fmtN(n)} markers`, runs: r, go: async on => {
+    const t = res.gpu.tick[n], est = t ? 300 * t.wall.median : null;
+    if (est != null && est > 90000) { res.gpu.layout[n] = { skipped: `skipped: one layout would take about ${fmtMs(est)}` }; return; }
+    const runs = est == null ? Math.min(r, 3) : Math.max(1, Math.min(r, Math.floor(25000 / est)));
+    res.gpu.layout[n] = await g.physLayouts(n, runs, Math.min(a, runs), signal, on);
+  } }));
+  const cpuGeo = plan.cpuGeo.concat(long ? plan.cpuLong.geo : []), cpuLayout = plan.cpuLayout.concat(long ? plan.cpuLong.layout : []);
+  cpuGeo.forEach(([n, r]) => steps.push({ label: `CPU · geometry · ${fmtN(n)} markers`, runs: r, go: async on => {
+    const d = inputs(n), xyz = new Float64Array(3 * n);
+    for (let w = 0; w < (n < 1e6 ? 20 : 2); w++) place(n, d.layer, d.t, d.v, xyz);
+    const ms = [];
+    for (let k = 0; k < r; k++) { if (signal.aborted) throw new Stopped(); const t0 = performance.now(); place(n, d.layer, d.t, d.v, xyz); ms.push(performance.now() - t0); on(k); if (k % 5 === 4 || ms[k] > 30) await yieldNow(); }
+    const s = stats(ms); s.outside = outsideShare(n, i => d.layer[i], i => [xyz[3 * i], xyz[3 * i + 1], xyz[3 * i + 2]]);
+    res.cpu.geo[n] = s;
+  } }));
+  plan.cpuTick.forEach(([n, r]) => steps.push({ label: `CPU · physics tick · ${fmtN(n)} markers`, runs: r, go: async on => {
+    const b = buildPhys(inputs(n), 7); b.sim.tick(10); const ms = [];
+    for (let k = 0; k < r; k++) { if (signal.aborted) throw new Stopped(); b.sim.alpha(0.5); const t0 = performance.now(); b.sim.tick(); ms.push(performance.now() - t0); on(k); await yieldNow(); }
+    res.cpu.tick[n] = stats(ms);
+  } }));
+  cpuLayout.forEach(([n, r, a]) => steps.push({ label: `CPU · physics layout · ${fmtN(n)} markers`, runs: r, go: async on => {
+    const d = inputs(n), ms = [], out = [], arr = [];
+    let order = null;
+    for (let k = 0; k < r; k++) {
+      let c = 0, t0 = performance.now(); const b = buildPhys(d, 11 + k); c += performance.now() - t0;
+      for (let done = 0; done < 300; done += 10) { if (signal.aborted) throw new Stopped(); t0 = performance.now(); b.sim.tick(10); c += performance.now() - t0; await yieldNow(); }
+      ms.push(c); out.push(outsideShare(n, i => b.nodes[i].layer, i => [b.nodes[i].x, b.nodes[i].y, b.nodes[i].z]));
+      if (k === 0) order = timeOrder(b.ord, d.layer, i => [b.nodes[i].x, b.nodes[i].y]);
+      if (k < a) {
+        const L = Math.floor(rng(5 + k)() * NL); t0 = performance.now();
+        b.nodes.push({ x: b.R, y: 0, z: 0, layer: L });
+        let prev = -1; for (let i = 0; i < n; i++) if (b.nodes[i].layer === L) prev = i;
+        if (prev >= 0) b.links.push({ source: prev, target: n });
+        b.sim.nodes(b.nodes); b.sim.force('link').links(b.links); b.sim.alpha(0.3);
+        let c2 = performance.now() - t0;
+        while (b.sim.alpha() >= b.sim.alphaMin()) { if (signal.aborted) throw new Stopped(); t0 = performance.now(); for (let j = 0; j < 10 && b.sim.alpha() >= b.sim.alphaMin(); j++) b.sim.tick(); c2 += performance.now() - t0; await yieldNow(); }
+        arr.push(c2);
+      }
+      on(k);
+    }
+    res.cpu.layout[n] = { ...stats(ms), outside: stats(out), order, arrival: arr.length ? stats(arr) : null };
+  } }));
+  const total = steps.reduce((s, x) => s + x.runs, 0); let doneRuns = 0;
+  for (const st of steps) {
+    if (signal.aborted) throw new Stopped();
+    let k0 = 0;
+    report(st.label, doneRuns / total);
+    await st.go(k => { k0 = k + 1; report(`${st.label} · run ${k + 1} of ${st.runs}`, (doneRuns + k + 1) / total); });
+    doneRuns += st.runs; await yieldNow(); void k0;
+  }
+  return res;
+}
+window.__bench = { run: async (plan, long) => { hero.pause(true); try { return await runAll(plan, !!long, new AbortController().signal, () => {}); } finally { hero.pause(false); } } };
+
+// ---------------------------------------------------------------------------- GPU card
+const gpuState = { mine: null, emu: DATA.gpuEmu || null, view: 'emu' };
+function bestGpuLayout(r) { return r && r.gpu && r.gpu.layout || {}; }
+function showGpu(view) {
+  gpuState.view = view;
+  const r = view === 'mine' ? gpuState.mine : gpuState.emu;
+  $('#seg-mine').setAttribute('aria-pressed', String(view === 'mine')); $('#seg-emu').setAttribute('aria-pressed', String(view === 'emu'));
+  $('#seg-mine').disabled = !gpuState.mine;
+  const box = $('#chart-gpu');
+  if (r && !Object.keys(r.gpu.geo).length && !Object.keys(r.gpu.layout).length) {
+    box.replaceChildren(el('div', { cls: 'empty', text: 'The GPU part did not run on this machine' + (r.gpuError ? ': ' + r.gpuError : '.') + ' The CPU results are under Show the numbers.' }));
+    $('#gpu-chips').replaceChildren(); $('#gpu-device').textContent = '';
+    $('#gpu-sub').textContent = `Measured in ${r.env.browser}${r.env.os ? ', ' + r.env.os : ''}`;
+  }
+  if (!r) { box.replaceChildren(el('div', { cls: 'empty', text: 'No GPU results yet. Run the benchmark on this machine to fill this in.' })); $('#gpu-chips').replaceChildren(); $('#gpu-device').textContent = ''; $('#tbl-gpu').replaceChildren(); return; }
+  const gpuRan = Object.keys(r.gpu.geo).length || Object.keys(r.gpu.layout).length;
+  const geo = SIZES.filter(n => r.gpu.geo[n] && r.gpu.geo[n].wall).map(n => ({ n, s: r.gpu.geo[n].wall, g: r.gpu.geo[n] }));
+  const lay = SIZES.filter(n => r.gpu.layout[n] && r.gpu.layout[n].wall).map(n => ({ n, s: r.gpu.layout[n].wall, g: r.gpu.layout[n] }));
+  if (gpuRan) $('#gpu-sub').textContent = r.emulated ? 'Emulated on this server with SwiftShader: the shaders run on 2 CPU cores, so times are not GPU speeds' : `Measured on ${r.env.gpu}, ${r.env.browser}${r.env.os ? ', ' + r.env.os : ''}, ${new Date(r.at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
+  if (gpuRan) chartLog(box, {
+    label: 'GPU time to a finished layout against markers, log scales.',
+    frame: true,
+    series: [
+      { name: 'Geometry, 1 pass', color: '--geo', pts: geo.map(p => ({ n: p.n, v: p.s.median, p95: p.s.p95, max: p.s.max, runs: p.s.runs, note: p.g.gpu ? 'GPU timer: ' + fmtMs(p.g.gpu.median) : null })) },
+      { name: 'Physics, 300 passes', color: '--phys', pts: lay.map(p => ({ n: p.n, v: p.s.median, p95: p.s.p95, max: p.s.max, runs: p.s.runs, note: p.g.mode === 'sampled' ? 'Many-body from 1,024 random markers per marker' : 'Many-body over all pairs' })) },
+    ]
+  });
+  const chips = [];
+  const outs = geo.filter(p => p.g.outside != null); if (outs.length) chips.push(chip(outs.every(p => p.g.outside === 0), outs.every(p => p.g.outside === 0) ? 'Geometry: every marker inside its band' : 'Geometry: some markers outside their band'));
+  const errs = geo.filter(p => p.g.maxErr != null); if (errs.length) { const e = Math.max(...errs.map(p => p.g.maxErr)); chips.push(chip(e <= 1e-3, `Matches the CPU formula to within ${e < 1e-4 ? e.toExponential(1) : e.toFixed(4)} on a unit sphere`)); }
+  const gaps = lay.filter(p => r.gpu.geo[p.n] && r.gpu.geo[p.n].wall).map(p => ({ n: p.n, x: p.s.median / r.gpu.geo[p.n].wall.median }));
+  if (gaps.length) {
+    const lo = Math.min(...gaps.map(q => q.x)), hi = Math.max(...gaps.map(q => q.x));
+    chips.push(chip(lo >= 100, gaps.length === 1 ? `Physics takes ${fmtX(lo)} longer at ${fmtShort(gaps[0].n)} markers` : `Physics takes ${fmtX(lo)} to ${fmtX(hi)} longer`));
+  }
+  if (gpuRan) chips.push(chip(true, r.env.timer ? 'GPU timer queries recorded' : 'Wall-clock times (no GPU timer in this browser)'));
+  $('#gpu-chips').replaceChildren(...chips);
+  $('#gpu-device').textContent = r.env.renderer ? 'Renderer: ' + r.env.renderer : '';
+  const rows = SIZES.map(n => {
+    const ge = r.gpu.geo[n], tk = r.gpu.tick[n], ly = r.gpu.layout[n];
+    return [fmtN(n), ge && ge.wall ? { em: fmtMs(ge.wall.median) } : ge && ge.skipped ? 'skipped' : 'not run', tk && tk.wall ? fmtMs(tk.wall.median) + (tk.mode === 'sampled' ? ' (sampled)' : '') : 'not run',
+      ly && ly.wall ? { em: fmtMs(ly.wall.median) } : ly && ly.skipped ? ly.skipped : 'not run', ly && ly.wall && ge && ge.wall ? fmtX(ly.wall.median / ge.wall.median) : '',
+      ge && ge.outside != null ? pct(1 - ge.outside) : '', ly && ly.outside ? pct(1 - ly.outside.median) : ''];
+  });
+  const parts = [table(['Markers', 'Geometry, 1 pass', 'Physics, 1 tick', 'Physics, 300 ticks', 'Gap', 'In band (geometry)', 'In band (physics)'], rows)];
+  const arrRows = SIZES.filter(n => r.gpu.layout[n] && r.gpu.layout[n].arrival).map(n => [fmtN(n), fmtMs(r.gpu.layout[n].arrival.wall.median), String(r.gpu.layout[n].arrival.ticks)]);
+  if (arrRows.length) parts.push(el('p', { cls: 'note', text: 'One new marker on the GPU: physics re-settles (alpha 0.3 to 0.001).' }), table(['Markers', 'Re-settle', 'Ticks'], arrRows));
+  const cg = r.cpu && r.cpu.geo || {};
+  if (Object.keys(cg).length) {
+    parts.push(el('p', { cls: 'note', text: r.emulated ? 'CPU on this server (Node, one core).' : 'CPU in this browser (JavaScript, main thread).' }));
+    parts.push(table(['Markers', 'Geometry', 'Physics, 1 tick', 'Physics, 300 ticks', 'Gap'], SIZES.filter(n => cg[n] || (r.cpu.tick || {})[n] || (r.cpu.layout || {})[n]).map(n => {
+      const a = cg[n], t = (r.cpu.tick || {})[n], l = (r.cpu.layout || {})[n];
+      return [fmtN(n), a ? { em: fmtMs(a.median) } : '—', t ? fmtMs(t.median) : '—', l ? { em: fmtMs(l.median) } : '—', a && l ? fmtX(l.median / a.median) : ''];
+    })));
+  }
+  $('#tbl-gpu').replaceChildren(...parts);
+}
+$('#seg-mine').addEventListener('click', () => gpuState.mine && showGpu('mine'));
+$('#seg-emu').addEventListener('click', () => showGpu('emu'));
+
+// ---------------------------------------------------------------------------- runs kept in the artifact's database
+let DB = null, ME = null, RUNS = [], myKey = null;
+function round4(o) {
+  if (typeof o === 'number') return isFinite(o) ? Number(o.toPrecision(4)) : null;
+  if (Array.isArray(o)) return o.map(round4);
+  if (o && typeof o === 'object') { const r = {}; for (const [k, v] of Object.entries(o)) if (v !== undefined && k !== 'raw') r[k] = round4(v); return r; }
+  return o;
+}
+function checks(r, all) {
+  const out = [], cg = r.cpu && r.cpu.geo || {}, gg = r.gpu && r.gpu.geo || {}, gl = r.gpu && r.gpu.layout || {};
+  const c100 = cg[1e5] || cg['100000'];
+  if (c100) out.push(chip(c100.median <= 12, `100,000 placed in ${fmtMs(c100.median)} on the CPU (claim: 9–12 ms)`));
+  const outs = Object.values(gg).filter(x => x && x.outside != null).concat(Object.values(cg).filter(x => x && x.outside != null));
+  if (outs.length) chips_push(out, outs.every(x => x.outside === 0), 'Every marker inside its band');
+  const errs = Object.values(gg).filter(x => x && x.maxErr != null).map(x => x.maxErr);
+  if (errs.length) chips_push(out, Math.max(...errs) <= 1e-3, 'GPU matches the CPU formula');
+  const gaps = Object.keys(gl).filter(n => gl[n] && gl[n].wall && gg[n] && gg[n].wall).map(n => gl[n].wall.median / gg[n].wall.median);
+  if (gaps.length) chips_push(out, Math.min(...gaps) >= 100, `Gap on the GPU at least ${fmtX(Math.min(...gaps))}`);
+  const key = r.env && deviceKey(r.env), prev = all.find(o => o !== r && o.at < r.at && o.env && deviceKey(o.env) === key);
+  if (prev) {
+    const n = [1e6, 1e5, 1e4].find(k => gg[k] && gg[k].wall && prev.gpu.geo[k] && prev.gpu.geo[k].wall);
+    if (n) { const dlt = gg[n].wall.median / prev.gpu.geo[n].wall.median - 1; chips_push(out, Math.abs(dlt) <= 0.25, `${dlt >= 0 ? '+' : '−'}${Math.abs(dlt * 100).toFixed(0)}% vs the last run on this device (GPU, ${fmtShort(n)})`); }
+  }
+  return out;
+}
+function chips_push(arr, ok, text) { arr.push(chip(ok, text)); }
+function renderRuns() {
+  const list = $('#run-list');
+  if (!RUNS.length) { list.replaceChildren(el('div', { cls: 'empty', text: DB ? 'No runs yet. Use "Run on this machine" above; the result is saved here.' : 'Runs appear here once this page is open on claude.ai and a run has finished.' })); return; }
+  list.replaceChildren(...RUNS.map(r => {
+    const when = new Date(r.at), g = r.gpu || {}, gg = g.geo || {}, gl = g.layout || {}, cg = r.cpu && r.cpu.geo || {};
+    const num = (v, s) => el('div', {}, [el('b', { text: v }), el('span', { text: s })]);
+    const big = [1e7, 1e6].find(n => gg[n] && gg[n].wall), lay = [1e4, 1e3].find(n => gl[n] && gl[n].wall);
+    const card = el('article', { cls: 'run' }, [
+      el('div', {}, [el('div', { cls: 'when', text: when.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) }),
+        el('div', { cls: 'what', text: r.label || [r.env && r.env.gpu, r.env && r.env.browser, r.env && r.env.os].filter(Boolean).join(' · ') + (ME && r.by === ME ? ' · you' : '') })]),
+      el('div', { cls: 'nums' }, [
+        num(big ? fmtMs(gg[big].wall.median) : '—', big ? `GPU geometry, ${fmtShort(big)}` : 'GPU geometry'),
+        num(lay ? fmtMs(gl[lay].wall.median) : '—', lay ? `GPU physics layout, ${fmtShort(lay)}` : 'GPU physics layout'),
+        num(cg[1e5] ? fmtMs(cg[1e5].median) : '—', 'CPU geometry, 100k'),
+      ]),
+      el('div', { cls: 'chips' }, checks(r, RUNS)),
+    ]);
+    return card;
+  }));
+}
+async function initDb() {
+  try {
+    const probe = document.createElement('canvas').getContext('webgl2');
+    if (probe) { const dbg = probe.getExtension('WEBGL_debug_renderer_info'); myKey = deviceKey(deviceInfo({ renderer: String(dbg ? probe.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : probe.getParameter(probe.RENDERER)), vendor: '', tq: null, maxTex: 0 })); }
+  } catch (e) { /* no WebGL2 here */ }
+  if (!window.claude || !window.claude.use) return;
+  DB = await window.claude.use('db');
+  const user = await window.claude.use('user');
+  if (user) { try { ME = await user.id(); } catch (e) { ME = null; } }
+  if (!DB) { renderRuns(); return; }
+  const timer = setTimeout(() => { if (!RUNS.length) renderRuns(); }, 10000);
+  DB.collection('runs').orderBy('at', 'desc').limit(50).onSnapshot(snap => {
+    clearTimeout(timer);
+    RUNS = snap.docs.map(d => Object.assign({ id: d.id }, d.data()));
+    if (!gpuState.mine && myKey) { const r = RUNS.find(o => !o.emulated && o.env && deviceKey(o.env) === myKey); if (r) { gpuState.mine = r; $('#seg-mine').disabled = false; } }
+    renderRuns();
+  }, err => { clearTimeout(timer); $('#run-list').replaceChildren(el('div', { cls: 'empty', text: 'Saved runs could not be loaded right now.' })); void err; });
+}
+
+// ---------------------------------------------------------------------------- run button
+let ctl = null;
+$('#run').addEventListener('click', async () => {
+  if (ctl) return;
+  ctl = new AbortController();
+  const run = $('#run'), stop = $('#stop'), status = $('#status'), bar = $('#bar');
+  run.disabled = true; stop.hidden = false; status.className = 'status'; hero.pause(true);
+  try {
+    const res = await runAll('full', $('#long').checked, ctl.signal, (label, f) => { status.textContent = label; bar.style.width = (f * 100).toFixed(1) + '%'; });
+    const whoV = ($('#who').value || '').trim(), mV = ($('#mname').value || '').trim();
+    if (whoV) res.who = whoV.toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+    if (mV) res.label = [mV, res.env.gpu, res.env.browser].filter(Boolean).join(' · ');
+    res.kind = 'browser'; res.schema = 1; res.machine = { name: mV || null, gpu: res.env.gpu, os: res.env.os, cores: res.env.cores };
+    try { localStorage.setItem('bench-who', whoV); localStorage.setItem('bench-machine', mV); } catch (e) { /* storage blocked */ }
+    LAST = res; $('#dl').hidden = false;
+    gpuState.mine = res; showGpu('mine');
+    bar.style.width = '100%';
+    const note = res.gpuError ? ' The GPU part was skipped: ' + res.gpuError : '';
+    if (DB) {
+      status.textContent = 'Done. Saving the run…';
+      try { await DB.collection('runs').add(round4(Object.assign({ by: ME || null }, res))); status.textContent = 'Done. The run is saved under Runs below.' + note; }
+      catch (e) { status.className = 'status err'; status.textContent = e && e.code === 'quota_exceeded' ? 'Done, but the run could not be saved: the store is full. Older runs need deleting first.' : 'Done, but the run could not be saved right now. The results above are still this run.'; }
+    } else status.textContent = 'Done. Open this page on claude.ai to keep runs between visits.' + note;
+  } catch (e) {
+    status.className = 'status err';
+    status.textContent = e instanceof Stopped ? 'Stopped. Nothing was saved.' : 'The run stopped: ' + (e && e.message || e);
+    bar.style.width = '0%';
+  } finally { ctl = null; run.disabled = false; stop.hidden = true; hero.pause(false); }
+});
+$('#stop').addEventListener('click', () => ctl && ctl.abort());
+
+// ---------------------------------------------------------------------------- nav highlight
+(() => {
+  const links = [...document.querySelectorAll('.nav a')], map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { links.forEach(a => a.classList.remove('on')); const a = map.get(e.target.id); if (a) a.classList.add('on'); } }, { rootMargin: '-45% 0px -50% 0px' });
+  map.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+})();
+
+renderServer();
+showGpu('emu');
+hero.start();
+initDb();
+
+
+// ---------------------------------------------------------------------------- tester labels and download
+let LAST = null;
+try { $('#who').value = localStorage.getItem('bench-who') || ''; $('#mname').value = localStorage.getItem('bench-machine') || ''; } catch (e) { /* storage blocked */ }
+$('#dl').addEventListener('click', () => {
+  if (!LAST) return;
+  const slug = x => String(x || 'unknown').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const name = `${LAST.at.replace(/[:]/g, '').replace(/\..+/, '')}-browser.json`;
+  const blob = new Blob([JSON.stringify(LAST, null, 1) + '\n'], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  $('#status').textContent = `Saved ${name}. In the repo it goes in results/${slug(LAST.who)}/${slug(LAST.machine && LAST.machine.name)}/.`;
+});
+</script>
+
+</body></html>

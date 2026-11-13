@@ -1,0 +1,22 @@
+{
+  "name": "3apart-bench",
+  "version": "1.0.0",
+  "description": "3apart layout benchmark (confidential)",
+  "scripts": {
+    "check": "node tools/engine_bench.mjs --name js-reference --cmd 'node engines/js-reference/place.mjs' --sizes 10000,100000 --runs 20 --no-save --who check && node tools/engine_bench.mjs --name py-numpy --cmd 'python3 engines/py-numpy/place.py' --sizes 10000,100000 --runs 20 --no-save --who check",
+    "disclosure": "python3 bench/disclosure_check.py",
+    "cpu": "node bench/cpu_bench.mjs",
+    "cpu:quick": "node bench/cpu_bench.mjs --plan quick",
+    "cpu:full": "node bench/cpu_bench.mjs --plan full",
+    "compare": "node tools/compare.mjs"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "d3-force-3d": "3.0.6"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
