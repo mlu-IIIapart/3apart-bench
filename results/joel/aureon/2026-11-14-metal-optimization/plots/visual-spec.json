@@ -1,0 +1,87 @@
+{
+  "audience": "Mike, Fadi, and Joel reviewing Aureon native GPU benchmark results",
+  "claim": "Controlled Metal function-mode changes reduce resident time while full validation remains intact; exact CPU parallel validation cuts checking time.",
+  "visual_form": "dot_plot",
+  "metric": {
+    "name": "Elapsed time",
+    "unit": "ms",
+    "direction": "lower",
+    "aggregation": "median with every raw trial visible",
+    "denominator": "100,000,000 markers / 300,000,000 XYZ coordinates",
+    "precision_decimals": 2,
+    "scale": "linear"
+  },
+  "target": {
+    "medium": "web",
+    "width": 1600,
+    "height": 1000,
+    "unit": "px",
+    "minimum_text_size_pt": 13.5,
+    "background": "white"
+  },
+  "series_order": [
+    "safe_precise_trig_256",
+    "safe_fast_trig_256",
+    "fast_fast_trig_256",
+    "fast_fast_trig_64",
+    "fast_fast_trig_512",
+    "safe_precise_algebra_256",
+    "safe_fast_algebra_256",
+    "fast_fast_algebra_256"
+  ],
+  "focal_series": "safe_fast_trig_256",
+  "required_baselines": [
+    "safe_precise_trig_256",
+    "original_serial"
+  ],
+  "ordering_rationale": "semantic_group",
+  "uncertainty": {
+    "available": true,
+    "type": "raw_points",
+    "sample_or_seed_count": 10,
+    "note": "Raw repeat spread; no confidence interval or claim of universal ranking. Validation confirmation observations linked within pairs."
+  },
+  "data_source": {
+    "path_or_identifier": "../controlled-results.json; ../validation-results.json; ../integrated-results.json",
+    "immutable_fields": [
+      "all raw times",
+      "validation count",
+      "validation pass status",
+      "original FP64 reference",
+      "timing boundaries"
+    ],
+    "notes": "Every dataset checksum captured in figure-specific evidence JSON. Historical browser timing is omitted from these controlled comparison figures because its output layout and validation cadence differ."
+  },
+  "output_formats": [
+    "png",
+    "svg"
+  ],
+  "selected_reference_ids": [
+    "OAI-VIS-002",
+    "OAI-VIS-003",
+    "OAI-VIS-004",
+    "OAI-VIS-063",
+    "OAI-VIS-100",
+    "OAI-VIS-102"
+  ],
+  "caption_requirements": [
+    "task",
+    "sample",
+    "estimator",
+    "uncertainty",
+    "exclusions",
+    "metric_direction",
+    "latency_basis"
+  ],
+  "cost_latency_assumptions": {
+    "hardware": "Aureon, Apple M5 Max",
+    "batch": "100 million markers",
+    "statistic": "Median of ten measured repeats per controlled Metal variant; median of ten paired validator repetitions",
+    "other": "Native SoA input and packed XYZ output, 2.4 GB requested GPU buffers. All 300M coordinates fully checked."
+  },
+  "exceptions": [
+    "Companion validation plot uses connected paired points to preserve AB/BA pair structure.",
+    "1600x1000 sharing PNG plus 3200x2000 high-density PNG supplied; SVG remains editable.",
+    "Three separate figures preserve clear timing boundaries and readable labels; integrated measurement includes validation while resident GPU time excludes it."
+  ]
+}

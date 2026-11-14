@@ -1,0 +1,76 @@
+{
+  "created_utc": "2026-11-14T01:29:50.227595+00:00",
+  "scope": "Recompiled and reran tiny CPU-only sparse controls to preserve evidence; no GPU work, no 100M benchmark rerun, no source edits.",
+  "normal_and_sanitized_results": {
+    "assertions_passed": 4151,
+    "summary_cases_bit_identical": 355,
+    "sampled_corruption_detected": true,
+    "unsampled_corruption_deliberately_undetected": true,
+    "gpu_work_performed": false
+  },
+  "runs": [
+    {
+      "command": [
+        "xcrun",
+        "clang++",
+        "-std=c++17",
+        "-O3",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-pthread",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "bench/native-metal-xl/validation_sparse_test.cpp",
+        "-o",
+        "/tmp/aureon-validation-sparse-test"
+      ],
+      "log": "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-normal-build.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/tmp/aureon-validation-sparse-test"
+      ],
+      "log": "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-normal-controls.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "xcrun",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-pthread",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-fsanitize=address,undefined",
+        "bench/native-metal-xl/validation_sparse_test.cpp",
+        "-o",
+        "/tmp/aureon-validation-sparse-sanitized"
+      ],
+      "log": "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-sanitized-build.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/tmp/aureon-validation-sparse-sanitized"
+      ],
+      "log": "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-sanitized-controls.log",
+      "exit_code": 0
+    }
+  ],
+  "sha256": {
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-control-commands.txt": "01625861d2db4be949504a601beeb9b5330f151afc8beef67e0bdba31a2be5ae",
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-normal-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-normal-controls.log": "39f75eeffff9d31ce38f35a1a624086ef1f077547ab164c7cae91aaa56846efd",
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-sanitized-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-sanitized-controls.log": "39f75eeffff9d31ce38f35a1a624086ef1f077547ab164c7cae91aaa56846efd",
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/bench/native-metal-xl/validation_sparse.hpp": "e88595bafccc5db09be9a3f258e43f2f4165804b36294f27da8a594d0b6857fc",
+    "/Users/jthor/GitHub/3apart-bench-aureon-xl/bench/native-metal-xl/validation_sparse_test.cpp": "85fc50b09436d357c42dd5e8daa6b2283e939590bc003d4f64767c126b2687ba"
+  }
+}

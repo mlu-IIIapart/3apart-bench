@@ -1,0 +1,10 @@
+
+> 3apart-bench@1.0.0 check
+> node tools/engine_bench.mjs --name js-reference --cmd 'node engines/js-reference/place.mjs' --sizes 10000,100000 --runs 20 --no-save --who check && node tools/engine_bench.mjs --name py-numpy --cmd 'python3 engines/py-numpy/place.py' --sizes 10000,100000 --runs 20 --no-save --who check
+
+engine js-reference · aureon
+      10000 markers  median 0.375 ms  37.5 ns/marker  max err 0.0e+0  verified
+     100000 markers  median 4.168 ms  41.7 ns/marker  max err 0.0e+0  verified
+engine py-numpy · aureon
+      10000 markers  median 0.258 ms  25.8 ns/marker  max err 4.4e-16  verified
+     100000 markers  median 2.604 ms  26.0 ns/marker  max err 4.4e-16  verified

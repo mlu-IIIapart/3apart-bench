@@ -1,0 +1,118 @@
+{
+  "at": "2026-11-14T01:09:31.485281+00:00",
+  "checks": {
+    "controlled-results.json": {
+      "sha256": "212d4658f843f3d92b4f88380a83d0cce1829faf8e0c2e82bba8608b903aab7f",
+      "markers": 100000000,
+      "validated_trials": 80,
+      "max_error": 4.474150112621089e-07
+    },
+    "integrated-results.json": {
+      "sha256": "eb6516066a36de655e0548d89c75c86b9472d9475d7f08fdcf2781b66dd8f416",
+      "markers": 100000000,
+      "validated_trials": 40,
+      "max_error": 4.474150112621089e-07
+    },
+    "edge-results.json": {
+      "sha256": "d41ca0ee6dfe24fb2ff5897fdc3aca6d5104f2dfda00765d7e4b201953393901",
+      "markers": 1008,
+      "validated_trials": 40,
+      "max_error": 2.921485900975185e-07
+    }
+  },
+  "source_hashes": {
+    "bench/native-metal-xl/native_bench.mm": "82ef095cbc09600a09d118ea3bbb1bbef2178fce7da0b7ecdd1e7df84dbe3ffc",
+    "bench/native-metal-xl/validation_test.cpp": "2d80af45c1ed9299a83aee90dd4a05ad5b2e4d93319313de7055d0e07e31882f",
+    "bench/native-metal-xl/edge_inputs.mjs": "4903436b0addc8b375c0cf1f65f6b14e76d6a1d4b9cf3056a60609d6dc89939e",
+    "bench/native-metal-xl/optimized_bench.mm": "87b8ac39681ebbc4237385e9b8405c32cea0782e37812e8b5c5d3862d3dd7599",
+    "bench/native-metal-xl/generate_inputs.mjs": "79193e4d36596dd3c34a031340cd45a613140804289ddc48ae4b43b7f94b959f",
+    "bench/native-metal-xl/place.metal": "b59e706fb0b59dd9173a30372bb3cfbb4243790ed591cbac1770d7e71bbf131c",
+    "bench/native-metal-xl/validation_parallel.hpp": "b3dfd936e088894ca0446f0399821899f47b0e7876493cc64ffecdf1c16c9502",
+    "bench/native-metal-xl/optimization_bench.mm": "37c01dd560b5dd5f04a37c4af02042a8999ec36e7cd20a91923e9fe9b9c750a1"
+  },
+  "fixture_hashes": {
+    "generator": "unmodified src/js/engine.mjs inputs/encodeInputs/place",
+    "node": "v26.13.0",
+    "protocol": {
+      "bands": 24,
+      "cap": 0.9,
+      "margin": 0.12,
+      "seed": 20261112
+    },
+    "files": {
+      "inputs/100000000.3ain": {
+        "bytes": 2000000016,
+        "sha256": "2d00fff4b84f730da272ce1b4297e33d6ed3e3e649ed34125bbf9f25f706adf2"
+      },
+      "inputs/100000000.reference.f64": {
+        "bytes": 2400000000,
+        "sha256": "3b3444f58d7e4d96addfac41a3c2dd4bf1f361ae4c45bc952a984fd6d8786570"
+      }
+    }
+  },
+  "recommended_configuration": {
+    "math_mode": "safe",
+    "intrinsics": "fast",
+    "shader": "unchanged original acos/sin/cos",
+    "threads_per_group": 256,
+    "validator": "Exact checks using 18 persistent CPU workers",
+    "output": "Direct access to shared Metal buffer after command completion",
+    "tolerance": 0.0005,
+    "full_coverage": true
+  },
+  "interpretation": [
+    "Changing only the intrinsic precision isolates a material cost in the native baseline. Installed Chrome compiler options were not measured.",
+    "The selected configuration retains safe arithmetic and the original formula. Algebraic rewrites and fast arithmetic are separately labeled experiments.",
+    "Historical browser timings differ in output format and trial cadence, and do not isolate browser overhead.",
+    "Evidence covers the seeded 100M-marker fixture plus 1,008 boundary inputs; it is not proof for every possible input.",
+    "The direct path reads CPU-visible shared Metal output after completion without making a separately owned output copy.",
+    "Every integrated trial also ran the original serial oracle outside the optimized timer. All counters and maxima agreed."
+  ],
+  "reproduction": {
+    "compile": "xcrun clang++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -fobjc-arc -framework Foundation -framework Metal bench/native-metal-xl/optimized_bench.mm -o tmp/optimized_bench",
+    "run": "tmp/optimized_bench tmp/comparison/native-metal/inputs/100000000 bench/native-metal-xl/place.metal tmp/integrated-results.json",
+    "controlled_compile": "xcrun clang++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -fobjc-arc -framework Foundation -framework Metal bench/native-metal-xl/optimization_bench.mm -o tmp/optimization_bench",
+    "controlled_run": "tmp/optimization_bench tmp/comparison/native-metal/inputs/100000000 bench/native-metal-xl/place.metal tmp/controlled-results.json",
+    "plots": "python3 results/joel/aureon/2026-11-14-metal-optimization/plots/plot_benchmarks.py --compute results/joel/aureon/2026-11-14-metal-optimization/controlled-results.json --validation results/joel/aureon/2026-11-14-metal-optimization/validation-results.json --integrated results/joel/aureon/2026-11-14-metal-optimization/integrated-results.json",
+    "plot_dependencies": [
+      "matplotlib",
+      "numpy",
+      "Pillow"
+    ]
+  },
+  "environment": {
+    "compiler": "Apple clang version 21.0.0 (clang-2100.4.1.1)\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2.1\nBuildVersion:\t\t26B131",
+    "swap_at_completion": "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)",
+    "memory_at_completion": "The system has 137438953472 (8388608 pages with a page size of 16384).\nSystem-wide memory free percentage: 88%"
+  },
+  "provenance": {
+    "recorded_after_runs": true,
+    "executables": {
+      "tmp/optimization/optimization_bench": "ec48bcf6e9e2887a2e3cb5c200b1c3e24a8cf5f52e19c6bf4a7236db60ef5aee",
+      "tmp/optimization/optimized_bench": "b761aacc0bea56f21244ec085b302205a204f30797b0019cb9994e5e98b04230"
+    },
+    "note": "Sources and executable hashes recorded after successful runs; sources were unchanged during each run. No embedded build manifest was captured before execution."
+  },
+  "resources": {
+    "requested_gpu_buffer_bytes": 2400000000,
+    "integrated_peak_process_footprint_bytes": 12130853936,
+    "swaps_reported_by_time": 0,
+    "physical_memory_bytes": 137438953472
+  },
+  "whatsapp": {
+    "recipient": "Mike Fadi Joel HC VC Build talks",
+    "text_sent_local_time": "2026-11-13 19:12 America/Edmonton",
+    "three_plot_album": "Native app showed Your album with 3 photos, Sent to Mike Fadi Joel HC VC Build talks, Sent",
+    "authorized_by": "User requested the main channel with Fadi and Mike, including plots",
+    "text_sha256": "db69b526bc095b0ac5bcafbd1728d3a1efe7a9c36f5a89a3b73879402150c4ec"
+  },
+  "validation": {
+    "adversarial_cases": 788,
+    "checker_summaries_bit_identical": true,
+    "same_fp64_reference": true,
+    "all_300m_coordinates_checked": true,
+    "tolerance": 0.0005,
+    "sampling": false
+  }
+}

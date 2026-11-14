@@ -1,0 +1,61 @@
+{
+  "reviewer": "independent metal_review agent",
+  "scope": "Read-only source and recorded-results review; no GPU execution; this JSON is the only review artifact written.",
+  "status": "no correctness blockers found",
+  "blocking_findings": [],
+  "reviewed_sha256": {
+    "bench/native-metal-xl/optimized_bench.mm": "87b8ac39681ebbc4237385e9b8405c32cea0782e37812e8b5c5d3862d3dd7599",
+    "bench/native-metal-xl/validation_parallel.hpp": "b3dfd936e088894ca0446f0399821899f47b0e7876493cc64ffecdf1c16c9502",
+    "bench/native-metal-xl/native_bench.mm": "82ef095cbc09600a09d118ea3bbb1bbef2178fce7da0b7ecdd1e7df84dbe3ffc",
+    "tmp/optimization/controlled-results.json": "212d4658f843f3d92b4f88380a83d0cce1829faf8e0c2e82bba8608b903aab7f",
+    "tmp/optimization/integrated-results.json": "eb6516066a36de655e0548d89c75c86b9472d9475d7f08fdcf2781b66dd8f416",
+    "tmp/optimization/optimization-receipt.json": "8fb98c903a0a9a10c013ffbf8aaf8907b8b8f969db95ec8b3a9f02e089b65144"
+  },
+  "verified": [
+    "Integrated four variants retain original acos/sin/cos formula, safe arithmetic mode, group size256, identical inputs/layout/reference; only precise vs fast FP32 intrinsic selection and copy+serial vs direct+parallel validation vary.",
+    "Every recorded controlled trial(80) and integrated trial(40) checks all300000000 coordinates for100000000 markers; every record has zero nonfinite, over-tolerance, and outside-band counts.",
+    "Integrated40/40trials record exact equality of all checker fields with original serial oracle, including maximum coordinate/radius errors; source enforces this equality.",
+    "Timed compute_output_and_validation includes dispatch, GPU completion, optional full copy and complete chosen validator; independent serial oracle is performed afterward outside that timer.",
+    "Shared output is accessed only after command completion and before any later dispatch; no concurrent reuse during validation.",
+    "Parallel checker preserves original FP64 arithmetic and predicates, fuses coordinate/radius scans, and reduces counts/maxima after all workers finish. Mutex synchronization and work claiming show no race in this usage.",
+    "Both result files use100000000 markers and seed20261112 with ten randomized/interleaved trials per variant.",
+    "Requested GPU buffers2400000000bytes are below the measured recommended working set115448725504bytes.",
+    "Receipt records integrated and controlled build commands with -O3 -fno-fast-math -ffp-contract=off and records source/binary hashes. Receipt clearly states manifest was recorded after execution, rather than claiming pre-run build attestation."
+  ],
+  "reporting_cautions": [
+    "31.1914375ms optimized median excludes the extra independent serial audit, setup, fixture reads, and compilation. Label as dispatch+output availability+one complete validation, not actual harness trial cadence or cold-start end-to-end.",
+    "Serial audit outside timing still affects cadence/cache/power state before later trials; randomized interleaving limits but does not eliminate environmental variability.",
+    "Direct shared-buffer validation eliminates an extra CPU memcpy; this Apple unified-memory result does not demonstrate a zero-cost discrete-GPU readback.",
+    "Parallel+direct and serial+copy comparison combines checker parallelism/scan fusion and copy removal; integrated2x2does not separately attribute these sub-effects.",
+    "Installed Chrome ANGLE compiler policy is not established. Upstream ANGLE supports fast/fast by default unless disableFastMath applies; do not claim confirmed precision-policy equivalence to this installed browser.",
+    "Use same-run control for speedup claims. Prior WebGL timing has different cadence/layout/backend and is contextual, not a controlled API-overhead experiment.",
+    "Fast intrinsic validation establishes observed accuracy on recorded fixture/boundaries; it is not proof of universal equivalence or bit identity to precise intrinsics.",
+    "Receipt provenance is post-run source/binary hashing; no embedded pre-run build manifest was captured."
+  ],
+  "integrated_median_ms": {
+    "baseline_copy_serial": {
+      "gpu_device_ms": 8.833312502247281,
+      "resident_wall_ms": 9.465603999999999,
+      "validation_ms": 399.64075,
+      "compute_output_and_validation_ms": 427.4439375
+    },
+    "fast_intrinsics_copy_serial": {
+      "gpu_device_ms": 5.297083334880881,
+      "resident_wall_ms": 5.881729,
+      "validation_ms": 399.83102099999996,
+      "compute_output_and_validation_ms": 424.2078965
+    },
+    "baseline_direct_parallel": {
+      "gpu_device_ms": 8.682541680173017,
+      "resident_wall_ms": 9.1871455,
+      "validation_ms": 24.296750000000003,
+      "compute_output_and_validation_ms": 33.4970835
+    },
+    "fast_intrinsics_direct_parallel": {
+      "gpu_device_ms": 5.986520816804841,
+      "resident_wall_ms": 6.4171875,
+      "validation_ms": 24.3314375,
+      "compute_output_and_validation_ms": 31.1914375
+    }
+  }
+}

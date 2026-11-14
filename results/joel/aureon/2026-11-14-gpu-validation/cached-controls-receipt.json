@@ -1,0 +1,79 @@
+{
+  "recorded_at_utc": "2026-11-14T01:29:48.198168+00:00",
+  "cwd": "/Users/jthor/GitHub/3apart-bench-aureon-xl",
+  "source_sha256": {
+    "bench/native-metal-xl/validation_cached_blocks.hpp": "b33eeaa4f1386295c7347704b0312f94d74efcd101cfc1fa84227b7f18b5ec44",
+    "bench/native-metal-xl/validation_cached_blocks_test.cpp": "59cc4793fd514d6c826efb382232036fb4939f5f05145f369a54b8450c3fb055",
+    "bench/native-metal-xl/validation_parallel.hpp": "b3dfd936e088894ca0446f0399821899f47b0e7876493cc64ffecdf1c16c9502"
+  },
+  "compiler": "Apple clang version 21.0.0 (clang-2100.4.1.1)\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+  "runs": [
+    {
+      "variant": "normal",
+      "build_command": [
+        "xcrun",
+        "clang++",
+        "-std=c++17",
+        "-O3",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-pthread",
+        "/Users/jthor/GitHub/3apart-bench-aureon-xl/bench/native-metal-xl/validation_cached_blocks_test.cpp",
+        "-o",
+        "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/cached-controls-normal"
+      ],
+      "build_exit_code": 0,
+      "run_command": [
+        "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/cached-controls-normal"
+      ],
+      "run_exit_code": 0,
+      "result": {
+        "controls_passed": 797,
+        "all_summary_fields_bit_identical": true,
+        "block_markers": 4096,
+        "workers_tested": [
+          1,
+          2,
+          7,
+          18
+        ]
+      },
+      "binary_sha256": "ad4585f9ac9a7180c143c52cbf7a15ac198a54f3663ac51aef1846f38b6872ce"
+    },
+    {
+      "variant": "sanitized",
+      "build_command": [
+        "xcrun",
+        "clang++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-pthread",
+        "/Users/jthor/GitHub/3apart-bench-aureon-xl/bench/native-metal-xl/validation_cached_blocks_test.cpp",
+        "-o",
+        "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/cached-controls-sanitized"
+      ],
+      "build_exit_code": 0,
+      "run_command": [
+        "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/cached-controls-sanitized"
+      ],
+      "run_exit_code": 0,
+      "result": {
+        "controls_passed": 797,
+        "all_summary_fields_bit_identical": true,
+        "block_markers": 4096,
+        "workers_tested": [
+          1,
+          2,
+          7,
+          18
+        ]
+      },
+      "binary_sha256": "d30648397eff8f857f3a5af3407f451900d86f77a6324f9e7aefe16d438b6144"
+    }
+  ],
+  "scope": "Tiny synthetic CPU controls only; no 100M benchmark rerun."
+}

@@ -1,0 +1,4 @@
+xcrun clang++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -pthread bench/native-metal-xl/validation_test.cpp -o /tmp/aureon-validation-test
+/tmp/aureon-validation-test
+xcrun clang++ -std=c++17 -O1 -g -fno-fast-math -ffp-contract=off -pthread -fsanitize=address,undefined bench/native-metal-xl/validation_test.cpp -o /tmp/aureon-validation-sanitized
+/tmp/aureon-validation-sanitized

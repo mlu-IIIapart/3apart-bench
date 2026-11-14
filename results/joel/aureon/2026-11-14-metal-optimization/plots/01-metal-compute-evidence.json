@@ -1,0 +1,178 @@
+{
+  "source": "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/optimization/controlled-results.json",
+  "sha256": "212d4658f843f3d92b4f88380a83d0cce1829faf8e0c2e82bba8608b903aab7f",
+  "metric": "gpu_device_ms",
+  "unit": "ms",
+  "aggregation": "median",
+  "direction": "lower",
+  "rows": [
+    {
+      "id": "safe_precise_trig_256",
+      "label": "Safe math \u00b7 precise functions\n256 threads",
+      "values": [
+        8.359125000424683,
+        8.97420835099183,
+        9.592249989509583,
+        8.32670833915472,
+        8.730958332307637,
+        9.845916647464037,
+        9.202541667036712,
+        8.556374988984317,
+        9.487250004895031,
+        8.579416666179895
+      ],
+      "focal": false,
+      "median_ms": 8.852583341649733,
+      "sample_count": 10
+    },
+    {
+      "id": "safe_fast_trig_256",
+      "label": "Safe math \u00b7 fast functions\n256 threads",
+      "values": [
+        6.776541675208136,
+        5.572666676016524,
+        6.0432500031311065,
+        4.972374998033047,
+        5.257500015432015,
+        5.95975000760518,
+        5.74516665074043,
+        5.662708339514211,
+        4.922625026665628,
+        5.4265000217128545
+      ],
+      "focal": true,
+      "median_ms": 5.617687507765368,
+      "sample_count": 10
+    },
+    {
+      "id": "fast_fast_trig_256",
+      "label": "Fast math \u00b7 fast functions\n256 threads",
+      "values": [
+        6.623416673392057,
+        7.47062498703599,
+        5.342749995179474,
+        5.642083327984437,
+        6.252249993849546,
+        7.470999989891425,
+        8.041333348955959,
+        5.614125024294481,
+        5.050999985542148,
+        6.62462500622496
+      ],
+      "focal": false,
+      "median_ms": 6.437833333620802,
+      "sample_count": 10
+    },
+    {
+      "id": "fast_fast_trig_64",
+      "label": "Fast math \u00b7 fast functions\n64 threads",
+      "values": [
+        4.416500014485791,
+        5.82141664926894,
+        5.918916664086282,
+        5.205875000683591,
+        5.614916648482904,
+        5.469750001793727,
+        7.763875008095056,
+        6.227583333384246,
+        4.878375009866431,
+        7.565583335235715
+      ],
+      "focal": false,
+      "median_ms": 5.718166648875922,
+      "sample_count": 10
+    },
+    {
+      "id": "fast_fast_trig_512",
+      "label": "Fast math \u00b7 fast functions\n512 threads",
+      "values": [
+        4.859708336880431,
+        5.225333326961845,
+        5.9154999908059835,
+        6.620541651500389,
+        5.384208343457431,
+        5.671749997418374,
+        5.116916669066995,
+        5.876874987734482,
+        5.818374978844076,
+        5.352750013116747
+      ],
+      "focal": false,
+      "median_ms": 5.527979170437902,
+      "sample_count": 10
+    },
+    {
+      "id": "safe_precise_algebra_256",
+      "label": "Safe math \u00b7 precise functions\n256 threads \u00b7 algebraic rewrite",
+      "values": [
+        7.573375012725592,
+        6.103416671976447,
+        5.767291673691943,
+        6.0446666611824185,
+        5.726624978706241,
+        6.170749984448776,
+        6.380583334248513,
+        7.944749988382682,
+        8.009375014808029,
+        5.634833330987021
+      ],
+      "focal": false,
+      "median_ms": 6.137083328212611,
+      "sample_count": 10
+    },
+    {
+      "id": "safe_fast_algebra_256",
+      "label": "Safe math \u00b7 fast functions\n256 threads \u00b7 algebraic rewrite",
+      "values": [
+        5.886666680453345,
+        5.898041679756716,
+        5.903500015847385,
+        6.348208320559934,
+        4.7623333521187305,
+        5.879458331037313,
+        7.118333334801719,
+        4.814291663933545,
+        4.671875009080395,
+        4.743375000543892
+      ],
+      "focal": false,
+      "median_ms": 5.883062505745329,
+      "sample_count": 10
+    },
+    {
+      "id": "fast_fast_algebra_256",
+      "label": "Fast math \u00b7 fast functions\n256 threads \u00b7 algebraic rewrite",
+      "values": [
+        5.694749997928739,
+        7.554500014521182,
+        5.776249978225678,
+        5.772041680756956,
+        4.742499993881211,
+        5.845416686497629,
+        7.758874999126419,
+        6.069916678825393,
+        6.987125001614913,
+        4.9247499846387655
+      ],
+      "focal": false,
+      "median_ms": 5.8108333323616534,
+      "sample_count": 10
+    }
+  ],
+  "focal_speedup_ratio_of_medians": 1.5758411854366672,
+  "hardware": "Apple M5 Max",
+  "n": 100000000,
+  "required_baseline": "safe_precise_trig_256",
+  "qa": {
+    "dimensions_px": [
+      1600,
+      1000
+    ],
+    "text_bounds_check": "pass",
+    "minimum_font_pt": 13.5,
+    "inferential_intervals": "none",
+    "all_raw_trials_shown": true,
+    "visual_review": "pass: full-size color, grayscale and deuteranopia",
+    "reviewed_at_utc": "2026-11-14T01:11:16.766906+00:00"
+  }
+}

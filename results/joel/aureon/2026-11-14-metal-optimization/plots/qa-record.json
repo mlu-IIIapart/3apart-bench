@@ -1,0 +1,55 @@
+{
+  "reviewed_at_utc": "2026-11-14T01:11:16.766906+00:00",
+  "skill": "scientific-visual-table-style 2.2.0",
+  "visual_spec": "visual-spec.json",
+  "dimensions": {
+    "share_png": [
+      1600,
+      1000
+    ],
+    "high_density_png": [
+      3200,
+      2000
+    ],
+    "svg": "16 x 10 in vector"
+  },
+  "programmatic_qa": {
+    "source_checks": "All source trials retained, passing full coordinate counts verified, independent serial oracle equality asserted for integrated trials. Medians derived directly from raw observations.",
+    "text_bounds": "all pass",
+    "svg_preflight": "3/3 pass",
+    "minimum_text_size_pt": 13.5,
+    "embedded_raster_nodes_in_svg": 0
+  },
+  "visual_qa": {
+    "full_color": "all three 1600x1000 final PNGs inspected",
+    "grayscale": "pass; labels/shape/weight preserve distinctions",
+    "deuteranopia": "pass; redundant position/shape/labels preserve distinctions",
+    "five_second_test": "each figure isolates one timing boundary and exposes main comparison",
+    "skeptical_reader": "Historical browser omitted; original and rewritten formulas separated; all variants shown; no inferred intervals; exact paired validator observations retained; changed output ownership stated.",
+    "hostile_editor": "No decorative cards, detached legends or redundant axis labels; no overlap/clipping found.",
+    "corrections": "Focal variant changed to production safe arithmetic/fast functions at 256 threads. Floating-point serialized medians verified within 1e-10. Separate validation and integrated charts preserve scope.",
+    "scorecard": {
+      "scientific_fidelity": 25,
+      "claim_form": 15,
+      "legibility": 15,
+      "hierarchy": 14,
+      "axes_stats": 10,
+      "chart_craft": 7,
+      "consistency": 5,
+      "accessibility": 4,
+      "export": 3,
+      "total": 98
+    }
+  },
+  "figures": [
+    "01-metal-compute",
+    "02-full-validation",
+    "03-compute-and-checking"
+  ],
+  "editable_source": "plot_benchmarks.py",
+  "dependencies": [
+    "matplotlib 3.11.2",
+    "numpy 2.5.4",
+    "Pillow 13.0.0"
+  ]
+}

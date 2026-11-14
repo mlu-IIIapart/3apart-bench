@@ -1,0 +1,102 @@
+
+> 3apart-bench@1.0.0 test
+> node --test tests/*.test.cjs && python3 -m unittest discover -s bench -p 'test_cpu_xl_e2e.py'
+
+TAP version 13
+# Subtest: failed and zero-duration series cannot become measured timings
+ok 1 - failed and zero-duration series cannot become measured timings
+  ---
+  duration_ms: 0.339584
+  type: 'test'
+  ...
+# Subtest: historical timing-only outputs are not promoted to full validation
+ok 2 - historical timing-only outputs are not promoted to full validation
+  ---
+  duration_ms: 0.081833
+  type: 'test'
+  ...
+# Subtest: sample median rejects missing samples, nonfinite and zeros
+ok 3 - sample median rejects missing samples, nonfinite and zeros
+  ---
+  duration_ms: 0.068041
+  type: 'test'
+  ...
+# Subtest: CPU full-output gate rejects a corrupt coordinate or an unvalidated cold output
+ok 4 - CPU full-output gate rejects a corrupt coordinate or an unvalidated cold output
+  ---
+  duration_ms: 1.152458
+  type: 'test'
+  ...
+# Subtest: browser and native summaries reject incomplete validation and malformed timings
+ok 5 - browser and native summaries reject incomplete validation and malformed timings
+  ---
+  duration_ms: 1.232125
+  type: 'test'
+  ...
+# {"passed":true,"controls":["Three independent cold contexts allocate/upload/draw/read retained host output, then validate 23 markers/69 coordinates including partial last tile; clocks exclude reference validation","Swapped retained tile data fails full comparison","Unwritten final retained host array remains NaN and fails finite/alpha/coordinate gates","Readback GL failure prevents successful trial and releases resources"],"normal":{"trials":3,"contexts":3,"draws":12,"full_readbacks":12,"checks":12,"deleted_textures":24}}
+# Subtest: tests/xl-cold.test.cjs
+ok 2 - tests/xl-cold.test.cjs
+  ---
+  duration_ms: 34.220667
+  type: 'test'
+  ...
+# {"passed":true,"controls":["BigInt RNG oracle at real tile boundaries and wrap","sequential input equivalence","all four draws and all four synchronizations per trial","ten independent continuous full-readback samples before validation","full coverage with partial final tile","swapped tile data rejected","all resources released"]}
+# Subtest: tests/xl-flow.test.cjs
+ok 3 - tests/xl-flow.test.cjs
+  ---
+  duration_ms: 35.588792
+  type: 'test'
+  ...
+# {
+#   "passed": true,
+#   "tests": 15,
+#   "cases": [
+#     "valid contiguous chunks and partial final buffer",
+#     "GPU NaN is rejected",
+#     "GPU Infinity is rejected",
+#     "FP64 NaN is rejected",
+#     "over-tolerance coordinate is rejected",
+#     "outside-band marker is rejected",
+#     "unwritten alpha is rejected",
+#     "incomplete output is rejected",
+#     "skipped chunk is rejected",
+#     "duplicate chunk is rejected",
+#     "short readback buffer is rejected",
+#     "band predicate uses normalized height",
+#     "tile coverage, padding, dimensions and memory budgets at row/tile boundaries",
+#     "all GL errors including the observed allocation error fail closed",
+#     "page scripts parse"
+#   ]
+# }
+# Subtest: tests/xl-support.test.cjs
+ok 4 - tests/xl-support.test.cjs
+  ---
+  duration_ms: 25.330833
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 41.490125
+......{"phase": "resident 1/3", "status": "running", "peak_rss_bytes": 37273600}
+{"phase": "resident 2/3", "status": "running", "peak_rss_bytes": 37273600}
+{"phase": "resident 3/3", "status": "running", "peak_rss_bytes": 37273600}
+{"phase": "cold pipeline 1/2", "status": "running", "peak_rss_bytes": 38469632}
+{"phase": "cold pipeline 2/2", "status": "running", "peak_rss_bytes": 38486016}
+{"phase": "complete", "status": "passed", "peak_rss_bytes": 38486016}
+usage: python3 -m unittest [-h] --machine MACHINE [--who WHO] --output OUTPUT
+                           [--markers MARKERS] [--batch-markers BATCH_MARKERS]
+                           [--warmups WARMUPS] [--runs RUNS]
+                           [--cold-runs COLD_RUNS]
+                           [--reference-chunk REFERENCE_CHUNK]
+python3 -m unittest: error: Output already exists; preserve it and choose a new path
+...
+----------------------------------------------------------------------
+Ran 9 tests in 0.037s
+
+OK

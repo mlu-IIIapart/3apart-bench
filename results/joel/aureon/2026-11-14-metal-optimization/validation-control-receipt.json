@@ -1,0 +1,16 @@
+{
+  "at_utc": "2026-11-14T01:15:02.727805+00:00",
+  "scope": "Tiny adversarial tests rerun to capture logs; no100M benchmark repeated. Existing original100M evidence copied unchanged.",
+  "controls_each": 788,
+  "normal_pass": true,
+  "asan_ubsan_pass": true,
+  "files": {
+    "tmp/optimization/validation-sanitized-controls.log": "d4411cf6383df3e21737913bcb836901bea7609ee59f24aa3b8976168ae75fa8",
+    "tmp/optimization/validation-control-commands.txt": "380688a43df50d1f0c0ae85d160f324bc8f97f57efc36f44484d1294a2b23e21",
+    "tmp/optimization/validation-100m-paired.json": "61390ad659efba4eed79fac9006761959c0ccf200fe962c14c3f378b28a890b8",
+    "tmp/optimization/validation-sanitized-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/optimization/validation-results.json": "61390ad659efba4eed79fac9006761959c0ccf200fe962c14c3f378b28a890b8",
+    "tmp/optimization/validation-normal-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/optimization/validation-normal-controls.log": "d4411cf6383df3e21737913bcb836901bea7609ee59f24aa3b8976168ae75fa8"
+  }
+}

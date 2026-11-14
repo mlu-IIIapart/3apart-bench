@@ -1,0 +1,103 @@
+{
+  "source": "/Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/optimization/integrated-results.json",
+  "sha256": "eb6516066a36de655e0548d89c75c86b9472d9475d7f08fdcf2781b66dd8f416",
+  "metric": "compute_output_and_validation_ms",
+  "unit": "ms",
+  "aggregation": "median",
+  "direction": "lower",
+  "rows": [
+    {
+      "id": "baseline_copy_serial",
+      "label": "Precise functions\nCopy + serial checks",
+      "values": [
+        425.365917,
+        426.742167,
+        426.83975,
+        426.073625,
+        428.049833,
+        429.183208,
+        431.008417,
+        428.048125,
+        431.555833,
+        425.773583
+      ],
+      "focal": false,
+      "median_ms": 427.4439375,
+      "sample_count": 10
+    },
+    {
+      "id": "fast_intrinsics_copy_serial",
+      "label": "Fast functions\nCopy + serial checks",
+      "values": [
+        425.802209,
+        422.236,
+        431.848666,
+        424.620209,
+        423.457459,
+        423.5715,
+        425.742834,
+        423.795584,
+        422.183542,
+        426.209334
+      ],
+      "focal": false,
+      "median_ms": 424.2078965,
+      "sample_count": 10
+    },
+    {
+      "id": "baseline_direct_parallel",
+      "label": "Precise functions\nShared output + 18-worker checks",
+      "values": [
+        54.498167,
+        32.877375,
+        33.247042,
+        33.467667,
+        33.822458,
+        35.187958,
+        36.5355,
+        33.203,
+        32.89975,
+        33.5265
+      ],
+      "focal": false,
+      "median_ms": 33.4970835,
+      "sample_count": 10
+    },
+    {
+      "id": "fast_intrinsics_direct_parallel",
+      "label": "Fast functions\nShared output + 18-worker checks",
+      "values": [
+        31.121375,
+        30.165959,
+        30.393667,
+        31.404833,
+        31.2615,
+        31.06475,
+        31.961541,
+        33.978708,
+        29.439292,
+        32.197667
+      ],
+      "focal": true,
+      "median_ms": 31.1914375,
+      "sample_count": 10
+    }
+  ],
+  "speedup_ratio_of_medians": 13.70388708439616,
+  "hardware": "Apple M5 Max",
+  "n": 100000000,
+  "output_endpoint_caveat": "Direct shared output avoids a separate owned copy; copy variants create that copy.",
+  "all_checker_fields_equal_serial_oracle": true,
+  "qa": {
+    "dimensions_px": [
+      1600,
+      1000
+    ],
+    "text_bounds_check": "pass",
+    "minimum_font_pt": 13.5,
+    "inferential_intervals": "none",
+    "all_raw_trials_shown": true,
+    "visual_review": "pass: full-size color, grayscale and deuteranopia",
+    "reviewed_at_utc": "2026-11-14T01:11:16.766906+00:00"
+  }
+}

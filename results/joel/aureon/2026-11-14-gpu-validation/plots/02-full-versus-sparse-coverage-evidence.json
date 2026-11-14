@@ -1,0 +1,93 @@
+{
+  "source": "/Users/jthor/Github/3apart-bench-aureon-xl/tmp/gpu-validation/100m-results-published.json",
+  "sha256": "284ff201c0efcb848957d17a453b63e3b6714b69d098bd807898eda10d91af8a",
+  "metric": "compute_and_validation_ms",
+  "unit": "ms",
+  "aggregation": "median of10trials",
+  "direction": "lower",
+  "rows": [
+    {
+      "id": "full_cpu",
+      "label": "CPU full check \u00b7 18 workers\n100% marker coverage",
+      "values": [
+        31.93,
+        37.884333,
+        34.985375,
+        35.554667,
+        32.297542,
+        36.549083,
+        29.623667,
+        29.418166,
+        30.787708,
+        30.36575
+      ],
+      "focal": false,
+      "median_ms": 32.113771,
+      "sample_count": 10
+    },
+    {
+      "id": "full_gpu_comparison_exact_cpu_revalidation",
+      "label": "GPU cache \u00b7 unchanged output\n100% marker coverage",
+      "values": [
+        13.49175,
+        12.4125,
+        19.236208,
+        11.895375,
+        11.588375,
+        18.271,
+        13.075208,
+        19.150667,
+        12.096375,
+        19.440416
+      ],
+      "focal": true,
+      "median_ms": 13.283479,
+      "sample_count": 10
+    },
+    {
+      "id": "sparse_cpu",
+      "label": "Sparse CPU diagnostic\n0.065536% marker coverage",
+      "values": [
+        10.388375,
+        10.589541,
+        10.312708,
+        8.433667,
+        8.932458,
+        7.678333,
+        9.066375,
+        8.433041,
+        8.848333,
+        8.833792
+      ],
+      "focal": false,
+      "median_ms": 8.8903955,
+      "sample_count": 10
+    }
+  ],
+  "hardware": "Apple M5 Max",
+  "n": 100000000,
+  "sparse_checked_markers": 65536,
+  "sparse_checked_fraction": 0.00065536,
+  "coverage_caveat": "Sparse does not certify unchecked markers; its full serial audit is outside the timer.",
+  "timing_scope": [
+    "Full GPU mode compares every output bit to a complete CPU-certified snapshot; exact original CPU checks recalculate changed blocks. It does not perform FP64 arithmetic on the GPU.",
+    "Context owns reference/layers/edges. Initial certification and all-changed paths are reported separately. Unchanged deterministic outputs are the favorable reuse case.",
+    "Sparse is explicit reduced coverage and cannot certify unchecked coordinates. No finite sample proves all possible inputs.",
+    "All measured full results are independently compared bit-for-bit to the serial oracle outside the reported timer. Sparse timed outputs also receive an independent full serial audit outside that timer.",
+    "Input loading, context setup/allocation, sample planning and independent serial audit are excluded from repeated trial clocks. Initial setup and sample planning have separate clocks.",
+    "Changed-output mutations occur before the checker-only timer; the GPU compare/copy, completion fence, exact CPU rechecks and reduction are included."
+  ],
+  "qa": {
+    "dimensions_px": [
+      1600,
+      1000
+    ],
+    "text_bounds_check": "pass",
+    "minimum_font_pt": 13.5,
+    "inferential_intervals": "none",
+    "all_raw_trials_shown": true,
+    "visual_review": "pass:1600x1000 color,grayscale anddeuteranopia",
+    "raw_observation_axis_bounds": "all pass",
+    "reviewed_at_utc": "2026-11-14T01:37:25.857368+00:00"
+  }
+}
