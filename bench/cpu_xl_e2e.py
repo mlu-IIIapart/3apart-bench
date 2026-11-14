@@ -115,7 +115,7 @@ def validate_output(layer, times, values, output, ranges, chunk=MAX_REFERENCE_CH
     if times.shape != (n,) or values.shape != (n,) or output.shape != (n, 3):
         raise ValueError("Input/output shape mismatch")
     if not 1 <= chunk <= MAX_REFERENCE_CHUNK:
-        raise ValueError("Reference chunks must contain between1 and1M markers")
+        raise ValueError("Reference chunks must contain between 1 and 1M markers")
     counters = dict(markers_checked=0, xyz_coordinates_checked=0,
                     nonfinite_inputs=0, invalid_input_markers=0,
                     nonfinite_output_coordinates=0, nonfinite_reference_coordinates=0,
@@ -224,7 +224,7 @@ def benchmark(args, record, checkpoint):
             "output_allocation_and_initialization_ms": (allocated - generated) / 1e6,
             "placement_and_complete_output_materialization_ms": (completed - allocated) / 1e6,
             "coverage_ranges": [list(x) for x in coverage]}
-        # The recorded E2E clock ends only after all100M output rows exist in RAM.
+        # The recorded E2E clock ends only after all 100M output rows exist in RAM.
         item["validation"] = timed_validation(layer, times, values, output, coverage, args.reference_chunk)
         record["cold_pipelines"].append(item)
         checkpoint(f"cold pipeline {trial + 1}/{args.cold_runs}")
@@ -248,7 +248,7 @@ def main(argv=None):
     if min(args.markers, args.batch_markers, args.runs, args.cold_runs) < 1 or args.warmups < 0:
         parser.error("Counts must be positive (warmups may be zero)")
     if not 1 <= args.reference_chunk <= MAX_REFERENCE_CHUNK:
-        parser.error("Reference chunk must be1..1000000")
+        parser.error("Reference chunk must be 1..1000000")
     if args.output.exists():
         parser.error("Output already exists; preserve it and choose a new path")
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -273,10 +273,10 @@ def main(argv=None):
         "scope": {
             "resident": "Original inputs and complete output allocation persist. Timed unchanged E.place calls plus batch output copies and coverage accounting. Sentinel clearing, setup and validation excluded.",
             "cold": "Three independent application pipelines by default: continuous perf_counter_ns from original E.inputs generation through output allocation/NaN initialization and complete batch placement/materialization. No stage-median summation. Cold means new arrays, not OS/filesystem cache eviction or process restart.",
-            "validation": "Every XYZ coordinate of final resident output and each cold output, outside timing. Independent FP64 algebraic formula, bounded1M chunks, finite/band/coverage gates. Every timed resident output is not independently validated.",
+            "validation": "Every XYZ coordinate of final resident output and each cold output, outside timing. Independent FP64 algebraic formula, bounded 1M chunks, finite/band/coverage gates. Every timed resident output is not independently validated.",
             "excluded": "Imports, process startup, input/output files, network, reference validation and result serialization. No GPU transfer, detector scoring or alerts are involved.",
             "peak_rss": "Process lifetime high-water RSS including Python/NumPy and validation; not incremental allocation or instantaneous memory.",
-            "parallelism": "Requested numerical-library threads1; no affinity or exclusive-machine claim.",
+            "parallelism": "Requested numerical-library threads 1; no affinity or exclusive-machine claim.",
         },
         "peak_rss_bytes": peak_rss_bytes(),
     }

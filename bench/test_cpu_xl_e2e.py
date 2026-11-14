@@ -42,7 +42,7 @@ class FullOutputControls(unittest.TestCase):
         self.assertGreater(result["coordinates_over_tolerance"], 0)
 
     def test_wrong_global_offset_rejected(self):
-        # A batch that resets to marker0 can be finite and in valid bands.
+        # A batch that resets to marker 0 can be finite and in valid bands.
         # The full global-input oracle must still reject the misplaced rows.
         self.output[13:26] = self.output[:13]
         result = self.check()
