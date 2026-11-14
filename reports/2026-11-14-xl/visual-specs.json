@@ -1,0 +1,236 @@
+{
+  "100m-timing-scopes": {
+    "claim": "The repaired 100M WebGL workload completes and passes full output checks; resident placement, output retrieval and fresh-buffer pipelines expose different costs.",
+    "audience": "technical-generalist",
+    "visual_form": "table_plus_chart",
+    "metric": {
+      "name": "Wall-clock duration",
+      "unit": "ms",
+      "direction": "lower",
+      "aggregation": "Median, observed minimum\u2013maximum, all individual samples shown; no confidence interval",
+      "denominator": "100 million sphere markers; 300 million XYZ coordinates",
+      "precision_decimals": 2,
+      "scale": "log10"
+    },
+    "focal_series": "GPU",
+    "required_baselines": [
+      "Original FP64 NumPy",
+      "Native FP32 CPU single and multicore",
+      "Native Metal FP32",
+      "WebGL FP32"
+    ],
+    "series_order": [
+      "Lorium M4 \u00b7 NumPy FP64",
+      "Lorium M4 \u00b7 CPU 1 FP32",
+      "Lorium M4 \u00b7 CPU 16 FP32",
+      "Lorium M4 \u00b7 WebGL FP32",
+      "Lorium M4 \u00b7 Metal FP32",
+      "Aureon M5 \u00b7 NumPy FP64",
+      "Aureon M5 \u00b7 CPU 1 FP32",
+      "Aureon M5 \u00b7 CPU 18 FP32",
+      "Aureon M5 \u00b7 WebGL FP32",
+      "Aureon M5 \u00b7 Metal FP32",
+      "Lorium M4 \u00b7 WebGL streamed",
+      "Lorium M4 \u00b7 Metal retained XYZ",
+      "Aureon M5 \u00b7 WebGL streamed",
+      "Aureon M5 \u00b7 Metal retained XYZ"
+    ],
+    "category_order": [
+      "Resident placement",
+      "Resident GPU placement through host output",
+      "Fresh generation through complete retained output"
+    ],
+    "ordering_rationale": "semantic_group",
+    "uncertainty": {
+      "available": true,
+      "type": "raw_points",
+      "sample_or_seed_count": null,
+      "note": "Each row states n. Intervals are the observed sample range, not a confidence interval."
+    },
+    "target": {
+      "medium": "web",
+      "width": 1200,
+      "height": 1100,
+      "unit": "px",
+      "minimum_text_size_pt": 10,
+      "background": "white"
+    },
+    "table_rules": {
+      "show_actual_values": true,
+      "show_deltas": false,
+      "numeric_alignment": "right",
+      "best_value_emphasis": "none",
+      "missing_symbol": "\u2014"
+    },
+    "selected_reference_ids": [
+      "OAI-VIS-001",
+      "OAI-VIS-004",
+      "OAI-VIS-002",
+      "OAI-VIS-166",
+      "OAI-VIS-182"
+    ],
+    "output_formats": [
+      "svg",
+      "png",
+      "html"
+    ],
+    "caption_requirements": [
+      "task",
+      "sample",
+      "estimator",
+      "uncertainty",
+      "exclusions",
+      "metric_direction",
+      "latency_basis"
+    ]
+  },
+  "historical-native-10m": {
+    "claim": "Single-core, multicore and Metal resident placement have separately validated native baselines.",
+    "audience": "technical-generalist",
+    "visual_form": "table_plus_chart",
+    "metric": {
+      "name": "Resident placement wall-clock duration",
+      "unit": "ms",
+      "direction": "lower",
+      "aggregation": "Median, observed minimum\u2013maximum, all individual samples shown; no confidence interval",
+      "denominator": "10 million sphere markers",
+      "precision_decimals": 2,
+      "scale": "log10"
+    },
+    "focal_series": "GPU",
+    "required_baselines": [
+      "Native FP32 single-core",
+      "Native FP32 multicore",
+      "Native Metal FP32"
+    ],
+    "series_order": [
+      "CPU \u00b7 1 worker",
+      "CPU \u00b7 16 workers",
+      "Metal GPU \u00b7 resident",
+      "CPU \u00b7 18 workers"
+    ],
+    "category_order": [
+      "Lorium \u00b7 Apple M4 Max",
+      "Aureon \u00b7 Apple M5 Max"
+    ],
+    "ordering_rationale": "semantic_group",
+    "uncertainty": {
+      "available": true,
+      "type": "raw_points",
+      "sample_or_seed_count": null,
+      "note": "Each row states n. Intervals are the observed sample range, not a confidence interval."
+    },
+    "target": {
+      "medium": "web",
+      "width": 1200,
+      "height": 800,
+      "unit": "px",
+      "minimum_text_size_pt": 10,
+      "background": "white"
+    },
+    "table_rules": {
+      "show_actual_values": true,
+      "show_deltas": false,
+      "numeric_alignment": "right",
+      "best_value_emphasis": "none",
+      "missing_symbol": "\u2014"
+    },
+    "selected_reference_ids": [
+      "OAI-VIS-001",
+      "OAI-VIS-004",
+      "OAI-VIS-002",
+      "OAI-VIS-166",
+      "OAI-VIS-182"
+    ],
+    "output_formats": [
+      "svg",
+      "png",
+      "html"
+    ],
+    "caption_requirements": [
+      "task",
+      "sample",
+      "estimator",
+      "uncertainty",
+      "exclusions",
+      "metric_direction",
+      "latency_basis"
+    ]
+  },
+  "historical-raw-detector": {
+    "claim": "Raw-data recomputation, incremental CPU, Rust and Metal are preserved within the same frozen detector workload.",
+    "audience": "technical-generalist",
+    "visual_form": "table_plus_chart",
+    "metric": {
+      "name": "Batch wall-clock latency",
+      "unit": "\u00b5s",
+      "direction": "lower",
+      "aggregation": "Median of 5 trial medians; range is min/max trial median; median p95 across 5 trials; all runs retained",
+      "denominator": "One batch of 1,024 synthetic patient histories, tiled from 500 test histories",
+      "precision_decimals": 2,
+      "scale": "linear"
+    },
+    "focal_series": "GPU",
+    "required_baselines": [
+      "Raw-window FP64 full recomputation",
+      "C++ full/incremental",
+      "Rust incremental",
+      "Metal incremental"
+    ],
+    "series_order": [
+      "NumPy full \u00b7 FP64",
+      "CPU full \u00b7 1 worker",
+      "CPU incremental \u00b7 1 worker",
+      "CPU incremental \u00b7 8 workers",
+      "Rust incremental \u00b7 1 worker",
+      "Metal incremental"
+    ],
+    "category_order": [
+      "Lorium \u00b7 Apple M4 Max",
+      "Aureon \u00b7 Apple M5 Max"
+    ],
+    "ordering_rationale": "semantic_group",
+    "uncertainty": {
+      "available": true,
+      "type": "raw_points",
+      "sample_or_seed_count": null,
+      "note": "Five trial medians per row, not five individual batch observations. Observed range is not a confidence interval."
+    },
+    "target": {
+      "medium": "web",
+      "width": 1200,
+      "height": 1050,
+      "unit": "px",
+      "minimum_text_size_pt": 10,
+      "background": "white"
+    },
+    "table_rules": {
+      "show_actual_values": true,
+      "show_deltas": false,
+      "numeric_alignment": "right",
+      "best_value_emphasis": "none",
+      "missing_symbol": "\u2014"
+    },
+    "selected_reference_ids": [
+      "OAI-VIS-001",
+      "OAI-VIS-004",
+      "OAI-VIS-002",
+      "OAI-VIS-166",
+      "OAI-VIS-182"
+    ],
+    "output_formats": [
+      "svg",
+      "png",
+      "html"
+    ],
+    "caption_requirements": [
+      "task",
+      "sample",
+      "estimator",
+      "uncertainty",
+      "exclusions",
+      "metric_direction",
+      "latency_basis"
+    ]
+  }
+}

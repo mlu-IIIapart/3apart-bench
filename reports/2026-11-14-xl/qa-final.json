@@ -1,0 +1,102 @@
+{
+  "reviewed_at_utc": "2026-11-14T01:05:42.377336+00:00",
+  "status": "passed",
+  "reviewer": "baseline_intake agent; root independently inspected main final-size figure",
+  "final_color_and_grayscale_inspected": [
+    "100m-timing-scopes",
+    "historical-native-10m",
+    "historical-raw-detector"
+  ],
+  "source_hash_and_value_checks": {
+    "passed": true,
+    "sources": 10,
+    "figures": 3,
+    "rows": 36,
+    "all_raw_samples_retained": true,
+    "median_range_count_recomputed_from_raw": true
+  },
+  "visual_spec_schema": "jsonschema unavailable; required schema fields manually checked",
+  "programmatic_preflight": "All six SVG/2x-PNG exports passed geometry/font/raster gates. SVGs contain no embedded raster. Generic300dpi manuscript preference recorded as inapplicable to200dpi2x web exports.",
+  "manual_checks": {
+    "labels_and_exact_values_readable": true,
+    "no_clipping_or_overlap": true,
+    "scope_groups_unambiguous": true,
+    "raw_ranges_not_mislabeled_as_confidence_intervals": true,
+    "grayscale_retains_marker_shape_and_direct_labels": true,
+    "historical_workloads_separate": true,
+    "precision_output_format_and_provenance_limits_visible": true
+  },
+  "corrections": [
+    "Added native M5 executable-provenance gap to main caption and README.",
+    "Used fixed18px note spacing to keep enlarged100M panel readable.",
+    "Kept actual values and all raw trials; no ratios or fabricated uncertainty.",
+    "Removed Matplotlib SVG trailing line whitespace; XML semantics and all PNG bytes are unchanged.",
+    "Changed CSV record endings from CRLF to LF; parsed values and rows are unchanged."
+  ],
+  "font": "Arial; semibold requested and resolved to700 bold for headings; body10\u201311pt",
+  "limitations": [
+    "No source result implies clinical or trading efficacy.",
+    "No angular-order or physics guarantee.",
+    "M5 native executable build chain incomplete despite passing numerical validation.",
+    "Observed desktop timing variability and readback gap do not establish a chip ranking."
+  ],
+  "private_absolute_paths_found": [],
+  "figures": {
+    "100m-timing-scopes": {
+      "svg": "283c302b97cc472551a3e7f6e29b6211d3e342e0ebdebfa94743df181abf2578",
+      "png": "3a68626139bdf8a11acacdcf2f1684e2c56de1aef76b02492e8f12bbc5f9ef33"
+    },
+    "historical-native-10m": {
+      "svg": "97c20c375d9fc08d00223c94e472fcc3eaa234ec0704ebae9cc02d609b31cfe5",
+      "png": "4b23bbffd7657b046eba003646bc54a78564fdea10fd4dd66fc6cd276994312b"
+    },
+    "historical-raw-detector": {
+      "svg": "735cb0b3f1b1bd7b096f0aa7c95cadd625ab1ef1fc9d4a773f878b98788f74f1",
+      "png": "085aa1e35c7b6910a7789d731180abc9a738a172d01aa6c55be7439de62265c2"
+    }
+  },
+  "render_script_sha256": "6c36a9c9c95509f7a61a1284343313c6ac32049daf29c4b6238bc0719b3ad834",
+  "manifest_sha256": "236fc30268e3d63cc064d256f697012f67cc947e49ad5c155d4c85c657af2438",
+  "svg_serialization_normalization": {
+    "at_utc": "2026-11-14T01:07:30.529181+00:00",
+    "initial_render_script_sha256": "312a22585785307f92d3f039c4cd6edd6cb04d63c277b33ac5926e0b2e893f5d",
+    "method": "Renderer normalize_svg removes only trailing ASCII spaces and tabs from each SVG line. Parsed XML tag, attributes, text and tail are identical after whitespace collapse.",
+    "png_files_byte_identical": true,
+    "png_files_checked": 9,
+    "files": {
+      "historical-native-10m.svg": {
+        "old_sha256": "e04308ba573fde278d2438a5d2f99a950ac077db2f8c7f65c5ceecccd2871a48",
+        "new_sha256": "97c20c375d9fc08d00223c94e472fcc3eaa234ec0704ebae9cc02d609b31cfe5",
+        "old_bytes": 37490,
+        "new_bytes": 37433,
+        "xml_elements_checked": 353,
+        "whitespace_collapsed_tag_attributes_text_tail_identical": true
+      },
+      "100m-timing-scopes.svg": {
+        "old_sha256": "1055460a68df1502199b5f051e4ccdf3a099da737fb258e8e22249a00ae70363",
+        "new_sha256": "283c302b97cc472551a3e7f6e29b6211d3e342e0ebdebfa94743df181abf2578",
+        "old_bytes": 49265,
+        "new_bytes": 49182,
+        "xml_elements_checked": 505,
+        "whitespace_collapsed_tag_attributes_text_tail_identical": true
+      },
+      "historical-raw-detector.svg": {
+        "old_sha256": "c3f1b1df09b58fc0000d3729edb3e2ab92cd33198d96083e51b8e349b291bbde",
+        "new_sha256": "735cb0b3f1b1bd7b096f0aa7c95cadd625ab1ef1fc9d4a773f878b98788f74f1",
+        "old_bytes": 29848,
+        "new_bytes": 29777,
+        "xml_elements_checked": 321,
+        "whitespace_collapsed_tag_attributes_text_tail_identical": true
+      }
+    }
+  },
+  "csv_serialization_normalization": {
+    "at_utc": "2026-11-14T01:08:48.693080+00:00",
+    "method": "CSV writer uses LF lineterminator; existing CRLF record endings converted to LF. Parsed CSV rows remain exactly identical.",
+    "prior_renderer_sha256": "1941b59e32b37352239a7ae08516011f4de8c8406b3b26d5c50203a236edb2fa",
+    "old_sha256": "2227b61577c63f915bde31ba91649c37eb3aeab92adc6a3941a20cecfe94877e",
+    "new_sha256": "6e5b8639637e720cd0e1a028b3d1a1f3ece8a55f5a859c5238844b4cd90338a5",
+    "rows_including_header": 37,
+    "parsed_rows_identical": true
+  }
+}

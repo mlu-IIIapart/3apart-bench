@@ -395,6 +395,7 @@ footer { padding-block: 48px 64px; color: var(--ink-3); font-size: 13px; border-
 <script>/*! d3-force-3d 3.0.6 · MIT License · Copyright (c) 2017 Vasco Asturiano */
 var d3f=(()=>{var J=Object.defineProperty;var an=Object.getOwnPropertyDescriptor;var sn=Object.getOwnPropertyNames;var un=Object.prototype.hasOwnProperty;var hn=(t,n)=>{for(var e in n)J(t,e,{get:n[e],enumerable:!0})},ln=(t,n,e,i)=>{if(n&&typeof n=="object"||typeof n=="function")for(let r of sn(n))!un.call(t,r)&&r!==e&&J(t,r,{get:()=>n[r],enumerable:!(i=an(n,r))||i.enumerable});return t};var cn=t=>ln(J({},"__esModule",{value:!0}),t);var Bn={};hn(Bn,{forceLink:()=>nt,forceManyBody:()=>st,forceRadial:()=>ut,forceSimulation:()=>at,forceZ:()=>ht});function ct(t){let n=+this._x.call(null,t);return pt(this.cover(n),n,t)}function pt(t,n,e){if(isNaN(n))return t;var i,r=t._root,o={data:e},f=t._x0,a=t._x1,s,l,c,h,_;if(!r)return t._root=o,t;for(;r.length;)if((c=n>=(s=(f+a)/2))?f=s:a=s,i=r,!(r=r[h=+c]))return i[h]=o,t;if(l=+t._x.call(null,r.data),n===l)return o.next=r,i?i[h]=o:t._root=o,t;do i=i?i[h]=new Array(2):t._root=new Array(2),(c=n>=(s=(f+a)/2))?f=s:a=s;while((h=+c)==(_=+(l>=s)));return i[_]=r,i[h]=o,t}function _t(t){Array.isArray(t)||(t=Array.from(t));let n=t.length,e=new Float64Array(n),i=1/0,r=-1/0;for(let o=0,f;o<n;++o)isNaN(f=+this._x.call(null,t[o]))||(e[o]=f,f<i&&(i=f),f>r&&(r=f));if(i>r)return this;this.cover(i).cover(r);for(let o=0;o<n;++o)pt(this,e[o],t[o]);return this}function xt(t){if(isNaN(t=+t))return this;var n=this._x0,e=this._x1;if(isNaN(n))e=(n=Math.floor(t))+1;else{for(var i=e-n||1,r=this._root,o,f;n>t||t>=e;)switch(f=+(t<n),o=new Array(2),o[f]=r,r=o,i*=2,f){case 0:e=n+i;break;case 1:n=e-i;break}this._root&&this._root.length&&(this._root=r)}return this._x0=n,this._x1=e,this}function vt(){var t=[];return this.visit(function(n){if(!n.length)do t.push(n.data);while(n=n.next)}),t}function gt(t){return arguments.length?this.cover(+t[0][0]).cover(+t[1][0]):isNaN(this._x0)?void 0:[[this._x0],[this._x1]]}function O(t,n,e){this.node=t,this.x0=n,this.x1=e}function wt(t,n){var e,i=this._x0,r,o,f=this._x1,a=[],s=this._root,l,c;for(s&&a.push(new O(s,i,f)),n==null?n=1/0:(i=t-n,f=t+n);l=a.pop();)if(!(!(s=l.node)||(r=l.x0)>f||(o=l.x1)<i))if(s.length){var h=(r+o)/2;a.push(new O(s[1],h,o),new O(s[0],r,h)),(c=+(t>=h))&&(l=a[a.length-1],a[a.length-1]=a[a.length-1-c],a[a.length-1-c]=l)}else{var _=Math.abs(t-+this._x.call(null,s.data));_<n&&(n=_,i=t-_,f=t+_,e=s.data)}return e}function yt(t){if(isNaN(s=+this._x.call(null,t)))return this;var n,e=this._root,i,r,o,f=this._x0,a=this._x1,s,l,c,h,_;if(!e)return this;if(e.length)for(;;){if((c=s>=(l=(f+a)/2))?f=l:a=l,n=e,!(e=e[h=+c]))return this;if(!e.length)break;n[h+1&1]&&(i=n,_=h)}for(;e.data!==t;)if(r=e,!(e=e.next))return this;return(o=e.next)&&delete e.next,r?(o?r.next=o:delete r.next,this):n?(o?n[h]=o:delete n[h],(e=n[0]||n[1])&&e===(n[1]||n[0])&&!e.length&&(i?i[_]=e:this._root=e),this):(this._root=o,this)}function mt(t){for(var n=0,e=t.length;n<e;++n)this.remove(t[n]);return this}function dt(){return this._root}function Nt(){var t=0;return this.visit(function(n){if(!n.length)do++t;while(n=n.next)}),t}function At(t){var n=[],e,i=this._root,r,o,f;for(i&&n.push(new O(i,this._x0,this._x1));e=n.pop();)if(!t(i=e.node,o=e.x0,f=e.x1)&&i.length){var a=(o+f)/2;(r=i[1])&&n.push(new O(r,a,f)),(r=i[0])&&n.push(new O(r,o,a))}return this}function zt(t){var n=[],e=[],i;for(this._root&&n.push(new O(this._root,this._x0,this._x1));i=n.pop();){var r=i.node;if(r.length){var o,f=i.x0,a=i.x1,s=(f+a)/2;(o=r[0])&&n.push(new O(o,f,s)),(o=r[1])&&n.push(new O(o,s,a))}e.push(i)}for(;i=e.pop();)t(i.node,i.x0,i.x1);return this}function Mt(t){return t[0]}function qt(t){return arguments.length?(this._x=t,this):this._x}function X(t,n){var e=new K(n??Mt,NaN,NaN);return t==null?e:e.addAll(t)}function K(t,n,e){this._x=t,this._x0=n,this._x1=e,this._root=void 0}function bt(t){for(var n={data:t.data},e=n;t=t.next;)e=e.next={data:t.data};return n}var E=X.prototype=K.prototype;E.copy=function(){var t=new K(this._x,this._x0,this._x1),n=this._root,e,i;if(!n)return t;if(!n.length)return t._root=bt(n),t;for(e=[{source:n,target:t._root=new Array(2)}];n=e.pop();)for(var r=0;r<2;++r)(i=n.source[r])&&(i.length?e.push({source:i,target:n.target[r]=new Array(2)}):n.target[r]=bt(i));return t};E.add=ct;E.addAll=_t;E.cover=xt;E.data=vt;E.extent=gt;E.find=wt;E.remove=yt;E.removeAll=mt;E.root=dt;E.size=Nt;E.visit=At;E.visitAfter=zt;E.x=qt;function pn(t){let n=+this._x.call(null,t),e=+this._y.call(null,t);return kt(this.cover(n,e),n,e,t)}function kt(t,n,e,i){if(isNaN(n)||isNaN(e))return t;var r,o=t._root,f={data:i},a=t._x0,s=t._y0,l=t._x1,c=t._y1,h,_,x,p,d,g,u,y;if(!o)return t._root=f,t;for(;o.length;)if((d=n>=(h=(a+l)/2))?a=h:l=h,(g=e>=(_=(s+c)/2))?s=_:c=_,r=o,!(o=o[u=g<<1|d]))return r[u]=f,t;if(x=+t._x.call(null,o.data),p=+t._y.call(null,o.data),n===x&&e===p)return f.next=o,r?r[u]=f:t._root=f,t;do r=r?r[u]=new Array(4):t._root=new Array(4),(d=n>=(h=(a+l)/2))?a=h:l=h,(g=e>=(_=(s+c)/2))?s=_:c=_;while((u=g<<1|d)===(y=(p>=_)<<1|x>=h));return r[y]=o,r[u]=f,t}function _n(t){Array.isArray(t)||(t=Array.from(t));let n=t.length,e=new Float64Array(n),i=new Float64Array(n),r=1/0,o=r,f=-r,a=f;for(let s=0,l,c,h;s<n;++s){if(isNaN(c=+this._x.call(null,l=t[s]))||isNaN(h=+this._y.call(null,l))){e[s]=NaN;continue}e[s]=c,i[s]=h,c<r&&(r=c),c>f&&(f=c),h<o&&(o=h),h>a&&(a=h)}if(r>f||o>a)return this;this.cover(r,o).cover(f,a);for(let s=0;s<n;++s)kt(this,e[s],i[s],t[s]);return this}function xn(t,n){if(isNaN(t=+t)||isNaN(n=+n))return this;var e=this._x0,i=this._y0,r=this._x1,o=this._y1;if(isNaN(e))r=(e=Math.floor(t))+1,o=(i=Math.floor(n))+1;else{for(var f=r-e||1,a=this._root,s,l;e>t||t>=r||i>n||n>=o;)switch(l=(n<i)<<1|t<e,s=new Array(4),s[l]=a,a=s,f*=2,l){case 0:r=e+f,o=i+f;break;case 1:e=r-f,o=i+f;break;case 2:r=e+f,i=o-f;break;case 3:e=r-f,i=o-f;break}this._root&&this._root.length&&(this._root=a)}return this._x0=e,this._y0=i,this._x1=r,this._y1=o,this}function vn(){var t=[];return this.visit(function(n){if(!n.length)do t.push(n.data);while(n=n.next)}),t}function gn(t){return arguments.length?this.cover(+t[0][0],+t[0][1]).cover(+t[1][0],+t[1][1]):isNaN(this._x0)?void 0:[[this._x0,this._y0],[this._x1,this._y1]]}function k(t,n,e,i,r){this.node=t,this.x0=n,this.y0=e,this.x1=i,this.y1=r}function wn(t,n,e){var i,r=this._x0,o=this._y0,f,a,s,l,c=this._x1,h=this._y1,_=[],x=this._root,p,d;for(x&&_.push(new k(x,r,o,c,h)),e==null?e=1/0:(r=t-e,o=n-e,c=t+e,h=n+e,e*=e);p=_.pop();)if(!(!(x=p.node)||(f=p.x0)>c||(a=p.y0)>h||(s=p.x1)<r||(l=p.y1)<o))if(x.length){var g=(f+s)/2,u=(a+l)/2;_.push(new k(x[3],g,u,s,l),new k(x[2],f,u,g,l),new k(x[1],g,a,s,u),new k(x[0],f,a,g,u)),(d=(n>=u)<<1|t>=g)&&(p=_[_.length-1],_[_.length-1]=_[_.length-1-d],_[_.length-1-d]=p)}else{var y=t-+this._x.call(null,x.data),w=n-+this._y.call(null,x.data),m=y*y+w*w;if(m<e){var v=Math.sqrt(e=m);r=t-v,o=n-v,c=t+v,h=n+v,i=x.data}}return i}function yn(t){if(isNaN(c=+this._x.call(null,t))||isNaN(h=+this._y.call(null,t)))return this;var n,e=this._root,i,r,o,f=this._x0,a=this._y0,s=this._x1,l=this._y1,c,h,_,x,p,d,g,u;if(!e)return this;if(e.length)for(;;){if((p=c>=(_=(f+s)/2))?f=_:s=_,(d=h>=(x=(a+l)/2))?a=x:l=x,n=e,!(e=e[g=d<<1|p]))return this;if(!e.length)break;(n[g+1&3]||n[g+2&3]||n[g+3&3])&&(i=n,u=g)}for(;e.data!==t;)if(r=e,!(e=e.next))return this;return(o=e.next)&&delete e.next,r?(o?r.next=o:delete r.next,this):n?(o?n[g]=o:delete n[g],(e=n[0]||n[1]||n[2]||n[3])&&e===(n[3]||n[2]||n[1]||n[0])&&!e.length&&(i?i[u]=e:this._root=e),this):(this._root=o,this)}function mn(t){for(var n=0,e=t.length;n<e;++n)this.remove(t[n]);return this}function dn(){return this._root}function Nn(){var t=0;return this.visit(function(n){if(!n.length)do++t;while(n=n.next)}),t}function An(t){var n=[],e,i=this._root,r,o,f,a,s;for(i&&n.push(new k(i,this._x0,this._y0,this._x1,this._y1));e=n.pop();)if(!t(i=e.node,o=e.x0,f=e.y0,a=e.x1,s=e.y1)&&i.length){var l=(o+a)/2,c=(f+s)/2;(r=i[3])&&n.push(new k(r,l,c,a,s)),(r=i[2])&&n.push(new k(r,o,c,l,s)),(r=i[1])&&n.push(new k(r,l,f,a,c)),(r=i[0])&&n.push(new k(r,o,f,l,c))}return this}function zn(t){var n=[],e=[],i;for(this._root&&n.push(new k(this._root,this._x0,this._y0,this._x1,this._y1));i=n.pop();){var r=i.node;if(r.length){var o,f=i.x0,a=i.y0,s=i.x1,l=i.y1,c=(f+s)/2,h=(a+l)/2;(o=r[0])&&n.push(new k(o,f,a,c,h)),(o=r[1])&&n.push(new k(o,c,a,s,h)),(o=r[2])&&n.push(new k(o,f,h,c,l)),(o=r[3])&&n.push(new k(o,c,h,s,l))}e.push(i)}for(;i=e.pop();)t(i.node,i.x0,i.y0,i.x1,i.y1);return this}function Mn(t){return t[0]}function qn(t){return arguments.length?(this._x=t,this):this._x}function bn(t){return t[1]}function In(t){return arguments.length?(this._y=t,this):this._y}function U(t,n,e){var i=new V(n??Mn,e??bn,NaN,NaN,NaN,NaN);return t==null?i:i.addAll(t)}function V(t,n,e,i,r,o){this._x=t,this._y=n,this._x0=e,this._y0=i,this._x1=r,this._y1=o,this._root=void 0}function It(t){for(var n={data:t.data},e=n;t=t.next;)e=e.next={data:t.data};return n}var j=U.prototype=V.prototype;j.copy=function(){var t=new V(this._x,this._y,this._x0,this._y0,this._x1,this._y1),n=this._root,e,i;if(!n)return t;if(!n.length)return t._root=It(n),t;for(e=[{source:n,target:t._root=new Array(4)}];n=e.pop();)for(var r=0;r<4;++r)(i=n.source[r])&&(i.length?e.push({source:i,target:n.target[r]=new Array(4)}):n.target[r]=It(i));return t};j.add=pn;j.addAll=_n;j.cover=xn;j.data=vn;j.extent=gn;j.find=wn;j.remove=yn;j.removeAll=mn;j.root=dn;j.size=Nn;j.visit=An;j.visitAfter=zn;j.x=qn;j.y=In;function jt(t){let n=+this._x.call(null,t),e=+this._y.call(null,t),i=+this._z.call(null,t);return Dt(this.cover(n,e,i),n,e,i,t)}function Dt(t,n,e,i,r){if(isNaN(n)||isNaN(e)||isNaN(i))return t;var o,f=t._root,a={data:r},s=t._x0,l=t._y0,c=t._z0,h=t._x1,_=t._y1,x=t._z1,p,d,g,u,y,w,m,v,N,A,z;if(!f)return t._root=a,t;for(;f.length;)if((m=n>=(p=(s+h)/2))?s=p:h=p,(v=e>=(d=(l+_)/2))?l=d:_=d,(N=i>=(g=(c+x)/2))?c=g:x=g,o=f,!(f=f[A=N<<2|v<<1|m]))return o[A]=a,t;if(u=+t._x.call(null,f.data),y=+t._y.call(null,f.data),w=+t._z.call(null,f.data),n===u&&e===y&&i===w)return a.next=f,o?o[A]=a:t._root=a,t;do o=o?o[A]=new Array(8):t._root=new Array(8),(m=n>=(p=(s+h)/2))?s=p:h=p,(v=e>=(d=(l+_)/2))?l=d:_=d,(N=i>=(g=(c+x)/2))?c=g:x=g;while((A=N<<2|v<<1|m)===(z=(w>=g)<<2|(y>=d)<<1|u>=p));return o[z]=f,o[A]=a,t}function Et(t){Array.isArray(t)||(t=Array.from(t));let n=t.length,e=new Float64Array(n),i=new Float64Array(n),r=new Float64Array(n),o=1/0,f=1/0,a=1/0,s=-1/0,l=-1/0,c=-1/0;for(let h=0,_,x,p,d;h<n;++h)isNaN(x=+this._x.call(null,_=t[h]))||isNaN(p=+this._y.call(null,_))||isNaN(d=+this._z.call(null,_))||(e[h]=x,i[h]=p,r[h]=d,x<o&&(o=x),x>s&&(s=x),p<f&&(f=p),p>l&&(l=p),d<a&&(a=d),d>c&&(c=d));if(o>s||f>l||a>c)return this;this.cover(o,f,a).cover(s,l,c);for(let h=0;h<n;++h)Dt(this,e[h],i[h],r[h],t[h]);return this}function Ft(t,n,e){if(isNaN(t=+t)||isNaN(n=+n)||isNaN(e=+e))return this;var i=this._x0,r=this._y0,o=this._z0,f=this._x1,a=this._y1,s=this._z1;if(isNaN(i))f=(i=Math.floor(t))+1,a=(r=Math.floor(n))+1,s=(o=Math.floor(e))+1;else{for(var l=f-i||1,c=this._root,h,_;i>t||t>=f||r>n||n>=a||o>e||e>=s;)switch(_=(e<o)<<2|(n<r)<<1|t<i,h=new Array(8),h[_]=c,c=h,l*=2,_){case 0:f=i+l,a=r+l,s=o+l;break;case 1:i=f-l,a=r+l,s=o+l;break;case 2:f=i+l,r=a-l,s=o+l;break;case 3:i=f-l,r=a-l,s=o+l;break;case 4:f=i+l,a=r+l,o=s-l;break;case 5:i=f-l,a=r+l,o=s-l;break;case 6:f=i+l,r=a-l,o=s-l;break;case 7:i=f-l,r=a-l,o=s-l;break}this._root&&this._root.length&&(this._root=c)}return this._x0=i,this._y0=r,this._z0=o,this._x1=f,this._y1=a,this._z1=s,this}function Tt(){var t=[];return this.visit(function(n){if(!n.length)do t.push(n.data);while(n=n.next)}),t}function Ot(t){return arguments.length?this.cover(+t[0][0],+t[0][1],+t[0][2]).cover(+t[1][0],+t[1][1],+t[1][2]):isNaN(this._x0)?void 0:[[this._x0,this._y0,this._z0],[this._x1,this._y1,this._z1]]}function M(t,n,e,i,r,o,f){this.node=t,this.x0=n,this.y0=e,this.z0=i,this.x1=r,this.y1=o,this.z1=f}function Pt(t,n,e,i){var r,o=this._x0,f=this._y0,a=this._z0,s,l,c,h,_,x,p=this._x1,d=this._y1,g=this._z1,u=[],y=this._root,w,m;for(y&&u.push(new M(y,o,f,a,p,d,g)),i==null?i=1/0:(o=t-i,f=n-i,a=e-i,p=t+i,d=n+i,g=e+i,i*=i);w=u.pop();)if(!(!(y=w.node)||(s=w.x0)>p||(l=w.y0)>d||(c=w.z0)>g||(h=w.x1)<o||(_=w.y1)<f||(x=w.z1)<a))if(y.length){var v=(s+h)/2,N=(l+_)/2,A=(c+x)/2;u.push(new M(y[7],v,N,A,h,_,x),new M(y[6],s,N,A,v,_,x),new M(y[5],v,l,A,h,N,x),new M(y[4],s,l,A,v,N,x),new M(y[3],v,N,c,h,_,A),new M(y[2],s,N,c,v,_,A),new M(y[1],v,l,c,h,N,A),new M(y[0],s,l,c,v,N,A)),(m=(e>=A)<<2|(n>=N)<<1|t>=v)&&(w=u[u.length-1],u[u.length-1]=u[u.length-1-m],u[u.length-1-m]=w)}else{var z=t-+this._x.call(null,y.data),F=n-+this._y.call(null,y.data),T=e-+this._z.call(null,y.data),D=z*z+F*F+T*T;if(D<i){var q=Math.sqrt(i=D);o=t-q,f=n-q,a=e-q,p=t+q,d=n+q,g=e+q,r=y.data}}return r}var kn=(t,n,e,i,r,o)=>Math.sqrt((t-i)**2+(n-r)**2+(e-o)**2);function Rt(t,n,e,i){let r=[],o=t-i,f=n-i,a=e-i,s=t+i,l=n+i,c=e+i;return this.visit((h,_,x,p,d,g,u)=>{if(!h.length)do{let y=h.data;kn(t,n,e,this._x(y),this._y(y),this._z(y))<=i&&r.push(y)}while(h=h.next);return _>s||x>l||p>c||d<o||g<f||u<a}),r}function St(t){if(isNaN(_=+this._x.call(null,t))||isNaN(x=+this._y.call(null,t))||isNaN(p=+this._z.call(null,t)))return this;var n,e=this._root,i,r,o,f=this._x0,a=this._y0,s=this._z0,l=this._x1,c=this._y1,h=this._z1,_,x,p,d,g,u,y,w,m,v,N;if(!e)return this;if(e.length)for(;;){if((y=_>=(d=(f+l)/2))?f=d:l=d,(w=x>=(g=(a+c)/2))?a=g:c=g,(m=p>=(u=(s+h)/2))?s=u:h=u,n=e,!(e=e[v=m<<2|w<<1|y]))return this;if(!e.length)break;(n[v+1&7]||n[v+2&7]||n[v+3&7]||n[v+4&7]||n[v+5&7]||n[v+6&7]||n[v+7&7])&&(i=n,N=v)}for(;e.data!==t;)if(r=e,!(e=e.next))return this;return(o=e.next)&&delete e.next,r?(o?r.next=o:delete r.next,this):n?(o?n[v]=o:delete n[v],(e=n[0]||n[1]||n[2]||n[3]||n[4]||n[5]||n[6]||n[7])&&e===(n[7]||n[6]||n[5]||n[4]||n[3]||n[2]||n[1]||n[0])&&!e.length&&(i?i[N]=e:this._root=e),this):(this._root=o,this)}function Xt(t){for(var n=0,e=t.length;n<e;++n)this.remove(t[n]);return this}function Yt(){return this._root}function Bt(){var t=0;return this.visit(function(n){if(!n.length)do++t;while(n=n.next)}),t}function Ht(t){var n=[],e,i=this._root,r,o,f,a,s,l,c;for(i&&n.push(new M(i,this._x0,this._y0,this._z0,this._x1,this._y1,this._z1));e=n.pop();)if(!t(i=e.node,o=e.x0,f=e.y0,a=e.z0,s=e.x1,l=e.y1,c=e.z1)&&i.length){var h=(o+s)/2,_=(f+l)/2,x=(a+c)/2;(r=i[7])&&n.push(new M(r,h,_,x,s,l,c)),(r=i[6])&&n.push(new M(r,o,_,x,h,l,c)),(r=i[5])&&n.push(new M(r,h,f,x,s,_,c)),(r=i[4])&&n.push(new M(r,o,f,x,h,_,c)),(r=i[3])&&n.push(new M(r,h,_,a,s,l,x)),(r=i[2])&&n.push(new M(r,o,_,a,h,l,x)),(r=i[1])&&n.push(new M(r,h,f,a,s,_,x)),(r=i[0])&&n.push(new M(r,o,f,a,h,_,x))}return this}function Wt(t){var n=[],e=[],i;for(this._root&&n.push(new M(this._root,this._x0,this._y0,this._z0,this._x1,this._y1,this._z1));i=n.pop();){var r=i.node;if(r.length){var o,f=i.x0,a=i.y0,s=i.z0,l=i.x1,c=i.y1,h=i.z1,_=(f+l)/2,x=(a+c)/2,p=(s+h)/2;(o=r[0])&&n.push(new M(o,f,a,s,_,x,p)),(o=r[1])&&n.push(new M(o,_,a,s,l,x,p)),(o=r[2])&&n.push(new M(o,f,x,s,_,c,p)),(o=r[3])&&n.push(new M(o,_,x,s,l,c,p)),(o=r[4])&&n.push(new M(o,f,a,p,_,x,h)),(o=r[5])&&n.push(new M(o,_,a,p,l,x,h)),(o=r[6])&&n.push(new M(o,f,x,p,_,c,h)),(o=r[7])&&n.push(new M(o,_,x,p,l,c,h))}e.push(i)}for(;i=e.pop();)t(i.node,i.x0,i.y0,i.z0,i.x1,i.y1,i.z1);return this}function Zt(t){return t[0]}function Ct(t){return arguments.length?(this._x=t,this):this._x}function Lt(t){return t[1]}function Qt(t){return arguments.length?(this._y=t,this):this._y}function $t(t){return t[2]}function Gt(t){return arguments.length?(this._z=t,this):this._z}function Y(t,n,e,i){var r=new tt(n??Zt,e??Lt,i??$t,NaN,NaN,NaN,NaN,NaN,NaN);return t==null?r:r.addAll(t)}function tt(t,n,e,i,r,o,f,a,s){this._x=t,this._y=n,this._z=e,this._x0=i,this._y0=r,this._z0=o,this._x1=f,this._y1=a,this._z1=s,this._root=void 0}function Jt(t){for(var n={data:t.data},e=n;t=t.next;)e=e.next={data:t.data};return n}var b=Y.prototype=tt.prototype;b.copy=function(){var t=new tt(this._x,this._y,this._z,this._x0,this._y0,this._z0,this._x1,this._y1,this._z1),n=this._root,e,i;if(!n)return t;if(!n.length)return t._root=Jt(n),t;for(e=[{source:n,target:t._root=new Array(8)}];n=e.pop();)for(var r=0;r<8;++r)(i=n.source[r])&&(i.length?e.push({source:i,target:n.target[r]=new Array(8)}):n.target[r]=Jt(i));return t};b.add=jt;b.addAll=Et;b.cover=Ft;b.data=Tt;b.extent=Ot;b.find=Pt;b.findAllWithinRadius=Rt;b.remove=St;b.removeAll=Xt;b.root=Yt;b.size=Bt;b.visit=Ht;b.visitAfter=Wt;b.x=Ct;b.y=Qt;b.z=Gt;function I(t){return function(){return t}}function P(t){return(t()-.5)*1e-6}function jn(t){return t.index}function Kt(t,n){var e=t.get(n);if(!e)throw new Error("node not found: "+n);return e}function nt(t){var n=jn,e=_,i,r=I(30),o,f,a,s,l,c,h=1;t==null&&(t=[]);function _(u){return 1/Math.min(s[u.source.index],s[u.target.index])}function x(u){for(var y=0,w=t.length;y<h;++y)for(var m=0,v,N,A,z=0,F=0,T=0,D,q;m<w;++m)v=t[m],N=v.source,A=v.target,z=A.x+A.vx-N.x-N.vx||P(c),a>1&&(F=A.y+A.vy-N.y-N.vy||P(c)),a>2&&(T=A.z+A.vz-N.z-N.vz||P(c)),D=Math.sqrt(z*z+F*F+T*T),D=(D-o[m])/D*u*i[m],z*=D,F*=D,T*=D,A.vx-=z*(q=l[m]),a>1&&(A.vy-=F*q),a>2&&(A.vz-=T*q),N.vx+=z*(q=1-q),a>1&&(N.vy+=F*q),a>2&&(N.vz+=T*q)}function p(){if(f){var u,y=f.length,w=t.length,m=new Map(f.map((N,A)=>[n(N,A,f),N])),v;for(u=0,s=new Array(y);u<w;++u)v=t[u],v.index=u,typeof v.source!="object"&&(v.source=Kt(m,v.source)),typeof v.target!="object"&&(v.target=Kt(m,v.target)),s[v.source.index]=(s[v.source.index]||0)+1,s[v.target.index]=(s[v.target.index]||0)+1;for(u=0,l=new Array(w);u<w;++u)v=t[u],l[u]=s[v.source.index]/(s[v.source.index]+s[v.target.index]);i=new Array(w),d(),o=new Array(w),g()}}function d(){if(f)for(var u=0,y=t.length;u<y;++u)i[u]=+e(t[u],u,t)}function g(){if(f)for(var u=0,y=t.length;u<y;++u)o[u]=+r(t[u],u,t)}return x.initialize=function(u,...y){f=u,c=y.find(w=>typeof w=="function")||Math.random,a=y.find(w=>[1,2,3].includes(w))||2,p()},x.links=function(u){return arguments.length?(t=u,p(),x):t},x.id=function(u){return arguments.length?(n=u,x):n},x.iterations=function(u){return arguments.length?(h=+u,x):h},x.strength=function(u){return arguments.length?(e=typeof u=="function"?u:I(+u),d(),x):e},x.distance=function(u){return arguments.length?(r=typeof u=="function"?u:I(+u),g(),x):r},x}var Dn={value:()=>{}};function et(){for(var t=0,n=arguments.length,e={},i;t<n;++t){if(!(i=arguments[t]+"")||i in e||/[\s.]/.test(i))throw new Error("illegal type: "+i);e[i]=[]}return new C(e)}function C(t){this._=t}function En(t,n){return t.trim().split(/^|\s+/).map(function(e){var i="",r=e.indexOf(".");if(r>=0&&(i=e.slice(r+1),e=e.slice(0,r)),e&&!n.hasOwnProperty(e))throw new Error("unknown type: "+e);return{type:e,name:i}})}C.prototype=et.prototype={constructor:C,on:function(t,n){var e=this._,i=En(t+"",e),r,o=-1,f=i.length;if(arguments.length<2){for(;++o<f;)if((r=(t=i[o]).type)&&(r=Fn(e[r],t.name)))return r;return}if(n!=null&&typeof n!="function")throw new Error("invalid callback: "+n);for(;++o<f;)if(r=(t=i[o]).type)e[r]=Ut(e[r],t.name,n);else if(n==null)for(r in e)e[r]=Ut(e[r],t.name,null);return this},copy:function(){var t={},n=this._;for(var e in n)t[e]=n[e].slice();return new C(t)},call:function(t,n){if((r=arguments.length-2)>0)for(var e=new Array(r),i=0,r,o;i<r;++i)e[i]=arguments[i+2];if(!this._.hasOwnProperty(t))throw new Error("unknown type: "+t);for(o=this._[t],i=0,r=o.length;i<r;++i)o[i].value.apply(n,e)},apply:function(t,n,e){if(!this._.hasOwnProperty(t))throw new Error("unknown type: "+t);for(var i=this._[t],r=0,o=i.length;r<o;++r)i[r].value.apply(n,e)}};function Fn(t,n){for(var e=0,i=t.length,r;e<i;++e)if((r=t[e]).name===n)return r.value}function Ut(t,n,e){for(var i=0,r=t.length;i<r;++i)if(t[i].name===n){t[i]=Dn,t=t.slice(0,i).concat(t.slice(i+1));break}return e!=null&&t.push({name:n,value:e}),t}var S=0,H=0,B=0,tn=1e3,L,W,Q=0,R=0,$=0,Z=typeof performance=="object"&&performance.now?performance:Date,nn=typeof window=="object"&&window.requestAnimationFrame?window.requestAnimationFrame.bind(window):function(t){setTimeout(t,17)};function en(){return R||(nn(Tn),R=Z.now()+$)}function Tn(){R=0}function it(){this._call=this._time=this._next=null}it.prototype=ot.prototype={constructor:it,restart:function(t,n,e){if(typeof t!="function")throw new TypeError("callback is not a function");e=(e==null?en():+e)+(n==null?0:+n),!this._next&&W!==this&&(W?W._next=this:L=this,W=this),this._call=t,this._time=e,rt()},stop:function(){this._call&&(this._call=null,this._time=1/0,rt())}};function ot(t,n,e){var i=new it;return i.restart(t,n,e),i}function On(){en(),++S;for(var t=L,n;t;)(n=R-t._time)>=0&&t._call.call(void 0,n),t=t._next;--S}function Vt(){R=(Q=Z.now())+$,S=H=0;try{On()}finally{S=0,Rn(),R=0}}function Pn(){var t=Z.now(),n=t-Q;n>tn&&($-=n,Q=t)}function Rn(){for(var t,n=L,e,i=1/0;n;)n._call?(i>n._time&&(i=n._time),t=n,n=n._next):(e=n._next,n._next=null,n=t?t._next=e:L=e);W=t,rt(i)}function rt(t){if(!S){H&&(H=clearTimeout(H));var n=t-R;n>24?(t<1/0&&(H=setTimeout(Vt,Math.ceil(t-Z.now()-$)+1)),B&&(B=clearInterval(B))):(B||(Q=Z.now(),B=setInterval(Pn,tn)),S=1,nn(Vt))}}function rn(){let t=1;return()=>(t=(1664525*t+1013904223)%4294967296)/4294967296}var on=3;function G(t){return t.x}function ft(t){return t.y}function fn(t){return t.z}var Sn=10,Xn=Math.PI*(3-Math.sqrt(5)),Yn=Math.PI*20/(9+Math.sqrt(221));function at(t,n){n=n||2;var e=Math.min(on,Math.max(1,Math.round(n))),i,r=1,o=.001,f=1-Math.pow(o,1/300),a=0,s=.6,l=new Map,c=ot(x),h=et("tick","end"),_=rn();t==null&&(t=[]);function x(){p(),h.call("tick",i),r<o&&(c.stop(),h.call("end",i))}function p(u){var y,w=t.length,m;u===void 0&&(u=1);for(var v=0;v<u;++v)for(r+=(a-r)*f,l.forEach(function(N){N(r)}),y=0;y<w;++y)m=t[y],m.fx==null?m.x+=m.vx*=s:(m.x=m.fx,m.vx=0),e>1&&(m.fy==null?m.y+=m.vy*=s:(m.y=m.fy,m.vy=0)),e>2&&(m.fz==null?m.z+=m.vz*=s:(m.z=m.fz,m.vz=0));return i}function d(){for(var u=0,y=t.length,w;u<y;++u){if(w=t[u],w.index=u,w.fx!=null&&(w.x=w.fx),w.fy!=null&&(w.y=w.fy),w.fz!=null&&(w.z=w.fz),isNaN(w.x)||e>1&&isNaN(w.y)||e>2&&isNaN(w.z)){var m=Sn*(e>2?Math.cbrt(.5+u):e>1?Math.sqrt(.5+u):u),v=u*Xn,N=u*Yn;e===1?w.x=m:e===2?(w.x=m*Math.cos(v),w.y=m*Math.sin(v)):(w.x=m*Math.sin(v)*Math.cos(N),w.y=m*Math.cos(v),w.z=m*Math.sin(v)*Math.sin(N))}(isNaN(w.vx)||e>1&&isNaN(w.vy)||e>2&&isNaN(w.vz))&&(w.vx=0,e>1&&(w.vy=0),e>2&&(w.vz=0))}}function g(u){return u.initialize&&u.initialize(t,_,e),u}return d(),i={tick:p,restart:function(){return c.restart(x),i},stop:function(){return c.stop(),i},numDimensions:function(u){return arguments.length?(e=Math.min(on,Math.max(1,Math.round(u))),l.forEach(g),i):e},nodes:function(u){return arguments.length?(t=u,d(),l.forEach(g),i):t},alpha:function(u){return arguments.length?(r=+u,i):r},alphaMin:function(u){return arguments.length?(o=+u,i):o},alphaDecay:function(u){return arguments.length?(f=+u,i):+f},alphaTarget:function(u){return arguments.length?(a=+u,i):a},velocityDecay:function(u){return arguments.length?(s=1-u,i):1-s},randomSource:function(u){return arguments.length?(_=u,l.forEach(g),i):_},force:function(u,y){return arguments.length>1?(y==null?l.delete(u):l.set(u,g(y)),i):l.get(u)},find:function(){var u=Array.prototype.slice.call(arguments),y=u.shift()||0,w=(e>1?u.shift():null)||0,m=(e>2?u.shift():null)||0,v=u.shift()||1/0,N=0,A=t.length,z,F,T,D,q,lt;for(v*=v,N=0;N<A;++N)q=t[N],z=y-q.x,F=w-(q.y||0),T=m-(q.z||0),D=z*z+F*F+T*T,D<v&&(lt=q,v=D);return lt},on:function(u,y){return arguments.length>1?(h.on(u,y),i):h.on(u)}}}function st(){var t,n,e,i,r,o=I(-30),f,a=1,s=1/0,l=.81;function c(p){var d,g=t.length,u=(n===1?X(t,G):n===2?U(t,G,ft):n===3?Y(t,G,ft,fn):null).visitAfter(_);for(r=p,d=0;d<g;++d)e=t[d],u.visit(x)}function h(){if(t){var p,d=t.length,g;for(f=new Array(d),p=0;p<d;++p)g=t[p],f[g.index]=+o(g,p,t)}}function _(p){var d=0,g,u,y=0,w,m,v,N,A=p.length;if(A){for(w=m=v=N=0;N<A;++N)(g=p[N])&&(u=Math.abs(g.value))&&(d+=g.value,y+=u,w+=u*(g.x||0),m+=u*(g.y||0),v+=u*(g.z||0));d*=Math.sqrt(4/A),p.x=w/y,n>1&&(p.y=m/y),n>2&&(p.z=v/y)}else{g=p,g.x=g.data.x,n>1&&(g.y=g.data.y),n>2&&(g.z=g.data.z);do d+=f[g.data.index];while(g=g.next)}p.value=d}function x(p,d,g,u,y){if(!p.value)return!0;var w=[g,u,y][n-1],m=p.x-e.x,v=n>1?p.y-e.y:0,N=n>2?p.z-e.z:0,A=w-d,z=m*m+v*v+N*N;if(A*A/l<z)return z<s&&(m===0&&(m=P(i),z+=m*m),n>1&&v===0&&(v=P(i),z+=v*v),n>2&&N===0&&(N=P(i),z+=N*N),z<a&&(z=Math.sqrt(a*z)),e.vx+=m*p.value*r/z,n>1&&(e.vy+=v*p.value*r/z),n>2&&(e.vz+=N*p.value*r/z)),!0;if(p.length||z>=s)return;(p.data!==e||p.next)&&(m===0&&(m=P(i),z+=m*m),n>1&&v===0&&(v=P(i),z+=v*v),n>2&&N===0&&(N=P(i),z+=N*N),z<a&&(z=Math.sqrt(a*z)));do p.data!==e&&(A=f[p.data.index]*r/z,e.vx+=m*A,n>1&&(e.vy+=v*A),n>2&&(e.vz+=N*A));while(p=p.next)}return c.initialize=function(p,...d){t=p,i=d.find(g=>typeof g=="function")||Math.random,n=d.find(g=>[1,2,3].includes(g))||2,h()},c.strength=function(p){return arguments.length?(o=typeof p=="function"?p:I(+p),h(),c):o},c.distanceMin=function(p){return arguments.length?(a=p*p,c):Math.sqrt(a)},c.distanceMax=function(p){return arguments.length?(s=p*p,c):Math.sqrt(s)},c.theta=function(p){return arguments.length?(l=p*p,c):Math.sqrt(l)},c}function ut(t,n,e,i){var r,o,f=I(.1),a,s;typeof t!="function"&&(t=I(+t)),n==null&&(n=0),e==null&&(e=0),i==null&&(i=0);function l(h){for(var _=0,x=r.length;_<x;++_){var p=r[_],d=p.x-n||1e-6,g=(p.y||0)-e||1e-6,u=(p.z||0)-i||1e-6,y=Math.sqrt(d*d+g*g+u*u),w=(s[_]-y)*a[_]*h/y;p.vx+=d*w,o>1&&(p.vy+=g*w),o>2&&(p.vz+=u*w)}}function c(){if(r){var h,_=r.length;for(a=new Array(_),s=new Array(_),h=0;h<_;++h)s[h]=+t(r[h],h,r),a[h]=isNaN(s[h])?0:+f(r[h],h,r)}}return l.initialize=function(h,..._){r=h,o=_.find(x=>[1,2,3].includes(x))||2,c()},l.strength=function(h){return arguments.length?(f=typeof h=="function"?h:I(+h),c(),l):f},l.radius=function(h){return arguments.length?(t=typeof h=="function"?h:I(+h),c(),l):t},l.x=function(h){return arguments.length?(n=+h,l):n},l.y=function(h){return arguments.length?(e=+h,l):e},l.z=function(h){return arguments.length?(i=+h,l):i},l}function ht(t){var n=I(.1),e,i,r;typeof t!="function"&&(t=I(t==null?0:+t));function o(a){for(var s=0,l=e.length,c;s<l;++s)c=e[s],c.vz+=(r[s]-c.z)*i[s]*a}function f(){if(e){var a,s=e.length;for(i=new Array(s),r=new Array(s),a=0;a<s;++a)i[a]=isNaN(r[a]=+t(e[a],a,e))?0:+n(e[a],a,e)}}return o.initialize=function(a){e=a,f()},o.strength=function(a){return arguments.length?(n=typeof a=="function"?a:I(+a),f(),o):n},o.z=function(a){return arguments.length?(t=typeof a=="function"?a:I(+a),f(),o):t},o}return cn(Bn);})();
 </script>
+<script src="xl-support.js"></script>
 <script>
 "use strict";
 // ============================================================================ shared engine
@@ -591,6 +592,7 @@ class GpuBench {
   }
   tex(W, H, data) {
     const gl = this.gl, t = gl.createTexture();
+    if (!t) throw new Error('Could not allocate GPU texture');
     gl.bindTexture(gl.TEXTURE_2D, t);
     gl.texStorage2D(gl.TEXTURE_2D, 1, gl.RGBA32F, W, H);
     for (const k of [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER]) gl.texParameteri(gl.TEXTURE_2D, k, gl.NEAREST);
@@ -601,18 +603,23 @@ class GpuBench {
   upload(t, W, H, data, x = 0, y = 0) { const gl = this.gl; gl.bindTexture(gl.TEXTURE_2D, t); gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y, W, H, gl.RGBA, gl.FLOAT, data); }
   fbo(...texs) {
     const gl = this.gl, f = gl.createFramebuffer();
+    if (!f) throw new Error('Could not allocate GPU framebuffer');
     gl.bindFramebuffer(gl.FRAMEBUFFER, f);
     texs.forEach((t, k) => gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + k, gl.TEXTURE_2D, t, 0));
     gl.drawBuffers(texs.map((_, k) => gl.COLOR_ATTACHMENT0 + k));
     const st = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
-    if (st !== gl.FRAMEBUFFER_COMPLETE) throw new Error('This GPU cannot render to a float framebuffer of this size.');
+    if (st !== gl.FRAMEBUFFER_COMPLETE) { gl.deleteFramebuffer(f); throw new Error('This GPU cannot render to a float framebuffer of this size.'); }
     return f;
   }
   sync(fb) { const gl = this.gl; gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.readBuffer(gl.COLOR_ATTACHMENT0); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.FLOAT, this.px); }
   readAll(fb, W, H) { const gl = this.gl, out = new Float32Array(W * H * 4); gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.readBuffer(gl.COLOR_ATTACHMENT0); gl.readPixels(0, 0, W, H, gl.RGBA, gl.FLOAT, out); return out; }
-  check() { const e = this.gl.getError(); if (this.lost || this.gl.isContextLost()) throw new Error('The browser reset the GPU context; try again with fewer tabs open.'); if (e === this.gl.OUT_OF_MEMORY) throw Object.assign(new Error('out of GPU memory'), { oom: true }); }
+  check(phase = 'GPU operation') {
+    const gl = this.gl, e = gl.getError();
+    if (this.lost || gl.isContextLost()) throw new Error(`GPU context lost during ${phase}`);
+    if (e !== gl.NO_ERROR) throw Object.assign(new Error(`WebGL error 0x${e.toString(16)} during ${phase}`), { oom: e === gl.OUT_OF_MEMORY });
+  }
   // time `runs` repetitions of issue(); each ends with a one-pixel read-back so the time covers the GPU work
-  async timed(runs, issue, syncFb, signal, onRun) {
+  async timed(runs, issue, syncFb, signal, onRun, complete = null) {
     const gl = this.gl, wall = [], qs = [];
     for (let r = 0; r < runs; r++) {
       if (signal && signal.aborted) throw new Stopped();
@@ -621,7 +628,7 @@ class GpuBench {
       const t0 = performance.now();
       const fb = issue(r) || syncFb;
       if (q) gl.endQuery(this.tq.TIME_ELAPSED_EXT);
-      this.sync(fb);
+      if (complete) complete(fb); else this.sync(fb);
       wall.push(performance.now() - t0);
       if (q) qs.push(q);
       if (onRun) onRun(r);
@@ -635,7 +642,7 @@ class GpuBench {
     for (let k = 0; k < 120 && !gl.getQueryParameter(qs[qs.length - 1], gl.QUERY_RESULT_AVAILABLE); k++) await sleep(16);
     const disjoint = gl.getParameter(ext.GPU_DISJOINT_EXT);
     for (const q of qs) { if (gl.getQueryParameter(q, gl.QUERY_RESULT_AVAILABLE)) out.push(gl.getQueryParameter(q, gl.QUERY_RESULT) / 1e6); gl.deleteQuery(q); }
-    return disjoint || out.length < qs.length ? null : stats(out);
+    return disjoint || out.length < qs.length ? null : { ...stats(out), raw: out };
   }
   dims(m) { const W = Math.min(m, this.WMAX), H = Math.ceil(m / W); return { W, H }; }
 
@@ -677,58 +684,112 @@ class GpuBench {
   // Inputs are written to the GPU in slices (never all in browser memory at once); after timing, every
   // position is read back slice by slice and checked against the float64 formula.
   async geoXL(n, runs, signal, onRun, onStage) {
-    const gl = this.gl, W = Math.min(16384, this.maxTex), H = Math.ceil(n / W), RS = 128;
-    if (H > this.maxTex) return { skipped: `more markers than this GPU can hold in one texture (${this.maxTex} × ${this.maxTex} limit)` };
-    let tin = null, tout = null, fb = null;
+    const gl = this.gl, allocation = FullGpuAudit.planTiles(n, this.maxTex), RS = 128;
+    const tiles = allocation.tiles.map(t => ({ ...t, tin: null, tout: null, fb: null }));
+    const W = tiles[0].width, timings = {}, chunks = [], started = performance.now();
+    const cancelled = () => { if (signal && signal.aborted) throw new Stopped(); };
+    const stage = message => { if (onStage) onStage(message); };
     try {
-      tin = this.tex(W, H, null); this.check();
+      // Preflight the entire resident set before generating any inputs. Clearing
+      // every output and finishing commits real storage, not just texture names.
+      let t0 = performance.now();
+      for (const tile of tiles) {
+        cancelled();
+        tile.tin = this.tex(tile.width, tile.height, null); this.check('XL input allocation');
+        tile.tout = this.tex(tile.width, tile.height, null); this.check('XL output allocation');
+        tile.fb = this.fbo(tile.tout); this.check('XL framebuffer allocation');
+        gl.clearBufferfv(gl.COLOR, 0, new Float32Array(4)); this.check('XL output initialization');
+      }
+      gl.finish(); this.check('XL resident allocation preflight');
+      timings.resident_allocation_and_initialization = performance.now() - t0;
       const buf = new Float32Array(W * RS * 4);
-      for (let y0 = 0; y0 < H; y0 += RS) {
-        if (signal && signal.aborted) throw new Stopped();
-        const rows = Math.min(RS, H - y0), first = y0 * W, count = Math.min(rows * W, n - first);
-        buf.fill(0);
+      let uploaded = 0, inputMs = 0, uploadMs = 0;
+      for (const tile of tiles) for (let y0 = 0; y0 < tile.height; y0 += RS) {
+        cancelled();
+        const rows = Math.min(RS, tile.height - y0), first = tile.first + y0 * W;
+        const count = Math.min(rows * W, tile.count - y0 * W);
+        if (first !== uploaded) throw Error('Non-contiguous XL input coverage');
+        t0 = performance.now(); buf.fill(0);
         for (let j = 0; j < count; j++) { const k = 3 * (first + j); buf[4 * j] = Math.floor(drawAt(k + 1) * NL); buf[4 * j + 1] = drawAt(k + 2); buf[4 * j + 2] = drawAt(k + 3); }
-        this.upload(tin, W, rows, buf.subarray(0, W * rows * 4), 0, y0);
-        if (onStage) onStage(`preparing ${fmtN(n)} markers on the GPU · ${Math.round(100 * (y0 + rows) / H)}%`);
-        await yieldNow();
+        inputMs += performance.now() - t0;
+        t0 = performance.now(); this.upload(tile.tin, W, rows, buf.subarray(0, W * rows * 4), 0, y0); this.check('XL input upload'); uploadMs += performance.now() - t0;
+        uploaded += count; stage(`prepared ${uploaded.toLocaleString()} / ${n.toLocaleString()} inputs`); await yieldNow();
       }
-      tout = this.tex(W, H, null); fb = this.fbo(tout); this.check();
-      const { p, u } = this.pGeo;
+      if (uploaded !== n) throw Error('Incomplete XL input coverage');
+      timings.input_generation_and_fp32_packing = inputMs; timings.input_upload_calls = uploadMs;
+      const { p, u } = this.pGeo, lastFb = tiles[tiles.length - 1].fb;
       const draw = () => {
-        gl.useProgram(p); gl.bindVertexArray(this.vao);
-        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tin); gl.uniform1i(u.uIn, 0); gl.uniform1fv(u.uE, EDGES32);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.viewport(0, 0, W, H); gl.drawArrays(gl.TRIANGLES, 0, 3);
-      };
-      for (let w = 0; w < 3; w++) draw();
-      this.sync(fb); this.check();
-      const res = await this.timed(runs, draw, fb, signal, onRun);
-      delete res.raw;
-      // check all n positions: read back a slice, compute the float64 reference for the same markers, compare
-      const rb = new Float32Array(W * RS * 4), L = new Int32Array(W * RS), T = new Float64Array(W * RS), V = new Float64Array(W * RS), ref = new Float64Array(3 * W * RS);
-      let err = 0, outside = 0; const t0 = performance.now();
-      for (let y0 = 0; y0 < H; y0 += RS) {
-        if (signal && signal.aborted) throw new Stopped();
-        const rows = Math.min(RS, H - y0), first = y0 * W, count = Math.min(rows * W, n - first);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.readBuffer(gl.COLOR_ATTACHMENT0);
-        gl.readPixels(0, y0, W, rows, gl.RGBA, gl.FLOAT, rb.subarray(0, W * rows * 4));
-        for (let j = 0; j < count; j++) { const k = 3 * (first + j); L[j] = Math.floor(drawAt(k + 1) * NL); T[j] = drawAt(k + 2); V[j] = drawAt(k + 3); }
-        place(count, L, T, V, ref);
-        for (let j = 0; j < count; j++) {
-          for (let c = 0; c < 3; c++) { const e = Math.abs(rb[4 * j + c] - ref[3 * j + c]); if (!(e <= err)) err = e; }
-          const x = rb[4 * j], y = rb[4 * j + 1], z = rb[4 * j + 2], h = z / (Math.hypot(x, y, z) || 1);
-          if (!(h <= EDGES[L[j]] && h >= EDGES[L[j] + 1])) outside++;
+        gl.useProgram(p); gl.bindVertexArray(this.vao); gl.activeTexture(gl.TEXTURE0);
+        gl.uniform1i(u.uIn, 0); gl.uniform1fv(u.uE, EDGES32);
+        for (const tile of tiles) {
+          gl.bindTexture(gl.TEXTURE_2D, tile.tin); gl.bindFramebuffer(gl.FRAMEBUFFER, tile.fb);
+          gl.viewport(0, 0, tile.width, tile.height); gl.drawArrays(gl.TRIANGLES, 0, 3);
         }
-        if (onStage) onStage(`checking all ${fmtN(n)} GPU positions against the formula · ${Math.round(100 * (y0 + rows) / H)}%`);
+        return lastFb;
+      };
+      // A read from every output makes completion of every tile explicit. The
+      // query encloses all draws; wall time also includes these synchronization calls.
+      const complete = () => { for (const tile of tiles) this.sync(tile.fb); this.check('XL all-tile synchronization'); };
+      t0 = performance.now();
+      for (let w = 0; w < 3; w++) { cancelled(); draw(); }
+      complete(); timings.three_warmups_and_sync = performance.now() - t0;
+      t0 = performance.now();
+      const res = await this.timed(runs, draw, lastFb, signal, onRun, complete);
+      timings.timed_phase_including_query_collection_and_yields = performance.now() - t0;
+      if (res.raw.length !== runs || !res.raw.every(x => Number.isFinite(x) && x > 0)) throw Error('Invalid XL wall timing samples');
+      const rb = new Float32Array(W * RS * 4), L = new Int32Array(W * RS), T = new Float64Array(W * RS), V = new Float64Array(W * RS), ref = new Float64Array(3 * W * RS);
+      allocation.cpu_slice_buffer_bytes = buf.byteLength + rb.byteLength + L.byteLength + T.byteLength + V.byteLength + ref.byteLength;
+      // Independent continuous samples: resident inputs -> draw all tiles ->
+      // read all RGBA bytes to CPU-visible memory. No reference math, validation,
+      // or event-loop yields occur inside these clocks. Bounded readback storage
+      // is reused; a separate final pass below validates all final output values.
+      const endToEnd = [];
+      for (let trial = 0; trial < runs; trial++) {
+        cancelled(); stage(`full-output transfer ${trial + 1} / ${runs}`); await yieldNow();
+        t0 = performance.now(); draw();
+        for (const tile of tiles) for (let y0 = 0; y0 < tile.height; y0 += RS) {
+          const rows = Math.min(RS, tile.height - y0);
+          gl.bindFramebuffer(gl.FRAMEBUFFER, tile.fb); gl.readBuffer(gl.COLOR_ATTACHMENT0);
+          gl.readPixels(0, y0, W, rows, gl.RGBA, gl.FLOAT, rb.subarray(0, W * rows * 4));
+        }
+        endToEnd.push(performance.now() - t0); this.check('XL continuous full readback');
+      }
+      if (!endToEnd.every(x => Number.isFinite(x) && x > 0)) throw Error('Invalid XL full-readback timing samples');
+      res.resident_draw_plus_full_readback = { ...stats(endToEnd), raw: endToEnd,
+        cpu_readback_bytes: allocation.allocated_texels_per_side * 16,
+        output_format: 'RGBA32F including row padding', reference_and_validation_included: false,
+        input_generation_and_upload_included: false, full_output_retained_simultaneously: false };
+      const audit = FullGpuAudit.begin(n), checkStart = performance.now();
+      let readMs = 0, referenceInputMs = 0, referenceMs = 0, compareMs = 0, sentinelMs = 0;
+      for (const tile of tiles) for (let y0 = 0; y0 < tile.height; y0 += RS) {
+        cancelled();
+        const rows = Math.min(RS, tile.height - y0), first = tile.first + y0 * W;
+        const count = Math.min(rows * W, tile.count - y0 * W);
+        t0 = performance.now(); rb.fill(NaN); sentinelMs += performance.now() - t0;
+        t0 = performance.now(); gl.bindFramebuffer(gl.FRAMEBUFFER, tile.fb); gl.readBuffer(gl.COLOR_ATTACHMENT0);
+        gl.readPixels(0, y0, W, rows, gl.RGBA, gl.FLOAT, rb.subarray(0, W * rows * 4)); this.check('XL full readback'); readMs += performance.now() - t0;
+        t0 = performance.now();
+        for (let j = 0; j < count; j++) { const k = 3 * (first + j); L[j] = Math.floor(drawAt(k + 1) * NL); T[j] = drawAt(k + 2); V[j] = drawAt(k + 3); }
+        referenceInputMs += performance.now() - t0;
+        t0 = performance.now(); place(count, L, T, V, ref); referenceMs += performance.now() - t0;
+        t0 = performance.now(); FullGpuAudit.auditChunk(audit, first, count, rb, ref, L, EDGES); compareMs += performance.now() - t0;
+        chunks.push({ first, count, tile_first: tile.first, row: y0, rows });
+        stage(`checked ${audit.checked_markers.toLocaleString()} / ${n.toLocaleString()} markers · max error ${audit.max_abs_error.toExponential(3)} · outside band ${audit.outside_band}`);
         await yieldNow();
       }
-      this.check();
-      Object.assign(res, { maxErr: err, outside: outside / n, checked: n, texture: `${W} × ${H}`, check_ms: performance.now() - t0 });
+      this.check('XL final validation');
+      const validation = FullGpuAudit.finish(audit);
+      Object.assign(timings, { readback_sentinel_fill: sentinelMs, all_output_readback_calls: readMs, reference_input_regeneration: referenceInputMs, fp64_reference: referenceMs, coordinate_and_band_comparison: compareMs, full_validation_wall: performance.now() - checkStart, total: performance.now() - started });
+      Object.assign(res, { implementation: 'tiled-resident-rgba32f-v2-all-tile-sync', validation_schema: 1, allocation, timings_ms: timings,
+        uploaded_markers: uploaded, chunks, validation, passed: validation.passed,
+        maxErr: validation.max_abs_error, outside: validation.outside_share, checked: validation.checked_markers,
+        texture: `${tiles.length} resident tile pairs`, check_ms: timings.full_validation_wall,
+        scope: { warmups: 3, timed_placements: runs, separately_timed_full_readback_placements: runs, draw_calls_per_placement: tiles.length, synchronization: 'one pixel from every output framebuffer', validated_final_outputs: 1, validated_output: 'final full-readback placement', angular_order_tested: false, physics_tested: false } });
+      if (!validation.passed) throw Object.assign(Error('XL final output validation failed'), { validation });
       return res;
-    } catch (e) {
-      if (e instanceof Stopped) throw e;
-      if (e.oom || /float framebuffer|GPU context|memory/i.test(e.message)) return { skipped: `this GPU or browser could not hold ${fmtN(n)} markers (${e.message})` };
-      throw e;
-    } finally { if (tin) gl.deleteTexture(tin); if (tout) gl.deleteTexture(tout); if (fb) gl.deleteFramebuffer(fb); }
+    } finally {
+      for (const tile of tiles) { if (tile.fb) gl.deleteFramebuffer(tile.fb); if (tile.tin) gl.deleteTexture(tile.tin); if (tile.tout) gl.deleteTexture(tile.tout); }
+    }
   }
 
   // ---------------------------------------------------------------- physics: one pass per tick
@@ -1461,4 +1522,6 @@ $('#dl').addEventListener('click', () => {
 });
 </script>
 
+<script src="xl-run.js"></script>
+<script src="xl-cold.js"></script>
 </body></html>

@@ -1,0 +1,44 @@
+{
+  "100m-timing-scopes": {
+    "font": "Arial",
+    "target_pixels": [
+      1200,
+      1100
+    ],
+    "export_pixels": [
+      2400,
+      2200
+    ],
+    "minimum_ordinary_font_pt": 10,
+    "clipped_text": [],
+    "manual_final_size_and_grayscale_review_required": true
+  },
+  "historical-native-10m": {
+    "font": "Arial",
+    "target_pixels": [
+      1200,
+      800
+    ],
+    "export_pixels": [
+      2400,
+      1600
+    ],
+    "minimum_ordinary_font_pt": 10,
+    "clipped_text": [],
+    "manual_final_size_and_grayscale_review_required": true
+  },
+  "historical-raw-detector": {
+    "font": "Arial",
+    "target_pixels": [
+      1200,
+      1050
+    ],
+    "export_pixels": [
+      2400,
+      2100
+    ],
+    "minimum_ordinary_font_pt": 10,
+    "clipped_text": [],
+    "manual_final_size_and_grayscale_review_required": true
+  }
+}

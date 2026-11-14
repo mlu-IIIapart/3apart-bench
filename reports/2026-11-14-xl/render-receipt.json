@@ -1,0 +1,2061 @@
+{
+  "rendered_at_utc": "2026-11-14T01:03:46.428597+00:00",
+  "manifest_sha256": "236fc30268e3d63cc064d256f697012f67cc947e49ad5c155d4c85c657af2438",
+  "script_sha256": "6c36a9c9c95509f7a61a1284343313c6ac32049daf29c4b6238bc0719b3ad834",
+  "sources": {
+    "m4_cpu": {
+      "path": "results/joel/lorium/2026-11-14T003655-numpy-xl-e2e.json",
+      "sha256": "16f9856dc8dfb8ecab7164382cbe88fee05b7a31ff82859aa0d43638b6a841d5",
+      "metadata": {
+        "versions": {
+          "python": "3.12.16",
+          "numpy": "2.5.4"
+        },
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "MKL_NUM_THREADS": "1",
+          "VECLIB_MAXIMUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "BLIS_NUM_THREADS": "1"
+        },
+        "precision": "FP64 NumPy; WebGL comparisons use FP32 and are separate implementations",
+        "source_hashes": {
+          "bench/cpu_xl_e2e.py": "c4f8e244e1cc2863871a3d4691336cbfc6e83cf131e71523efab8afa1f05df92",
+          "src/py/engine.py": "1260fdf5dbed6c6de93b84d2572cb812cdf336cbf2178ce42af1d38d0289c5fb"
+        },
+        "plan": {
+          "markers": 100000000,
+          "batch_markers": 25000000,
+          "batches": [
+            [
+              0,
+              25000000
+            ],
+            [
+              25000000,
+              25000000
+            ],
+            [
+              50000000,
+              25000000
+            ],
+            [
+              75000000,
+              25000000
+            ]
+          ],
+          "warmups": 3,
+          "resident_runs": 10,
+          "cold_runs": 3
+        },
+        "bytes": {
+          "input_band_i32": 400000000,
+          "input_time_value_f64": 1600000000,
+          "complete_output_xyz_f64": 2400000000,
+          "largest_batch_output_temporary_f64": 600000000
+        },
+        "scope": {
+          "resident": "Original inputs and complete output allocation persist. Timed unchanged E.place calls plus batch output copies and coverage accounting. Sentinel clearing, setup and validation excluded.",
+          "cold": "Three independent application pipelines by default: continuous perf_counter_ns from original E.inputs generation through output allocation/NaN initialization and complete batch placement/materialization. No stage-median summation. Cold means new arrays, not OS/filesystem cache eviction or process restart.",
+          "validation": "Every XYZ coordinate of final resident output and each cold output, outside timing. Independent FP64 algebraic formula, bounded 1M chunks, finite/band/coverage gates. Every timed resident output is not independently validated.",
+          "excluded": "Imports, process startup, input/output files, network, reference validation and result serialization. No GPU transfer, detector scoring or alerts are involved.",
+          "peak_rss": "Process lifetime high-water RSS including Python/NumPy and validation; not incremental allocation or instantaneous memory.",
+          "parallelism": "Requested numerical-library threads 1; no affinity or exclusive-machine claim."
+        },
+        "peak_rss_bytes": 7523975168,
+        "at": "2026-11-14T00:36:55.997518+00:00",
+        "completed_at": "2026-11-14T00:38:08.891042+00:00",
+        "host_condition": "AC power; no exclusive host. CPU run 2026-11-14 00:36:55\u201300:38:08 UTC: swap used 8,863.25M \u2192 9,426.25M; system memory-free 44% \u2192 39%."
+      },
+      "assertions": [
+        {
+          "path": [
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "source_unchanged"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "plan",
+            "markers"
+          ],
+          "equals": 100000000
+        },
+        {
+          "path": [
+            "resident",
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cold_pipelines",
+            0,
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cold_pipelines",
+            1,
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cold_pipelines",
+            2,
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        }
+      ]
+    },
+    "native10m": {
+      "path": "sources/native-10m-aggregate.json",
+      "sha256": "f7ff2097cbb96c015e41b2c0a33bf74013c46a56bd99380b6503b44ed251c3f3",
+      "metadata": {},
+      "assertions": []
+    },
+    "aquila_raw": {
+      "path": "sources/aquila-raw-detector-aggregate.json",
+      "sha256": "08d3c0874d670362687a6e9e9d49be43149a2127b223fe7cca2d602835245b6a",
+      "metadata": {},
+      "assertions": []
+    },
+    "m5_cpu": {
+      "path": "results/joel/aureon/20261114T005352Z-numpy-xl-e2e.json",
+      "sha256": "37ec75ef241aaac709207946b20291ecee47dbfbfefd3d903891fd0673cd3092",
+      "metadata": {
+        "versions": {
+          "python": "3.12.11",
+          "numpy": "2.5.4"
+        },
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "MKL_NUM_THREADS": "1",
+          "VECLIB_MAXIMUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "BLIS_NUM_THREADS": "1"
+        },
+        "precision": "FP64 NumPy; WebGL comparisons use FP32 and are separate implementations",
+        "source_hashes": {
+          "bench/cpu_xl_e2e.py": "c4f8e244e1cc2863871a3d4691336cbfc6e83cf131e71523efab8afa1f05df92",
+          "src/py/engine.py": "1260fdf5dbed6c6de93b84d2572cb812cdf336cbf2178ce42af1d38d0289c5fb"
+        },
+        "plan": {
+          "markers": 100000000,
+          "batch_markers": 25000000,
+          "batches": [
+            [
+              0,
+              25000000
+            ],
+            [
+              25000000,
+              25000000
+            ],
+            [
+              50000000,
+              25000000
+            ],
+            [
+              75000000,
+              25000000
+            ]
+          ],
+          "warmups": 3,
+          "resident_runs": 10,
+          "cold_runs": 3
+        },
+        "bytes": {
+          "input_band_i32": 400000000,
+          "input_time_value_f64": 1600000000,
+          "complete_output_xyz_f64": 2400000000,
+          "largest_batch_output_temporary_f64": 600000000
+        },
+        "scope": {
+          "resident": "Original inputs and complete output allocation persist. Timed unchanged E.place calls plus batch output copies and coverage accounting. Sentinel clearing, setup and validation excluded.",
+          "cold": "Three independent application pipelines by default: continuous perf_counter_ns from original E.inputs generation through output allocation/NaN initialization and complete batch placement/materialization. No stage-median summation. Cold means new arrays, not OS/filesystem cache eviction or process restart.",
+          "validation": "Every XYZ coordinate of final resident output and each cold output, outside timing. Independent FP64 algebraic formula, bounded 1M chunks, finite/band/coverage gates. Every timed resident output is not independently validated.",
+          "excluded": "Imports, process startup, input/output files, network, reference validation and result serialization. No GPU transfer, detector scoring or alerts are involved.",
+          "peak_rss": "Process lifetime high-water RSS including Python/NumPy and validation; not incremental allocation or instantaneous memory.",
+          "parallelism": "Requested numerical-library threads 1; no affinity or exclusive-machine claim."
+        },
+        "peak_rss_bytes": 7647084544,
+        "at": "2026-11-14T00:53:52.769839+00:00",
+        "completed_at": "2026-11-14T00:54:53.646685+00:00"
+      },
+      "assertions": [
+        {
+          "path": [
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "source_unchanged"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "plan",
+            "markers"
+          ],
+          "equals": 100000000
+        },
+        {
+          "path": [
+            "resident",
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cold_pipelines",
+            0,
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cold_pipelines",
+            1,
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cold_pipelines",
+            2,
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        }
+      ]
+    },
+    "m4_webgl": {
+      "path": "results/joel/lorium/2026-11-14T005207-browser-xl-tiled.json",
+      "sha256": "833c715dca95a3954ed434687eba6492eb68637628f9e8a7706f37098069a59f",
+      "metadata": {
+        "env": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+          "vendor": "Google Inc. (Apple)",
+          "gpu": "Apple M4 Max",
+          "browser": "Chrome 157",
+          "os": "macOS",
+          "cores": 16,
+          "timer": true,
+          "maxTex": 16384,
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+        },
+        "provenance": {
+          "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+          "implementation": "tiled-resident-rgba32f-v3-cold-addon",
+          "branch": "fix/aureon-xl-textures",
+          "files": {
+            "index.html": "a59d3027f3c93f71414c25a24442201816784a0aa326268c6ceff2fa833bdbfc",
+            "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+            "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e",
+            "xl-cold.js": "a869d1356706f64fd2b3b24b8436d9e4090997bbf4635ea355d29cf7d088ece4"
+          },
+          "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated. Additive3fresh-resource retained-output cold pipelines; each fully validated after its timer stops."
+        },
+        "runtime_source_hashes": {
+          "fragment_shader": "2182c2bb57c9b89f338c776b2227a81f18237c9bf8523eb85c752e450417add6",
+          "input_draw_at": "de5578c3d90b94aae577c6900f39041a84395fcecabe93cb3401dd5087e7c203",
+          "fp64_reference": "89e9e95b088cba0bdb7dc45d03f7ab152899fff70c76b726f0db0ee966211bfc",
+          "xl_method": "2175592c709d4af16722ed5fa460e303397d5792138a62c8023a941593f1e430",
+          "timing_method": "91b93ae143f57a3b27263e148b17d8c84758be3b9ab8e2427db63cf63c564c0b"
+        },
+        "at": "2026-11-14T00:52:07.944Z",
+        "completed_at": "2026-11-14T00:52:41.191Z",
+        "scope": {
+          "warmups": 3,
+          "timed_placements": 10,
+          "separately_timed_full_readback_placements": 10,
+          "draw_calls_per_placement": 4,
+          "synchronization": "one pixel from every output framebuffer",
+          "validated_final_outputs": 1,
+          "validated_output": "final full-readback placement",
+          "angular_order_tested": false,
+          "physics_tested": false
+        },
+        "allocation": {
+          "strategy": "tiled-resident-rgba32f-v1",
+          "markers": 100000000,
+          "tiles": [
+            {
+              "first": 0,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 25000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 50000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 75000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            }
+          ],
+          "texture_count": 8,
+          "resident_texture_bytes": 3200253952,
+          "texture_budget_bytes": 4294967296,
+          "per_texture_budget_bytes": 536870912,
+          "allocated_texels_per_side": 100007936,
+          "excluded_padding_texels_per_side": 7936,
+          "cpu_slice_buffer_bytes": 39845888
+        },
+        "readback_output": {
+          "runs": 10,
+          "cpu_readback_bytes": 1600126976,
+          "output_format": "RGBA32F including row padding",
+          "reference_and_validation_included": false,
+          "input_generation_and_upload_included": false,
+          "full_output_retained_simultaneously": false
+        }
+      },
+      "assertions": [
+        {
+          "path": [
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "geometry",
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "geometry",
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        }
+      ]
+    },
+    "m5_webgl": {
+      "path": "results/joel/aureon/2026-11-14T003750-browser-xl-tiled.json",
+      "sha256": "7a11f24f9609177c965a7ec2799faa2e05cdc40c84b7ccb8e23ee3b15f69778c",
+      "metadata": {
+        "env": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)",
+          "vendor": "Google Inc. (Apple)",
+          "gpu": "Apple M5 Max",
+          "browser": "Chrome 157",
+          "os": "macOS",
+          "cores": 18,
+          "timer": true,
+          "maxTex": 16384,
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+        },
+        "provenance": {
+          "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+          "implementation": "tiled-resident-rgba32f-v2-all-tile-sync",
+          "branch": "fix/aureon-xl-textures",
+          "files": {
+            "index.html": "44e476b3026d9b9e2fc1a74324c4b6a8ec66c506900148d9ec6630b3b3077ddc",
+            "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+            "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e"
+          },
+          "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated."
+        },
+        "runtime_source_hashes": {
+          "fragment_shader": "2182c2bb57c9b89f338c776b2227a81f18237c9bf8523eb85c752e450417add6",
+          "input_draw_at": "de5578c3d90b94aae577c6900f39041a84395fcecabe93cb3401dd5087e7c203",
+          "fp64_reference": "89e9e95b088cba0bdb7dc45d03f7ab152899fff70c76b726f0db0ee966211bfc",
+          "xl_method": "2175592c709d4af16722ed5fa460e303397d5792138a62c8023a941593f1e430",
+          "timing_method": "91b93ae143f57a3b27263e148b17d8c84758be3b9ab8e2427db63cf63c564c0b"
+        },
+        "at": "2026-11-14T00:37:50.707Z",
+        "completed_at": "2026-11-14T00:38:22.191Z",
+        "scope": {
+          "warmups": 3,
+          "timed_placements": 10,
+          "separately_timed_full_readback_placements": 10,
+          "draw_calls_per_placement": 4,
+          "synchronization": "one pixel from every output framebuffer",
+          "validated_final_outputs": 1,
+          "validated_output": "final full-readback placement",
+          "angular_order_tested": false,
+          "physics_tested": false
+        },
+        "allocation": {
+          "strategy": "tiled-resident-rgba32f-v1",
+          "markers": 100000000,
+          "tiles": [
+            {
+              "first": 0,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 25000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 50000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 75000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            }
+          ],
+          "texture_count": 8,
+          "resident_texture_bytes": 3200253952,
+          "texture_budget_bytes": 4294967296,
+          "per_texture_budget_bytes": 536870912,
+          "allocated_texels_per_side": 100007936,
+          "excluded_padding_texels_per_side": 7936,
+          "cpu_slice_buffer_bytes": 39845888
+        },
+        "readback_output": {
+          "runs": 10,
+          "cpu_readback_bytes": 1600126976,
+          "output_format": "RGBA32F including row padding",
+          "reference_and_validation_included": false,
+          "input_generation_and_upload_included": false,
+          "full_output_retained_simultaneously": false
+        }
+      },
+      "assertions": [
+        {
+          "path": [
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "geometry",
+            "validation",
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "geometry",
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        }
+      ]
+    },
+    "m4_cold": {
+      "path": "results/joel/lorium/2026-11-14T005359-browser-xl-cold.json",
+      "sha256": "0df07bc59e3297ba62c585dd84cb95e2522c41cb3eab7e02cedc4108d0be1f2a",
+      "metadata": {
+        "scope": {
+          "markers": 100000000,
+          "repetitions": 3,
+          "draws_per_trial": 4,
+          "warmups": 0,
+          "includes": [
+            "fresh input generation and FP32 packing",
+            "texture and host output allocation",
+            "input upload",
+            "one full placement",
+            "full retained CPU RGBA output",
+            "UI yielding during input preparation"
+          ],
+          "excludes": [
+            "browser/process startup",
+            "source loading",
+            "context and shader setup",
+            "FP64 reference and comparison"
+          ],
+          "every_trial_fully_validated": true,
+          "physics_tested": false,
+          "angular_order_tested": false
+        },
+        "provenance": {
+          "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+          "implementation": "tiled-resident-rgba32f-v3-cold-addon",
+          "branch": "fix/aureon-xl-textures",
+          "files": {
+            "index.html": "a59d3027f3c93f71414c25a24442201816784a0aa326268c6ceff2fa833bdbfc",
+            "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+            "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e",
+            "xl-cold.js": "a869d1356706f64fd2b3b24b8436d9e4090997bbf4635ea355d29cf7d088ece4"
+          },
+          "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated. Additive3fresh-resource retained-output cold pipelines; each fully validated after its timer stops."
+        },
+        "at": "2026-11-14T00:53:59.612Z",
+        "completed_at": "2026-11-14T00:55:35.735Z",
+        "allocation": {
+          "strategy": "tiled-resident-rgba32f-v1",
+          "markers": 100000000,
+          "tiles": [
+            {
+              "first": 0,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 25000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 50000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 75000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            }
+          ],
+          "texture_count": 8,
+          "resident_texture_bytes": 3200253952,
+          "texture_budget_bytes": 4294967296,
+          "per_texture_budget_bytes": 536870912,
+          "allocated_texels_per_side": 100007936,
+          "excluded_padding_texels_per_side": 7936,
+          "retained_host_output_bytes": 1600126976,
+          "staging_and_reference_bytes": 31457280
+        },
+        "env": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+          "vendor": "Google Inc. (Apple)",
+          "gpu": "Apple M4 Max",
+          "browser": "Chrome 157",
+          "os": "macOS",
+          "cores": 16,
+          "timer": true,
+          "maxTex": 16384
+        }
+      },
+      "assertions": [
+        {
+          "path": [
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "scope",
+            "markers"
+          ],
+          "equals": 100000000
+        },
+        {
+          "path": [
+            "scope",
+            "repetitions"
+          ],
+          "equals": 3
+        },
+        {
+          "path": [
+            "trials",
+            0,
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "trials",
+            0,
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "trials",
+            1,
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "trials",
+            1,
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "trials",
+            2,
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "trials",
+            2,
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        }
+      ]
+    },
+    "m5_cold": {
+      "path": "results/joel/aureon/2026-11-14T004925-browser-xl-cold.json",
+      "sha256": "062c0e5ef447bc97d9c6b41336b7e17d3b1067e9f5b7308e63362e38a70fa240",
+      "metadata": {
+        "scope": {
+          "markers": 100000000,
+          "repetitions": 3,
+          "draws_per_trial": 4,
+          "warmups": 0,
+          "includes": [
+            "fresh input generation and FP32 packing",
+            "texture and host output allocation",
+            "input upload",
+            "one full placement",
+            "full retained CPU RGBA output",
+            "UI yielding during input preparation"
+          ],
+          "excludes": [
+            "browser/process startup",
+            "source loading",
+            "context and shader setup",
+            "FP64 reference and comparison"
+          ],
+          "every_trial_fully_validated": true,
+          "physics_tested": false,
+          "angular_order_tested": false
+        },
+        "provenance": {
+          "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+          "implementation": "tiled-resident-rgba32f-v3-cold-addon",
+          "branch": "fix/aureon-xl-textures",
+          "files": {
+            "index.html": "a59d3027f3c93f71414c25a24442201816784a0aa326268c6ceff2fa833bdbfc",
+            "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+            "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e",
+            "xl-cold.js": "a869d1356706f64fd2b3b24b8436d9e4090997bbf4635ea355d29cf7d088ece4"
+          },
+          "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated. Additive3fresh-resource retained-output cold pipelines; each fully validated after its timer stops."
+        },
+        "at": "2026-11-14T00:49:25.942Z",
+        "completed_at": "2026-11-14T00:49:49.572Z",
+        "allocation": {
+          "strategy": "tiled-resident-rgba32f-v1",
+          "markers": 100000000,
+          "tiles": [
+            {
+              "first": 0,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 25000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 50000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            },
+            {
+              "first": 75000000,
+              "count": 25000000,
+              "width": 4096,
+              "height": 6104,
+              "bytes_per_texture": 400031744
+            }
+          ],
+          "texture_count": 8,
+          "resident_texture_bytes": 3200253952,
+          "texture_budget_bytes": 4294967296,
+          "per_texture_budget_bytes": 536870912,
+          "allocated_texels_per_side": 100007936,
+          "excluded_padding_texels_per_side": 7936,
+          "retained_host_output_bytes": 1600126976,
+          "staging_and_reference_bytes": 31457280
+        },
+        "env": {
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)",
+          "vendor": "Google Inc. (Apple)",
+          "gpu": "Apple M5 Max",
+          "browser": "Chrome 157",
+          "os": "macOS",
+          "cores": 18,
+          "timer": true,
+          "maxTex": 16384
+        }
+      },
+      "assertions": [
+        {
+          "path": [
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "scope",
+            "markers"
+          ],
+          "equals": 100000000
+        },
+        {
+          "path": [
+            "scope",
+            "repetitions"
+          ],
+          "equals": 3
+        },
+        {
+          "path": [
+            "trials",
+            0,
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "trials",
+            0,
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "trials",
+            1,
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "trials",
+            1,
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "trials",
+            2,
+            "passed"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "trials",
+            2,
+            "validation",
+            "checked_xyz_coordinates"
+          ],
+          "equals": 300000000
+        }
+      ]
+    },
+    "m5_native": {
+      "path": "results/joel/aureon/2026-11-14T003901-native-metal-xl.json",
+      "sha256": "8225138c2f239bf8a8c8acc416c47fa7ca72bf2e29208196e2b9275d889d305a",
+      "metadata": {
+        "device": "Apple M5 Max",
+        "cpu_compile": "clang++ -O3 -fno-fast-math -ffp-contract=off",
+        "worker_count": 18,
+        "metal_floating_point_functions": "precise",
+        "metal_math_mode": "safe",
+        "notes": [
+          "Input generation/file IO, FP32 conversion, Metal setup/allocation/input copy, output copy and validation are outside resident execution clocks.",
+          "Apple unified memory: input/output copies are CPU memcpy to/from shared Metal buffers, not discrete-GPU PCIe transfers.",
+          "Every trial output coordinate is compared against stock JS FP64 coordinates computed from the original FP64 inputs.",
+          "All geometry engines use acos then sin/cos; GPU and CPU use FP32 inputs/edges; reference remains FP64.",
+          "GPU every timed run is followed by full output copy/validation; CPU every run by validation; this cadence differs from stock WebGL timing.",
+          "Fixed method order is GPU, CPU single, CPU multicore; warmups precede each method; no randomized interleaving.",
+          "CPU workers persist and share dynamically claimed4096-marker chunks; dispatch and completion barrier are included.",
+          "Neither CPU affinity nor exclusive machine access is asserted."
+        ],
+        "allocated_gpu_buffer_bytes": 2400059392,
+        "requested_gpu_buffer_bytes": 2400000000,
+        "cpu_chunk_markers": 4096,
+        "executable_provenance_limitation": "M5 native source/shader and fixture hashes, result artifact and reproduction commands were independently checked. A contemporaneous compile log and binary hash tying that exact M5 executable to the recorded source were not supplied. M5 numerical outputs are validated; executable provenance is weaker. Reported compile flags are a reproduction recipe, not a verified historical compile log."
+      },
+      "assertions": [
+        {
+          "path": [
+            "n"
+          ],
+          "equals": 100000000
+        },
+        {
+          "path": [
+            "cpu_single_multi_bit_identical"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "warmups"
+          ],
+          "equals": 3
+        },
+        {
+          "path": [
+            "repeats"
+          ],
+          "equals": 10
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            0,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            0,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            1,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            1,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            2,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            2,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            3,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            3,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            4,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            4,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            5,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            5,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            6,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            6,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            7,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            7,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            8,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            8,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            9,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            9,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            0,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            0,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            1,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            1,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            2,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            2,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            3,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            3,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            4,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            4,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            5,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            5,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            6,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            6,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            7,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            7,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            8,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            8,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            9,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            9,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            0,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            0,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            1,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            1,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            2,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            2,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            3,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            3,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            4,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            4,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            5,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            5,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            6,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            6,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            7,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            7,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            8,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            8,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            9,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            9,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        }
+      ]
+    },
+    "m4_native": {
+      "path": "results/joel/lorium/2026-11-14T005732-native-metal-xl.json",
+      "sha256": "304a0733de7903b13f987be68a5d914849be88308a4fbe9bd6a1811977a0ccbe",
+      "metadata": {
+        "device": "Apple M4 Max",
+        "cpu_compile": "clang++ -O3 -fno-fast-math -ffp-contract=off",
+        "worker_count": 16,
+        "metal_floating_point_functions": "precise",
+        "metal_math_mode": "safe",
+        "notes": [
+          "Input generation/file IO, FP32 conversion, Metal setup/allocation/input copy, output copy and validation are outside resident execution clocks.",
+          "Apple unified memory: input/output copies are CPU memcpy to/from shared Metal buffers, not discrete-GPU PCIe transfers.",
+          "Every trial output coordinate is compared against stock JS FP64 coordinates computed from the original FP64 inputs.",
+          "All geometry engines use acos then sin/cos; GPU and CPU use FP32 inputs/edges; reference remains FP64.",
+          "GPU every timed run is followed by full output copy/validation; CPU every run by validation; this cadence differs from stock WebGL timing.",
+          "Fixed method order is GPU, CPU single, CPU multicore; warmups precede each method; no randomized interleaving.",
+          "CPU workers persist and share dynamically claimed4096-marker chunks; dispatch and completion barrier are included.",
+          "Neither CPU affinity nor exclusive machine access is asserted."
+        ],
+        "allocated_gpu_buffer_bytes": 2400059392,
+        "requested_gpu_buffer_bytes": 2400000000,
+        "cpu_chunk_markers": 4096,
+        "host_condition": "AC power; pre-existing desktop memory pressure; swap used 9,811.62M \u2192 13,393.06M during native run. Footprint 12.1806GB; /usr/bin/time maxRSS 8.7928GB. No exclusive-host claim.",
+        "executable_provenance": "Source \u2192 compiled binary \u2192 fixtures \u2192 final output hashes were independently checked; detailed receipts are in provenance/."
+      },
+      "assertions": [
+        {
+          "path": [
+            "n"
+          ],
+          "equals": 100000000
+        },
+        {
+          "path": [
+            "cpu_single_multi_bit_identical"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "warmups"
+          ],
+          "equals": 3
+        },
+        {
+          "path": [
+            "repeats"
+          ],
+          "equals": 10
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            0,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            0,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            1,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            1,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            2,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            2,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            3,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            3,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            4,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            4,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            5,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            5,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            6,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            6,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            7,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            7,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            8,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            8,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            9,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_single_trials",
+            9,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            0,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            0,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            1,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            1,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            2,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            2,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            3,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            3,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            4,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            4,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            5,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            5,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            6,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            6,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            7,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            7,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            8,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            8,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            9,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "cpu_multi_trials",
+            9,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            0,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            0,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            1,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            1,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            2,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            2,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            3,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            3,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            4,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            4,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            5,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            5,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            6,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            6,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            7,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            7,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            8,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            8,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        },
+        {
+          "path": [
+            "gpu_trials",
+            9,
+            "validation",
+            "pass"
+          ],
+          "equals": true
+        },
+        {
+          "path": [
+            "gpu_trials",
+            9,
+            "validation",
+            "actual_coordinates"
+          ],
+          "equals": 300000000
+        }
+      ]
+    }
+  },
+  "export_environment": {
+    "python": "3.12.11",
+    "matplotlib": "3.11.2",
+    "pillow": "13.0.0"
+  },
+  "outputs": {
+    "100m-timing-scopes-final-size.png": "e3e7b7ca9a696834971933a7664db25ff9335c782d69264f8f782b11d264d308",
+    "100m-timing-scopes-grayscale.png": "27851f4c4f92aff208ba79f2c659082fb83d91fd932635de6ec64d7feffca3f4",
+    "100m-timing-scopes.png": "3a68626139bdf8a11acacdcf2f1684e2c56de1aef76b02492e8f12bbc5f9ef33",
+    "100m-timing-scopes.svg": "283c302b97cc472551a3e7f6e29b6211d3e342e0ebdebfa94743df181abf2578",
+    "README.md": "3570379f607a8339eb1ec05be3725d7ecb0c40b25574b2d703697add1274454d",
+    "caption.txt": "a8330f3916c739efa87a2ef59fad58b5eb9b0a679b7524e1ae06dd613950d92d",
+    "exact-values.csv": "6e5b8639637e720cd0e1a028b3d1a1f3ece8a55f5a859c5238844b4cd90338a5",
+    "historical-native-10m-final-size.png": "cd3a705d84d86fc396e4b3eb117751be32df1cbd0bd1144224e48e119c24ba4e",
+    "historical-native-10m-grayscale.png": "d3e31977c697a3372e875dcea0492a69785b4d298c4bb28a72dc2ddaaee883cc",
+    "historical-native-10m.png": "4b23bbffd7657b046eba003646bc54a78564fdea10fd4dd66fc6cd276994312b",
+    "historical-native-10m.svg": "97c20c375d9fc08d00223c94e472fcc3eaa234ec0704ebae9cc02d609b31cfe5",
+    "historical-raw-detector-final-size.png": "8573c2f99441b7d41e823b867ac78892ed4c75c418ada1ab1b1490e4ce05620f",
+    "historical-raw-detector-grayscale.png": "43bef67c8dbbc6b725b97a9397b8cdf0cda514c81a80ab37c1d4b256e1b77509",
+    "historical-raw-detector.png": "085aa1e35c7b6910a7789d731180abc9a738a172d01aa6c55be7439de62265c2",
+    "historical-raw-detector.svg": "735cb0b3f1b1bd7b096f0aa7c95cadd625ab1ef1fc9d4a773f878b98788f74f1",
+    "index.html": "8dad29e036009503d59a117b5a6f353451e0d8de6ff47bceba00a7fdf444a61f",
+    "manifest.json": "236fc30268e3d63cc064d256f697012f67cc947e49ad5c155d4c85c657af2438",
+    "plot-data.json": "39309cdc95a9046c27d132814946bd26516abc4ac72c0a2792106639e9c96226",
+    "render-preflight.json": "65fa020489f093a4c8128db7c16a85a63705eb4a086d727a67feb643495dd596",
+    "visual-specs.json": "acdc1a47b24938ac22978dd48f32a3be97b59cb09947c4b7517d86d8515874c0",
+    "export-preflight.json": "f9a292bedf7d86cbd8a98f359cc1218e376be0b5da64b538376800da2fd57929",
+    "qa-final.json": "a457483b90b262e817737c365a63f1d7a3c64b4ed58cba6595389a42348e2508"
+  },
+  "status": "passed_final_size_color_grayscale_and_source_review",
+  "governing_grammar": "Scientific Visuals & Tables2.2.0; GPT-6 Astra north-star tokens",
+  "uncertainty": "Raw trial points and observed ranges; no confidence intervals",
+  "manual_review": "qa-final.json",
+  "qa_final_sha256": "a457483b90b262e817737c365a63f1d7a3c64b4ed58cba6595389a42348e2508",
+  "initial_render_script_sha256": "312a22585785307f92d3f039c4cd6edd6cb04d63c277b33ac5926e0b2e893f5d",
+  "svg_normalization_review": "qa-final.json",
+  "csv_normalization_review": "qa-final.json"
+}

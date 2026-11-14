@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-14T01:02:02.294765+00:00",
+  "scope": "Synthetic 100M sphere-placement benchmark; distinct from detector/Rust/raw supplement",
+  "source_base": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+  "aureon_web_commit": "86035c0",
+  "aureon_native_commit": "9a04fc6118f91f99e1a337f7780ec966104ea602",
+  "numerical_tolerances": {
+    "numpy_fp64": 1e-09,
+    "gpu_native_fp32": 0.0005
+  },
+  "public_result_files": {
+    "results/joel/aureon/20261114T005352Z-numpy-xl-e2e.json": "37ec75ef241aaac709207946b20291ecee47dbfbfefd3d903891fd0673cd3092",
+    "results/joel/aureon/2026-11-14T004925-browser-xl-cold.json": "062c0e5ef447bc97d9c6b41336b7e17d3b1067e9f5b7308e63362e38a70fa240",
+    "results/joel/aureon/2026-11-14T003104-browser-xl-tiled.json": "eac377e05255c67330de8367c6dfe70000c2f3b2ba3cfbafe8b500c6f1937784",
+    "results/joel/aureon/2026-11-14T003901-native-metal-xl.json": "8225138c2f239bf8a8c8acc416c47fa7ca72bf2e29208196e2b9275d889d305a",
+    "results/joel/aureon/2026-11-14T003750-browser-xl-tiled.json": "7a11f24f9609177c965a7ec2799faa2e05cdc40c84b7ccb8e23ee3b15f69778c",
+    "results/joel/lorium/2026-11-14T005732-native-metal-xl.json": "304a0733de7903b13f987be68a5d914849be88308a4fbe9bd6a1811977a0ccbe",
+    "results/joel/lorium/2026-11-14T005207-browser-xl-tiled.json": "833c715dca95a3954ed434687eba6492eb68637628f9e8a7706f37098069a59f",
+    "results/joel/lorium/2026-11-14T005359-browser-xl-cold.json": "0df07bc59e3297ba62c585dd84cb95e2522c41cb3eab7e02cedc4108d0be1f2a",
+    "results/joel/lorium/2026-11-14T003655-numpy-xl-e2e.json": "16f9856dc8dfb8ecab7164382cbe88fee05b7a31ff82859aa0d43638b6a841d5"
+  },
+  "review_artifact_hashes": {
+    "browser-v3-both-host-review.json": "6fd2108895ed1bfaabacf609f8f1de9163249136309e6b0935c3ecfd0e851ec0",
+    "native100m-v2-source-result-review.json": "ee7c649153860e049c1720cbdfcdb92e89977ded08140da463105276f57e413c",
+    "final-native-numpy-review.json": "fc817a2f9a85505ee6ac0df8a83265417fc53960f18b8b2defd2832a787d954e"
+  },
+  "review_findings": [
+    "Four 25M texture pairs preserve global input stream and original shader/reference. All targets synchronized.",
+    "Six fresh browser pipelines each retain all100M RGBA outputs, stop the continuous timer, then validate all300M XYZ coordinates.",
+    "Final resident/streaming browser output validated once, not every resident trial.",
+    "Both NumPy runs validate final resident and all three cold outputs with independent algebraic FP64 oracle.",
+    "Native GPU,CPU1,multicore each validate all300M coordinates after every one of10 trials on each Mac.",
+    "Native M4 source,binary,fixtures and final-output hashes independently rechecked; fixtures identical to supplied M5 fixtures."
+  ],
+  "provenance_limits": [
+    "M5 native source/shader/fixture/result hashes and reproduction commands supplied, but no contemporaneous compile log or binary hash tying that historical executable to the source. Numerical output validation passes; executable provenance is weaker than M4.",
+    "M5 resident browser uses v2 export; M4 resident uses v3 page. The complete resident GPU class, timing method, shader, input generator and reference are byte-identical; v3 adds a separate cold-pipeline action. Both cold exports match the same complete v3 manifest.",
+    "Normal desktop conditions, different total memory and existing M4 swap prevent isolated chip-speed inference. Browser readback difference is unexplained.",
+    "FP64 NumPy XYZ,FP32 native XYZ and FP32 padded browser RGBA have different precision/layout/cadence. Validation and process/context startup are excluded where documented."
+  ],
+  "checks": {
+    "local_npm_test": "passed (JS bounded orchestration/negative controls and9Python tests)",
+    "local_npm_run_check": "passed JS and NumPy20trials at10k and100k against reference",
+    "native_self_test": "8/8 passed on Lorium",
+    "real_hardware": "M4Max and M5Max; software renderers rejected"
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "target": "web2x PNG and vector SVG",
+  "warning_resolution": "The generic300dpi manuscript preference does not apply to these200dpi2x web exports; SVG remains available for print.",
+  "checks": [
+    {
+      "path": "reports/2026-11-14-xl/100m-timing-scopes.svg",
+      "format": "svg",
+      "passed": true,
+      "metadata": {
+        "size_bytes": 49182,
+        "width_attribute": "864pt",
+        "height_attribute": "792pt",
+        "width_mm": 304.79999999999995,
+        "height_mm": 279.4,
+        "viewBox": [
+          0.0,
+          0.0,
+          864.0,
+          792.0
+        ],
+        "user_unit_scale_pt": 1.0,
+        "actual_aspect_ratio": 1.0909090909090908,
+        "target_aspect_ratio": 1.090909090909091,
+        "aspect_ratio_relative_error": 2.220446049250313e-16,
+        "text_nodes": 79,
+        "embedded_image_nodes": 0,
+        "detected_font_sizes_pt": [
+          10.0,
+          11.0,
+          11.5,
+          18.0
+        ],
+        "font_families": []
+      },
+      "issues": [],
+      "limitations": [
+        "Programmatic preflight cannot verify scientific correctness or omitted evidence.",
+        "Programmatic preflight cannot reliably detect label collisions, hierarchy, or the five-second message.",
+        "Inspect a final-size rendered image after the most recent edit."
+      ]
+    },
+    {
+      "path": "reports/2026-11-14-xl/100m-timing-scopes.png",
+      "format": "png",
+      "passed": true,
+      "metadata": {
+        "size_bytes": 462116,
+        "width_px": 2400,
+        "height_px": 2200,
+        "mode": "RGBA",
+        "frames": 1,
+        "embedded_dpi": [
+          199.9996,
+          199.9996
+        ],
+        "actual_aspect_ratio": 1.0909090909090908,
+        "target_aspect_ratio": 1.090909090909091,
+        "aspect_ratio_relative_error": 2.220446049250313e-16,
+        "effective_dpi_at_target_width": 199.99999999999997
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "suboptimal_effective_dpi",
+          "message": "Effective resolution is 200 dpi; 300 dpi is preferred for manuscript figures."
+        }
+      ],
+      "limitations": [
+        "Programmatic preflight cannot verify scientific correctness or omitted evidence.",
+        "Programmatic preflight cannot reliably detect label collisions, hierarchy, or the five-second message.",
+        "Inspect a final-size rendered image after the most recent edit."
+      ]
+    },
+    {
+      "path": "reports/2026-11-14-xl/historical-native-10m.svg",
+      "format": "svg",
+      "passed": true,
+      "metadata": {
+        "size_bytes": 37433,
+        "width_attribute": "864pt",
+        "height_attribute": "576pt",
+        "width_mm": 304.79999999999995,
+        "height_mm": 203.2,
+        "viewBox": [
+          0.0,
+          0.0,
+          864.0,
+          576.0
+        ],
+        "user_unit_scale_pt": 1.0,
+        "actual_aspect_ratio": 1.5,
+        "target_aspect_ratio": 1.5000000000000002,
+        "aspect_ratio_relative_error": 1.1102230246251565e-16,
+        "text_nodes": 34,
+        "embedded_image_nodes": 0,
+        "detected_font_sizes_pt": [
+          10.0,
+          11.0,
+          11.5,
+          18.0
+        ],
+        "font_families": []
+      },
+      "issues": [],
+      "limitations": [
+        "Programmatic preflight cannot verify scientific correctness or omitted evidence.",
+        "Programmatic preflight cannot reliably detect label collisions, hierarchy, or the five-second message.",
+        "Inspect a final-size rendered image after the most recent edit."
+      ]
+    },
+    {
+      "path": "reports/2026-11-14-xl/historical-native-10m.png",
+      "format": "png",
+      "passed": true,
+      "metadata": {
+        "size_bytes": 195598,
+        "width_px": 2400,
+        "height_px": 1600,
+        "mode": "RGBA",
+        "frames": 1,
+        "embedded_dpi": [
+          199.9996,
+          199.9996
+        ],
+        "actual_aspect_ratio": 1.5,
+        "target_aspect_ratio": 1.5000000000000002,
+        "aspect_ratio_relative_error": 1.1102230246251565e-16,
+        "effective_dpi_at_target_width": 199.99999999999997
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "suboptimal_effective_dpi",
+          "message": "Effective resolution is 200 dpi; 300 dpi is preferred for manuscript figures."
+        }
+      ],
+      "limitations": [
+        "Programmatic preflight cannot verify scientific correctness or omitted evidence.",
+        "Programmatic preflight cannot reliably detect label collisions, hierarchy, or the five-second message.",
+        "Inspect a final-size rendered image after the most recent edit."
+      ]
+    },
+    {
+      "path": "reports/2026-11-14-xl/historical-raw-detector.svg",
+      "format": "svg",
+      "passed": true,
+      "metadata": {
+        "size_bytes": 29777,
+        "width_attribute": "864pt",
+        "height_attribute": "756pt",
+        "width_mm": 304.79999999999995,
+        "height_mm": 266.7,
+        "viewBox": [
+          0.0,
+          0.0,
+          864.0,
+          756.0
+        ],
+        "user_unit_scale_pt": 1.0,
+        "actual_aspect_ratio": 1.1428571428571428,
+        "target_aspect_ratio": 1.142857142857143,
+        "aspect_ratio_relative_error": 2.220446049250313e-16,
+        "text_nodes": 54,
+        "embedded_image_nodes": 0,
+        "detected_font_sizes_pt": [
+          10.0,
+          11.0,
+          11.5,
+          18.0
+        ],
+        "font_families": []
+      },
+      "issues": [],
+      "limitations": [
+        "Programmatic preflight cannot verify scientific correctness or omitted evidence.",
+        "Programmatic preflight cannot reliably detect label collisions, hierarchy, or the five-second message.",
+        "Inspect a final-size rendered image after the most recent edit."
+      ]
+    },
+    {
+      "path": "reports/2026-11-14-xl/historical-raw-detector.png",
+      "format": "png",
+      "passed": true,
+      "metadata": {
+        "size_bytes": 278328,
+        "width_px": 2400,
+        "height_px": 2100,
+        "mode": "RGBA",
+        "frames": 1,
+        "embedded_dpi": [
+          199.9996,
+          199.9996
+        ],
+        "actual_aspect_ratio": 1.1428571428571428,
+        "target_aspect_ratio": 1.142857142857143,
+        "aspect_ratio_relative_error": 2.220446049250313e-16,
+        "effective_dpi_at_target_width": 199.99999999999997
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "suboptimal_effective_dpi",
+          "message": "Effective resolution is 200 dpi; 300 dpi is preferred for manuscript figures."
+        }
+      ],
+      "limitations": [
+        "Programmatic preflight cannot verify scientific correctness or omitted evidence.",
+        "Programmatic preflight cannot reliably detect label collisions, hierarchy, or the five-second message.",
+        "Inspect a final-size rendered image after the most recent edit."
+      ]
+    }
+  ]
+}

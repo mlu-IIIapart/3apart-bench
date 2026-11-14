@@ -1,0 +1,12 @@
+{
+  "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+  "implementation": "tiled-resident-rgba32f-v3-cold-addon",
+  "branch": "fix/aureon-xl-textures",
+  "files": {
+    "index.html": "a59d3027f3c93f71414c25a24442201816784a0aa326268c6ceff2fa833bdbfc",
+    "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+    "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e",
+    "xl-cold.js": "a869d1356706f64fd2b3b24b8436d9e4090997bbf4635ea355d29cf7d088ece4"
+  },
+  "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated. Additive3fresh-resource retained-output cold pipelines; each fully validated after its timer stops."
+}

@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-11-14T00:52:31.076657+00:00",
+  "source_head": "9a04fc6118f91f99e1a337f7780ec966104ea602",
+  "web_commit": "86035c0",
+  "native_commit": "9a04fc6",
+  "base": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+  "frozen_v3_manifest": {
+    "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+    "implementation": "tiled-resident-rgba32f-v3-cold-addon",
+    "branch": "fix/aureon-xl-textures",
+    "files": {
+      "index.html": "a59d3027f3c93f71414c25a24442201816784a0aa326268c6ceff2fa833bdbfc",
+      "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+      "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e",
+      "xl-cold.js": "a869d1356706f64fd2b3b24b8436d9e4090997bbf4635ea355d29cf7d088ece4"
+    },
+    "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated. Additive3fresh-resource retained-output cold pipelines; each fully validated after its timer stops."
+  },
+  "native_commands": {
+    "compile": "xcrun clang++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -fobjc-arc -framework Foundation -framework Metal bench/native-metal-xl/native_bench.mm -o tmp/native_bench",
+    "generate": "node bench/native-metal-xl/generate_inputs.mjs 100000000 tmp/native-metal-xl",
+    "run": "tmp/native_bench tmp/native-metal-xl/inputs/100000000 bench/native-metal-xl/place.metal tmp/native-metal-xl/100000000-aureon 18 10"
+  },
+  "scope_notes": [
+    "All measured sizes100M; both paths realAppleM5Max, originalformula,seed,FP32 tolerance5e-4.",
+    "Browser resident and streaming clocks10trials each; final output validated. Three independent cold retained-output trials each fully validated after clockstop.",
+    "Native10GPU+10CPU1+10CPU18 trials, every final trial output fully validated; same native math kernel and safe/precise compilation as prior10M work.",
+    "Native packedXYZ1.2GB output vsWebGLRGBA1.600126976GB includingpadding; compiler modes/cadence differ. Implementation comparison, not purebrowser overhead.",
+    "Resident/streaming/native clocks exclude input prep and validation. Browser cold clock includes freshinputgen/buffer allocation/upload/outputmaterialization, excludes process/source/context+shader setup and validation.",
+    "Geometryonly;100Mphysics andangularorder nottested."
+  ],
+  "memory_report": {
+    "browser-memory-v2": {
+      "samples": 39,
+      "minimum_system_memory_free_percent": 86,
+      "swap_strings": [
+        "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      ],
+      "max_observed_process_rss_bytes": 1776254976
+    },
+    "native-memory-v2": {
+      "samples": 199,
+      "minimum_system_memory_free_percent": 88,
+      "swap_strings": [
+        "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      ],
+      "max_observed_process_rss_bytes": 12014387200
+    },
+    "cold-memory": {
+      "samples": 73,
+      "minimum_system_memory_free_percent": 86,
+      "swap_strings": [
+        "vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      ],
+      "max_observed_process_rss_bytes": 1779597312
+    }
+  },
+  "commands_are_reported_recipe_not_contemporaneous_compile_log": true
+}
