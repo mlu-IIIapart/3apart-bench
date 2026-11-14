@@ -1,0 +1,137 @@
+{
+  "device" : "Apple M5 Max",
+  "experiment" : "native runtime validation mode",
+  "final_full_audit" : {
+    "actual_coordinates" : 24585,
+    "coordinates_over_5e_4" : 0,
+    "expected_coordinates" : 24585,
+    "max_abs_error_vs_raw_fp64" : 3.5585558369466419e-07,
+    "max_unit_radius_error" : 1.4712733387156618e-07,
+    "nonfinite" : 0,
+    "outside_band" : 0,
+    "pass" : true
+  },
+  "final_full_audit_ms" : 0.028083,
+  "independent_serial_audit_each_iteration" : false,
+  "initial_certification" : {
+    "all_fields_equal_serial_oracle" : true,
+    "cache_valid" : true,
+    "context_copy_allocation_compile_ms" : 0.290709,
+    "context_generation" : 1,
+    "cpu_update_and_reduce_ms" : 0.082542000000000004,
+    "full_coverage" : true,
+    "generation" : 1,
+    "gpu_compare_device_ms" : 0.068458321038633585,
+    "gpu_compare_wall_ms" : 0.64224999999999999,
+    "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+    "rechecked_blocks" : 3,
+    "rechecked_markers" : 8195,
+    "reused_blocks" : 0,
+    "reused_markers" : 0,
+    "validation" : {
+      "actual_coordinates" : 24585,
+      "coordinates_over_5e_4" : 0,
+      "expected_coordinates" : 24585,
+      "max_abs_error_vs_raw_fp64" : 3.5585558369466419e-07,
+      "max_unit_radius_error" : 1.4712733387156618e-07,
+      "nonfinite" : 0,
+      "outside_band" : 0,
+      "pass" : true
+    },
+    "validation_ms" : 0.72566699999999995
+  },
+  "initial_sample_planning_ms" : 8.3999999999999995e-05,
+  "n" : 8195,
+  "note" : "Initial and final full audits are explicit. Full GPU mode covers every output word each iteration and exactly rechecks changed blocks. Sparse modes cover only recorded sampled coordinates; passing sampled checks cannot establish correctness of unchecked intermediate outputs. Rotating sample planning is included in each repeated clock.",
+  "runs" : [
+    {
+      "checked_coordinates" : 24585,
+      "checked_markers" : 8195,
+      "compute_and_validation_ms" : 0.51545799999999997,
+      "coverage" : 1,
+      "effective_validation_mode" : "full",
+      "full_coverage" : true,
+      "iteration" : 0,
+      "mode" : "sparse-rotating",
+      "placement" : {
+        "placement_gpu_ms" : 0.01241665449924767,
+        "placement_wall_ms" : 0.46887499999999999
+      },
+      "sample_iteration" : 0,
+      "sample_plan_reused" : false,
+      "sample_planning_ms" : 4.1999999999999998e-05,
+      "sample_seed" : 20261114,
+      "validation" : {
+        "actual_coordinates" : 24585,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 24585,
+        "max_abs_error_vs_raw_fp64" : 3.5585558369466419e-07,
+        "max_unit_radius_error" : 1.4712733387156618e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_including_planning_ms" : 0.041625000000000002
+    },
+    {
+      "checked_coordinates" : 24585,
+      "checked_markers" : 8195,
+      "compute_and_validation_ms" : 0.613958,
+      "coverage" : 1,
+      "effective_validation_mode" : "full",
+      "full_coverage" : true,
+      "iteration" : 1,
+      "mode" : "sparse-rotating",
+      "placement" : {
+        "placement_gpu_ms" : 0.012333330232650042,
+        "placement_wall_ms" : 0.56754199999999999
+      },
+      "sample_iteration" : 1,
+      "sample_plan_reused" : false,
+      "sample_planning_ms" : 4.1999999999999998e-05,
+      "sample_seed" : 20261114,
+      "validation" : {
+        "actual_coordinates" : 24585,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 24585,
+        "max_abs_error_vs_raw_fp64" : 3.5585558369466419e-07,
+        "max_unit_radius_error" : 1.4712733387156618e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_including_planning_ms" : 0.043291000000000003
+    },
+    {
+      "checked_coordinates" : 24585,
+      "checked_markers" : 8195,
+      "compute_and_validation_ms" : 0.69999999999999996,
+      "coverage" : 1,
+      "effective_validation_mode" : "full",
+      "full_coverage" : true,
+      "iteration" : 2,
+      "mode" : "sparse-rotating",
+      "placement" : {
+        "placement_gpu_ms" : 0.024333334295079112,
+        "placement_wall_ms" : 0.64429199999999998
+      },
+      "sample_iteration" : 2,
+      "sample_plan_reused" : false,
+      "sample_planning_ms" : 4.1999999999999998e-05,
+      "sample_seed" : 20261114,
+      "validation" : {
+        "actual_coordinates" : 24585,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 24585,
+        "max_abs_error_vs_raw_fp64" : 3.5585558369466419e-07,
+        "max_unit_radius_error" : 1.4712733387156618e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_including_planning_ms" : 0.052665999999999998
+    }
+  ],
+  "runtime_mode" : "sparse-rotating",
+  "workers" : 18
+}

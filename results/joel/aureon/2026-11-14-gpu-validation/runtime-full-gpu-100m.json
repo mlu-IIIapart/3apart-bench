@@ -1,0 +1,360 @@
+{
+  "device" : "Apple M5 Max",
+  "experiment" : "native runtime validation mode",
+  "final_full_audit" : {
+    "actual_coordinates" : 300000000,
+    "coordinates_over_5e_4" : 0,
+    "expected_coordinates" : 300000000,
+    "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+    "max_unit_radius_error" : 1.9280484675476828e-07,
+    "nonfinite" : 0,
+    "outside_band" : 0,
+    "pass" : true
+  },
+  "final_full_audit_ms" : 343.84204099999999,
+  "independent_serial_audit_each_iteration" : false,
+  "initial_certification" : {
+    "all_fields_equal_serial_oracle" : true,
+    "cache_valid" : true,
+    "context_copy_allocation_compile_ms" : 108.28700000000001,
+    "context_generation" : 1,
+    "cpu_update_and_reduce_ms" : 37.777917000000002,
+    "full_coverage" : true,
+    "generation" : 1,
+    "gpu_compare_device_ms" : 9.2093750135973096,
+    "gpu_compare_wall_ms" : 36.174833999999997,
+    "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+    "rechecked_blocks" : 24415,
+    "rechecked_markers" : 100000000,
+    "reused_blocks" : 0,
+    "reused_markers" : 0,
+    "validation" : {
+      "actual_coordinates" : 300000000,
+      "coordinates_over_5e_4" : 0,
+      "expected_coordinates" : 300000000,
+      "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+      "max_unit_radius_error" : 1.9280484675476828e-07,
+      "nonfinite" : 0,
+      "outside_band" : 0,
+      "pass" : true
+    },
+    "validation_ms" : 73.954708999999994
+  },
+  "initial_sample_planning_ms" : 3.7178339999999999,
+  "n" : 100000000,
+  "note" : "Initial and final full audits are explicit. Full GPU mode covers every output word each iteration and exactly rechecks changed blocks. Sparse modes cover only recorded sampled coordinates; passing sampled checks cannot establish correctness of unchecked intermediate outputs. Rotating sample planning is included in each repeated clock.",
+  "runs" : [
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 12.372875000000001,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.053707999999999999,
+      "full_coverage" : true,
+      "generation" : 2,
+      "gpu_compare_device_ms" : 4.9947499937843531,
+      "gpu_compare_wall_ms" : 5.6895420000000003,
+      "iteration" : 0,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 6.3920416869223118,
+        "placement_wall_ms" : 6.601
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 5.7434589999999996
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 10.56025,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.052249999999999998,
+      "full_coverage" : true,
+      "generation" : 3,
+      "gpu_compare_device_ms" : 4.4313749822322279,
+      "gpu_compare_wall_ms" : 5.143167,
+      "iteration" : 1,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.6331249759532511,
+        "placement_wall_ms" : 5.346584
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 5.1955830000000001
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 9.7264579999999992,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.041458000000000002,
+      "full_coverage" : true,
+      "generation" : 4,
+      "gpu_compare_device_ms" : 4.2245416843798012,
+      "gpu_compare_wall_ms" : 4.8773330000000001,
+      "iteration" : 2,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.5947500038892031,
+        "placement_wall_ms" : 4.7867499999999996
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.9189170000000004
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 9.4702920000000006,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.036208999999999998,
+      "full_coverage" : true,
+      "generation" : 5,
+      "gpu_compare_device_ms" : 4.0650000155437738,
+      "gpu_compare_wall_ms" : 4.2296670000000001,
+      "iteration" : 3,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.9958750023506582,
+        "placement_wall_ms" : 5.1896250000000004
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.2660830000000001
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 8.9440419999999996,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.068500000000000005,
+      "full_coverage" : true,
+      "generation" : 6,
+      "gpu_compare_device_ms" : 4.0668750007171184,
+      "gpu_compare_wall_ms" : 4.2891250000000003,
+      "iteration" : 4,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.3886250059586018,
+        "placement_wall_ms" : 4.5769580000000003
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.3580420000000002
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 8.8763330000000007,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.041875000000000002,
+      "full_coverage" : true,
+      "generation" : 7,
+      "gpu_compare_device_ms" : 4.0818749985191971,
+      "gpu_compare_wall_ms" : 4.2537500000000001,
+      "iteration" : 5,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.3797499965876341,
+        "placement_wall_ms" : 4.568708
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.2957080000000003
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 10.067,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.035541000000000003,
+      "full_coverage" : true,
+      "generation" : 8,
+      "gpu_compare_device_ms" : 4.9067499930970371,
+      "gpu_compare_wall_ms" : 5.1763750000000002,
+      "iteration" : 6,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.659083322621882,
+        "placement_wall_ms" : 4.8436659999999998
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 5.2121250000000003
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 9.0909580000000005,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.037665999999999998,
+      "full_coverage" : true,
+      "generation" : 9,
+      "gpu_compare_device_ms" : 4.1762499895412475,
+      "gpu_compare_wall_ms" : 4.420166,
+      "iteration" : 7,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.4355000136420131,
+        "placement_wall_ms" : 4.6230000000000002
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.457916
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 9.7073330000000002,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.041417000000000002,
+      "full_coverage" : true,
+      "generation" : 10,
+      "gpu_compare_device_ms" : 4.6838749840389937,
+      "gpu_compare_wall_ms" : 4.9020830000000002,
+      "iteration" : 8,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.5021249970886856,
+        "placement_wall_ms" : 4.7545409999999997
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.9436249999999999
+    },
+    {
+      "cache_valid" : true,
+      "compute_and_validation_ms" : 9.220542,
+      "context_generation" : 1,
+      "cpu_update_and_reduce_ms" : 0.040125000000000001,
+      "full_coverage" : true,
+      "generation" : 11,
+      "gpu_compare_device_ms" : 4.2388333531562239,
+      "gpu_compare_wall_ms" : 4.3967919999999996,
+      "iteration" : 9,
+      "mode" : "full_gpu_comparison_exact_cpu_revalidation",
+      "placement" : {
+        "placement_gpu_ms" : 4.6259583323262632,
+        "placement_wall_ms" : 4.773542
+      },
+      "rechecked_blocks" : 0,
+      "rechecked_markers" : 0,
+      "reused_blocks" : 24415,
+      "reused_markers" : 100000000,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+        "max_unit_radius_error" : 1.9280484675476828e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 4.4370419999999999
+    }
+  ],
+  "runtime_mode" : "full-gpu",
+  "workers" : 18
+}

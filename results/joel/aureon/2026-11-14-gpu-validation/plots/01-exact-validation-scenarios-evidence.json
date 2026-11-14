@@ -1,0 +1,121 @@
+{
+  "source": "/Users/jthor/Github/3apart-bench-aureon-xl/tmp/gpu-validation/100m-results-published.json",
+  "sha256": "284ff201c0efcb848957d17a453b63e3b6714b69d098bd807898eda10d91af8a",
+  "metric": "validation_ms",
+  "unit": "ms",
+  "aggregation": "median; initial observed once",
+  "direction": "lower",
+  "rows": [
+    {
+      "id": "full_cpu",
+      "label": "CPU full check \u00b7 18 workers\nAll 100M markers rechecked",
+      "values": [
+        26.632542,
+        31.482125,
+        28.697625,
+        29.231875,
+        26.070625,
+        30.286042,
+        23.40775,
+        23.7825,
+        24.704833,
+        23.847375
+      ],
+      "focal": false,
+      "median_ms": 26.3515835,
+      "sample_count": 10
+    },
+    {
+      "id": "full_gpu_comparison_exact_cpu_revalidation",
+      "label": "GPU cache \u00b7 unchanged output\n100M markers reuse exact checks",
+      "values": [
+        7.72975,
+        5.887459,
+        12.442,
+        5.974042,
+        4.944291,
+        12.551666,
+        6.014875,
+        10.790792,
+        5.65975,
+        11.498375
+      ],
+      "focal": true,
+      "median_ms": 6.8723125,
+      "sample_count": 10
+    },
+    {
+      "id": "three_changed_words",
+      "label": "GPU cache \u00b7 3 coordinates changed\n8,448 markers rechecked",
+      "values": [
+        4.394,
+        5.745417,
+        6.536375,
+        6.759333,
+        6.632,
+        6.765291,
+        6.602417,
+        6.834625,
+        6.401375,
+        6.341
+      ],
+      "focal": false,
+      "median_ms": 6.569395999999999,
+      "sample_count": 10
+    },
+    {
+      "id": "every_block_changed",
+      "label": "GPU cache \u00b7 every block changed\nAll 100M markers rechecked",
+      "values": [
+        37.747125,
+        36.463542,
+        35.525042,
+        35.634667,
+        35.99,
+        35.45325,
+        36.447416,
+        37.336958,
+        34.741708,
+        36.903875
+      ],
+      "focal": false,
+      "median_ms": 36.218708,
+      "sample_count": 10
+    },
+    {
+      "id": "initial_certification",
+      "label": "GPU cache \u00b7 first certification\nAll 100M checked \u00b7 one observation",
+      "values": [
+        64.177458
+      ],
+      "focal": false,
+      "median_ms": 64.177458,
+      "sample_count": 1
+    }
+  ],
+  "hardware": "Apple M5 Max",
+  "n": 100000000,
+  "context_setup_one_observation_ms": 114.612708,
+  "timing_scope": [
+    "Full GPU mode compares every output bit to a complete CPU-certified snapshot; exact original CPU checks recalculate changed blocks. It does not perform FP64 arithmetic on the GPU.",
+    "Context owns reference/layers/edges. Initial certification and all-changed paths are reported separately. Unchanged deterministic outputs are the favorable reuse case.",
+    "Sparse is explicit reduced coverage and cannot certify unchecked coordinates. No finite sample proves all possible inputs.",
+    "All measured full results are independently compared bit-for-bit to the serial oracle outside the reported timer. Sparse timed outputs also receive an independent full serial audit outside that timer.",
+    "Input loading, context setup/allocation, sample planning and independent serial audit are excluded from repeated trial clocks. Initial setup and sample planning have separate clocks.",
+    "Changed-output mutations occur before the checker-only timer; the GPU compare/copy, completion fence, exact CPU rechecks and reduction are included."
+  ],
+  "all_full_coverage": true,
+  "qa": {
+    "dimensions_px": [
+      1600,
+      1000
+    ],
+    "text_bounds_check": "pass",
+    "minimum_font_pt": 13.5,
+    "inferential_intervals": "none",
+    "all_raw_trials_shown": true,
+    "visual_review": "pass:1600x1000 color,grayscale anddeuteranopia",
+    "raw_observation_axis_bounds": "all pass",
+    "reviewed_at_utc": "2026-11-14T01:37:25.857368+00:00"
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "completed_utc": "2026-11-14T01:36:37.465075+00:00",
+  "working_directory": "/Users/jthor/GitHub/3apart-bench-validation-publish",
+  "platform": "macOS local CI-equivalent commands; CI runner is Ubuntu",
+  "path_prefix": [
+    "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/venv/bin",
+    "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/node-runtime/node_modules/node/bin"
+  ],
+  "summary_regeneration_skipped": true,
+  "runs": [
+    {
+      "name": "node22-install",
+      "command": [
+        "npm",
+        "install",
+        "--prefix",
+        "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/node-runtime",
+        "--no-save",
+        "--package-lock=false",
+        "node@22"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 40.6669605000061,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/node22-install.log",
+      "sha256": "8f21086a0eb012a18664fd8b039c57b0528e615e9e9938247852e599e4221e2d"
+    },
+    {
+      "name": "python-venv",
+      "command": [
+        "/opt/homebrew/bin/python3.12",
+        "-m",
+        "venv",
+        "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/venv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 3.6943135000183247,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/python-venv.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runtime-versions",
+      "command": [
+        "python",
+        "-c",
+        "import sys,subprocess; print(sys.version); subprocess.run([\"node\",\"--version\"],check=True); subprocess.run([\"npm\",\"--version\"],check=True)"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.1111556249961723,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/runtime-versions.log",
+      "sha256": "53ac438c3eb3824bb4169aae471add2d34915fd33c4d9668b3f67f35ae362287"
+    },
+    {
+      "name": "npm-ci",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.601481708989013,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/npm-ci.log",
+      "sha256": "239a1ff0699f50c37e159a86428bd9a275cc06d3a06a66a1c81eb51bc391cf12"
+    },
+    {
+      "name": "python-requirements",
+      "command": [
+        "python",
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.538009209005395,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/python-requirements.log",
+      "sha256": "e8023636cf26cb848d11ade5830c8064f18d9bc8838f898de100b3781f7e6d6f"
+    },
+    {
+      "name": "npm-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.8717142080131453,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/npm-check.log",
+      "sha256": "838180151944a76352f347b2b432834c4780ee59f054a859c25c8ec4bdda57b8"
+    },
+    {
+      "name": "npm-test",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.5413722079829313,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/npm-test.log",
+      "sha256": "df367c5fc5c848e67677c8075f9ba7d653f176aa003c88b10d12019fd198f441"
+    },
+    {
+      "name": "report-check",
+      "command": [
+        "python",
+        "tools/report_xl.py",
+        "reports/2026-11-14-xl/manifest.json",
+        "--output",
+        "reports/2026-11-14-xl",
+        "--check-only"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.1072081669990439,
+      "log": "/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/report-check.log",
+      "sha256": "28ba79a0f2092402a176033f9b47b65b069f57f2e7ea0c1ab0650a4ee6d2e6ea"
+    }
+  ],
+  "execution_coordination_note": "An automatic environment setup/check sequence completed before an attempted pause could identify its process. No process was stopped. Root was notified of approximate CI activity times for comparison against the final 100M GPU run; do not assume exclusive benchmark conditions.",
+  "ci_activity_timing": {
+    "npm-check": {
+      "approx_start_utc": "2026-11-14T01:36:35.937357+00:00",
+      "last_log_write_utc": "2026-11-14T01:36:36.809071+00:00",
+      "wall_seconds": 0.8717142080131453,
+      "method": "last log write mtime minus measured process wall time; approximate, not a captured start timestamp"
+    },
+    "npm-test": {
+      "approx_start_utc": "2026-11-14T01:36:36.805431+00:00",
+      "last_log_write_utc": "2026-11-14T01:36:37.346803+00:00",
+      "wall_seconds": 0.5413722079829313,
+      "method": "last log write mtime minus measured process wall time; approximate, not a captured start timestamp"
+    },
+    "report-check": {
+      "approx_start_utc": "2026-11-14T01:36:37.351809+00:00",
+      "last_log_write_utc": "2026-11-14T01:36:37.459017+00:00",
+      "wall_seconds": 0.1072081669990439,
+      "method": "last log write mtime minus measured process wall time; approximate, not a captured start timestamp"
+    }
+  },
+  "runtime_versions": [
+    "v22.23.5",
+    "11.20.0",
+    "3.12.16 (main, Oct 25 2026, 18:24:37) [Clang 21.0.0 (clang-2100.3.34.2)]"
+  ],
+  "git_head_when_receipt_finalized": "b7ff30b8cf0a054820c3d91db40cb1c4402e36b9",
+  "input_sha256": {
+    ".github/workflows/check.yml": "5aa1c498a577e7b4f21bb3bda10f8002522128da7d0a4f45a5ddbb8850526634",
+    "package.json": "ad7be0faebff8db0e1ade7b2bdba90b0f0946b866998c706993d54a2eeb225ca",
+    "package-lock.json": "dda8aba451217bcb886981d550c17fef80d55533f63308abd74f103cf2b8e1d4",
+    "requirements.txt": "23bf63c77db7c14b9e04f686f9cb9c319c5067d5e6935299b6dcb1ca521f4a7d",
+    "reports/2026-11-14-xl/manifest.json": "236fc30268e3d63cc064d256f697012f67cc947e49ad5c155d4c85c657af2438"
+  },
+  "root_timing_verification": {
+    "benchmark_started_no_earlier_than": "2026-11-14T01:35:54.979985Z",
+    "benchmark_completed_by": "2026-11-14T01:36:16.326182Z",
+    "ci_test_commands_started": "2026-11-14T01:36:35.94Z",
+    "test_commands_overlap": false,
+    "environment_setup_may_overlap": true,
+    "desktop_exclusive": false
+  }
+}

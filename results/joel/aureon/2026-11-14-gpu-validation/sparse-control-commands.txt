@@ -1,0 +1,6 @@
+# Working directory: /Users/jthor/GitHub/3apart-bench-aureon-xl
+# Tiny CPU-only controls; no GPU work or 100M benchmark rerun.
+xcrun clang++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -pthread -Wall -Wextra -Wpedantic bench/native-metal-xl/validation_sparse_test.cpp -o /tmp/aureon-validation-sparse-test > /Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-normal-build.log 2>&1
+/tmp/aureon-validation-sparse-test > /Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-normal-controls.log 2>&1
+xcrun clang++ -std=c++17 -O1 -g -fno-fast-math -ffp-contract=off -pthread -Wall -Wextra -Wpedantic -fsanitize=address,undefined bench/native-metal-xl/validation_sparse_test.cpp -o /tmp/aureon-validation-sparse-sanitized > /Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-sanitized-build.log 2>&1
+/tmp/aureon-validation-sparse-sanitized > /Users/jthor/GitHub/3apart-bench-aureon-xl/tmp/gpu-validation/sparse-sanitized-controls.log 2>&1

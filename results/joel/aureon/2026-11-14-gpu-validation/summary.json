@@ -1,0 +1,68 @@
+{
+  "selected_timing_source": "100m-results-published.json",
+  "selection": "Last controlled run after implementation freeze, with source and executable hashes captured before execution. Earlier same-kernel runs retained separately; no claim of exclusive desktop access.",
+  "controlled_medians_ms": {
+    "full_cpu": {
+      "validation": 26.3515835,
+      "compute_plus_validation": 32.113771
+    },
+    "full_gpu_comparison_exact_cpu_revalidation": {
+      "validation": 6.8723125,
+      "compute_plus_validation": 13.283479
+    },
+    "sparse_cpu": {
+      "validation": 2.5174374999999998,
+      "compute_plus_validation": 8.8903955
+    },
+    "every_block_changed": {
+      "validation": 36.218708
+    },
+    "three_changed_words": {
+      "validation": 6.569395999999999
+    }
+  },
+  "runtime_separate_cadence_medians_ms": {
+    "validation": 4.688416500000001,
+    "compute_plus_validation": 9.5888125
+  },
+  "accuracy": {
+    "full_coverage": "GPU compares all 300M output words against CPU-certified snapshot; changed blocks receive the unchanged full FP64 checker. All full summaries equal serial oracle bit-for-bit.",
+    "tolerance": 0.0005,
+    "gpu_fp64_arithmetic": false,
+    "sparse_checked_markers": 65536,
+    "sparse_total_markers": 100000000,
+    "sparse_coverage_fraction": 0.00065536,
+    "no_universal_math_proof": true
+  },
+  "initial_certification_ms": 64.177458,
+  "context_setup_ms": 114.612708,
+  "gpu_buffer_bytes": 3600097660,
+  "worker_count": 18,
+  "test_evidence": {
+    "gpu_controls": 29,
+    "cached_cpu_controls": 797,
+    "sparse_assertions": 4151,
+    "sparse_exact_summary_cases": 355,
+    "cpu_sanitizers": "AddressSanitizer and UndefinedBehaviorSanitizer clean",
+    "ci_equivalent": "passed; see ci-receipt.json"
+  },
+  "m4_coordination": "Aquila GPU Math acknowledged the handoff on Lorium at 2026-11-14T01:31:35Z. Source and controls delivered for independent review/replication. New timings here are Aureon only.",
+  "publication_source": {
+    "bench/native-metal-xl/native_bench.mm": "82ef095cbc09600a09d118ea3bbb1bbef2178fce7da0b7ecdd1e7df84dbe3ffc",
+    "bench/native-metal-xl/validation_cached_blocks.hpp": "b33eeaa4f1386295c7347704b0312f94d74efcd101cfc1fa84227b7f18b5ec44",
+    "bench/native-metal-xl/validation_test.cpp": "2d80af45c1ed9299a83aee90dd4a05ad5b2e4d93319313de7055d0e07e31882f",
+    "bench/native-metal-xl/edge_inputs.mjs": "4903436b0addc8b375c0cf1f65f6b14e76d6a1d4b9cf3056a60609d6dc89939e",
+    "bench/native-metal-xl/optimized_bench.mm": "87b8ac39681ebbc4237385e9b8405c32cea0782e37812e8b5c5d3862d3dd7599",
+    "bench/native-metal-xl/compare_blocks.metal": "93e17ed7685e8ca0e5cae281cadf5e461c5fc72959e788c1f6e5c88114fd919e",
+    "bench/native-metal-xl/validation_gpu_cache.hpp": "1b1081087a86d655c341d1217f72c627ebc6b9a879c5bd32ddd86dc150f042e4",
+    "bench/native-metal-xl/generate_inputs.mjs": "79193e4d36596dd3c34a031340cd45a613140804289ddc48ae4b43b7f94b959f",
+    "bench/native-metal-xl/README.md": "b6e2bfbc38f8f1b82cea534dbb14ed719a5fc8a10b45f9169936538db2f205a4",
+    "bench/native-metal-xl/validation_cached_blocks_test.cpp": "59cc4793fd514d6c826efb382232036fb4939f5f05145f369a54b8450c3fb055",
+    "bench/native-metal-xl/validation_sparse_test.cpp": "85fc50b09436d357c42dd5e8daa6b2283e939590bc003d4f64767c126b2687ba",
+    "bench/native-metal-xl/place.metal": "b59e706fb0b59dd9173a30372bb3cfbb4243790ed591cbac1770d7e71bbf131c",
+    "bench/native-metal-xl/validation_parallel.hpp": "b3dfd936e088894ca0446f0399821899f47b0e7876493cc64ffecdf1c16c9502",
+    "bench/native-metal-xl/optimization_bench.mm": "37c01dd560b5dd5f04a37c4af02042a8999ec36e7cd20a91923e9fe9b9c750a1",
+    "bench/native-metal-xl/validation_sparse.hpp": "e88595bafccc5db09be9a3f258e43f2f4165804b36294f27da8a594d0b6857fc",
+    "bench/native-metal-xl/validation_modes_bench.mm": "7f5d4f40a7b86bba19a39cc4079686f2a5df3b371273baaef950b480e1d6203c"
+  }
+}

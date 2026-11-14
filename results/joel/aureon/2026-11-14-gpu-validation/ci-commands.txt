@@ -1,0 +1,11 @@
+# Working directory: /Users/jthor/GitHub/3apart-bench-validation-publish
+# Commands after venv creation used PATH prefixed by:
+# /Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/venv/bin:/Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/node-runtime/node_modules/node/bin
+npm install --prefix /Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/node-runtime --no-save --package-lock=false node@22
+/opt/homebrew/bin/python3.12 -m venv /Users/jthor/GitHub/3apart-bench-validation-publish/tmp/gpu-validation-ci/venv
+python -c 'import sys,subprocess; print(sys.version); subprocess.run(["node","--version"],check=True); subprocess.run(["npm","--version"],check=True)'
+npm ci
+python -m pip install -r requirements.txt
+npm run check
+npm test
+python tools/report_xl.py reports/2026-11-14-xl/manifest.json --output reports/2026-11-14-xl --check-only

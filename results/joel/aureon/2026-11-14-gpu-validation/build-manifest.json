@@ -1,0 +1,27 @@
+{
+  "captured_before_execution_utc": "2026-11-14T01:35:54.979985+00:00",
+  "base_commit": "cdca1d4f39e34f8f45aea55989beb8320f0c1252",
+  "build_command": "xcrun clang++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -fobjc-arc -framework Foundation -framework Metal bench/native-metal-xl/validation_modes_bench.mm -o tmp/gpu-validation/validation_modes_bench",
+  "run_command": "tmp/gpu-validation/validation_modes_bench tmp/comparison/native-metal/inputs/100000000 tmp/gpu-validation/100m-results-published.json 18",
+  "source_and_executable_sha256": {
+    "bench/native-metal-xl/native_bench.mm": "82ef095cbc09600a09d118ea3bbb1bbef2178fce7da0b7ecdd1e7df84dbe3ffc",
+    "bench/native-metal-xl/validation_cached_blocks.hpp": "b33eeaa4f1386295c7347704b0312f94d74efcd101cfc1fa84227b7f18b5ec44",
+    "bench/native-metal-xl/validation_test.cpp": "2d80af45c1ed9299a83aee90dd4a05ad5b2e4d93319313de7055d0e07e31882f",
+    "bench/native-metal-xl/edge_inputs.mjs": "4903436b0addc8b375c0cf1f65f6b14e76d6a1d4b9cf3056a60609d6dc89939e",
+    "bench/native-metal-xl/optimized_bench.mm": "87b8ac39681ebbc4237385e9b8405c32cea0782e37812e8b5c5d3862d3dd7599",
+    "bench/native-metal-xl/compare_blocks.metal": "93e17ed7685e8ca0e5cae281cadf5e461c5fc72959e788c1f6e5c88114fd919e",
+    "bench/native-metal-xl/validation_gpu_cache.hpp": "1b1081087a86d655c341d1217f72c627ebc6b9a879c5bd32ddd86dc150f042e4",
+    "bench/native-metal-xl/generate_inputs.mjs": "79193e4d36596dd3c34a031340cd45a613140804289ddc48ae4b43b7f94b959f",
+    "bench/native-metal-xl/README.md": "b7fcca8586d8c12daaf99aaffdede7c2dd93f14f885ebfc82a45d1fb3d157ca2",
+    "bench/native-metal-xl/validation_cached_blocks_test.cpp": "59cc4793fd514d6c826efb382232036fb4939f5f05145f369a54b8450c3fb055",
+    "bench/native-metal-xl/validation_sparse_test.cpp": "85fc50b09436d357c42dd5e8daa6b2283e939590bc003d4f64767c126b2687ba",
+    "bench/native-metal-xl/place.metal": "b59e706fb0b59dd9173a30372bb3cfbb4243790ed591cbac1770d7e71bbf131c",
+    "bench/native-metal-xl/validation_parallel.hpp": "b3dfd936e088894ca0446f0399821899f47b0e7876493cc64ffecdf1c16c9502",
+    "bench/native-metal-xl/optimization_bench.mm": "37c01dd560b5dd5f04a37c4af02042a8999ec36e7cd20a91923e9fe9b9c750a1",
+    "bench/native-metal-xl/validation_sparse.hpp": "e88595bafccc5db09be9a3f258e43f2f4165804b36294f27da8a594d0b6857fc",
+    "bench/native-metal-xl/validation_modes_bench.mm": "7f5d4f40a7b86bba19a39cc4079686f2a5df3b371273baaef950b480e1d6203c",
+    "tmp/gpu-validation/validation_modes_bench": "71be218053caa19894f30db0fc8cb332a014b6baa4af1fab6d7ff97cef5c520a"
+  },
+  "compiler": "Apple clang version 21.0.0 (clang-2100.4.1.1)\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2.1\nBuildVersion:\t\t26B131\n"
+}

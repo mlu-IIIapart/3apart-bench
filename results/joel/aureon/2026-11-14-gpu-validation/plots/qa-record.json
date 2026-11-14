@@ -1,0 +1,49 @@
+{
+  "reviewed_at_utc": "2026-11-14T01:37:25.857368+00:00",
+  "source": "../100m-results-published.json",
+  "source_sha256": "284ff201c0efcb848957d17a453b63e3b6714b69d098bd807898eda10d91af8a",
+  "visual_spec": "visual-spec.json",
+  "editable_source": "plot_validation_modes.py",
+  "figures": [
+    "01-exact-validation-scenarios",
+    "02-full-versus-sparse-coverage"
+  ],
+  "dimensions": {
+    "png": [
+      1600,
+      1000
+    ],
+    "high_density_png": [
+      3200,
+      2000
+    ],
+    "svg": "16x10in vector"
+  },
+  "programmatic_qa": {
+    "source_values": "All plotted raw observations loaded directly; all full modes require complete count, valid cache and independent serial summary equality; sparse count and reduced coverage asserted.",
+    "svg_preflight": "2/2 pass",
+    "text_bounds": "pass",
+    "raw_observation_axis_bounds": "pass",
+    "minimum_font_pt": 13.5
+  },
+  "visual_qa": {
+    "color": "Both publication-source1600x1000 PNGs inspected after last dataset update.",
+    "grayscale": "pass",
+    "deuteranopia": "pass",
+    "skeptical_reader": "All-changed slowdown and one-off initial certification retained. Context setup excluded but separately stated. Sparse0.065536% coverage explicitly separated; no universal accuracy assertion from sparse result. All benchmark serial audits explicitly outside clocks.",
+    "hostile_editor": "Direct labels; no decorative cards; one accent; no clipping or text overlap.",
+    "corrections": "Re-rendered same figures from selected pre-run-attested publication source. Both SVG checks, all raw data bounds, text bounds, color, grayscale anddeuteranopia checked again. Fullcoverage/partialcoverage and one-off labels retained.",
+    "scorecard": {
+      "scientific_fidelity": 25,
+      "claim_form": 15,
+      "legibility": 15,
+      "hierarchy": 14,
+      "axes_stats": 10,
+      "chart_craft": 7,
+      "consistency": 5,
+      "accessibility": 4,
+      "export": 3,
+      "total": 98
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "reviewer": "independent metal_review agent",
+  "recorded_at_utc": "2026-11-14T01:37:52.834054+00:00",
+  "scope": "Read-only code and recorded-results review; no GPU execution or heavy test execution; this JSON is the only written artifact.",
+  "status": "no remaining correctness blockers found; publication dataset and pre-execution manifest verified",
+  "verified_invariants": [
+    "GPU kernel compares every valid output word as uint, groups cover4096markers each, final partial block is bounded by3*N; no hashing, approximate floating-point comparison, or sampling.",
+    "All256threads reach reduction barriers; one group uniquely owns each flags entry and snapshot block. Copy occurs only for changed blocks and covers every word in each such block.",
+    "CPU certificate owns copies of reference, layers and edges. Context reset invalidates summaries; first check performs full CPU validation regardless of flags.",
+    "Cached CPU pointwise arithmetic matches historical finite checks, FP64 differences, strict error>5e-4, std::hypot normalization and inclusive band bounds. Count sums and max reductions preserve all historical fields.",
+    "Failed numerical summaries remain valid cache entries representing failure; repaired blocks replace previous counters/maxima.",
+    "GPU command completion precedes CPU reads of owned snapshot/flags; harness also waits for placement completion before invoking separate validator queue.",
+    "API exception path invalidates all CPU certificates. Output count mismatch rejects and invalidates. Serialization prevents snapshot changes during CPU checking.",
+    "100M benchmark records context setup and first certification separately; repeated validation timers include comparison/copy, GPU completion, CPU rechecks and reduction; independent serial audits are excluded explicitly.",
+    "Sparse mode reports explicit checked markers/coordinates, coverage and covers_all_markers; its check.expected/actual are whole-buffer size checks, not sampled coverage.",
+    "Final wrapper rejects absent command/encoder/flags and nonpositive/nonfinite GPU duration; all exceptions invalidate certificates. Producer completion precondition is explicit.",
+    "Runtime --run full-gpu validates every iteration using exact cache coverage, without an extra serial audit after each iteration. Initial certification and final full serial audit are explicit.",
+    "Runtime sparse-rotating regenerates the plan with the iteration index and includes planning in the repeated validation and combined clocks. Fixed sparse mode reports plan reuse.",
+    "Final benchmark output labels sparse full fallback by effective_validation_mode, checked coverage, and exact serial-summary equality when covers_all_markers is true.",
+    "Final boundedUnsigned helper requires a nonempty decimal digit string, parses unsigned long long, checks positive allowed bounds before narrowing, and rejects overflow through the existing exception path."
+  ],
+  "recorded_evidence": {
+    "gpu_controls": {
+      "path": "tmp/gpu-validation/gpu-controls-final.json",
+      "cases": 29,
+      "all_summary_fields_equal_serial_oracle": true
+    },
+    "cpu_cache_controls": {
+      "path": "tmp/gpu-validation/cached-controls-receipt.json",
+      "controls": 797,
+      "normal_and_asan_ubsan_pass": true
+    },
+    "sparse_controls": {
+      "path": "tmp/gpu-validation/sparse-control-receipt.json",
+      "assertions": 4151,
+      "summary_cases": 355,
+      "normal_and_asan_ubsan_pass": true
+    },
+    "benchmark": {
+      "path": "tmp/gpu-validation/100m-results-published.json",
+      "markers": 100000000,
+      "full_mode_trials": 20,
+      "changed_output_trials": 20,
+      "all_full_and_changed_summary_fields_equal_serial_oracle": true,
+      "sparse_trials": 10,
+      "sparse_coverage": 0.00065536,
+      "initial_validation_ms": 64.177458
+    },
+    "runtime_cli_controls": {
+      "glob": "tmp/gpu-validation/runtime-*-controls.json",
+      "modes": [
+        "full-gpu",
+        "full-cpu",
+        "sparse",
+        "sparse-rotating"
+      ],
+      "markers": 8195,
+      "iterations_per_mode": 3,
+      "all_initial_and_final_audits_pass": true,
+      "independent_audit_each_iteration": false,
+      "sparse_effective_mode": "full due to small-N fallback",
+      "rotating_iterations": [
+        0,
+        1,
+        2
+      ]
+    },
+    "pre_execution_manifest": {
+      "path": "tmp/gpu-validation/build-manifest.json",
+      "captured_before_execution_utc": "2026-11-14T01:35:54.979985+00:00",
+      "all_current_source_and_executable_hashes_match": true,
+      "entries_verified": 17
+    },
+    "reduced_coverage_runtime_controls": {
+      "paths": [
+        "tmp/gpu-validation/runtime-sparse-100k.json",
+        "tmp/gpu-validation/runtime-sparse-rotating-100k.json"
+      ],
+      "markers": 100000,
+      "iterations_per_mode": 3,
+      "checked_markers_per_iteration": 65536,
+      "checked_coordinates_per_iteration": 196608,
+      "coverage": 0.65536,
+      "effective_mode": "sparse",
+      "full_coverage": false,
+      "all_initial_and_final_audits_pass": true,
+      "fixed_sample_iterations": [
+        0,
+        0,
+        0
+      ],
+      "rotating_sample_iterations": [
+        0,
+        1,
+        2
+      ],
+      "rotating_planning_included": true
+    },
+    "runtime_full_gpu_100m": {
+      "path": "tmp/gpu-validation/runtime-full-gpu-100m.json",
+      "markers": 100000000,
+      "iterations": 10,
+      "all_iterations_full_coverage_and_pass": true,
+      "initial_and_final_full_audits_pass": true,
+      "independent_serial_audit_each_iteration": false,
+      "median_validation_ms": 4.688416500000001,
+      "median_compute_and_validation_ms": 9.5888125
+    }
+  },
+  "median_validation_ms": {
+    "full_cpu": 26.3515835,
+    "full_gpu_comparison_exact_cpu_revalidation": 6.8723125,
+    "sparse_cpu": 2.5174374999999998
+  },
+  "median_changed_validation_ms": {
+    "every_block_changed": 36.218708,
+    "three_changed_words": 6.569395999999999
+  },
+  "limitations": [
+    "All-word GPU comparison is an exact certificate reuse method, not fresh GPU FP64 arithmetic. It favors repeated or partly unchanged output.",
+    "Every-block-changed mode is slower than full CPU checking in this measured run; report both and initial certification.",
+    "Caller must ensure output producer completion and exclusive access before/during validation; validator separate queue cannot infer other-queue dependencies.",
+    "Original controls do not inject a nil encoder or command-creation failure; failure-path fix is based on source review.",
+    "No M4 performance claim is supported by these Aureon/M5Max results.",
+    "Publication benchmark and audit-free repeated-runtime timings have different validation/audit cadence; present each separately rather than attributing their difference to an additional implementation change."
+  ],
+  "evidence_sha256": {
+    "bench/native-metal-xl/compare_blocks.metal": "93e17ed7685e8ca0e5cae281cadf5e461c5fc72959e788c1f6e5c88114fd919e",
+    "bench/native-metal-xl/validation_gpu_cache.hpp": "1b1081087a86d655c341d1217f72c627ebc6b9a879c5bd32ddd86dc150f042e4",
+    "bench/native-metal-xl/validation_cached_blocks.hpp": "b33eeaa4f1386295c7347704b0312f94d74efcd101cfc1fa84227b7f18b5ec44",
+    "bench/native-metal-xl/validation_modes_bench.mm": "7f5d4f40a7b86bba19a39cc4079686f2a5df3b371273baaef950b480e1d6203c",
+    "bench/native-metal-xl/validation_sparse.hpp": "e88595bafccc5db09be9a3f258e43f2f4165804b36294f27da8a594d0b6857fc",
+    "tmp/gpu-validation/gpu-controls-v2.json": "6de3caa23c9af0ccfd2a275024fcb0acac389509ff39ddd40e4dd39e91c2944b",
+    "tmp/gpu-validation/100m-results-v2.json": "99eb4f8b25f3d42cf2812ad13a7624a58e526cc2e7bededd5c6d053c2ca90bb7",
+    "tmp/gpu-validation/cached-controls-receipt.json": "fc5facaa039729929d55eb4be3916597b669d606f4dd7dfec2121bdbaddd2a5e",
+    "tmp/gpu-validation/sparse-control-receipt.json": "b00182ca34804467561b6a307d8514cc646b39f92450cb4bbe5fef5eb4e8f32e",
+    "tmp/gpu-validation/100m-results-final.json": "306508708d265aec71d4ce6aa3ed42050cff2ea2ac88495beedcbef8715fa38a",
+    "tmp/gpu-validation/gpu-controls-final.json": "73e91c2f4db8dcda64d0393e73eacbeedb33d80ceff70f9b53b43a94d55565df",
+    "tmp/gpu-validation/runtime-full-gpu-controls.json": "05eaaddd9a86f274a78aedc1885123f22dfee132f0ff8477722195b5d8fcf683",
+    "tmp/gpu-validation/runtime-sparse-controls.json": "dc576d71067b43434c96fb3ba0cdcdf85f4356ce043421bd5d660d88934062ab",
+    "tmp/gpu-validation/runtime-full-cpu-controls.json": "0c753ea2160e182184a11e86eae15eeb165d2fbe5b529ddf0d499e05ab9ab5eb",
+    "tmp/gpu-validation/runtime-sparse-rotating-controls.json": "7f0659fa080f94797be8f6475bb7609c26bbb60168c0df54d548f153f70defe8",
+    "tmp/gpu-validation/runtime-full-gpu-100m.json": "f1ed40e3d4f44dc052603b21db6dac9c302e9653a9c36f70ef19172b8366276b",
+    "tmp/gpu-validation/build-manifest.json": "62bcb2c56d03370435afaf29985a28e2a4894fe51e4cc323a9e497a33c9dbe01",
+    "tmp/gpu-validation/runtime-sparse-100k.json": "505e8489453d4b54634ee76cd3e6499d86ebf75bb8d00647653dbb38fbb96277",
+    "tmp/gpu-validation/runtime-sparse-rotating-100k.json": "bf4015f523bec037cc2344f438cf19c96a7789050431032ac5e93c0c0c90e9e8",
+    "tmp/gpu-validation/100m-results-published.json": "284ff201c0efcb848957d17a453b63e3b6714b69d098bd807898eda10d91af8a"
+  },
+  "resolved_findings": [
+    {
+      "id": "GPU-ENCODER-NIL",
+      "file": "bench/native-metal-xl/validation_gpu_cache.hpp",
+      "issue": "validate does not reject a nil compute command encoder. A valid command buffer can then encode no comparison, complete, and reuse old flags/snapshot.",
+      "required_fix": "Reject nil command buffer and compute encoder before encoding; check flags buffer readiness too. Catch path already invalidates CPU certificates.",
+      "status": "resolved in final source; explicit command/encoder and flags readiness checks observed"
+    }
+  ],
+  "blocking_findings": []
+}

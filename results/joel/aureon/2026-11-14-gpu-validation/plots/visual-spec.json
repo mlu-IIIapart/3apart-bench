@@ -1,0 +1,84 @@
+{
+  "claim": "Exact GPU comparison and cached CPU certificates reduce repeated validation cost for unchanged or lightly changed output, but every-block changes and initial certification cost more. Sparse diagnostics have reduced coverage.",
+  "visual_form": "dot_plot",
+  "audience": "Mike, Fadi and Joel reviewing Aureon validation performance",
+  "metric": {
+    "name": "Synchronous validation time; separate figure for placement plus validation",
+    "unit": "ms",
+    "direction": "lower",
+    "aggregation": "median with every raw trial; one initial-certification observation explicitly n=1",
+    "denominator": "100 million markers / 300 million coordinates; sparse mode samples65536markers",
+    "precision_decimals": 2,
+    "scale": "linear"
+  },
+  "target": {
+    "medium": "web",
+    "width": 1600,
+    "height": 1000,
+    "unit": "px",
+    "minimum_text_size_pt": 13.5,
+    "background": "white"
+  },
+  "series_order": [
+    "full_cpu",
+    "full_gpu_unchanged",
+    "three_changed_words",
+    "every_block_changed",
+    "initial_certification"
+  ],
+  "focal_series": "full_gpu_unchanged",
+  "required_baselines": [
+    "full_cpu",
+    "every_block_changed",
+    "initial_certification"
+  ],
+  "ordering_rationale": "semantic_group",
+  "uncertainty": {
+    "available": true,
+    "type": "raw_points",
+    "sample_or_seed_count": 10,
+    "note": "Ten raw repetitions per steady-state case; initial setup/certification each observed once. No confidence intervals."
+  },
+  "data_source": {
+    "path_or_identifier": "../100m-results-published.json",
+    "immutable_fields": [
+      "raw times",
+      "coverage",
+      "marker counts",
+      "serial oracle equality",
+      "first certification",
+      "all-changed behavior"
+    ],
+    "notes": "Only selected publication run is used; source/binary hashes captured before execution by benchmark runner. Every prior raw result retained separately. Changed-output cases ran after unchanged comparison; raw timing spread shown, no claim small changes are faster than unchanged output."
+  },
+  "output_formats": [
+    "png",
+    "svg"
+  ],
+  "selected_reference_ids": [
+    "OAI-VIS-002",
+    "OAI-VIS-003",
+    "OAI-VIS-004",
+    "OAI-VIS-063",
+    "OAI-VIS-100",
+    "OAI-VIS-102"
+  ],
+  "caption_requirements": [
+    "task",
+    "sample",
+    "estimator",
+    "uncertainty",
+    "exclusions",
+    "metric_direction",
+    "latency_basis"
+  ],
+  "cost_latency_assumptions": {
+    "hardware": "Aureon AppleM5Max",
+    "statistic": "median of10trials",
+    "other": "18CPUworkers; resident packedXYZ output. FullGPU mode reads every output bit and applies unchanged FP64CPUvalidator to changed4096-marker blocks. Sparse fixed reused sample plan checks0.065536% ofmarkers."
+  },
+  "exceptions": [
+    "First-certification point has n=1 and no median diamond; separately observed context setup is captioned from source.",
+    "Companion figure separates sparse mode by horizontal rule and explicit reduced-coverage labels."
+  ]
+}
