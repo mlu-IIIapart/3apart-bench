@@ -1,0 +1,548 @@
+{
+  "allocated_gpu_buffer_bytes" : 2400059392,
+  "bands" : 24,
+  "cap" : 0.90000000000000002,
+  "coordinate_count" : 300000000,
+  "cpu_chunk_markers" : 4096,
+  "cpu_compile" : "clang++ -O3 -fno-fast-math -ffp-contract=off",
+  "cpu_multi_trials" : [
+    {
+      "placement_including_barrier_ms" : 170.368875,
+      "trial" : 0,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 414.93645800000002
+    },
+    {
+      "placement_including_barrier_ms" : 169.539625,
+      "trial" : 1,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.88066700000002
+    },
+    {
+      "placement_including_barrier_ms" : 168.784584,
+      "trial" : 2,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 410.38475
+    },
+    {
+      "placement_including_barrier_ms" : 169.375292,
+      "trial" : 3,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 410.61599999999999
+    },
+    {
+      "placement_including_barrier_ms" : 178.103916,
+      "trial" : 4,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 414.03874999999999
+    },
+    {
+      "placement_including_barrier_ms" : 173.97570899999999,
+      "trial" : 5,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 414.68145900000002
+    },
+    {
+      "placement_including_barrier_ms" : 170.50258299999999,
+      "trial" : 6,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.87379199999998
+    },
+    {
+      "placement_including_barrier_ms" : 170.60287500000001,
+      "trial" : 7,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.29345899999998
+    },
+    {
+      "placement_including_barrier_ms" : 170.46895799999999,
+      "trial" : 8,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 414.23837500000002
+    },
+    {
+      "placement_including_barrier_ms" : 175.34075000000001,
+      "trial" : 9,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 411.50566600000002
+    }
+  ],
+  "cpu_single_multi_bit_identical" : true,
+  "cpu_single_trials" : [
+    {
+      "placement_ms" : 2257.970875,
+      "trial" : 0,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 422.990792
+    },
+    {
+      "placement_ms" : 2264.3597920000002,
+      "trial" : 1,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 411.301042
+    },
+    {
+      "placement_ms" : 2266.571958,
+      "trial" : 2,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 414.03395799999998
+    },
+    {
+      "placement_ms" : 2260.026625,
+      "trial" : 3,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.36679099999998
+    },
+    {
+      "placement_ms" : 2265.2982919999999,
+      "trial" : 4,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.84866699999998
+    },
+    {
+      "placement_ms" : 2258.3782919999999,
+      "trial" : 5,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 414.06608299999999
+    },
+    {
+      "placement_ms" : 2266.0223329999999,
+      "trial" : 6,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 417.09137500000003
+    },
+    {
+      "placement_ms" : 2253.3653749999999,
+      "trial" : 7,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 410.73229199999997
+    },
+    {
+      "placement_ms" : 2266.0524169999999,
+      "trial" : 8,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 411.892833
+    },
+    {
+      "placement_ms" : 2255.263708,
+      "trial" : 9,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 3.9510387726468532e-07,
+        "max_unit_radius_error" : 1.0799303318265174e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 416.80433399999998
+    }
+  ],
+  "cpu_worker_pool_creation_ms" : 0.19437499999999999,
+  "device" : "Apple M4 Max",
+  "device_queue_shader_pipeline_setup_ms" : 150.34725,
+  "device_registry_id" : 4294968624,
+  "experiment" : "native-metal-stock-trig-fp32",
+  "fp64_to_fp32_input_conversion_ms" : 924.96754199999998,
+  "gpu_trials" : [
+    {
+      "encode_ms" : 0.01975,
+      "full_output_copy_ms" : 144.00475,
+      "gpu_device_ms" : 5.7215833512600511,
+      "resident_encode_submit_complete_ms" : 5.9188330000000002,
+      "resident_plus_full_output_copy_ms" : 149.94125,
+      "submit_wait_ms" : 5.8990410000000004,
+      "trial" : 0,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 455.98333300000002
+    },
+    {
+      "encode_ms" : 0.018374999999999999,
+      "full_output_copy_ms" : 18.240874999999999,
+      "gpu_device_ms" : 8.7575833313167095,
+      "resident_encode_submit_complete_ms" : 8.9334170000000004,
+      "resident_plus_full_output_copy_ms" : 27.194417000000001,
+      "submit_wait_ms" : 8.9150419999999997,
+      "trial" : 1,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 419.36116700000002
+    },
+    {
+      "encode_ms" : 0.011375,
+      "full_output_copy_ms" : 17.440625000000001,
+      "gpu_device_ms" : 8.9061250037048012,
+      "resident_encode_submit_complete_ms" : 9.0831250000000008,
+      "resident_plus_full_output_copy_ms" : 26.541208000000001,
+      "submit_wait_ms" : 9.0717079999999992,
+      "trial" : 2,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.99333300000001
+    },
+    {
+      "encode_ms" : 0.010583,
+      "full_output_copy_ms" : 17.320208000000001,
+      "gpu_device_ms" : 9.1891250049229711,
+      "resident_encode_submit_complete_ms" : 9.3713750000000005,
+      "resident_plus_full_output_copy_ms" : 26.703875,
+      "submit_wait_ms" : 9.360792,
+      "trial" : 3,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 411.58912500000002
+    },
+    {
+      "encode_ms" : 0.013334,
+      "full_output_copy_ms" : 17.373540999999999,
+      "gpu_device_ms" : 11.039458331651986,
+      "resident_encode_submit_complete_ms" : 11.493292,
+      "resident_plus_full_output_copy_ms" : 28.879166000000001,
+      "submit_wait_ms" : 11.479915999999999,
+      "trial" : 4,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 411.42870799999997
+    },
+    {
+      "encode_ms" : 0.018124999999999999,
+      "full_output_copy_ms" : 17.348624999999998,
+      "gpu_device_ms" : 10.895750019699335,
+      "resident_encode_submit_complete_ms" : 11.083041,
+      "resident_plus_full_output_copy_ms" : 28.445667,
+      "submit_wait_ms" : 11.064875000000001,
+      "trial" : 5,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 410.16787499999998
+    },
+    {
+      "encode_ms" : 0.016208,
+      "full_output_copy_ms" : 19.138249999999999,
+      "gpu_device_ms" : 13.794083322864026,
+      "resident_encode_submit_complete_ms" : 14.337624999999999,
+      "resident_plus_full_output_copy_ms" : 33.493208000000003,
+      "submit_wait_ms" : 14.321332999999999,
+      "trial" : 6,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 412.10058299999997
+    },
+    {
+      "encode_ms" : 0.011209,
+      "full_output_copy_ms" : 18.669374999999999,
+      "gpu_device_ms" : 12.272208346985281,
+      "resident_encode_submit_complete_ms" : 12.441084,
+      "resident_plus_full_output_copy_ms" : 31.125,
+      "submit_wait_ms" : 12.429874999999999,
+      "trial" : 7,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 413.00291600000003
+    },
+    {
+      "encode_ms" : 0.012541999999999999,
+      "full_output_copy_ms" : 17.798583000000001,
+      "gpu_device_ms" : 12.116625002818182,
+      "resident_encode_submit_complete_ms" : 12.507667,
+      "resident_plus_full_output_copy_ms" : 30.324332999999999,
+      "submit_wait_ms" : 12.495125,
+      "trial" : 8,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 410.359666
+    },
+    {
+      "encode_ms" : 0.015082999999999999,
+      "full_output_copy_ms" : 17.445083,
+      "gpu_device_ms" : 12.251791660673916,
+      "resident_encode_submit_complete_ms" : 12.430583,
+      "resident_plus_full_output_copy_ms" : 29.889209000000001,
+      "submit_wait_ms" : 12.415459,
+      "trial" : 9,
+      "validation" : {
+        "actual_coordinates" : 300000000,
+        "coordinates_over_5e_4" : 0,
+        "expected_coordinates" : 300000000,
+        "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+        "max_unit_radius_error" : 2.7328967799888915e-07,
+        "nonfinite" : 0,
+        "outside_band" : 0,
+        "pass" : true
+      },
+      "validation_ms" : 413.19929200000001
+    }
+  ],
+  "input_memcpy_into_unified_shared_buffers_ms" : 196.51783399999999,
+  "input_read_and_reference_read_ms" : 2124.8036670000001,
+  "margin" : 0.12,
+  "max_buffer_length" : 30150672384,
+  "metal_floating_point_functions" : "precise",
+  "metal_math_mode" : "safe",
+  "metal_shared_buffer_allocation_ms" : 0.17608299999999999,
+  "n" : 100000000,
+  "notes" : [
+    "Input generation\/file IO, FP32 conversion, Metal setup\/allocation\/input copy, output copy and validation are outside resident execution clocks.",
+    "Apple unified memory: input\/output copies are CPU memcpy to\/from shared Metal buffers, not discrete-GPU PCIe transfers.",
+    "Every trial output coordinate is compared against stock JS FP64 coordinates computed from the original FP64 inputs.",
+    "All geometry engines use acos then sin\/cos; GPU and CPU use FP32 inputs\/edges; reference remains FP64.",
+    "GPU every timed run is followed by full output copy\/validation; CPU every run by validation; this cadence differs from stock WebGL timing.",
+    "Fixed method order is GPU, CPU single, CPU multicore; warmups precede each method; no randomized interleaving.",
+    "CPU workers persist and share dynamically claimed4096-marker chunks; dispatch and completion barrier are included.",
+    "Neither CPU affinity nor exclusive machine access is asserted."
+  ],
+  "process_metal_allocated_bytes" : 2400534528,
+  "recommended_max_working_set_bytes" : 40200896512,
+  "repeats" : 10,
+  "requested_gpu_buffer_bytes" : 2400000000,
+  "schema" : 1,
+  "seed" : 20261112,
+  "unified_memory" : true,
+  "warmups" : 3,
+  "worker_count" : 16
+}

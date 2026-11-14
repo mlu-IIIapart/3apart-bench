@@ -1,0 +1,416 @@
+{
+  "kind": "historical-synthetic-detector-aggregate",
+  "synthetic": true,
+  "created_from": "2026-11-12 frozen full detector comparison",
+  "original_artifact_name": "comparison_complete.json",
+  "original_artifact_sha256": "5e62b8be39fe042bea2e4551c747b6be04ee65fdda53430d79029614b8856c4e",
+  "source_identity": {
+    "matched": true,
+    "input_hashes_matched": true
+  },
+  "scope": "Already resident raw arrays enter validation/normalization and the complete fitted detector. Primary eligible inference months23\u201347.",
+  "inclusions": [
+    "Raw arrival validation",
+    "Reference lookup/normalization/clipping for moments and shape",
+    "Feature state and readout",
+    "Learned component scaling and template cosine",
+    "Coverage/norm/warmup guards and strict alert",
+    "Host/GPU staging and synchronization where used"
+  ],
+  "exclusions": [
+    "Training/calibration and reference-estimation maintenance",
+    "Compilation/allocation",
+    "Network,paced arrivals and production queuing",
+    "Rust current-shape implementation unavailable"
+  ],
+  "aggregation": "Median of 5 trial medians; range is min/max trial median; median p95 across 5 trials; all runs retained",
+  "limitations": [
+    "Synthetic frozen test histories; batch 1024 tiles 500 test histories and adds no statistical evidence.",
+    "Representations use different learned models; speedup ratios apply only within one representation and scope.",
+    "Compiled pipelines quantize input/model to float32; frozen alert agreement does not guarantee arbitrary near-threshold cases.",
+    "Shape Metal combines GPU features with CPU scoring; current-shape Rust is unavailable.",
+    "Stage intervals overlap: GPU device time is inside submit/wait; file batch collection includes read/parse/materialization. Do not sum overlapping medians.",
+    "CPU worker threads fixed at 1 or 8; BLAS/OpenMP requested 1 before Python launch. Ordinary desktop scheduling still introduces variation.",
+    "Additional shape CPU configurations are predeclared supplementary experiments with paired controls per BLAS regime; their repeats are not pooled with the original experiment."
+  ],
+  "records": [
+    {
+      "machine": "lorium",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "numpy_full",
+      "method_label": "NumPy full recomputation \u00b7 FP64",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        745.583,
+        755.416,
+        751.417,
+        748.708,
+        737.584
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "numpy_full",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 0.0,
+        "scoreMaxAbsError": 0.0,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "lorium",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "cpu_full_1",
+      "method_label": "Native full CPU \u00b7 1 worker",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        360.334,
+        359.834,
+        360.834,
+        354.958,
+        361.875
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "cpu_full_1",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 1.097359668134068e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "lorium",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "cpu_incremental_1",
+      "method_label": "Native incremental CPU \u00b7 1 worker",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        352.208,
+        350.625,
+        359.75,
+        355.125,
+        360.875
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "cpu_incremental_1",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 1.097359668134068e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "lorium",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "cpu_incremental_8",
+      "method_label": "Native incremental CPU \u00b7 8 workers",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        131.708,
+        119.417,
+        127.667,
+        118.834,
+        136.833
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "cpu_incremental_8",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 1.097359668134068e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "lorium",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "rust_incremental",
+      "method_label": "Rust incremental CPU \u00b7 1 thread",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        837.792,
+        813.875,
+        801.416,
+        802.833,
+        796.5
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "rust_incremental",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 4.933210716595582e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "lorium",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "metal_incremental",
+      "method_label": "Metal GPU incremental",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        285.125,
+        203.25,
+        207.292,
+        204.083,
+        245.459
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "metal_incremental",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 8.677556090352923e-08,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "aureon",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "numpy_full",
+      "method_label": "NumPy full recomputation \u00b7 FP64",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        625.709,
+        658.917,
+        648.125,
+        627.583,
+        656.292
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "numpy_full",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 0.0,
+        "scoreMaxAbsError": 0.0,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "aureon",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "cpu_full_1",
+      "method_label": "Native full CPU \u00b7 1 worker",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        287.417,
+        295.625,
+        292.666,
+        287.833,
+        294.875
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "cpu_full_1",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 1.097359668134068e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "aureon",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "cpu_incremental_1",
+      "method_label": "Native incremental CPU \u00b7 1 worker",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        287.292,
+        296.917,
+        280.75,
+        287.458,
+        292.333
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "cpu_incremental_1",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 1.097359668134068e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "aureon",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "cpu_incremental_8",
+      "method_label": "Native incremental CPU \u00b7 8 workers",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        105.458,
+        107.875,
+        109.583,
+        106.083,
+        103.25
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "cpu_incremental_8",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 1.097359668134068e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "aureon",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "rust_incremental",
+      "method_label": "Rust incremental CPU \u00b7 1 thread",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        687.625,
+        696.667,
+        702.666,
+        709.25,
+        705.834
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "rust_incremental",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 4.933210716595582e-07,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    },
+    {
+      "machine": "aureon",
+      "representation": "raw384",
+      "representation_label": "Raw measurements + mask",
+      "method": "metal_incremental",
+      "method_label": "Metal GPU incremental",
+      "benchmark_class": "full_fitted_detector",
+      "batch": 1024,
+      "validated": true,
+      "trial_medians_us": [
+        259.875,
+        199.667,
+        264.833,
+        216.167,
+        620.459
+      ],
+      "validation": {
+        "representation": "raw",
+        "backend": "metal_incremental",
+        "batch": 1024,
+        "passed": true,
+        "featuresMaxAbsError": 2.3642760105246907e-07,
+        "scoreMaxAbsError": 8.677556090352923e-08,
+        "eligibleMatch": true,
+        "alertsMatch": true,
+        "minimumAbsScoreThresholdMargin": 7.445309992748506e-06,
+        "scoresWithinDeclaredErrorOfThreshold": 2,
+        "eligibleScoreCount": 25600,
+        "reference": "Canonical frozen FP64 plus independent numpy_full raw-window rebuild at every bin"
+      }
+    }
+  ],
+  "source_manifest_sha256": "b20222e23588fd8735ecf5c6aae04afbe53df233ac5165c484708887261c25c7",
+  "source_closure_verification": {
+    "files": 30,
+    "frozen_snapshot_mismatches": 0,
+    "current_source_mismatches": 0
+  }
+}

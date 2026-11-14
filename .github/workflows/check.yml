@@ -13,5 +13,9 @@ jobs:
       - run: python -m pip install -r requirements.txt
       # Both reference engines must match each other and the reference placement.
       - run: npm run check
+      # XL planning, invalid-output controls, timing scopes and CPU pipeline checks.
+      - run: npm test
+      # The plotted raw samples must retain their source hashes and validation gates.
+      - run: python tools/report_xl.py reports/2026-11-14-xl/manifest.json --output reports/2026-11-14-xl --check-only
       # Every result file must parse and the summary must be up to date.
       - run: node tools/compare.mjs > /dev/null && git diff --exit-code results/SUMMARY.md

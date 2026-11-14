@@ -1,0 +1,20 @@
+{
+  "lorium": {
+    "cpu_swap_MB_before": 8863.25,
+    "cpu_swap_MB_after": 9426.25,
+    "browser_swap_MB_before": 9274.25,
+    "native_swap_MB_before": 9811.62,
+    "native_swap_MB_after": 13393.06,
+    "memory_GiB": 48,
+    "cpu_workers": 16,
+    "power": "AC",
+    "exclusive_machine": false
+  },
+  "aureon": {
+    "memory_GiB": 128,
+    "cpu_workers": 18,
+    "observed_swap_MB": 0,
+    "exclusive_machine": false
+  },
+  "note": "Host swap is system-wide, not a count of this process swapping; normal desktop applications stayed open."
+}

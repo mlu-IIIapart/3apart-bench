@@ -1,0 +1,1594 @@
+{
+  "kind": "browser-xl-tiled",
+  "schema": 1,
+  "at": "2026-11-14T00:37:50.707Z",
+  "passed": true,
+  "machine": {
+    "name": "aureon"
+  },
+  "who": "joel",
+  "provenance": {
+    "base_git_commit": "bf69e4301415ad0f099a6c93fa25b9ddd31576fc",
+    "implementation": "tiled-resident-rgba32f-v2-all-tile-sync",
+    "branch": "fix/aureon-xl-textures",
+    "files": {
+      "index.html": "44e476b3026d9b9e2fc1a74324c4b6a8ec66c506900148d9ec6630b3b3077ddc",
+      "xl-support.js": "28c9e2f9ca21feb2f5ff6454bd25bebaef02fd53814c629eb3ee798c210b0c23",
+      "xl-run.js": "33ef34fae2e63947a0a74c623fcc6b768ce00bb528e566f3fafead0712aa029e"
+    },
+    "scope": "Original shader, inputs, FP64 reference, three warmups and ten resident placements; explicit every-tile synchronization. Separate ten-repetition full-readback measurement; final output validated."
+  },
+  "runtime_source_hashes": {
+    "fragment_shader": "2182c2bb57c9b89f338c776b2227a81f18237c9bf8523eb85c752e450417add6",
+    "input_draw_at": "de5578c3d90b94aae577c6900f39041a84395fcecabe93cb3401dd5087e7c203",
+    "fp64_reference": "89e9e95b088cba0bdb7dc45d03f7ab152899fff70c76b726f0db0ee966211bfc",
+    "xl_method": "2175592c709d4af16722ed5fa460e303397d5792138a62c8023a941593f1e430",
+    "timing_method": "91b93ae143f57a3b27263e148b17d8c84758be3b9ab8e2427db63cf63c564c0b"
+  },
+  "env": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "gpu": "Apple M5 Max",
+    "browser": "Chrome 157",
+    "os": "macOS",
+    "cores": 18,
+    "timer": true,
+    "maxTex": 16384,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+  },
+  "geometry": {
+    "wall": {
+      "runs": 10,
+      "min": 5.0999999940395355,
+      "median": 5.5,
+      "mean": 5.450000002980232,
+      "p95": 5.699999988079071,
+      "max": 5.699999988079071
+    },
+    "gpu": {
+      "runs": 10,
+      "min": 4.448874,
+      "median": 4.673916,
+      "mean": 4.6747827,
+      "p95": 4.939375,
+      "max": 4.939375,
+      "raw": [
+        4.865374,
+        4.741874,
+        4.481374,
+        4.875999,
+        4.522,
+        4.939375,
+        4.605958,
+        4.488999,
+        4.448874,
+        4.778
+      ]
+    },
+    "raw": [
+      5.5999999940395355,
+      5.4000000059604645,
+      5.0999999940395355,
+      5.600000023841858,
+      5.5999999940395355,
+      5.699999988079071,
+      5.4000000059604645,
+      5.200000017881393,
+      5.600000023841858,
+      5.299999982118607
+    ],
+    "resident_draw_plus_full_readback": {
+      "runs": 10,
+      "min": 2320.5999999940395,
+      "median": 2354.399999976158,
+      "mean": 2350.3299999922515,
+      "p95": 2368.9000000059605,
+      "max": 2368.9000000059605,
+      "raw": [
+        2320.5999999940395,
+        2334.9000000059605,
+        2343.699999988079,
+        2358.300000011921,
+        2353.899999976158,
+        2353.399999976158,
+        2357.2999999821186,
+        2357.4000000059605,
+        2354.899999976158,
+        2368.9000000059605
+      ],
+      "cpu_readback_bytes": 1600126976,
+      "output_format": "RGBA32F including row padding",
+      "reference_and_validation_included": false,
+      "input_generation_and_upload_included": false,
+      "full_output_retained_simultaneously": false
+    },
+    "implementation": "tiled-resident-rgba32f-v2-all-tile-sync",
+    "validation_schema": 1,
+    "allocation": {
+      "strategy": "tiled-resident-rgba32f-v1",
+      "markers": 100000000,
+      "tiles": [
+        {
+          "first": 0,
+          "count": 25000000,
+          "width": 4096,
+          "height": 6104,
+          "bytes_per_texture": 400031744
+        },
+        {
+          "first": 25000000,
+          "count": 25000000,
+          "width": 4096,
+          "height": 6104,
+          "bytes_per_texture": 400031744
+        },
+        {
+          "first": 50000000,
+          "count": 25000000,
+          "width": 4096,
+          "height": 6104,
+          "bytes_per_texture": 400031744
+        },
+        {
+          "first": 75000000,
+          "count": 25000000,
+          "width": 4096,
+          "height": 6104,
+          "bytes_per_texture": 400031744
+        }
+      ],
+      "texture_count": 8,
+      "resident_texture_bytes": 3200253952,
+      "texture_budget_bytes": 4294967296,
+      "per_texture_budget_bytes": 536870912,
+      "allocated_texels_per_side": 100007936,
+      "excluded_padding_texels_per_side": 7936,
+      "cpu_slice_buffer_bytes": 39845888
+    },
+    "timings_ms": {
+      "resident_allocation_and_initialization": 2.699999988079071,
+      "input_generation_and_fp32_packing": 284.1000000834465,
+      "input_upload_calls": 140.29999995231628,
+      "three_warmups_and_sync": 37.80000001192093,
+      "timed_phase_including_query_collection_and_yields": 76.59999999403954,
+      "readback_sentinel_fill": 96.49999994039536,
+      "all_output_readback_calls": 2314.7000003159046,
+      "reference_input_regeneration": 252.10000005364418,
+      "fp64_reference": 2734.9999999403954,
+      "coordinate_and_band_comparison": 1809.9999999701977,
+      "full_validation_wall": 7337.800000011921,
+      "total": 31435.40000000596
+    },
+    "uploaded_markers": 100000000,
+    "chunks": [
+      {
+        "first": 0,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 0,
+        "rows": 128
+      },
+      {
+        "first": 524288,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 128,
+        "rows": 128
+      },
+      {
+        "first": 1048576,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 256,
+        "rows": 128
+      },
+      {
+        "first": 1572864,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 384,
+        "rows": 128
+      },
+      {
+        "first": 2097152,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 512,
+        "rows": 128
+      },
+      {
+        "first": 2621440,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 640,
+        "rows": 128
+      },
+      {
+        "first": 3145728,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 768,
+        "rows": 128
+      },
+      {
+        "first": 3670016,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 896,
+        "rows": 128
+      },
+      {
+        "first": 4194304,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1024,
+        "rows": 128
+      },
+      {
+        "first": 4718592,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1152,
+        "rows": 128
+      },
+      {
+        "first": 5242880,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1280,
+        "rows": 128
+      },
+      {
+        "first": 5767168,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1408,
+        "rows": 128
+      },
+      {
+        "first": 6291456,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1536,
+        "rows": 128
+      },
+      {
+        "first": 6815744,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1664,
+        "rows": 128
+      },
+      {
+        "first": 7340032,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1792,
+        "rows": 128
+      },
+      {
+        "first": 7864320,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 1920,
+        "rows": 128
+      },
+      {
+        "first": 8388608,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2048,
+        "rows": 128
+      },
+      {
+        "first": 8912896,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2176,
+        "rows": 128
+      },
+      {
+        "first": 9437184,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2304,
+        "rows": 128
+      },
+      {
+        "first": 9961472,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2432,
+        "rows": 128
+      },
+      {
+        "first": 10485760,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2560,
+        "rows": 128
+      },
+      {
+        "first": 11010048,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2688,
+        "rows": 128
+      },
+      {
+        "first": 11534336,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2816,
+        "rows": 128
+      },
+      {
+        "first": 12058624,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 2944,
+        "rows": 128
+      },
+      {
+        "first": 12582912,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3072,
+        "rows": 128
+      },
+      {
+        "first": 13107200,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3200,
+        "rows": 128
+      },
+      {
+        "first": 13631488,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3328,
+        "rows": 128
+      },
+      {
+        "first": 14155776,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3456,
+        "rows": 128
+      },
+      {
+        "first": 14680064,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3584,
+        "rows": 128
+      },
+      {
+        "first": 15204352,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3712,
+        "rows": 128
+      },
+      {
+        "first": 15728640,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3840,
+        "rows": 128
+      },
+      {
+        "first": 16252928,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 3968,
+        "rows": 128
+      },
+      {
+        "first": 16777216,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4096,
+        "rows": 128
+      },
+      {
+        "first": 17301504,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4224,
+        "rows": 128
+      },
+      {
+        "first": 17825792,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4352,
+        "rows": 128
+      },
+      {
+        "first": 18350080,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4480,
+        "rows": 128
+      },
+      {
+        "first": 18874368,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4608,
+        "rows": 128
+      },
+      {
+        "first": 19398656,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4736,
+        "rows": 128
+      },
+      {
+        "first": 19922944,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4864,
+        "rows": 128
+      },
+      {
+        "first": 20447232,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 4992,
+        "rows": 128
+      },
+      {
+        "first": 20971520,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5120,
+        "rows": 128
+      },
+      {
+        "first": 21495808,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5248,
+        "rows": 128
+      },
+      {
+        "first": 22020096,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5376,
+        "rows": 128
+      },
+      {
+        "first": 22544384,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5504,
+        "rows": 128
+      },
+      {
+        "first": 23068672,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5632,
+        "rows": 128
+      },
+      {
+        "first": 23592960,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5760,
+        "rows": 128
+      },
+      {
+        "first": 24117248,
+        "count": 524288,
+        "tile_first": 0,
+        "row": 5888,
+        "rows": 128
+      },
+      {
+        "first": 24641536,
+        "count": 358464,
+        "tile_first": 0,
+        "row": 6016,
+        "rows": 88
+      },
+      {
+        "first": 25000000,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 0,
+        "rows": 128
+      },
+      {
+        "first": 25524288,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 128,
+        "rows": 128
+      },
+      {
+        "first": 26048576,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 256,
+        "rows": 128
+      },
+      {
+        "first": 26572864,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 384,
+        "rows": 128
+      },
+      {
+        "first": 27097152,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 512,
+        "rows": 128
+      },
+      {
+        "first": 27621440,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 640,
+        "rows": 128
+      },
+      {
+        "first": 28145728,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 768,
+        "rows": 128
+      },
+      {
+        "first": 28670016,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 896,
+        "rows": 128
+      },
+      {
+        "first": 29194304,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1024,
+        "rows": 128
+      },
+      {
+        "first": 29718592,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1152,
+        "rows": 128
+      },
+      {
+        "first": 30242880,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1280,
+        "rows": 128
+      },
+      {
+        "first": 30767168,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1408,
+        "rows": 128
+      },
+      {
+        "first": 31291456,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1536,
+        "rows": 128
+      },
+      {
+        "first": 31815744,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1664,
+        "rows": 128
+      },
+      {
+        "first": 32340032,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1792,
+        "rows": 128
+      },
+      {
+        "first": 32864320,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 1920,
+        "rows": 128
+      },
+      {
+        "first": 33388608,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2048,
+        "rows": 128
+      },
+      {
+        "first": 33912896,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2176,
+        "rows": 128
+      },
+      {
+        "first": 34437184,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2304,
+        "rows": 128
+      },
+      {
+        "first": 34961472,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2432,
+        "rows": 128
+      },
+      {
+        "first": 35485760,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2560,
+        "rows": 128
+      },
+      {
+        "first": 36010048,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2688,
+        "rows": 128
+      },
+      {
+        "first": 36534336,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2816,
+        "rows": 128
+      },
+      {
+        "first": 37058624,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 2944,
+        "rows": 128
+      },
+      {
+        "first": 37582912,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3072,
+        "rows": 128
+      },
+      {
+        "first": 38107200,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3200,
+        "rows": 128
+      },
+      {
+        "first": 38631488,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3328,
+        "rows": 128
+      },
+      {
+        "first": 39155776,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3456,
+        "rows": 128
+      },
+      {
+        "first": 39680064,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3584,
+        "rows": 128
+      },
+      {
+        "first": 40204352,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3712,
+        "rows": 128
+      },
+      {
+        "first": 40728640,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3840,
+        "rows": 128
+      },
+      {
+        "first": 41252928,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 3968,
+        "rows": 128
+      },
+      {
+        "first": 41777216,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4096,
+        "rows": 128
+      },
+      {
+        "first": 42301504,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4224,
+        "rows": 128
+      },
+      {
+        "first": 42825792,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4352,
+        "rows": 128
+      },
+      {
+        "first": 43350080,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4480,
+        "rows": 128
+      },
+      {
+        "first": 43874368,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4608,
+        "rows": 128
+      },
+      {
+        "first": 44398656,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4736,
+        "rows": 128
+      },
+      {
+        "first": 44922944,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4864,
+        "rows": 128
+      },
+      {
+        "first": 45447232,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 4992,
+        "rows": 128
+      },
+      {
+        "first": 45971520,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5120,
+        "rows": 128
+      },
+      {
+        "first": 46495808,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5248,
+        "rows": 128
+      },
+      {
+        "first": 47020096,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5376,
+        "rows": 128
+      },
+      {
+        "first": 47544384,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5504,
+        "rows": 128
+      },
+      {
+        "first": 48068672,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5632,
+        "rows": 128
+      },
+      {
+        "first": 48592960,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5760,
+        "rows": 128
+      },
+      {
+        "first": 49117248,
+        "count": 524288,
+        "tile_first": 25000000,
+        "row": 5888,
+        "rows": 128
+      },
+      {
+        "first": 49641536,
+        "count": 358464,
+        "tile_first": 25000000,
+        "row": 6016,
+        "rows": 88
+      },
+      {
+        "first": 50000000,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 0,
+        "rows": 128
+      },
+      {
+        "first": 50524288,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 128,
+        "rows": 128
+      },
+      {
+        "first": 51048576,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 256,
+        "rows": 128
+      },
+      {
+        "first": 51572864,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 384,
+        "rows": 128
+      },
+      {
+        "first": 52097152,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 512,
+        "rows": 128
+      },
+      {
+        "first": 52621440,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 640,
+        "rows": 128
+      },
+      {
+        "first": 53145728,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 768,
+        "rows": 128
+      },
+      {
+        "first": 53670016,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 896,
+        "rows": 128
+      },
+      {
+        "first": 54194304,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1024,
+        "rows": 128
+      },
+      {
+        "first": 54718592,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1152,
+        "rows": 128
+      },
+      {
+        "first": 55242880,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1280,
+        "rows": 128
+      },
+      {
+        "first": 55767168,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1408,
+        "rows": 128
+      },
+      {
+        "first": 56291456,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1536,
+        "rows": 128
+      },
+      {
+        "first": 56815744,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1664,
+        "rows": 128
+      },
+      {
+        "first": 57340032,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1792,
+        "rows": 128
+      },
+      {
+        "first": 57864320,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 1920,
+        "rows": 128
+      },
+      {
+        "first": 58388608,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2048,
+        "rows": 128
+      },
+      {
+        "first": 58912896,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2176,
+        "rows": 128
+      },
+      {
+        "first": 59437184,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2304,
+        "rows": 128
+      },
+      {
+        "first": 59961472,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2432,
+        "rows": 128
+      },
+      {
+        "first": 60485760,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2560,
+        "rows": 128
+      },
+      {
+        "first": 61010048,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2688,
+        "rows": 128
+      },
+      {
+        "first": 61534336,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2816,
+        "rows": 128
+      },
+      {
+        "first": 62058624,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 2944,
+        "rows": 128
+      },
+      {
+        "first": 62582912,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3072,
+        "rows": 128
+      },
+      {
+        "first": 63107200,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3200,
+        "rows": 128
+      },
+      {
+        "first": 63631488,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3328,
+        "rows": 128
+      },
+      {
+        "first": 64155776,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3456,
+        "rows": 128
+      },
+      {
+        "first": 64680064,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3584,
+        "rows": 128
+      },
+      {
+        "first": 65204352,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3712,
+        "rows": 128
+      },
+      {
+        "first": 65728640,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3840,
+        "rows": 128
+      },
+      {
+        "first": 66252928,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 3968,
+        "rows": 128
+      },
+      {
+        "first": 66777216,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4096,
+        "rows": 128
+      },
+      {
+        "first": 67301504,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4224,
+        "rows": 128
+      },
+      {
+        "first": 67825792,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4352,
+        "rows": 128
+      },
+      {
+        "first": 68350080,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4480,
+        "rows": 128
+      },
+      {
+        "first": 68874368,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4608,
+        "rows": 128
+      },
+      {
+        "first": 69398656,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4736,
+        "rows": 128
+      },
+      {
+        "first": 69922944,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4864,
+        "rows": 128
+      },
+      {
+        "first": 70447232,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 4992,
+        "rows": 128
+      },
+      {
+        "first": 70971520,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5120,
+        "rows": 128
+      },
+      {
+        "first": 71495808,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5248,
+        "rows": 128
+      },
+      {
+        "first": 72020096,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5376,
+        "rows": 128
+      },
+      {
+        "first": 72544384,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5504,
+        "rows": 128
+      },
+      {
+        "first": 73068672,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5632,
+        "rows": 128
+      },
+      {
+        "first": 73592960,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5760,
+        "rows": 128
+      },
+      {
+        "first": 74117248,
+        "count": 524288,
+        "tile_first": 50000000,
+        "row": 5888,
+        "rows": 128
+      },
+      {
+        "first": 74641536,
+        "count": 358464,
+        "tile_first": 50000000,
+        "row": 6016,
+        "rows": 88
+      },
+      {
+        "first": 75000000,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 0,
+        "rows": 128
+      },
+      {
+        "first": 75524288,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 128,
+        "rows": 128
+      },
+      {
+        "first": 76048576,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 256,
+        "rows": 128
+      },
+      {
+        "first": 76572864,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 384,
+        "rows": 128
+      },
+      {
+        "first": 77097152,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 512,
+        "rows": 128
+      },
+      {
+        "first": 77621440,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 640,
+        "rows": 128
+      },
+      {
+        "first": 78145728,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 768,
+        "rows": 128
+      },
+      {
+        "first": 78670016,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 896,
+        "rows": 128
+      },
+      {
+        "first": 79194304,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1024,
+        "rows": 128
+      },
+      {
+        "first": 79718592,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1152,
+        "rows": 128
+      },
+      {
+        "first": 80242880,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1280,
+        "rows": 128
+      },
+      {
+        "first": 80767168,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1408,
+        "rows": 128
+      },
+      {
+        "first": 81291456,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1536,
+        "rows": 128
+      },
+      {
+        "first": 81815744,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1664,
+        "rows": 128
+      },
+      {
+        "first": 82340032,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1792,
+        "rows": 128
+      },
+      {
+        "first": 82864320,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 1920,
+        "rows": 128
+      },
+      {
+        "first": 83388608,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2048,
+        "rows": 128
+      },
+      {
+        "first": 83912896,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2176,
+        "rows": 128
+      },
+      {
+        "first": 84437184,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2304,
+        "rows": 128
+      },
+      {
+        "first": 84961472,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2432,
+        "rows": 128
+      },
+      {
+        "first": 85485760,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2560,
+        "rows": 128
+      },
+      {
+        "first": 86010048,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2688,
+        "rows": 128
+      },
+      {
+        "first": 86534336,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2816,
+        "rows": 128
+      },
+      {
+        "first": 87058624,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 2944,
+        "rows": 128
+      },
+      {
+        "first": 87582912,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3072,
+        "rows": 128
+      },
+      {
+        "first": 88107200,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3200,
+        "rows": 128
+      },
+      {
+        "first": 88631488,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3328,
+        "rows": 128
+      },
+      {
+        "first": 89155776,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3456,
+        "rows": 128
+      },
+      {
+        "first": 89680064,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3584,
+        "rows": 128
+      },
+      {
+        "first": 90204352,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3712,
+        "rows": 128
+      },
+      {
+        "first": 90728640,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3840,
+        "rows": 128
+      },
+      {
+        "first": 91252928,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 3968,
+        "rows": 128
+      },
+      {
+        "first": 91777216,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4096,
+        "rows": 128
+      },
+      {
+        "first": 92301504,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4224,
+        "rows": 128
+      },
+      {
+        "first": 92825792,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4352,
+        "rows": 128
+      },
+      {
+        "first": 93350080,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4480,
+        "rows": 128
+      },
+      {
+        "first": 93874368,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4608,
+        "rows": 128
+      },
+      {
+        "first": 94398656,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4736,
+        "rows": 128
+      },
+      {
+        "first": 94922944,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4864,
+        "rows": 128
+      },
+      {
+        "first": 95447232,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 4992,
+        "rows": 128
+      },
+      {
+        "first": 95971520,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5120,
+        "rows": 128
+      },
+      {
+        "first": 96495808,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5248,
+        "rows": 128
+      },
+      {
+        "first": 97020096,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5376,
+        "rows": 128
+      },
+      {
+        "first": 97544384,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5504,
+        "rows": 128
+      },
+      {
+        "first": 98068672,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5632,
+        "rows": 128
+      },
+      {
+        "first": 98592960,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5760,
+        "rows": 128
+      },
+      {
+        "first": 99117248,
+        "count": 524288,
+        "tile_first": 75000000,
+        "row": 5888,
+        "rows": 128
+      },
+      {
+        "first": 99641536,
+        "count": 358464,
+        "tile_first": 75000000,
+        "row": 6016,
+        "rows": 88
+      }
+    ],
+    "validation": {
+      "expected_markers": 100000000,
+      "expected_xyz_coordinates": 300000000,
+      "checked_markers": 100000000,
+      "checked_xyz_coordinates": 300000000,
+      "finite_xyz_coordinates": 300000000,
+      "nonfinite_xyz_coordinates": 0,
+      "nonfinite_reference_coordinates": 0,
+      "alpha_not_one": 0,
+      "outside_band": 0,
+      "max_abs_error": 4.13697136103508e-7,
+      "max_abs_error_by_axis": [
+        4.13697136103508e-7,
+        3.992104259387119e-7,
+        5.6892633493177414e-8
+      ],
+      "sum_squared_error": 0.00000115741756318955,
+      "max_unit_norm_error": 2.4215248317638327e-7,
+      "worst_coordinate": {
+        "marker": 58883978,
+        "axis": "x",
+        "gpu": 0.6240598559379578,
+        "reference": 0.6240602696350939
+      },
+      "first_failures": [],
+      "band_counts": [
+        4171596,
+        4168656,
+        4161780,
+        4168157,
+        4166628,
+        4167512,
+        4162964,
+        4166205,
+        4167145,
+        4168567,
+        4165175,
+        4166725,
+        4171630,
+        4165466,
+        4169095,
+        4166449,
+        4163463,
+        4163589,
+        4170163,
+        4162207,
+        4167655,
+        4167479,
+        4165877,
+        4165817
+      ],
+      "coverage_errors": [],
+      "tolerance": 0.0005,
+      "rms_error": 6.21132718826272e-8,
+      "outside_share": 0,
+      "checks": {
+        "full_coverage": true,
+        "all_xyz_finite": true,
+        "every_output_written": true,
+        "fp32_reference_tolerance": true,
+        "zero_outside_assigned_band": true
+      },
+      "passed": true
+    },
+    "passed": true,
+    "maxErr": 4.13697136103508e-7,
+    "outside": 0,
+    "checked": 100000000,
+    "texture": "4 resident tile pairs",
+    "check_ms": 7337.800000011921,
+    "scope": {
+      "warmups": 3,
+      "timed_placements": 10,
+      "separately_timed_full_readback_placements": 10,
+      "draw_calls_per_placement": 4,
+      "synchronization": "one pixel from every output framebuffer",
+      "validated_final_outputs": 1,
+      "validated_output": "final full-readback placement",
+      "angular_order_tested": false,
+      "physics_tested": false
+    }
+  },
+  "status": "passed",
+  "total_wall_ms": 31484.09999999404,
+  "completed_at": "2026-11-14T00:38:22.191Z"
+}

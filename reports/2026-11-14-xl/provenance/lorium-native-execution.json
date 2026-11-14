@@ -1,0 +1,172 @@
+{
+  "machine": "lorium",
+  "at": "2026-11-14T00:57:32.651693+00:00",
+  "source_hashes": {
+    "bench/native-metal-xl/native_bench.mm": "82ef095cbc09600a09d118ea3bbb1bbef2178fce7da0b7ecdd1e7df84dbe3ffc",
+    "bench/native-metal-xl/generate_inputs.mjs": "79193e4d36596dd3c34a031340cd45a613140804289ddc48ae4b43b7f94b959f",
+    "bench/native-metal-xl/place.metal": "b59e706fb0b59dd9173a30372bb3cfbb4243790ed591cbac1770d7e71bbf131c",
+    "src/js/engine.mjs": "8c0f89639cecd6c5ca9f99753d264e82ec1822d7283d3577f1f342ef7f821f9e"
+  },
+  "commands": [
+    {
+      "name": "swap-before",
+      "argv": [
+        "sysctl",
+        "vm.swapusage"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.003418292006244883
+    },
+    {
+      "name": "memory-before",
+      "argv": [
+        "memory_pressure"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.003329375002067536
+    },
+    {
+      "name": "compiler-version",
+      "argv": [
+        "xcrun",
+        "clang++",
+        "--version"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.08682666599634103
+    },
+    {
+      "name": "node-version",
+      "argv": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.08069137498387136
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "xcrun",
+        "clang++",
+        "-std=c++17",
+        "-O3",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fobjc-arc",
+        "-framework",
+        "Foundation",
+        "-framework",
+        "Metal",
+        "bench/native-metal-xl/native_bench.mm",
+        "-o",
+        "tmp/native-metal-xl/native_bench"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 1.2788692499743775
+    },
+    {
+      "name": "self-test",
+      "argv": [
+        "tmp/native-metal-xl/native_bench",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.4420863749983255
+    },
+    {
+      "name": "shader-prepare",
+      "argv": [
+        "tmp/native-metal-xl/native_bench",
+        "--prepare",
+        "bench/native-metal-xl/place.metal"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.17362770799081773
+    },
+    {
+      "name": "generate",
+      "argv": [
+        "node",
+        "bench/native-metal-xl/generate_inputs.mjs",
+        "100000000",
+        "tmp/native-metal-xl"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 11.78723445898504
+    },
+    {
+      "name": "benchmark",
+      "argv": [
+        "/usr/bin/time",
+        "-l",
+        "tmp/native-metal-xl/native_bench",
+        "tmp/native-metal-xl/inputs/100000000",
+        "bench/native-metal-xl/place.metal",
+        "tmp/native-metal-xl/100000000-lorium-v2",
+        "16",
+        "10"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 51.77803141597542
+    },
+    {
+      "name": "swap-after",
+      "argv": [
+        "sysctl",
+        "vm.swapusage"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.00376587500795722
+    },
+    {
+      "name": "memory-after",
+      "argv": [
+        "memory_pressure"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.00359520799247548
+    }
+  ],
+  "binary_sha256": "b4876ce338b5cf3442c232082f7781742ec0b639535083593b78badd5a4355ba",
+  "output_sha256": {
+    "100000000-lorium-v2.gpu-final.f32": {
+      "bytes": 1200000000,
+      "sha256": "646a649300127a02912dce649e0c4fbaa38881e4ed036c7e94652633669b7566"
+    },
+    "100000000-lorium-v2.json": {
+      "bytes": 18815,
+      "sha256": "304a0733de7903b13f987be68a5d914849be88308a4fbe9bd6a1811977a0ccbe"
+    },
+    "100000000-lorium-v2.cpu-final.f32": {
+      "bytes": 1200000000,
+      "sha256": "c3921862e50b96793b420529ba8217fd09fb4b81d453b3512374ecf59c6a2194"
+    },
+    "100000000-lorium-v2.cpu-single-final.f32": {
+      "bytes": 1200000000,
+      "sha256": "c3921862e50b96793b420529ba8217fd09fb4b81d453b3512374ecf59c6a2194"
+    }
+  },
+  "fixture_manifest": {
+    "generator": "unmodified src/js/engine.mjs inputs/encodeInputs/place",
+    "node": "v26.13.0",
+    "protocol": {
+      "bands": 24,
+      "cap": 0.9,
+      "margin": 0.12,
+      "seed": 20261112
+    },
+    "files": {
+      "inputs/100000000.3ain": {
+        "bytes": 2000000016,
+        "sha256": "2d00fff4b84f730da272ce1b4297e33d6ed3e3e649ed34125bbf9f25f706adf2"
+      },
+      "inputs/100000000.reference.f64": {
+        "bytes": 2400000000,
+        "sha256": "3b3444f58d7e4d96addfac41a3c2dd4bf1f361ae4c45bc952a984fd6d8786570"
+      }
+    }
+  },
+  "source_unchanged": true,
+  "completed_at": "2026-11-14T00:58:39.719418+00:00"
+}

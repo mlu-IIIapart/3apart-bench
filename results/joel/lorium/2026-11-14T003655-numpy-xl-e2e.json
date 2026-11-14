@@ -1,0 +1,559 @@
+{
+  "schema": 1,
+  "kind": "numpy-xl-e2e",
+  "variant": "numpy-fp64-batched-full-output-e2e-v1",
+  "status": "passed",
+  "passed": true,
+  "at": "2026-11-14T00:36:55.997518+00:00",
+  "who": "joel",
+  "machine": {
+    "name": "lorium",
+    "hostname": "lorium.local",
+    "cpu": "Apple M4 Max",
+    "os": "macOS-27.2.1-arm64-arm-64bit",
+    "logical_cpus": 16
+  },
+  "versions": {
+    "python": "3.12.16",
+    "numpy": "2.5.4"
+  },
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1"
+  },
+  "precision": "FP64 NumPy; WebGL comparisons use FP32 and are separate implementations",
+  "source_hashes": {
+    "bench/cpu_xl_e2e.py": "c4f8e244e1cc2863871a3d4691336cbfc6e83cf131e71523efab8afa1f05df92",
+    "src/py/engine.py": "1260fdf5dbed6c6de93b84d2572cb812cdf336cbf2178ce42af1d38d0289c5fb"
+  },
+  "git_head": "c25bf0167e5611a578d6453e89b794cd694d23b7",
+  "protocol": {
+    "seed": 20261112,
+    "bands": 24,
+    "cap": 0.9,
+    "margin": 0.12
+  },
+  "plan": {
+    "markers": 100000000,
+    "batch_markers": 25000000,
+    "batches": [
+      [
+        0,
+        25000000
+      ],
+      [
+        25000000,
+        25000000
+      ],
+      [
+        50000000,
+        25000000
+      ],
+      [
+        75000000,
+        25000000
+      ]
+    ],
+    "warmups": 3,
+    "resident_runs": 10,
+    "cold_runs": 3
+  },
+  "bytes": {
+    "input_band_i32": 400000000,
+    "input_time_value_f64": 1600000000,
+    "complete_output_xyz_f64": 2400000000,
+    "largest_batch_output_temporary_f64": 600000000
+  },
+  "scope": {
+    "resident": "Original inputs and complete output allocation persist. Timed unchanged E.place calls plus batch output copies and coverage accounting. Sentinel clearing, setup and validation excluded.",
+    "cold": "Three independent application pipelines by default: continuous perf_counter_ns from original E.inputs generation through output allocation/NaN initialization and complete batch placement/materialization. No stage-median summation. Cold means new arrays, not OS/filesystem cache eviction or process restart.",
+    "validation": "Every XYZ coordinate of final resident output and each cold output, outside timing. Independent FP64 algebraic formula, bounded 1M chunks, finite/band/coverage gates. Every timed resident output is not independently validated.",
+    "excluded": "Imports, process startup, input/output files, network, reference validation and result serialization. No GPU transfer, detector scoring or alerts are involved.",
+    "peak_rss": "Process lifetime high-water RSS including Python/NumPy and validation; not incremental allocation or instantaneous memory.",
+    "parallelism": "Requested numerical-library threads 1; no affinity or exclusive-machine claim."
+  },
+  "peak_rss_bytes": 7523975168,
+  "resident": {
+    "warmup_ms": [
+      4136.063792,
+      3464.573916,
+      3341.186833
+    ],
+    "samples": [
+      {
+        "trial": 0,
+        "placement_and_complete_output_materialization_ms": 3216.805166,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 1,
+        "placement_and_complete_output_materialization_ms": 3200.570958,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 2,
+        "placement_and_complete_output_materialization_ms": 3204.108291,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 3,
+        "placement_and_complete_output_materialization_ms": 3208.901292,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 4,
+        "placement_and_complete_output_materialization_ms": 3203.578125,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 5,
+        "placement_and_complete_output_materialization_ms": 3203.8685,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 6,
+        "placement_and_complete_output_materialization_ms": 3222.149084,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 7,
+        "placement_and_complete_output_materialization_ms": 3247.308709,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 8,
+        "placement_and_complete_output_materialization_ms": 3230.66325,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      },
+      {
+        "trial": 9,
+        "placement_and_complete_output_materialization_ms": 3216.562292,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ]
+      }
+    ],
+    "validation": {
+      "markers_checked": 100000000,
+      "xyz_coordinates_checked": 300000000,
+      "nonfinite_inputs": 0,
+      "invalid_input_markers": 0,
+      "nonfinite_output_coordinates": 0,
+      "nonfinite_reference_coordinates": 0,
+      "coordinates_over_tolerance": 0,
+      "outside_band": 0,
+      "invalid_radius": 0,
+      "passed": true,
+      "max_abs_error": 4.440892098500626e-16,
+      "tolerance": 1e-09,
+      "reference": "Independent FP64 sqrt radius/direct z formula on original E.inputs stream",
+      "reference_chunk_markers": 1000000,
+      "coverage_ranges": [
+        [
+          0,
+          25000000
+        ],
+        [
+          25000000,
+          25000000
+        ],
+        [
+          50000000,
+          25000000
+        ],
+        [
+          75000000,
+          25000000
+        ]
+      ],
+      "angular_order_tested": false,
+      "failing_gates": [],
+      "wall_ms": 3034.717125
+    },
+    "setup": {
+      "input_generation_ms": 1452.445917,
+      "output_allocation_and_initialization_ms": 544.571,
+      "continuous_setup_ms": 1997.016917
+    },
+    "statistics_ms": {
+      "runs": 10,
+      "min": 3200.570958,
+      "median": 3212.731792,
+      "mean": 3215.4515667000005,
+      "p95": 3247.308709,
+      "max": 3247.308709
+    }
+  },
+  "cold_pipelines": [
+    {
+      "trial": 0,
+      "end_to_end_ms": 4907.696708,
+      "input_generation_ms": 1406.058417,
+      "output_allocation_and_initialization_ms": 137.465208,
+      "placement_and_complete_output_materialization_ms": 3364.173083,
+      "coverage_ranges": [
+        [
+          0,
+          25000000
+        ],
+        [
+          25000000,
+          25000000
+        ],
+        [
+          50000000,
+          25000000
+        ],
+        [
+          75000000,
+          25000000
+        ]
+      ],
+      "validation": {
+        "markers_checked": 100000000,
+        "xyz_coordinates_checked": 300000000,
+        "nonfinite_inputs": 0,
+        "invalid_input_markers": 0,
+        "nonfinite_output_coordinates": 0,
+        "nonfinite_reference_coordinates": 0,
+        "coordinates_over_tolerance": 0,
+        "outside_band": 0,
+        "invalid_radius": 0,
+        "passed": true,
+        "max_abs_error": 4.440892098500626e-16,
+        "tolerance": 1e-09,
+        "reference": "Independent FP64 sqrt radius/direct z formula on original E.inputs stream",
+        "reference_chunk_markers": 1000000,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ],
+        "angular_order_tested": false,
+        "failing_gates": [],
+        "wall_ms": 3071.717541
+      }
+    },
+    {
+      "trial": 1,
+      "end_to_end_ms": 4884.3405,
+      "input_generation_ms": 1293.427,
+      "output_allocation_and_initialization_ms": 138.398875,
+      "placement_and_complete_output_materialization_ms": 3452.514625,
+      "coverage_ranges": [
+        [
+          0,
+          25000000
+        ],
+        [
+          25000000,
+          25000000
+        ],
+        [
+          50000000,
+          25000000
+        ],
+        [
+          75000000,
+          25000000
+        ]
+      ],
+      "validation": {
+        "markers_checked": 100000000,
+        "xyz_coordinates_checked": 300000000,
+        "nonfinite_inputs": 0,
+        "invalid_input_markers": 0,
+        "nonfinite_output_coordinates": 0,
+        "nonfinite_reference_coordinates": 0,
+        "coordinates_over_tolerance": 0,
+        "outside_band": 0,
+        "invalid_radius": 0,
+        "passed": true,
+        "max_abs_error": 4.440892098500626e-16,
+        "tolerance": 1e-09,
+        "reference": "Independent FP64 sqrt radius/direct z formula on original E.inputs stream",
+        "reference_chunk_markers": 1000000,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ],
+        "angular_order_tested": false,
+        "failing_gates": [],
+        "wall_ms": 3036.177792
+      }
+    },
+    {
+      "trial": 2,
+      "end_to_end_ms": 4871.72475,
+      "input_generation_ms": 1250.560125,
+      "output_allocation_and_initialization_ms": 43.133,
+      "placement_and_complete_output_materialization_ms": 3578.031625,
+      "coverage_ranges": [
+        [
+          0,
+          25000000
+        ],
+        [
+          25000000,
+          25000000
+        ],
+        [
+          50000000,
+          25000000
+        ],
+        [
+          75000000,
+          25000000
+        ]
+      ],
+      "validation": {
+        "markers_checked": 100000000,
+        "xyz_coordinates_checked": 300000000,
+        "nonfinite_inputs": 0,
+        "invalid_input_markers": 0,
+        "nonfinite_output_coordinates": 0,
+        "nonfinite_reference_coordinates": 0,
+        "coordinates_over_tolerance": 0,
+        "outside_band": 0,
+        "invalid_radius": 0,
+        "passed": true,
+        "max_abs_error": 4.440892098500626e-16,
+        "tolerance": 1e-09,
+        "reference": "Independent FP64 sqrt radius/direct z formula on original E.inputs stream",
+        "reference_chunk_markers": 1000000,
+        "coverage_ranges": [
+          [
+            0,
+            25000000
+          ],
+          [
+            25000000,
+            25000000
+          ],
+          [
+            50000000,
+            25000000
+          ],
+          [
+            75000000,
+            25000000
+          ]
+        ],
+        "angular_order_tested": false,
+        "failing_gates": [],
+        "wall_ms": 3381.763333
+      }
+    }
+  ],
+  "phase": "complete",
+  "updated_at": "2026-11-14T00:38:08.891051+00:00",
+  "cold_statistics_ms": {
+    "runs": 3,
+    "min": 4871.72475,
+    "median": 4884.3405,
+    "mean": 4887.920652666667,
+    "p95": 4907.696708,
+    "max": 4907.696708
+  },
+  "source_unchanged": true,
+  "completed_at": "2026-11-14T00:38:08.891042+00:00"
+}
