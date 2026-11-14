@@ -1,0 +1,1138 @@
+{
+  "device" : "Apple M5 Max",
+  "execution_order" : [
+    {
+      "round" : 0,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 0,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 0,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 0,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 1,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 1,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 1,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 1,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 2,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 2,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 2,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 2,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 3,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 3,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 3,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 3,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 4,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 4,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 4,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 4,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 5,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 5,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 5,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 5,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 6,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 6,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 6,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 6,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 7,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 7,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 7,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 7,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 8,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 8,
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "round" : 8,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 8,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 9,
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "round" : 9,
+      "variant" : "fast_intrinsics_direct_parallel"
+    },
+    {
+      "round" : 9,
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "round" : 9,
+      "variant" : "fast_intrinsics_copy_serial"
+    }
+  ],
+  "experiment" : "native-metal-integrated-optimization",
+  "metal_allocated_bytes" : 458752,
+  "n" : 1008,
+  "randomized_round_seed" : 20261113,
+  "recommended_working_set_bytes" : 115448725504,
+  "requested_gpu_buffer_bytes" : 24192,
+  "schema" : 1,
+  "scope" : "Original formula only. Every output checked by identical full-coordinate FP64 accuracy gates. Direct variants validate shared Metal buffer after GPU completion with18persistent CPUworkers andnoextra outputcopy. Every trial separately crosschecked against serial oracle outside timed path. Randomized interleaved variants,10trials each. Compute_output_and_validation includes dispatch+completion+optionalcopy+fullvalidation; inputprep,allocation,compilation and independent serialoracle excluded.",
+  "seed" : 20261112,
+  "trials_per_variant" : 10,
+  "variants" : [
+    {
+      "direct_shared_output_and_parallel_validation" : false,
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "precise",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.14583299999999999,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00045800000000000002,
+          "gpu_device_ms" : 0.043666659621521831,
+          "resident_plus_copy_ms" : 0.140208,
+          "resident_wall_ms" : 0.13833300000000001,
+          "shared_output_cpu_visible_ms" : 0.139708,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0055830000000000003,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.144042,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00062500000000000001,
+          "gpu_device_ms" : 0.014541670680046082,
+          "resident_plus_copy_ms" : 0.138625,
+          "resident_wall_ms" : 0.135792,
+          "shared_output_cpu_visible_ms" : 0.13800000000000001,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0053749999999999996,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.494417,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00054100000000000003,
+          "gpu_device_ms" : 0.016333331586793065,
+          "resident_plus_copy_ms" : 0.48891699999999999,
+          "resident_wall_ms" : 0.487375,
+          "shared_output_cpu_visible_ms" : 0.488292,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054999999999999997,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.245417,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00037500000000000001,
+          "gpu_device_ms" : 0.013875018339604139,
+          "resident_plus_copy_ms" : 0.23995900000000001,
+          "resident_wall_ms" : 0.238375,
+          "shared_output_cpu_visible_ms" : 0.239542,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054159999999999998,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.54149999999999998,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.000417,
+          "gpu_device_ms" : 0.016250007320195436,
+          "resident_plus_copy_ms" : 0.53608299999999998,
+          "resident_wall_ms" : 0.53437500000000004,
+          "shared_output_cpu_visible_ms" : 0.53566599999999998,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0053749999999999996,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.56674999999999998,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00054100000000000003,
+          "gpu_device_ms" : 0.015999976312741637,
+          "resident_plus_copy_ms" : 0.56120800000000004,
+          "resident_wall_ms" : 0.55916600000000005,
+          "shared_output_cpu_visible_ms" : 0.56066700000000003,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054580000000000002,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.59745800000000004,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00045899999999999999,
+          "gpu_device_ms" : 0.016208330634981394,
+          "resident_plus_copy_ms" : 0.59179199999999998,
+          "resident_wall_ms" : 0.58987500000000004,
+          "shared_output_cpu_visible_ms" : 0.591333,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0055840000000000004,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.15712499999999999,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.000417,
+          "gpu_device_ms" : 0.013499986380338669,
+          "resident_plus_copy_ms" : 0.15170900000000001,
+          "resident_wall_ms" : 0.15012500000000001,
+          "shared_output_cpu_visible_ms" : 0.15129200000000001,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0053749999999999996,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.14074999999999999,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00037500000000000001,
+          "gpu_device_ms" : 0.013666664017364383,
+          "resident_plus_copy_ms" : 0.13633300000000001,
+          "resident_wall_ms" : 0.13508300000000001,
+          "shared_output_cpu_visible_ms" : 0.135958,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0043750000000000004,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.203042,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00045800000000000002,
+          "gpu_device_ms" : 0.076458352850750089,
+          "resident_plus_copy_ms" : 0.197542,
+          "resident_wall_ms" : 0.19579199999999999,
+          "shared_output_cpu_visible_ms" : 0.19700000000000001,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054580000000000002,
+          "validator_workers" : 1
+        }
+      ],
+      "variant" : "baseline_copy_serial"
+    },
+    {
+      "direct_shared_output_and_parallel_validation" : false,
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "fast",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.18520900000000001,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.000417,
+          "gpu_device_ms" : 0.085291656432673335,
+          "resident_plus_copy_ms" : 0.17970900000000001,
+          "resident_wall_ms" : 0.17808399999999999,
+          "shared_output_cpu_visible_ms" : 0.17929200000000001,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054169999999999999,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.69874999999999998,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.001,
+          "gpu_device_ms" : 0.013250013580545783,
+          "resident_plus_copy_ms" : 0.68529200000000001,
+          "resident_wall_ms" : 0.68037499999999995,
+          "shared_output_cpu_visible_ms" : 0.68420800000000004,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.013375,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.46487499999999998,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.000417,
+          "gpu_device_ms" : 0.013000011676922441,
+          "resident_plus_copy_ms" : 0.45933400000000002,
+          "resident_wall_ms" : 0.45774999999999999,
+          "shared_output_cpu_visible_ms" : 0.45887499999999998,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054999999999999997,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.550292,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.000417,
+          "gpu_device_ms" : 0.012875010725110769,
+          "resident_plus_copy_ms" : 0.54479200000000005,
+          "resident_wall_ms" : 0.543292,
+          "shared_output_cpu_visible_ms" : 0.544292,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054999999999999997,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.58812500000000001,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00091600000000000004,
+          "gpu_device_ms" : 0.012583332136273384,
+          "resident_plus_copy_ms" : 0.57487500000000002,
+          "resident_wall_ms" : 0.57074999999999998,
+          "shared_output_cpu_visible_ms" : 0.57387500000000002,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.013166000000000001,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.50954100000000002,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00037500000000000001,
+          "gpu_device_ms" : 0.012875010725110769,
+          "resident_plus_copy_ms" : 0.504166,
+          "resident_wall_ms" : 0.50237500000000002,
+          "shared_output_cpu_visible_ms" : 0.50370800000000004,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0053749999999999996,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.59770900000000005,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00066699999999999995,
+          "gpu_device_ms" : 0.014291668776422739,
+          "resident_plus_copy_ms" : 0.59229200000000004,
+          "resident_wall_ms" : 0.58937499999999998,
+          "shared_output_cpu_visible_ms" : 0.591584,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0053749999999999996,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.43820799999999999,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.000417,
+          "gpu_device_ms" : 0.012625008821487427,
+          "resident_plus_copy_ms" : 0.43275000000000002,
+          "resident_wall_ms" : 0.43108400000000002,
+          "shared_output_cpu_visible_ms" : 0.43225000000000002,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0054580000000000002,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.16191700000000001,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00037500000000000001,
+          "gpu_device_ms" : 0.0099999888334423304,
+          "resident_plus_copy_ms" : 0.15637499999999999,
+          "resident_wall_ms" : 0.15487500000000001,
+          "shared_output_cpu_visible_ms" : 0.155917,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0055420000000000001,
+          "validator_workers" : 1
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.14758399999999999,
+          "direct_shared_output" : false,
+          "full_output_copy_ms" : 0.00045800000000000002,
+          "gpu_device_ms" : 0.044124986743554473,
+          "resident_plus_copy_ms" : 0.14199999999999999,
+          "resident_wall_ms" : 0.139959,
+          "shared_output_cpu_visible_ms" : 0.141542,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.0055840000000000004,
+          "validator_workers" : 1
+        }
+      ],
+      "variant" : "fast_intrinsics_copy_serial"
+    },
+    {
+      "direct_shared_output_and_parallel_validation" : true,
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "precise",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.43912499999999999,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.21562498295679688,
+          "resident_plus_copy_ms" : 0.32004100000000002,
+          "resident_wall_ms" : 0.31841599999999998,
+          "shared_output_cpu_visible_ms" : 0.31995800000000002,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.119084,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.67104200000000003,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.47116668429225683,
+          "resident_plus_copy_ms" : 0.56570900000000002,
+          "resident_wall_ms" : 0.563917,
+          "shared_output_cpu_visible_ms" : 0.56566700000000003,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.10525,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.53595800000000005,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1e-05,
+          "gpu_device_ms" : 0.017166661564260721,
+          "resident_plus_copy_ms" : 0.43833299999999997,
+          "resident_wall_ms" : 0.437083,
+          "shared_output_cpu_visible_ms" : 0.43829200000000001,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.097583000000000003,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.25991700000000001,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.013958342606201768,
+          "resident_plus_copy_ms" : 0.199292,
+          "resident_wall_ms" : 0.197875,
+          "shared_output_cpu_visible_ms" : 0.19925000000000001,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.060540999999999998,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.25183299999999997,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.014249992091208696,
+          "resident_plus_copy_ms" : 0.20937500000000001,
+          "resident_wall_ms" : 0.208292,
+          "shared_output_cpu_visible_ms" : 0.20933299999999999,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.042416000000000002,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.75104199999999999,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 8.2999999999999998e-05,
+          "gpu_device_ms" : 0.01704166061244905,
+          "resident_plus_copy_ms" : 0.65416700000000005,
+          "resident_wall_ms" : 0.65024999999999999,
+          "shared_output_cpu_visible_ms" : 0.65400000000000003,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.096792000000000003,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.233208,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.014249992091208696,
+          "resident_plus_copy_ms" : 0.16541700000000001,
+          "resident_wall_ms" : 0.16429099999999999,
+          "shared_output_cpu_visible_ms" : 0.16533300000000001,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.067750000000000005,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.51275000000000004,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1e-05,
+          "gpu_device_ms" : 0.016250007320195436,
+          "resident_plus_copy_ms" : 0.435083,
+          "resident_wall_ms" : 0.43383300000000002,
+          "shared_output_cpu_visible_ms" : 0.43504199999999998,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.077582999999999999,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.20674999999999999,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.014458317309617996,
+          "resident_plus_copy_ms" : 0.136625,
+          "resident_wall_ms" : 0.13541700000000001,
+          "shared_output_cpu_visible_ms" : 0.13658300000000001,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.070083000000000006,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.42499999999999999,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.27662501088343561,
+          "resident_plus_copy_ms" : 0.39224999999999999,
+          "resident_wall_ms" : 0.39108300000000001,
+          "shared_output_cpu_visible_ms" : 0.392208,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 2.9214859009751848e-07,
+            "max_unit_radius_error" : 9.4056321398028331e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.032667000000000002,
+          "validator_workers" : 18
+        }
+      ],
+      "variant" : "baseline_direct_parallel"
+    },
+    {
+      "direct_shared_output_and_parallel_validation" : true,
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "fast",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.205542,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.05491668707691133,
+          "resident_plus_copy_ms" : 0.145042,
+          "resident_wall_ms" : 0.143459,
+          "shared_output_cpu_visible_ms" : 0.14499999999999999,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.060499999999999998,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.77891699999999997,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.013916665920987725,
+          "resident_plus_copy_ms" : 0.67112499999999997,
+          "resident_wall_ms" : 0.66737500000000005,
+          "shared_output_cpu_visible_ms" : 0.67100000000000004,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.10775,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.88029199999999996,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.013749988283962011,
+          "resident_plus_copy_ms" : 0.75595800000000002,
+          "resident_wall_ms" : 0.75195800000000002,
+          "shared_output_cpu_visible_ms" : 0.75583299999999998,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.124292,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.234959,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.0099999888334423304,
+          "resident_plus_copy_ms" : 0.18420900000000001,
+          "resident_wall_ms" : 0.183084,
+          "shared_output_cpu_visible_ms" : 0.184167,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.050750000000000003,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.62941599999999998,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.01200000406242907,
+          "resident_plus_copy_ms" : 0.53925000000000001,
+          "resident_wall_ms" : 0.53591599999999995,
+          "shared_output_cpu_visible_ms" : 0.53912499999999997,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.090124999999999997,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.24283399999999999,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.010124989785254002,
+          "resident_plus_copy_ms" : 0.18670900000000001,
+          "resident_wall_ms" : 0.1855,
+          "shared_output_cpu_visible_ms" : 0.186667,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.056084000000000002,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.69237499999999996,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.012083357432857156,
+          "resident_plus_copy_ms" : 0.59345800000000004,
+          "resident_wall_ms" : 0.59241600000000005,
+          "shared_output_cpu_visible_ms" : 0.59337499999999999,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.098917000000000005,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.21637500000000001,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 4.1999999999999998e-05,
+          "gpu_device_ms" : 0.0099999888334423304,
+          "resident_plus_copy_ms" : 0.14016700000000001,
+          "resident_wall_ms" : 0.13900000000000001,
+          "shared_output_cpu_visible_ms" : 0.140125,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.076207999999999998,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.28312500000000002,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.010083313100039959,
+          "resident_plus_copy_ms" : 0.16733300000000001,
+          "resident_wall_ms" : 0.16612499999999999,
+          "shared_output_cpu_visible_ms" : 0.16725000000000001,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.11575000000000001,
+          "validator_workers" : 18
+        },
+        {
+          "all_checker_fields_equal_serial_oracle" : true,
+          "compute_output_and_validation_ms" : 0.27100000000000002,
+          "direct_shared_output" : true,
+          "full_output_copy_ms" : 0,
+          "gpu_device_ms" : 0.11424999684095383,
+          "resident_plus_copy_ms" : 0.20166700000000001,
+          "resident_wall_ms" : 0.19733400000000001,
+          "shared_output_cpu_visible_ms" : 0.20158400000000001,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 3024,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 3024,
+            "max_abs_error_vs_raw_fp64" : 8.7419231087684137e-08,
+            "max_unit_radius_error" : 4.1137023121251559e-08,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 0.069333000000000006,
+          "validator_workers" : 18
+        }
+      ],
+      "variant" : "fast_intrinsics_direct_parallel"
+    }
+  ],
+  "warmups_per_variant" : 3
+}

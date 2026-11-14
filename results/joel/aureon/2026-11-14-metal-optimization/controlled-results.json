@@ -1,0 +1,1930 @@
+{
+  "device" : "Apple M5 Max",
+  "execution_order" : [
+    {
+      "round" : 0,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 0,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 0,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 0,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 0,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 0,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 0,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 0,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 1,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 1,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 2,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 2,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 2,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 2,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 2,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 2,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 2,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 2,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 3,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 3,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 3,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 3,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 3,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 3,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 3,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 3,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 4,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 4,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 4,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 4,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 4,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 4,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 4,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 4,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 5,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 5,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 5,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 5,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 5,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 5,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 5,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 5,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 6,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 6,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 7,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 7,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 7,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 7,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 7,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 7,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 7,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 7,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 8,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 8,
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "round" : 8,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 8,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 8,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 8,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 8,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 8,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "fast_fast_trig_512"
+    },
+    {
+      "round" : 9,
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "round" : 9,
+      "variant" : "fast_fast_trig_64"
+    }
+  ],
+  "experiment" : "native-metal-controlled-optimization",
+  "metal_allocated_bytes" : 2400518144,
+  "n" : 100000000,
+  "randomized_round_seed" : 20261113,
+  "recommended_working_set_bytes" : 115448725504,
+  "requested_gpu_buffer_bytes" : 2400000000,
+  "schema" : 1,
+  "scope" : "Every timed output fully checked by unchanged historical serial FP64-reference validator. Identical fixture, SoA\/packedXYZ layout,copy and validation cadence. Compilation, allocation, input generation, upload, copy and validation excluded from resident clocks. Algebraic rewrite separately labeled; not a stock-formula implementation.",
+  "seed" : 20261112,
+  "trials_per_variant" : 10,
+  "variants" : [
+    {
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "precise",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 17.557167,
+          "gpu_device_ms" : 8.3591250004246831,
+          "resident_plus_copy_ms" : 26.629874999999998,
+          "resident_wall_ms" : 9.0645000000000007,
+          "shared_output_cpu_visible_ms" : 9.0725829999999998,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.67204099999998
+        },
+        {
+          "full_output_copy_ms" : 17.316832999999999,
+          "gpu_device_ms" : 8.9742083509918302,
+          "resident_plus_copy_ms" : 26.434958000000002,
+          "resident_wall_ms" : 9.1107080000000007,
+          "shared_output_cpu_visible_ms" : 9.1180830000000004,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.540167
+        },
+        {
+          "full_output_copy_ms" : 24.432375,
+          "gpu_device_ms" : 9.5922499895095825,
+          "resident_plus_copy_ms" : 34.621333,
+          "resident_wall_ms" : 10.176458,
+          "shared_output_cpu_visible_ms" : 10.188958,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.06191699999999
+        },
+        {
+          "full_output_copy_ms" : 17.991458000000002,
+          "gpu_device_ms" : 8.3267083391547203,
+          "resident_plus_copy_ms" : 27.135292,
+          "resident_wall_ms" : 9.1328329999999998,
+          "shared_output_cpu_visible_ms" : 9.1437500000000007,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 361.233791
+        },
+        {
+          "full_output_copy_ms" : 17.558250000000001,
+          "gpu_device_ms" : 8.7309583323076367,
+          "resident_plus_copy_ms" : 27.021958000000001,
+          "resident_wall_ms" : 9.4491250000000004,
+          "shared_output_cpu_visible_ms" : 9.4636669999999992,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.31025
+        },
+        {
+          "full_output_copy_ms" : 20.089207999999999,
+          "gpu_device_ms" : 9.8459166474640369,
+          "resident_plus_copy_ms" : 30.472000000000001,
+          "resident_wall_ms" : 10.374416999999999,
+          "shared_output_cpu_visible_ms" : 10.382792,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.85108300000002
+        },
+        {
+          "full_output_copy_ms" : 17.647375,
+          "gpu_device_ms" : 9.2025416670367122,
+          "resident_plus_copy_ms" : 26.999959,
+          "resident_wall_ms" : 9.3462499999999995,
+          "shared_output_cpu_visible_ms" : 9.3524999999999991,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.52033299999999
+        },
+        {
+          "full_output_copy_ms" : 17.776208,
+          "gpu_device_ms" : 8.5563749889843166,
+          "resident_plus_copy_ms" : 26.998249999999999,
+          "resident_wall_ms" : 9.2146670000000004,
+          "shared_output_cpu_visible_ms" : 9.2220420000000001,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.62599999999998
+        },
+        {
+          "full_output_copy_ms" : 18.326415999999998,
+          "gpu_device_ms" : 9.4872500048950315,
+          "resident_plus_copy_ms" : 28.232958,
+          "resident_wall_ms" : 9.8988329999999998,
+          "shared_output_cpu_visible_ms" : 9.9064160000000001,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 363.59395799999999
+        },
+        {
+          "full_output_copy_ms" : 17.850292,
+          "gpu_device_ms" : 8.5794166661798954,
+          "resident_plus_copy_ms" : 27.092333,
+          "resident_wall_ms" : 9.2355420000000006,
+          "shared_output_cpu_visible_ms" : 9.2420000000000009,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.4741501126210892e-07,
+            "max_unit_radius_error" : 2.7328967799888915e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.93000000000001
+        }
+      ],
+      "variant" : "safe_precise_trig_256"
+    },
+    {
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "fast",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 17.743666999999999,
+          "gpu_device_ms" : 6.7765416752081364,
+          "resident_plus_copy_ms" : 24.721625,
+          "resident_wall_ms" : 6.967708,
+          "shared_output_cpu_visible_ms" : 6.9779169999999997,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.93087500000001
+        },
+        {
+          "full_output_copy_ms" : 17.578040999999999,
+          "gpu_device_ms" : 5.5726666760165244,
+          "resident_plus_copy_ms" : 24.029333000000001,
+          "resident_wall_ms" : 6.4337080000000002,
+          "shared_output_cpu_visible_ms" : 6.4512499999999999,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.63516700000002
+        },
+        {
+          "full_output_copy_ms" : 17.719709000000002,
+          "gpu_device_ms" : 6.0432500031311065,
+          "resident_plus_copy_ms" : 24.410625,
+          "resident_wall_ms" : 6.6759170000000001,
+          "shared_output_cpu_visible_ms" : 6.6908339999999997,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.98512499999998
+        },
+        {
+          "full_output_copy_ms" : 17.802624999999999,
+          "gpu_device_ms" : 4.9723749980330467,
+          "resident_plus_copy_ms" : 23.415666999999999,
+          "resident_wall_ms" : 5.6062079999999996,
+          "shared_output_cpu_visible_ms" : 5.6130000000000004,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.54750000000001
+        },
+        {
+          "full_output_copy_ms" : 17.342458000000001,
+          "gpu_device_ms" : 5.2575000154320151,
+          "resident_plus_copy_ms" : 23.149999999999999,
+          "resident_wall_ms" : 5.8017079999999996,
+          "shared_output_cpu_visible_ms" : 5.8075000000000001,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.62062500000002
+        },
+        {
+          "full_output_copy_ms" : 18.00375,
+          "gpu_device_ms" : 5.9597500076051801,
+          "resident_plus_copy_ms" : 24.675374999999999,
+          "resident_wall_ms" : 6.6550000000000002,
+          "shared_output_cpu_visible_ms" : 6.6715419999999996,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.55200000000002
+        },
+        {
+          "full_output_copy_ms" : 18.137916000000001,
+          "gpu_device_ms" : 5.7451666507404298,
+          "resident_plus_copy_ms" : 24.609290999999999,
+          "resident_wall_ms" : 6.4571670000000001,
+          "shared_output_cpu_visible_ms" : 6.4713329999999996,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.24604199999999
+        },
+        {
+          "full_output_copy_ms" : 17.776582999999999,
+          "gpu_device_ms" : 5.6627083395142108,
+          "resident_plus_copy_ms" : 24.073208999999999,
+          "resident_wall_ms" : 6.289625,
+          "shared_output_cpu_visible_ms" : 6.2965419999999996,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.80670800000001
+        },
+        {
+          "full_output_copy_ms" : 18.390125000000001,
+          "gpu_device_ms" : 4.922625026665628,
+          "resident_plus_copy_ms" : 23.476208,
+          "resident_wall_ms" : 5.0797080000000001,
+          "shared_output_cpu_visible_ms" : 5.0860830000000004,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 364.96491700000001
+        },
+        {
+          "full_output_copy_ms" : 17.759250000000002,
+          "gpu_device_ms" : 5.4265000217128545,
+          "resident_plus_copy_ms" : 23.492999999999999,
+          "resident_wall_ms" : 5.7264160000000004,
+          "shared_output_cpu_visible_ms" : 5.7337499999999997,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.49304100000001
+        }
+      ],
+      "variant" : "safe_fast_trig_256"
+    },
+    {
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "fast",
+      "math_mode" : "fast",
+      "threads" : 256,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 17.136583999999999,
+          "gpu_device_ms" : 6.6234166733920574,
+          "resident_plus_copy_ms" : 23.981166999999999,
+          "resident_wall_ms" : 6.8274160000000004,
+          "shared_output_cpu_visible_ms" : 6.8445419999999997,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.541875
+        },
+        {
+          "full_output_copy_ms" : 17.217416,
+          "gpu_device_ms" : 7.4706249870359898,
+          "resident_plus_copy_ms" : 25.221917000000001,
+          "resident_wall_ms" : 7.9953339999999997,
+          "shared_output_cpu_visible_ms" : 8.0044170000000001,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.86370799999997
+        },
+        {
+          "full_output_copy_ms" : 17.589209,
+          "gpu_device_ms" : 5.3427499951794744,
+          "resident_plus_copy_ms" : 23.508291,
+          "resident_wall_ms" : 5.9119159999999997,
+          "shared_output_cpu_visible_ms" : 5.9189999999999996,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.54620899999998
+        },
+        {
+          "full_output_copy_ms" : 18.113958,
+          "gpu_device_ms" : 5.6420833279844373,
+          "resident_plus_copy_ms" : 24.393916999999998,
+          "resident_wall_ms" : 6.2742500000000003,
+          "shared_output_cpu_visible_ms" : 6.2799589999999998,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 359.40858300000002
+        },
+        {
+          "full_output_copy_ms" : 17.967874999999999,
+          "gpu_device_ms" : 6.2522499938495457,
+          "resident_plus_copy_ms" : 24.917124999999999,
+          "resident_wall_ms" : 6.9356249999999999,
+          "shared_output_cpu_visible_ms" : 6.9492089999999997,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.16591699999998
+        },
+        {
+          "full_output_copy_ms" : 20.591417,
+          "gpu_device_ms" : 7.4709999898914248,
+          "resident_plus_copy_ms" : 28.636541999999999,
+          "resident_wall_ms" : 8.0320830000000001,
+          "shared_output_cpu_visible_ms" : 8.0450839999999992,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.28029199999997
+        },
+        {
+          "full_output_copy_ms" : 17.524791,
+          "gpu_device_ms" : 8.0413333489559591,
+          "resident_plus_copy_ms" : 26.158999999999999,
+          "resident_wall_ms" : 8.6143750000000008,
+          "shared_output_cpu_visible_ms" : 8.6341669999999997,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.03533399999998
+        },
+        {
+          "full_output_copy_ms" : 17.930458000000002,
+          "gpu_device_ms" : 5.6141250242944807,
+          "resident_plus_copy_ms" : 24.131374999999998,
+          "resident_wall_ms" : 6.1950000000000003,
+          "shared_output_cpu_visible_ms" : 6.2009169999999996,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.33991700000001
+        },
+        {
+          "full_output_copy_ms" : 22.568708000000001,
+          "gpu_device_ms" : 5.0509999855421484,
+          "resident_plus_copy_ms" : 28.269625000000001,
+          "resident_wall_ms" : 5.6597080000000002,
+          "shared_output_cpu_visible_ms" : 5.7008749999999999,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 366.68466699999999
+        },
+        {
+          "full_output_copy_ms" : 20.263459000000001,
+          "gpu_device_ms" : 6.6246250062249601,
+          "resident_plus_copy_ms" : 27.036999999999999,
+          "resident_wall_ms" : 6.7649999999999997,
+          "shared_output_cpu_visible_ms" : 6.7735000000000003,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.06154199999997
+        }
+      ],
+      "variant" : "fast_fast_trig_256"
+    },
+    {
+      "formula" : "algebraic sqrt rewrite",
+      "intrinsics" : "precise",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 17.288083,
+          "gpu_device_ms" : 7.5733750127255917,
+          "resident_plus_copy_ms" : 25.465208000000001,
+          "resident_wall_ms" : 8.1590000000000007,
+          "shared_output_cpu_visible_ms" : 8.1770420000000001,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.72787499999998
+        },
+        {
+          "full_output_copy_ms" : 17.800750000000001,
+          "gpu_device_ms" : 6.1034166719764471,
+          "resident_plus_copy_ms" : 24.530417,
+          "resident_wall_ms" : 6.7121250000000003,
+          "shared_output_cpu_visible_ms" : 6.729584,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.32749999999999
+        },
+        {
+          "full_output_copy_ms" : 22.036833000000001,
+          "gpu_device_ms" : 5.7672916736919433,
+          "resident_plus_copy_ms" : 28.431125000000002,
+          "resident_wall_ms" : 6.382625,
+          "shared_output_cpu_visible_ms" : 6.3942500000000004,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.194458
+        },
+        {
+          "full_output_copy_ms" : 24.531541000000001,
+          "gpu_device_ms" : 6.0446666611824185,
+          "resident_plus_copy_ms" : 30.770458000000001,
+          "resident_wall_ms" : 6.2205830000000004,
+          "shared_output_cpu_visible_ms" : 6.2388750000000002,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.01875000000001
+        },
+        {
+          "full_output_copy_ms" : 20.106124999999999,
+          "gpu_device_ms" : 5.7266249787062407,
+          "resident_plus_copy_ms" : 26.547499999999999,
+          "resident_wall_ms" : 6.4237080000000004,
+          "shared_output_cpu_visible_ms" : 6.4413330000000002,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.55262499999998
+        },
+        {
+          "full_output_copy_ms" : 17.805,
+          "gpu_device_ms" : 6.1707499844487756,
+          "resident_plus_copy_ms" : 24.187833000000001,
+          "resident_wall_ms" : 6.3663749999999997,
+          "shared_output_cpu_visible_ms" : 6.3827920000000002,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.72129200000001
+        },
+        {
+          "full_output_copy_ms" : 19.004166999999999,
+          "gpu_device_ms" : 6.380583334248513,
+          "resident_plus_copy_ms" : 26.009875000000001,
+          "resident_wall_ms" : 6.985792,
+          "shared_output_cpu_visible_ms" : 7.0056250000000002,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.82799999999997
+        },
+        {
+          "full_output_copy_ms" : 17.590958000000001,
+          "gpu_device_ms" : 7.9447499883826822,
+          "resident_plus_copy_ms" : 26.039542000000001,
+          "resident_wall_ms" : 8.4413330000000002,
+          "shared_output_cpu_visible_ms" : 8.4485419999999998,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.33908300000002
+        },
+        {
+          "full_output_copy_ms" : 18.151582999999999,
+          "gpu_device_ms" : 8.0093750148080289,
+          "resident_plus_copy_ms" : 26.708207999999999,
+          "resident_wall_ms" : 8.5474160000000001,
+          "shared_output_cpu_visible_ms" : 8.5565829999999998,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 360.35733299999998
+        },
+        {
+          "full_output_copy_ms" : 18.8215,
+          "gpu_device_ms" : 5.6348333309870213,
+          "resident_plus_copy_ms" : 24.733333999999999,
+          "resident_wall_ms" : 5.9044590000000001,
+          "shared_output_cpu_visible_ms" : 5.9118339999999998,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.1863958827326186e-07,
+            "max_unit_radius_error" : 1.9280484675476828e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 359.08379200000002
+        }
+      ],
+      "variant" : "safe_precise_algebra_256"
+    },
+    {
+      "formula" : "algebraic sqrt rewrite",
+      "intrinsics" : "fast",
+      "math_mode" : "safe",
+      "threads" : 256,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 17.645292000000001,
+          "gpu_device_ms" : 5.8866666804533452,
+          "resident_plus_copy_ms" : 24.289166999999999,
+          "resident_wall_ms" : 6.6395410000000004,
+          "shared_output_cpu_visible_ms" : 6.6438750000000004,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.789917
+        },
+        {
+          "full_output_copy_ms" : 17.374333,
+          "gpu_device_ms" : 5.8980416797567159,
+          "resident_plus_copy_ms" : 24.074292,
+          "resident_wall_ms" : 6.6863340000000004,
+          "shared_output_cpu_visible_ms" : 6.6998749999999996,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 353.42245800000001
+        },
+        {
+          "full_output_copy_ms" : 17.415707999999999,
+          "gpu_device_ms" : 5.9035000158473849,
+          "resident_plus_copy_ms" : 23.985917000000001,
+          "resident_wall_ms" : 6.564292,
+          "shared_output_cpu_visible_ms" : 6.5701669999999996,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.96770800000002
+        },
+        {
+          "full_output_copy_ms" : 17.775874999999999,
+          "gpu_device_ms" : 6.3482083205599338,
+          "resident_plus_copy_ms" : 24.275957999999999,
+          "resident_wall_ms" : 6.4927080000000004,
+          "shared_output_cpu_visible_ms" : 6.5000830000000001,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.90170899999998
+        },
+        {
+          "full_output_copy_ms" : 19.650749999999999,
+          "gpu_device_ms" : 4.7623333521187305,
+          "resident_plus_copy_ms" : 25.007000000000001,
+          "resident_wall_ms" : 5.3486250000000002,
+          "shared_output_cpu_visible_ms" : 5.3562500000000002,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.91779200000002
+        },
+        {
+          "full_output_copy_ms" : 17.358917000000002,
+          "gpu_device_ms" : 5.8794583310373127,
+          "resident_plus_copy_ms" : 23.891625000000001,
+          "resident_wall_ms" : 6.5272079999999999,
+          "shared_output_cpu_visible_ms" : 6.5327080000000004,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.04366599999997
+        },
+        {
+          "full_output_copy_ms" : 20.348666000000001,
+          "gpu_device_ms" : 7.1183333348017186,
+          "resident_plus_copy_ms" : 28.015833000000001,
+          "resident_wall_ms" : 7.6575410000000002,
+          "shared_output_cpu_visible_ms" : 7.6670829999999999,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.30170800000002
+        },
+        {
+          "full_output_copy_ms" : 18.186416999999999,
+          "gpu_device_ms" : 4.8142916639335454,
+          "resident_plus_copy_ms" : 23.726583000000002,
+          "resident_wall_ms" : 5.5216250000000002,
+          "shared_output_cpu_visible_ms" : 5.5401249999999997,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.75858299999999
+        },
+        {
+          "full_output_copy_ms" : 20.140291000000001,
+          "gpu_device_ms" : 4.6718750090803951,
+          "resident_plus_copy_ms" : 25.408458,
+          "resident_wall_ms" : 5.2612079999999999,
+          "shared_output_cpu_visible_ms" : 5.268167,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 367.88708400000002
+        },
+        {
+          "full_output_copy_ms" : 18.421458000000001,
+          "gpu_device_ms" : 4.7433750005438924,
+          "resident_plus_copy_ms" : 23.803083000000001,
+          "resident_wall_ms" : 5.3734999999999999,
+          "shared_output_cpu_visible_ms" : 5.381583,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.10170799999997
+        }
+      ],
+      "variant" : "safe_fast_algebra_256"
+    },
+    {
+      "formula" : "algebraic sqrt rewrite",
+      "intrinsics" : "fast",
+      "math_mode" : "fast",
+      "threads" : 256,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 20.041708,
+          "gpu_device_ms" : 5.6947499979287386,
+          "resident_plus_copy_ms" : 26.379166999999999,
+          "resident_wall_ms" : 6.31975,
+          "shared_output_cpu_visible_ms" : 6.3373330000000001,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.10245800000001
+        },
+        {
+          "full_output_copy_ms" : 17.119125,
+          "gpu_device_ms" : 7.5545000145211816,
+          "resident_plus_copy_ms" : 25.269959,
+          "resident_wall_ms" : 8.1438749999999995,
+          "shared_output_cpu_visible_ms" : 8.1508339999999997,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 353.921291
+        },
+        {
+          "full_output_copy_ms" : 22.223875,
+          "gpu_device_ms" : 5.7762499782256782,
+          "resident_plus_copy_ms" : 28.576125000000001,
+          "resident_wall_ms" : 6.3422919999999996,
+          "shared_output_cpu_visible_ms" : 6.3522080000000001,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 356.15333299999998
+        },
+        {
+          "full_output_copy_ms" : 21.809583,
+          "gpu_device_ms" : 5.7720416807569563,
+          "resident_plus_copy_ms" : 28.230540999999999,
+          "resident_wall_ms" : 6.413875,
+          "shared_output_cpu_visible_ms" : 6.4209160000000001,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.04329200000001
+        },
+        {
+          "full_output_copy_ms" : 17.376291999999999,
+          "gpu_device_ms" : 4.7424999938812107,
+          "resident_plus_copy_ms" : 22.754791999999998,
+          "resident_wall_ms" : 5.3703750000000001,
+          "shared_output_cpu_visible_ms" : 5.3784580000000002,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 360.31120800000002
+        },
+        {
+          "full_output_copy_ms" : 17.890499999999999,
+          "gpu_device_ms" : 5.8454166864976287,
+          "resident_plus_copy_ms" : 24.389040999999999,
+          "resident_wall_ms" : 6.4817499999999999,
+          "shared_output_cpu_visible_ms" : 6.4984999999999999,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.541583
+        },
+        {
+          "full_output_copy_ms" : 17.149041,
+          "gpu_device_ms" : 7.7588749991264194,
+          "resident_plus_copy_ms" : 25.261333,
+          "resident_wall_ms" : 8.1008750000000003,
+          "shared_output_cpu_visible_ms" : 8.1122499999999995,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.32620900000001
+        },
+        {
+          "full_output_copy_ms" : 17.497083,
+          "gpu_device_ms" : 6.0699166788253933,
+          "resident_plus_copy_ms" : 24.219124999999998,
+          "resident_wall_ms" : 6.7050830000000001,
+          "shared_output_cpu_visible_ms" : 6.7219579999999999,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.11595799999998
+        },
+        {
+          "full_output_copy_ms" : 17.479707999999999,
+          "gpu_device_ms" : 6.9871250016149133,
+          "resident_plus_copy_ms" : 24.622250000000001,
+          "resident_wall_ms" : 7.1341669999999997,
+          "shared_output_cpu_visible_ms" : 7.1425000000000001,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 360.11591700000002
+        },
+        {
+          "full_output_copy_ms" : 20.7685,
+          "gpu_device_ms" : 4.9247499846387655,
+          "resident_plus_copy_ms" : 25.932874999999999,
+          "resident_wall_ms" : 5.1566660000000004,
+          "shared_output_cpu_visible_ms" : 5.1642910000000004,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 359.89933300000001
+        }
+      ],
+      "variant" : "fast_fast_algebra_256"
+    },
+    {
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "fast",
+      "math_mode" : "fast",
+      "threads" : 64,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 65.959625000000003,
+          "gpu_device_ms" : 4.4165000144857913,
+          "resident_plus_copy_ms" : 70.592749999999995,
+          "resident_wall_ms" : 4.6180000000000003,
+          "shared_output_cpu_visible_ms" : 4.6330830000000001,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.39641699999999
+        },
+        {
+          "full_output_copy_ms" : 19.430541000000002,
+          "gpu_device_ms" : 5.8214166492689401,
+          "resident_plus_copy_ms" : 25.924042,
+          "resident_wall_ms" : 6.4874169999999998,
+          "shared_output_cpu_visible_ms" : 6.4934589999999996,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.04420800000003
+        },
+        {
+          "full_output_copy_ms" : 17.850292,
+          "gpu_device_ms" : 5.9189166640862823,
+          "resident_plus_copy_ms" : 24.419083000000001,
+          "resident_wall_ms" : 6.5612909999999998,
+          "shared_output_cpu_visible_ms" : 6.568791,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.09579200000002
+        },
+        {
+          "full_output_copy_ms" : 17.338750000000001,
+          "gpu_device_ms" : 5.2058750006835908,
+          "resident_plus_copy_ms" : 23.186958000000001,
+          "resident_wall_ms" : 5.8385829999999999,
+          "shared_output_cpu_visible_ms" : 5.8481249999999996,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 359.85304200000002
+        },
+        {
+          "full_output_copy_ms" : 17.748708000000001,
+          "gpu_device_ms" : 5.6149166484829038,
+          "resident_plus_copy_ms" : 24.02825,
+          "resident_wall_ms" : 6.2729169999999996,
+          "shared_output_cpu_visible_ms" : 6.2795420000000002,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.43879199999998
+        },
+        {
+          "full_output_copy_ms" : 17.412082999999999,
+          "gpu_device_ms" : 5.4697500017937273,
+          "resident_plus_copy_ms" : 23.096625,
+          "resident_wall_ms" : 5.6706250000000002,
+          "shared_output_cpu_visible_ms" : 5.6844169999999998,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.09629200000001
+        },
+        {
+          "full_output_copy_ms" : 17.044416999999999,
+          "gpu_device_ms" : 7.7638750080950558,
+          "resident_plus_copy_ms" : 25.460750000000001,
+          "resident_wall_ms" : 8.4007500000000004,
+          "shared_output_cpu_visible_ms" : 8.4162909999999993,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.551042
+        },
+        {
+          "full_output_copy_ms" : 18.17625,
+          "gpu_device_ms" : 6.2275833333842456,
+          "resident_plus_copy_ms" : 25.141666000000001,
+          "resident_wall_ms" : 6.9586249999999996,
+          "shared_output_cpu_visible_ms" : 6.9654160000000003,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.91987499999999
+        },
+        {
+          "full_output_copy_ms" : 18.423749999999998,
+          "gpu_device_ms" : 4.8783750098664314,
+          "resident_plus_copy_ms" : 23.912042,
+          "resident_wall_ms" : 5.4764999999999997,
+          "shared_output_cpu_visible_ms" : 5.4882499999999999,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 359.87320799999998
+        },
+        {
+          "full_output_copy_ms" : 18.656334000000001,
+          "gpu_device_ms" : 7.5655833352357149,
+          "resident_plus_copy_ms" : 26.786667000000001,
+          "resident_wall_ms" : 8.121416,
+          "shared_output_cpu_visible_ms" : 8.1303330000000003,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 359.83724999999998
+        }
+      ],
+      "variant" : "fast_fast_trig_64"
+    },
+    {
+      "formula" : "original acos\/sin\/cos",
+      "intrinsics" : "fast",
+      "math_mode" : "fast",
+      "threads" : 512,
+      "trials" : [
+        {
+          "full_output_copy_ms" : 18.624333,
+          "gpu_device_ms" : 4.8597083368804306,
+          "resident_plus_copy_ms" : 23.964375,
+          "resident_wall_ms" : 5.3326250000000002,
+          "shared_output_cpu_visible_ms" : 5.3399999999999999,
+          "trial" : 0,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 355.48025000000001
+        },
+        {
+          "full_output_copy_ms" : 17.953416000000001,
+          "gpu_device_ms" : 5.2253333269618452,
+          "resident_plus_copy_ms" : 23.831125,
+          "resident_wall_ms" : 5.8714170000000001,
+          "shared_output_cpu_visible_ms" : 5.8777090000000003,
+          "trial" : 1,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 353.68216699999999
+        },
+        {
+          "full_output_copy_ms" : 18.138791000000001,
+          "gpu_device_ms" : 5.9154999908059835,
+          "resident_plus_copy_ms" : 24.683833,
+          "resident_wall_ms" : 6.5386249999999997,
+          "shared_output_cpu_visible_ms" : 6.5449999999999999,
+          "trial" : 2,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.21770900000001
+        },
+        {
+          "full_output_copy_ms" : 17.635458,
+          "gpu_device_ms" : 6.620541651500389,
+          "resident_plus_copy_ms" : 24.479624999999999,
+          "resident_wall_ms" : 6.8264579999999997,
+          "shared_output_cpu_visible_ms" : 6.844125,
+          "trial" : 3,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 354.83562499999999
+        },
+        {
+          "full_output_copy_ms" : 20.901250000000001,
+          "gpu_device_ms" : 5.3842083434574306,
+          "resident_plus_copy_ms" : 26.845917,
+          "resident_wall_ms" : 5.9383340000000002,
+          "shared_output_cpu_visible_ms" : 5.9446669999999999,
+          "trial" : 4,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.59641699999997
+        },
+        {
+          "full_output_copy_ms" : 17.778790999999998,
+          "gpu_device_ms" : 5.6717499974183738,
+          "resident_plus_copy_ms" : 24.101458000000001,
+          "resident_wall_ms" : 6.3168749999999996,
+          "shared_output_cpu_visible_ms" : 6.322667,
+          "trial" : 5,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.12374999999997
+        },
+        {
+          "full_output_copy_ms" : 18.809916000000001,
+          "gpu_device_ms" : 5.1169166690669954,
+          "resident_plus_copy_ms" : 24.587499999999999,
+          "resident_wall_ms" : 5.76675,
+          "shared_output_cpu_visible_ms" : 5.7775420000000004,
+          "trial" : 6,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 360.498583
+        },
+        {
+          "full_output_copy_ms" : 23.895458999999999,
+          "gpu_device_ms" : 5.8768749877344817,
+          "resident_plus_copy_ms" : 30.483042000000001,
+          "resident_wall_ms" : 6.5704580000000004,
+          "shared_output_cpu_visible_ms" : 6.587542,
+          "trial" : 7,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 358.82425000000001
+        },
+        {
+          "full_output_copy_ms" : 18.047125000000001,
+          "gpu_device_ms" : 5.8183749788440764,
+          "resident_plus_copy_ms" : 24.053999999999998,
+          "resident_wall_ms" : 5.9931669999999997,
+          "shared_output_cpu_visible_ms" : 6.0068339999999996,
+          "trial" : 8,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 362.64470799999998
+        },
+        {
+          "full_output_copy_ms" : 20.333041999999999,
+          "gpu_device_ms" : 5.3527500131167471,
+          "resident_plus_copy_ms" : 25.861875000000001,
+          "resident_wall_ms" : 5.5175000000000001,
+          "shared_output_cpu_visible_ms" : 5.5287920000000002,
+          "trial" : 9,
+          "validation" : {
+            "actual_coordinates" : 300000000,
+            "coordinates_over_5e_4" : 0,
+            "expected_coordinates" : 300000000,
+            "max_abs_error_vs_raw_fp64" : 4.13697136103508e-07,
+            "max_unit_radius_error" : 2.4215248317638327e-07,
+            "nonfinite" : 0,
+            "outside_band" : 0,
+            "pass" : true
+          },
+          "validation_ms" : 357.28716600000001
+        }
+      ],
+      "variant" : "fast_fast_trig_512"
+    }
+  ],
+  "warmups_per_variant" : 3
+}
